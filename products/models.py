@@ -31,10 +31,10 @@ class Product(models.Model):
         if not self.slug:
             self.slug=slugify(self.name)
         super(Product,self).save(*args,**kwargs)
+
     def get_absolute_url(self):
         return reverse("product_detail", args=[self.slug])
     
-
     def __str__(self):
         return self.name
 
@@ -62,7 +62,7 @@ class Subcategory(models.Model):
     
 class Brand(models.Model):
     BRDName = models.CharField(max_length=40)
-    image = models.ImageField(upload_to='product/',blank=True, null=True)
+    image = models.ImageField(upload_to='product_prand/',blank=True, null=True)
     BRDDesc = models.TextField(blank=True, null=True)
 
     class Meta:
