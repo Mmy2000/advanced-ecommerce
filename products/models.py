@@ -21,6 +21,7 @@ class Product(models.Model):
     is_available = models.BooleanField(default=True)
     tags = TaggableManager()
     subcategory = models.ForeignKey("Subcategory",null=True,blank=True, on_delete=models.CASCADE)
+    PRDBrand = models.ForeignKey('Brand' ,related_name='product_brand', on_delete=models.CASCADE , blank=True, null=True ,verbose_name=_("Brand "))
 
 
     class Meta:
@@ -42,3 +43,15 @@ class Subcategory(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Brand(models.Model):
+    BRDName = models.CharField(max_length=40)
+    image = models.ImageField(upload_to='product/',blank=True, null=True)
+    BRDDesc = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Brand")
+        verbose_name_plural = _("Brands")
+
+    def __str__(self):
+        return self.BRDName
