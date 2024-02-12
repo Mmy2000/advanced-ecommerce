@@ -67,10 +67,19 @@ class Brand(models.Model):
     BRDName = models.CharField(max_length=40)
     image = models.ImageField(upload_to='product_prand/',blank=True, null=True)
     BRDDesc = models.TextField(blank=True, null=True)
+    slug = models.SlugField(null=True,blank=True , unique=True)
 
     class Meta:
         verbose_name = _("Brand")
         verbose_name_plural = _("Brands")
+
+    def save(self,*args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.BRDName)
+        super(Brand,self).save(*args,**kwargs)
+    
+    def get_url(self):
+        return reverse('product_by_brand',args=[self.slug])
 
     def __str__(self):
         return self.BRDName
