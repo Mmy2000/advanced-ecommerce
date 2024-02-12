@@ -55,8 +55,17 @@ class Category(models.Model):
 class Subcategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    slug = models.SlugField(null=True,blank=True)
     image = models.ImageField(null=True,blank=True,upload_to='category-image/')
 
+    def save(self,*args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.name)
+        super(Subcategory,self).save(*args,**kwargs)
+
+    def get_url(self):
+        return reverse('product_by_category',args=[self.id])
+    
     def __str__(self):
         return self.name
     

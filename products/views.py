@@ -1,10 +1,15 @@
-from django.shortcuts import render
-from .models import Product
+from django.shortcuts import render , get_object_or_404
+from .models import Product , Category , Subcategory
 # Create your views here.
-def product_list(request):
-    products = Product.objects.all()
+def product_list(request , subcategory_id=None):
+    categories = None
+    if subcategory_id != None:
+        categories = get_object_or_404(Subcategory,id = subcategory_id)
+        products = Product.objects.filter(subcategory=categories ,is_available=True)
+    else :
+        products = Product.objects.filter(is_available=True)
     context={
-        'products':products
+        'products':products,
     }
     return render(request , 'products/product_list.html' , context )
 

@@ -114,7 +114,7 @@
                                     class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 {% for subcategory in category.subcategory_set.all %}
-                                <a href="" class="dropdown-item">{{ subcategory.name }}</a>
+                                <a href="{{subcategory.get_url}}" class="dropdown-item">{{ subcategory.name }}</a>
                                 {% endfor %}
                             </div>
                             {% else %}
