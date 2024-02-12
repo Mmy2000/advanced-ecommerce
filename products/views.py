@@ -1,5 +1,7 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Product , Category , Subcategory , Brand
+from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+
 # Create your views here.
 def product_list(request , subcategory_id=None , brand_slug=None):
     categories = None
@@ -7,15 +9,27 @@ def product_list(request , subcategory_id=None , brand_slug=None):
     if subcategory_id != None :
         categories = get_object_or_404(Subcategory,id = subcategory_id)
         products = Product.objects.filter(subcategory=categories  ,is_available=True)
+        paginator = Paginator(products,6)
+        page = request.GET.get('page')
+        paged_product = paginator.get_page(page)
+        product_count = products.count()
     elif brand_slug != None:
         brands = get_object_or_404(Brand,slug=brand_slug)
         products = Product.objects.filter(PRDBrand=brands ,is_available=True )
+        paginator = Paginator(products,6)
+        page = request.GET.get('page')
+        paged_product = paginator.get_page(page)
+        product_count = products.count()
     else :
         products = Product.objects.filter(is_available=True)
+        paginator = Paginator(products,6)
+        page = request.GET.get('page')
+        paged_product = paginator.get_page(page)
+        product_count = products.count()
     
 
     context={
-        'products':products,
+        'products':paged_product,
     }
     return render(request , 'products/product_list.html' , context )
 
