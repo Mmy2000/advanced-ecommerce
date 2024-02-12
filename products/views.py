@@ -1,6 +1,7 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Product , Category , Subcategory , Brand
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+from django.db.models.query_utils import Q
 
 # Create your views here.
 def product_list(request , subcategory_id=None , brand_slug=None):
@@ -46,3 +47,22 @@ def product_detail(request ,product_slug):
         'related':related,
     }
     return render(request , 'products/product_detail.html' , context)
+
+def search(request):
+    if 'q' in request.GET:
+        q = request.GET['q']
+        if q :
+            product = Product.objects.order_by('-created_at').filter(
+                Q(description__icontains=q ) |
+                Q( name__icontains=q)|
+                Q(subcategory__name__icontains=q)|
+                Q(PRDBrand__BRDName__icontains=q)
+                )
+            product_count = product.count()
+        else :
+            return render(request , 'products/product_list.html')
+    context = {
+        'products':product , 
+        'product_count':product_count
+    }
+    return render(request , 'products/product_list.html', context)
