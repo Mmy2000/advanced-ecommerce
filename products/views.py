@@ -30,10 +30,6 @@ def product_list(request, subcategory_id=None, brand_slug=None):
     # Handle filtering using django-filters
     try:
         product_filter = ProductFilter(request.GET, queryset=products)
-        products = product_filter.qs
-        paginator = Paginator(products, 1)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
         return render(request , 'products/product_filter.html',{'filter': product_filter})
     except:
         pass
