@@ -32,6 +32,7 @@ class Product(models.Model):
             self.slug=slugify(self.name)
         super(Product,self).save(*args,**kwargs)
 
+
     def get_absolute_url(self):
         return reverse("product_detail", args=[self.slug])
     
