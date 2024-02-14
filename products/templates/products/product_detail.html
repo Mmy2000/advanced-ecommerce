@@ -151,7 +151,7 @@
                         <p>{{single_product.description}}</p>
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
-                        <h4 class="mb-3">Additional Information</h4>
+                        <h4 class="mb-3">Tags</h4>
                         {% for tag in single_product.tags.all  %}
                         <a href="{% url 'product_by_tag' tag.slug %}"><span class="badge bg-secondary">{{tag}}</span></a>
                         {% endfor %}
