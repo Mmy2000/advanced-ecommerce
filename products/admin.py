@@ -6,7 +6,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name' , 'price'  , 'subcategory' , 'PRDBrand' , 'stock' , 'created_at' , 'is_available')
+    list_display = ('name' , 'price'  , 'subcategory' , 'PRDBrand' , 'stock' , 'created_at','views' , 'is_available')
 
 admin.site.register(Product , ProductAdmin)
 admin.site.register(Category)
