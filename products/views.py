@@ -1,5 +1,6 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Product , Category , Subcategory , Brand 
+from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 
@@ -23,8 +24,9 @@ def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None
         paged_product = paginator.get_page(page)
         product_count = products.count()
     elif tag_slug != None:
-        products = Product.objects.filter(Q(tags__name__icontains = tag_slug) , is_available = True)
-        paginator = Paginator(products,1)
+        tags = get_object_or_404(Tag , slug = tag_slug)
+        products = Product.objects.filter(tags = tags , is_available = True)
+        paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
         product_count = products.count()
