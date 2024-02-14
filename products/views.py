@@ -32,7 +32,7 @@ def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None
         product_count = products.count()
     else :
         products = Product.objects.filter(is_available=True)
-        paginator = Paginator(products,1)
+        paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
         product_count = products.count()
