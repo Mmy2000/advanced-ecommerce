@@ -2,6 +2,7 @@ from django.shortcuts import render , get_object_or_404
 from .models import Product , Category , Subcategory , Brand
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
+from .filters import ProductFilter
 
 # Create your views here.
 def product_list(request , subcategory_id=None , brand_slug=None):
@@ -23,14 +24,16 @@ def product_list(request , subcategory_id=None , brand_slug=None):
         product_count = products.count()
     else :
         products = Product.objects.filter(is_available=True)
-        paginator = Paginator(products,1)
+        paginator = Paginator(products,2)
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
         product_count = products.count()
+        f = ProductFilter(request.GET, queryset=Product.objects.filter())
     
 
     context={
         'products':paged_product,
+        'filter':f,
     }
     return render(request , 'products/product_list.html' , context )
 
