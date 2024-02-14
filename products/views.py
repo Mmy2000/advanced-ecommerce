@@ -5,37 +5,46 @@ from django.db.models.query_utils import Q
 from .filters import ProductFilter
 
 # Create your views here.
-def product_list(request , subcategory_id=None , brand_slug=None):
+
+
+def product_list(request, subcategory_id=None, brand_slug=None):
+    # Initialize variables
     categories = None
     brands = None
-    if subcategory_id != None :
-        categories = get_object_or_404(Subcategory,id = subcategory_id)
-        products = Product.objects.filter(subcategory=categories  ,is_available=True)
-        paginator = Paginator(products,6)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-    elif brand_slug != None:
-        brands = get_object_or_404(Brand,slug=brand_slug)
-        products = Product.objects.filter(PRDBrand=brands ,is_available=True )
-        paginator = Paginator(products,6)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-    else :
-        products = Product.objects.filter(is_available=True)
-        paginator = Paginator(products,2)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-        f = ProductFilter(request.GET, queryset=Product.objects.filter())
+    products = Product.objects.filter(is_available=True)
     
+    # Check if subcategory or brand is provided for filtering
+    if subcategory_id:
+        categories = get_object_or_404(Subcategory, id=subcategory_id)
+        products = products.filter(subcategory=categories)
+    elif brand_slug:
+        brands = get_object_or_404(Brand, slug=brand_slug)
+        products = products.filter(PRDBrand=brands)
 
-    context={
-        'products':paged_product,
-        'filter':f,
+    # Initialize Paginator
+    paginator = Paginator(products, 6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    product_count = products.count()
+
+    # Handle filtering using django-filters
+    try:
+        product_filter = ProductFilter(request.GET, queryset=products)
+        products = product_filter.qs
+        paginator = Paginator(products, 1)
+        page = request.GET.get('page')
+        paged_product = paginator.get_page(page)
+        return render(request , 'products/product_filter.html',{'filter': product_filter})
+    except:
+        pass
+    # Construct the context
+    context = {
+        'products': paged_product,
     }
-    return render(request , 'products/product_list.html' , context )
+
+    # Render the template
+    return render(request, 'products/product_list.html', context)
+
 
 def product_detail(request ,product_slug):
     try:
