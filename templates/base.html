@@ -146,12 +146,8 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            {% if home in request.path %}
-                            <a href="/" class="nav-item nav-link active">Home</a>
-                            {% else %}
-                            <a href="/" class="nav-item nav-link ">Home</a>
-                            {% endif %}
-                                    {% if 'products' in request.path %}
+                            <a href="/" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+                            {% if 'products' in request.path %}
                             <a href="{% url 'product_list' %}" class="nav-item nav-link active">Shop</a>
                             {% else %}
                             <a href="{% url 'product_list' %}" class="nav-item nav-link ">Shop</a>
