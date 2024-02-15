@@ -20,7 +20,7 @@ class Product(models.Model):
     views = models.PositiveIntegerField(default=0)
     is_available = models.BooleanField(default=True)
     tags = TaggableManager()
-    subcategory = models.ForeignKey("Subcategory",null=True,blank=True, on_delete=models.CASCADE)
+    subcategory = models.ForeignKey("Subcategory",related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
     PRDBrand = models.ForeignKey('Brand' ,related_name='product_brand', on_delete=models.CASCADE , blank=True, null=True ,verbose_name=_("Brand "))
 
 
@@ -54,7 +54,7 @@ class Category(models.Model):
         return self.name
 
 class Subcategory(models.Model):
-    category = models.ForeignKey(Category,related_name='product_subcategory', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     image = models.ImageField(null=True,blank=True,upload_to='category-image/')
 
