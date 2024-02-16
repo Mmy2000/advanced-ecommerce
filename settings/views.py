@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from products.models import Product , Subcategory
+from .models import Settings
 from django.db.models import Count
 from .forms import ContactForm
 from django.core.mail import send_mail
@@ -35,5 +36,7 @@ def contact(request):
             messages.error(request, 'Pls try agian.')
     else:
         form = ContactForm()
-    context = {'form':form}
+    about = Settings.objects.last()
+    context = {'form':form,
+               'about':about}
     return render(request,'contact.html',context)
