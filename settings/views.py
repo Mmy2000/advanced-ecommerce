@@ -33,7 +33,7 @@ def contact(request):
             messages.success(request, 'Your Message send successfully.')
         else:
             messages.error(request, 'Pls try agian.')
-    
-    form = ContactForm()
+    else:
+        form = ContactForm()
     context = {'form':form}
     return render(request,'contact.html',context)
