@@ -4,6 +4,8 @@ from django.db.models import Count
 from .forms import ContactForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
+
 # Create your views here.
 def home(request):
     trandy_paroduct = Product.objects.all().order_by('-views')
@@ -28,7 +30,9 @@ def contact(request):
             email = form.cleaned_data['email']
             recipient_list =email
             send_mail(subject, message, email_from, [recipient_list])
-            # return render(request, 'success.html') 
+            messages.success(request, 'Your Message send successfully.')
+        else:
+            messages.error(request, 'Pls try agian.')
     
     form = ContactForm()
     context = {'form':form}

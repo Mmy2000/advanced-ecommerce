@@ -25,8 +25,8 @@
     <div class="row px-xl-5">
         <div class="col-lg-7 mb-5">
             <div class="contact-form">
-                <div id="success"></div>
-                <form  method="POST" class="form">
+                <div id="success">{% include "includes/alerts.html" %}</div>
+                <form method="POST" class="form">
                     {% csrf_token %}
                     {% bootstrap_form form %}
                     {% bootstrap_button button_type="submit" content="Send Message" %}
