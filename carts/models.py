@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 class Cart(models.Model):
     cart_id = models.CharField( max_length=50 , blank=True)
-    date_added = models.DateField(default=timezone.now())
+    date_added = models.DateField(default=timezone.now)
 
 
     def __str__(self):
