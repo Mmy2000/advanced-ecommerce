@@ -50,7 +50,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">${{cart_item.sub_total}}</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><a href="{% url 'delete_cart' cart_item.product_id %}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

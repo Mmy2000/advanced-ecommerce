@@ -42,6 +42,13 @@ def decrement_cart(request , product_id):
         cart_item.delete()
     return redirect('cart')
 
+def delete_cart(request , product_id):
+    cart = Cart.objects.get(cart_id = _cart_id(request))
+    product = get_object_or_404(Product , id=product_id)
+    cart_item = CartItem.objects.get(product=product , cart = cart)
+    cart_item.delete()
+    return redirect('cart')
+
 def cart(request , total = 0 , quantity = 0 , cart_items = None):
     
     try:
