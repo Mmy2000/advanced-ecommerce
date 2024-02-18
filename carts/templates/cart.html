@@ -43,9 +43,9 @@
                                     </div>
                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" value="{{cart_item.quantity}}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
+                                        <a href="{% url 'add_cart' cart_item.product_id%}" class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </td>
