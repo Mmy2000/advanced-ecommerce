@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'settings',
     'products',
+    'carts',
     'taggit',
     "django_bootstrap5",
     'django_filters',
