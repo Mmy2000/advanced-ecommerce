@@ -40,7 +40,7 @@ def add_cart(request,product_id):
         cart_item = CartItem.objects.create(
             product = product ,
             cart = cart ,
-            quantity = 1
+            quantity = request.POST['quantity']
         )
         cart_item.save()
     return redirect('cart')
