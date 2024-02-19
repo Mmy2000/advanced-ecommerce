@@ -59,7 +59,7 @@
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     {% for i in single_product.variation_set.sizes  %}
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" value="{{i.variation_value}}" id="{{i.variation_value}}" name="size">
+                            <input type="radio" class="custom-control-input" value="{{i.variation_value}}" id="{{i.variation_value}}" name="size" Required > 
                             <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
                         </div>
                         {% endfor %}
@@ -69,7 +69,7 @@
                     <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
                     {% for i in single_product.variation_set.colors  %}
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" value="{{i.variation_value}}" class="custom-control-input" id="{{i.variation_value}}" name="color">
+                        <input type="radio" value="{{i.variation_value}}" class="custom-control-input" id="{{i.variation_value}}" name="color" Required>
                         <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
                     </div>
                     {% endfor %}
