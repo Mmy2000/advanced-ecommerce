@@ -102,3 +102,16 @@
     
 })(jQuery);
 
+let counterValue = 1;
+
+    function increment() {
+      counterValue++;
+      document.getElementById('counter').value = counterValue;
+    }
+
+    function decrement() {
+      if (counterValue > 1) {
+        counterValue--;
+        document.getElementById('counter').value = counterValue;
+      }
+    }
