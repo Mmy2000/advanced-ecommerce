@@ -78,15 +78,16 @@
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                            <a class="btn btn-primary btn-minus" onclick="decrement()" >
+                            <i class="fa fa-minus"></i>
+                            </a>
                         </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
+                        <label for="counter"></label>
+                        <input type="text" id="counter" class="form-control bg-secondary text-center" name="quantity" value="1" readonly>
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
+                            <a class="btn btn-primary btn-plus" onclick="increment()">
                                 <i class="fa fa-plus"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary px-3"><i
@@ -208,4 +209,19 @@
     </div>
 </div>
 <!-- Products End -->
+<script>
+    let counterValue = 1;
+
+    function increment() {
+      counterValue++;
+      document.getElementById('counter').value = counterValue;
+    }
+
+    function decrement() {
+      if (counterValue > 1) {
+        counterValue--;
+        document.getElementById('counter').value = counterValue;
+      }
+    }
+  </script>
 {% endblock body %}
