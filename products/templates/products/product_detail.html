@@ -50,50 +50,60 @@
                     <small class="far fa-star"></small>
                 </div>
                 <small class="pt-1">(50 Reviews)</small>
+                
             </div>
             <h3 class="font-weight-semi-bold mb-4">${{single_product.price}}</h3>
+            {% if single_product.stock <= 0 %}
+                <span class="badge bg-secondary">Out of Stock</span>
+                {% else %}
+                {% endif %}
             <p class="mb-4">{{single_product.description}}</p>
             <form action="{% url 'add_cart' single_product.id %}" method="POST">
                 {% csrf_token %}
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     {% for i in single_product.variation_set.sizes  %}
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" value="{{i.variation_value}}" id="{{i.variation_value}}" name="size" Required > 
-                            <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
-                        </div>
-                        {% endfor %}
-                        
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" value="{{i.variation_value}}"
+                            id="{{i.variation_value}}" name="size" Required>
+                        <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
+                    </div>
+                    {% endfor %}
+
                 </div>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
                     {% for i in single_product.variation_set.colors  %}
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" value="{{i.variation_value}}" class="custom-control-input" id="{{i.variation_value}}" name="color" Required>
+                        <input type="radio" value="{{i.variation_value}}" class="custom-control-input"
+                            id="{{i.variation_value}}" name="color" Required>
                         <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
                     </div>
                     {% endfor %}
-                    
+
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
-                     <div class="input-group quantity mr-3" style="width: 130px;">
+                    <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
-                            <a class="btn btn-primary btn-minus" onclick="decrement()" >
-                            <i class="fa fa-minus"></i>
+                            <a class="btn btn-primary btn-minus" onclick="decrement()">
+                                <i class="fa fa-minus"></i>
                             </a>
                         </div>
                         <label for="counter"></label>
-                        <input type="text" id="counter" class="form-control bg-secondary text-center" name="quantity" value="1"  readonly>
+                        <input type="text" id="counter" class="form-control bg-secondary text-center" name="quantity"
+                            value="1" readonly>
                         <div class="input-group-btn">
                             <a class="btn btn-primary btn-plus" onclick="increment()">
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
-                    </div> 
+                    </div>
                     {% if single_product.stock <= 0 %}
-                    <button type="submit" class="btn btn-primary px-3 disabled"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button type="submit" class="btn btn-primary px-3 disabled"><i class="fa fa-shopping-cart mr-1"></i>
+                        Add To Cart</button>
                     {% else %}
-                    <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                        Cart</button>
 
                     {% endif %}
                 </div>
