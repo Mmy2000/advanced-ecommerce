@@ -54,7 +54,7 @@
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
-                                    <a href="{% url 'decrement_cart' cart_item.product_id%}"
+                                    <a href="{% url 'decrement_cart' cart_item.product.id cart_item.id%}"
                                         class="btn btn-sm btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
                                     </a>
@@ -62,7 +62,7 @@
                                 <input type="text" class="form-control form-control-sm bg-secondary text-center"
                                     value="{{cart_item.quantity}}">
                                 <div class="input-group-btn">
-                                    <form action="{% url 'add_cart' cart_item.product_id%}" method="POST">
+                                    <form action="{% url 'add_cart' cart_item.product.id%}" method="POST">
                                         {% csrf_token %}
                                         {% for item in cart_item.variations.all %}
                                         <input type="hidden" class="form-control form-control-sm bg-secondary text-center"
