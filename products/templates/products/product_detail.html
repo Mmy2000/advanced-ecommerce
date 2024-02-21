@@ -60,17 +60,6 @@
             <p class="mb-4">{{single_product.description}}</p>
             <form action="{% url 'add_cart' single_product.id %}" method="POST">
                 {% csrf_token %}
-                <div class="d-flex mb-3">
-                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-                    {% for i in single_product.variation_set.sizes  %}
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" value="{{i.variation_value}}"
-                            id="{{i.variation_value}}" name="size" Required>
-                        <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
-                    </div>
-                    {% endfor %}
-
-                </div>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
                     {% for i in single_product.variation_set.colors  %}
@@ -82,6 +71,18 @@
                     {% endfor %}
 
                 </div>
+                <div class="d-flex mb-3">
+                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+                    {% for i in single_product.variation_set.sizes  %}
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" value="{{i.variation_value}}"
+                            id="{{i.variation_value}}" name="size" Required>
+                        <label class="custom-control-label" for="{{i.variation_value}}">{{i.variation_value}}</label>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
