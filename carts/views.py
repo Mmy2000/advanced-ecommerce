@@ -80,10 +80,10 @@ def decrement_cart(request , product_id,cart_item_id):
         pass
     return redirect('cart')
 
-def delete_cart(request , product_id):
+def delete_cart(request , product_id ,cart_item_id):
     cart = Cart.objects.get(cart_id = _cart_id(request))
     product = get_object_or_404(Product , id=product_id)
-    cart_item = CartItem.objects.get(product=product , cart = cart)
+    cart_item = CartItem.objects.get(product=product , cart = cart,id=cart_item_id)
     cart_item.delete()
     return redirect('cart')
 
