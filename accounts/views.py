@@ -2,7 +2,13 @@ from django.shortcuts import render , redirect
 from .forms import RegistrationForm
 from django.contrib.auth import authenticate , login 
 from .models import User
-
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def register(request):
@@ -19,7 +25,7 @@ def register(request):
             user.phone_number = phone_number
             user.save()
 
-            # # USER ACTIVATION
+            # USER ACTIVATION
             # current_site = get_current_site(request)
             # mail_subject = 'Please activate your account'
             # message = render_to_string('accounts/account_verification_email.html', {
