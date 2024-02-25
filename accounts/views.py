@@ -47,3 +47,6 @@ def register(request):
         'form':form
     }
     return render(request,'accounts/register.html' , context)
+
+def login(request):
+    return render(request,'accounts/login.html')
