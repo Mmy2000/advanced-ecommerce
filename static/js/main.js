@@ -115,3 +115,8 @@ let counterValue = 1;
         document.getElementById('counter').value = counterValue;
       }
     }
+
+
+setTimeout(function(){
+    $('#message').fadeOut('slow')
+},4000)
