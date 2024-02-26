@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect
 from .forms import RegistrationForm , UserForm , ProfileForm
 from django.contrib.auth import authenticate , login 
 from .models import User , Profile
+from products.models import Product
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -113,3 +114,7 @@ def profile(request):
 
 def dashboard(request):
     return render(request , 'profile/dashboard.html')
+
+def favourite(request):
+    products = Product.objects.filter(like=request.user)
+    return render(request , 'profile/favourite.html',{'products':products})
