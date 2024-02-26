@@ -73,6 +73,7 @@ TEMPLATES = [
                 'products.product_context.category_nav',
                 'settings.settings_context.my_settings',
                 'carts.cart_context.cart_count',
+                'accounts.favourite_context.counter',
             ],
         },
     },
