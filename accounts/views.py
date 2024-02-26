@@ -66,3 +66,9 @@ def login(request):
             messages.error(request, 'Invalid login credentials')
             return redirect('login')
     return render(request,'accounts/login.html')
+
+@login_required(login_url = 'login')
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'You are logged out.')
+    return redirect('login')
