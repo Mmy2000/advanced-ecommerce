@@ -110,3 +110,6 @@ def profile(request):
         'profile_form':profile_form
     }
     return render(request , 'profile/profile.html' , context)
+
+def dashboard(request):
+    return render(request , 'profile/dashboard.html')
