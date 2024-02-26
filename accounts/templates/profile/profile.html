@@ -144,7 +144,11 @@
             </li><!-- End Contact Page Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'favourite'%}">
-                    <i class="bi bi-envelope"></i>
+                    {% if product_count == 0 %}
+                    <i class="bi bi-star"></i>
+                    {% else %}
+                    <i class="bi bi-star-fill"></i>
+                    {% endif %}
                     <span>Favourite</span>
                 </a>
             </li><!-- End Contact Page Nav -->
