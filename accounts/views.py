@@ -60,6 +60,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
+            messages.success(request,"Loged in successfully")
             return redirect('/')
         else:
             messages.error(request, 'Invalid login credentials')
