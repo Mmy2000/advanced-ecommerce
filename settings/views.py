@@ -9,8 +9,8 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
-    trandy_paroduct = Product.objects.all().order_by('-views')
-    just_arrived = Product.objects.all().order_by('-created_at')
+    trandy_paroduct = Product.objects.all().order_by('-views')[:4]
+    just_arrived = Product.objects.all().order_by('-created_at')[:4]
     category = Subcategory.objects.all().annotate(category_count=Count("product_subcategory"))[:3]
 
     context = {
