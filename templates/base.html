@@ -163,10 +163,18 @@
                             <a href="{% url 'contact'%}"
                                 class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
                         </div>
+                        {% if user.is_authenticated %}
+                        <div class="navbar-nav ml-auto py-0">
+                            <a href="" class="nav-item nav-link">Profile</a>
+                            <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                        </div>
+                        {% else %}
+                        
                         <div class="navbar-nav ml-auto py-0">
                             <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
                             <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
                         </div>
+                        {% endif %}
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
