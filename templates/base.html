@@ -164,7 +164,7 @@
                                 class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
+                            <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
                             <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
                         </div>
                     </div>
