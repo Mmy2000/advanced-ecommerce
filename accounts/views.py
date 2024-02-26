@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from .forms import RegistrationForm
 from django.contrib.auth import authenticate , login 
-from .models import User
+from .models import User , Profile
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -87,3 +87,11 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, 'Invalid activation link')
         return redirect('register')
+    
+
+def profile(request):
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'profile':profile
+    }
+    return render(request , 'profile/profile.html' , context)
