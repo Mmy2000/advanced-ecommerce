@@ -22,6 +22,7 @@ class Product(models.Model):
     tags = TaggableManager()
     subcategory = models.ForeignKey("Subcategory",related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
     PRDBrand = models.ForeignKey('Brand' ,related_name='product_brand', on_delete=models.CASCADE , blank=True, null=True ,verbose_name=_("Brand "))
+    like = models.ManyToManyField(User , blank=True,related_name='product_favourite')
 
 
     class Meta:

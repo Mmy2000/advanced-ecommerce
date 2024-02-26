@@ -3,6 +3,8 @@ from .models import Product , Category , Subcategory , Brand
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None):
@@ -75,3 +77,11 @@ def search(request):
         'product_count':product_count
     }
     return render(request , 'products/product_list.html', context)
+
+def add_to_favourit(request,id):
+    product = Product.objects.get(id=id)
+    if request.user in product.like.all():
+        product.like.remove(request.user.id)
+    else:
+        product.like.add(request.user.id)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
