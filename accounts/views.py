@@ -13,6 +13,8 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+
 # Create your views here.
 
 def register(request):
@@ -117,4 +119,7 @@ def dashboard(request):
 
 def favourite(request):
     products = Product.objects.filter(like=request.user)
-    return render(request , 'profile/favourite.html',{'products':products})
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    return render(request , 'profile/favourite.html',{'products':paged_product})
