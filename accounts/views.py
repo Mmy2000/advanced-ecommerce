@@ -100,7 +100,7 @@ def profile(request):
             my_profile.user = request.user
             my_profile.save()
             messages.success(request, 'Profile updated successfully')
-            return redirect('/profile/profile')
+            return redirect('profile')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=profile)
