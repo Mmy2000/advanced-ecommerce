@@ -166,7 +166,7 @@
                         {% if user.is_authenticated %}
                         
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Profile</a>
+                            <a href="{% url 'profile'%}" class="nav-item nav-link">Profile</a>
                             <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
                         </div>
                         {% else %}
