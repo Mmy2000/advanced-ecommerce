@@ -9,6 +9,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 # Create your views here.
 
 def register(request):
@@ -24,7 +25,7 @@ def register(request):
             user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
             user.phone_number = phone_number
             user.save()
-
+            messages.success(request, 'Thank you for registering with us. We have sent you a verification email to your email address , Please verify it.')
             # USER ACTIVATION
             # current_site = get_current_site(request)
             # mail_subject = 'Please activate your account'
