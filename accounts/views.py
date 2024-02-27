@@ -150,6 +150,29 @@ def resetPassword(request):
     else:
         return render(request, 'accounts/resetPassword.html')
 
+@login_required(login_url = 'login')
+def change_password(request):
+    if request.method == "POST":
+        current_password = request.POST['current_password']
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+
+        user = User.objects.get(username__exact=request.user.username)
+        if new_password == confirm_password :
+            success = user.check_password(current_password)
+            if success :
+                user.set_password(new_password)
+                user.save()
+                messages.success(request,'Password Updated Successfully.')
+                return redirect('change_password')
+            else:
+                messages.error(request,'Please enter a valid current password.')
+                return redirect('change_password')
+        else:
+            messages.error(request,'Password does not match.')
+            return redirect('change_password')
+
+    return render(request , 'accounts/change_password.html')
 def profile(request):
     profile = Profile.objects.get(user=request.user)
     if request.method == "POST":
