@@ -167,10 +167,10 @@ def change_password(request):
                 return redirect('change_password')
             else:
                 messages.error(request,'Please enter a valid current password.')
-                return redirect('change_password')
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         else:
             messages.error(request,'Password does not match.')
-            return redirect('change_password')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
     return render(request , 'accounts/change_password.html')
 def profile(request):
