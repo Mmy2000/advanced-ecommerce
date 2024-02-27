@@ -50,7 +50,8 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="text-primary font-weight-bold border px-3 mr-1">E</span><span>{{about_site.site_name}}</span>
+                <span
+                    class="text-primary font-weight-bold border px-3 mr-1">E</span><span>{{about_site.site_name}}</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -285,39 +286,32 @@
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                     <!-- Change Password Form -->
-                                    <form>
+                                    <h4 class="card-title mb-4">Change Password</h4>
+                                    {% include 'includes/alerts.html' %}
+                                    <form action="{% url 'change_password' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Current Password</label>
+                                            <input type="password" class="form-control" placeholder="Current Password"
+                                                name="current_password" required>
+                                        </div><br> <!-- form-group// -->
+                                        <div class="form-group">
+                                            <label>Create New Password</label>
+                                            <input type="password" class="form-control" placeholder="New Password"
+                                                name="new_password" required>
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label>Confirm New Password</label>
+                                            <input type="password" class="form-control"
+                                                placeholder="Confirm New Password" name="confirm_password" required>
+                                        </div><br><!-- form-group// -->
 
-                                        <div class="row mb-3">
-                                            <label for="currentPassword"
-                                                class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="password" class="form-control"
-                                                    id="currentPassword">
-                                            </div>
-                                        </div>
 
-                                        <div class="row mb-3">
-                                            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
-                                                Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="newpassword" type="password" class="form-control"
-                                                    id="newPassword">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter
-                                                New Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="renewpassword" type="password" class="form-control"
-                                                    id="renewPassword">
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Change Password</button>
-                                        </div>
-                                    </form><!-- End Change Password Form -->
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block"> Submit </button>
+                                        </div> <!-- form-group// -->
+                                    </form>
+                                    <!-- End Change Password Form -->
 
                                 </div>
 
