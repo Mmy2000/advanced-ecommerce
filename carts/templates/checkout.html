@@ -140,8 +140,11 @@
                     </div>
                     <div class="card-body">
                         <h5 class="font-weight-medium mb-3">Products</h5>
+                        
                         {% for cart_item in cart_items %}
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <img src="{{cart_item.product.image.url}}" alt=""
+                                style="width: 50px;">
                             <p>{{cart_item}} x {{cart_item.quantity}}</p>
                             <p>${{cart_item.product.price}}</p>
                         </div>
