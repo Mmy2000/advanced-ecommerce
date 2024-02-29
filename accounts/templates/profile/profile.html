@@ -58,7 +58,20 @@
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown">
+                    {% if cart_counter == 0 %}
+                    <a class="nav-link nav-icon" href="{% url 'cart'%}" data-bs-toggle="dropdown">
+                        <i class="bi bi-cart"></i>
+                        <span class="badge bg-success badge-number">{{cart_counter}}</span>
+                    </a>
+                    {% else %}
+                    <a class="nav-link nav-icon" href="{% url 'cart'%}" data-bs-toggle="dropdown">
+                        <i class="bi bi-cart-check"></i>
+                        <span class="badge bg-success badge-number">{{cart_counter}}</span>
+                    </a>
+                    {% endif %}
 
+                </li><!-- End Messages Nav -->
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
