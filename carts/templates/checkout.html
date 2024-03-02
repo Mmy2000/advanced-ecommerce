@@ -2,22 +2,24 @@
 {% load static %}
 {% block body %}
 
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="/">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Checkout</p>
-            </div>
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Checkout</p>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
 
-    <!-- Checkout Start -->
-    <div class="container-fluid pt-5">
+<!-- Checkout Start -->
+<div class="container-fluid pt-5">
+    <form method="POST">
+        {% csrf_token %}
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <div class="mb-4">
@@ -25,50 +27,45 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input class="form-control" type="text" required placeholder="John">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
+                            <input class="form-control" type="text" required placeholder="Doe">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" required  placeholder="example@email.com">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" required placeholder="+123 456 789">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" required placeholder="123 Street">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" required placeholder="123 Street">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                            </select>
+                            <input class="form-control" type="text" required placeholder="United State">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" required placeholder="New York">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" required placeholder="New York">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
+                            <input class="form-control" type="text" required placeholder="123">
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -80,11 +77,10 @@
                     </div>
                     <div class="card-body">
                         <h5 class="font-weight-medium mb-3">Products</h5>
-                        
+
                         {% for cart_item in cart_items %}
                         <div class="d-flex justify-content-between align-items-center">
-                            <img src="{{cart_item.product.image.url}}" alt=""
-                                style="width: 50px;">
+                            <img src="{{cart_item.product.image.url}}" alt="" style="width: 50px;">
                             <p>{{cart_item}} <i class="fa-sharp fa-solid fa-xmark px-2"></i> {{cart_item.quantity}}</p>
                             <p>${{cart_item.product.price}}</p>
                         </div>
@@ -136,7 +132,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Checkout End -->
+    </form>
+</div>
+<!-- Checkout End -->
 
 {% endblock body %}
