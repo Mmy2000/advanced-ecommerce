@@ -135,9 +135,13 @@ def decrement_cart(request , product_id,cart_item_id):
     return redirect('cart')
 
 def delete_cart(request , product_id ,cart_item_id):
-    cart = Cart.objects.get(cart_id = _cart_id(request))
+    
     product = get_object_or_404(Product , id=product_id)
-    cart_item = CartItem.objects.get(product=product , cart = cart,id=cart_item_id)
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(product=product , user = request.user,id=cart_item_id)
+    else:
+        cart = Cart.objects.get(cart_id = _cart_id(request))
+        cart_item = CartItem.objects.get(product=product , cart = cart,id=cart_item_id)
     cart_item.delete()
     return redirect('cart')
 
