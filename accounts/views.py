@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from carts.models import Cart , CartItem
 from carts.views import _cart_id
+import requests
 # Create your views here.
 
 def register(request):
@@ -97,7 +98,16 @@ def login(request):
                 pass
             auth.login(request, user)
             messages.success(request,"Loged in successfully")
-            return redirect('profile')
+            url = request.META.get('HTTP_REFERER')
+            try:
+                query = requests.utils.urlparse(url).query
+                # next=/cart/checkout/
+                params = dict(x.split('=') for x in query.split('&'))
+                if 'next' in params:
+                    nextPage = params['next']
+                    return redirect(nextPage)                
+            except:
+                return redirect('profile')
         else:
             messages.error(request, 'Invalid login credentials')
             return redirect('login')
