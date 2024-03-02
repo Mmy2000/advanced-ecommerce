@@ -11,6 +11,7 @@ class Cart(models.Model):
         return self.cart_id
     
 class CartItem(models.Model):
+    user = models.ForeignKey("accounts.User",null=True, on_delete=models.CASCADE)
     product = models.ForeignKey("products.Product", on_delete=models.CASCADE)
     variations = models.ManyToManyField("products.Variation",blank=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE , null=True)
