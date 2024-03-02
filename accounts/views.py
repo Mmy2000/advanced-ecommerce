@@ -14,7 +14,8 @@ from django.contrib import messages
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
-
+from carts.models import Cart , CartItem
+from carts.views import _cart_id
 # Create your views here.
 
 def register(request):
@@ -61,6 +62,17 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
+            try:
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter( cart=cart).exists()
+                if is_cart_item_exists:
+                    cart_item = CartItem.objects.filter(cart=cart)
+
+                    for item in cart_item:
+                        item.user = user
+                        item.save()
+            except:
+                pass
             auth.login(request, user)
             messages.success(request,"Loged in successfully")
             return redirect('profile')
