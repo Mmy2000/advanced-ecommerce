@@ -104,6 +104,9 @@ def filter_by_price(request):
 
 def filter_by_variations(request):
     products = Product.objects.filter(is_available=True)
+    variation_name = request.GET.get('variation_name')
+    if variation_name:
+        products = products.filter(variation__variation_value__icontains=variation_name)
     context = {
         'products':products
     }
