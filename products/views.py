@@ -101,3 +101,10 @@ def filter_by_price(request):
         'products':product
     }
     return render(request , 'products/product_list.html', context)
+
+def filter_by_variations(request):
+    products = Product.objects.filter(is_available=True)
+    context = {
+        'products':products
+    }
+    return render(request , 'products/product_list.html', context)
