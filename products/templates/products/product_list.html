@@ -28,7 +28,7 @@
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
-                <form method="GET">
+                <form method="GET" action="{% url 'filter_by_price'%}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="min_price">Min Price:</label>
