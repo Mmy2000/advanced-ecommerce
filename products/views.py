@@ -85,3 +85,18 @@ def add_to_favourit(request,id):
     else:
         product.like.add(request.user.id)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def filter_by_price(request):
+    products = Product.objects.all()
+    min_price = request.GET.get("min_price")
+    max_price = request.GET.get("max_price")
+    for product in products:
+        if min_price:
+                product = products.filter(price__gte=min_price)
+
+        if max_price:
+                product = products.filter(price__lte=max_price)
+    context = {
+        'products':product
+    }
+    return render(request , 'products/product_list.html', context)
