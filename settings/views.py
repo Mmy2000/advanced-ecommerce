@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from products.models import Product , Subcategory
-from .models import Settings
+from .models import Settings , NewsLitter
 from django.db.models import Count
 from .forms import ContactForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.http import JsonResponse
+
 
 # Create your views here.
 def home(request):
@@ -40,3 +42,8 @@ def contact(request):
     context = {'form':form,
                'about':about}
     return render(request,'contact.html',context)
+
+def newsletters(request):
+    email = request.POST.get('email')
+    NewsLitter.objects.create(email=email)
+    return JsonResponse({'done':'done'})
