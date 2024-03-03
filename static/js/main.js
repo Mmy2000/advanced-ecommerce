@@ -120,3 +120,19 @@ let counterValue = 1;
 setTimeout(function(){
     $('#message').fadeOut('slow')
 },4000)
+
+$("#newsletter_form").submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                document.getElementById('main_form_div').style.display = "none";
+                document.getElementById('success_div').style.display = "block";
+            }
+        })
+    })

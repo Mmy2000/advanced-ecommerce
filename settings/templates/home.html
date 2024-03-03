@@ -211,23 +211,5 @@
     </div>
 </div>
 <!-- Vendor End -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
-    $("#newsletter_form").submit(function (e) {
-        e.preventDefault();
-        var form = $(this);
-        var url = form.attr('action');
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(),
-            success: function (data) {
-                document.getElementById('main_form_div').style.display = "none";
-                document.getElementById('success_div').style.display = "block";
-            }
-        })
-    })
-</script>
 {% endblock body %}
