@@ -15,11 +15,21 @@
 <!-- Page Header End -->
 
 {% if not cart_items %}
-<h2 class="text-center">Your Shoping Cart Is Empty</h2>
-<div class="d-flex justify-content-center">
-    <a href="{% url 'product_list' %}" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Continue
-        Shopping</a>
+<div class="container">
+    <div class="row flex-column align-items-center justify-content-center">
+        <h2 class="text-center">Your Shoping Cart Is Empty</h2>
+        <div class="col-1 my-2">
+            <img class="w-100" src="{% static 'img/empty-set.png'%}">
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'product_list' %}" class="btn btn-primary px-3"><i
+                    class="fa fa-shopping-cart mr-1"></i>Continue
+                Shopping</a>
+        </div>
+    </div>
+
 </div>
+
 {% else %}
 
 <!-- Cart Start -->
@@ -65,12 +75,12 @@
                                     <form action="{% url 'add_cart' cart_item.product.id%}" method="POST">
                                         {% csrf_token %}
                                         {% for item in cart_item.variations.all %}
-                                        <input type="hidden" class="form-control form-control-sm bg-secondary text-center"
+                                        <input type="hidden"
+                                            class="form-control form-control-sm bg-secondary text-center"
                                             name="{{ item.variation_category | lower }}"
                                             value="{{ item.variation_value | capfirst }}">
                                         {% endfor %}
-                                        <button type="submit"
-                                            class="btn btn-sm btn-primary btn-plus">
+                                        <button type="submit" class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </form>
@@ -79,7 +89,7 @@
                         </td>
                         <td class="align-middle">${{cart_item.sub_total}}</td>
                         <td class="align-middle"><a href="{% url 'delete_cart' cart_item.product_id cart_item.id %}"
-                            onclick="return confirm('Are You Sure You Want To Delete This Item ?')"
+                                onclick="return confirm('Are You Sure You Want To Delete This Item ?')"
                                 class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                     </tr>
                     {% endfor %}
