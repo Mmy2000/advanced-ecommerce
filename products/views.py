@@ -87,15 +87,16 @@ def add_to_favourit(request,id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def filter_by_price(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(is_available=True)
     min_price = request.GET.get("min_price")
     max_price = request.GET.get("max_price")
     for product in products:
         if min_price:
-                product = products.filter(price__gte=min_price)
+                product = products.filter(price__gte=min_price,is_available=True)
 
         if max_price:
-                product = products.filter(price__lte=max_price)
+                product = products.filter(price__lte=max_price,is_available=True)
+
     context = {
         'products':product
     }
