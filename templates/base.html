@@ -257,15 +257,16 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-4 mb-5">
+                    <div id="main_form_div" class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
+                        <form id="newsletter_form" method="POST" action="{% url 'newsletter_footer'%}">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name"
+                                <input type="text" class="form-control border-0 py-4" name="name" placeholder="Your Name"
                                     required="required" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                <input type="email" class="form-control border-0 py-4" name="email" placeholder="Your Email"
                                     required="required" />
                             </div>
                             <div>
@@ -273,6 +274,9 @@
                                     Now</button>
                             </div>
                         </form>
+                    </div>
+                    <div id="success_div" class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Subcribed Successfuly</h5>
                     </div>
                 </div>
             </div>
