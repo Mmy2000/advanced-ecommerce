@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib import messages
 # Create your views here.
-def place_order(request):
+def place_order(request,total=0, quantity=0):
     current_user = request.user
     # If the cart count is less than or equal to 0, then redirect back to shop
     cart_items = CartItem.objects.filter(user=current_user)
@@ -56,3 +56,17 @@ def place_order(request):
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
+            order = Order.objects.get(user=current_user, is_orderd=False, order_number=order_number)
+            context = {
+                'order': order,
+                'cart_items': cart_items,
+                'total': total,
+                'tax': tax,
+                'grand_total': grand_total,
+            }
+            return render(request, 'payment.html', context)
+        else:
+             messages.error(request, 'Pls, Add your Delivery info!')
+             return redirect('checkout')
+    else:
+        return redirect('checkout')
