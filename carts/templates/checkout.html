@@ -19,7 +19,7 @@
 <!-- Checkout Start -->
 <div class="container-fluid pt-5">
     {% include "includes/alerts.html" %}
-    <form method="POST">
+    <form method="POST" action="{% url 'place_order' %}">
         {% csrf_token %}
         <div class="row px-xl-5">
             <div class="col-lg-8">
