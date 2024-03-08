@@ -97,10 +97,7 @@ def payments(request):
         orderproduct.user_id = request.user.id
         orderproduct.product_id = item.product_id
         orderproduct.quantity = item.quantity
-        if item.product.discount :
-            orderproduct.product_price = item.product.discount
-        else :
-            orderproduct.product_price = item.product.price
+        orderproduct.product_price = item.product.price
         orderproduct.ordered = True
         orderproduct.save()
 
