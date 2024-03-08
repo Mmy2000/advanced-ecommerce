@@ -140,12 +140,12 @@
     }
 
 
-    {% comment %} var amount = "{{ grand_total }}"
-    var url = "{% url 'orders:payments' %}"
+    var amount = "{{ grand_total }}"
+    var url = "{% url 'payments' %}"
     var csrftoken = getCookie('csrftoken');
     var orderID = "{{order.order_number}}"
     var payment_method = 'PayPal'
-    var redirect_url = "{% url 'orders:order_complete' %}" {% endcomment %}
+    var redirect_url = "{% url 'order_complete' %}"
 
 
     // Render the PayPal button into #paypal-button-container
