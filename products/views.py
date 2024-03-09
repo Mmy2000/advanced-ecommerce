@@ -45,9 +45,9 @@ def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None
     }
     return render(request , 'products/product_list.html' , context )
 
-def product_detail(request ,product_slug):
+def product_detail(request ,subcategory_id,product_slug):
     try:
-        single_product = Product.objects.get(slug=product_slug)
+        single_product = Product.objects.get(subcategory_id=subcategory_id,slug=product_slug)
         single_product.views+=1
         single_product.save()
         related = Product.objects.filter(subcategory=single_product.subcategory)
