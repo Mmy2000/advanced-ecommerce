@@ -85,6 +85,7 @@ def payments(request):
     payment.save()
     order.payment = payment
     order.is_orderd = True
+    order.status = 'Completed'
     order.save()
 
     # Move the cart items to Order Product table
