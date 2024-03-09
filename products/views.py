@@ -4,6 +4,7 @@ from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect
+from django.db.models import Count
 
 
 # Create your views here.
@@ -58,7 +59,12 @@ def product_detail(request ,subcategory_id,product_slug):
         'related':related,
     }
     return render(request , 'products/product_detail.html' , context)
-
+def category_list(request):
+    category = Subcategory.objects.all().annotate(category_count=Count("product_subcategory"))[:3]
+    context = {
+        'category':category
+    }
+    return render(request,'products/categories.html',context)
 def search(request):
     if 'q' in request.GET:
         q = request.GET['q']
