@@ -33,6 +33,8 @@ class Product(models.Model):
             self.slug=slugify(self.name)
         if self.stock == 0:
             self.is_available = False
+        else :
+            self.is_available = True
         super(Product,self).save(*args,**kwargs)
 
 
