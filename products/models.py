@@ -31,6 +31,8 @@ class Product(models.Model):
     def save(self,*args, **kwargs):
         if not self.slug:
             self.slug=slugify(self.name)
+        if self.stock == 0:
+            self.is_available = False
         super(Product,self).save(*args,**kwargs)
 
 
