@@ -21,7 +21,8 @@ def home(request):
         'category':category,
     }
     return render(request , 'home.html' , context)
-
+def blog(request):
+    return render(request , 'blog_list.html')
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
