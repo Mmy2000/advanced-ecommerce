@@ -154,10 +154,10 @@
                             <a href="{% url 'product_list' %}"
                                 class="nav-item nav-link {% if request.path == '/products/' %}active{% endif %} ">Shop</a>
                             <a href="{% url 'categories'%}"
-                                class="nav-item nav-link ">All Categories</a>
+                                class="nav-item nav-link {% if request.path == '/products/categories/' %}active{% endif %}">All Categories</a>
                             <div class="nav-item dropdown">
                                 <a href="#"
-                                    class="nav-link dropdown-toggle {% if request.path == '/product_by_brand/' %}active{% endif %}"
+                                    class="nav-link dropdown-toggle "
                                     data-toggle="dropdown">Brands</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     {% for brand in brands %}
