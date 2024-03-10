@@ -1,0 +1,33 @@
+.blog .line{
+    display: flex;
+    justify-content: center;
+}
+.blog .line .line1 {
+    border-top: 4px solid #0078ff;
+    width: 50px;
+}
+.blog .avatar{
+        width: 32px;
+    height: 32px;
+    margin-right: 4px;
+    overflow: hidden;
+}
+.blog  .h2-style{
+    text-decoration: none;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.blog .h6-style{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1px;
+    margin-bottom: 0;
+}
+.blog .card-style{
+    box-shadow: 0 13px 8px -10px rgba(0, 0, 0, 0.1);
+}
+a {
+    text-decoration: none !important;
+}
