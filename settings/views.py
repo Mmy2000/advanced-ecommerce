@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from products.models import Product , Subcategory
-from .models import Settings , NewsLitter
+from .models import Settings , NewsLitter , Post
 from django.db.models import Count
 from .forms import ContactForm
 from django.core.mail import send_mail
@@ -22,7 +22,11 @@ def home(request):
     }
     return render(request , 'home.html' , context)
 def blog(request):
-    return render(request , 'blog_list.html')
+    post = Post.objects.all()
+    context = {
+        'post':post
+    }
+    return render(request , 'blog_list.html' , context)
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)

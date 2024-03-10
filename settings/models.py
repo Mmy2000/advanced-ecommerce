@@ -49,7 +49,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100,verbose_name=_('title'))
     tags = TaggableManager(_("tags"))
     image = models.ImageField(_("image"),upload_to='post/')
-    created_at = models.DateTimeField( _("created_at"),default=timezone.now)
+    created_at = models.TimeField( _("created_at"),default=timezone.now)
     description = models.TextField(_("description"),max_length=100000)
     category = models.ForeignKey('Category',related_name='post_category',verbose_name=_('category'),on_delete=models.CASCADE)
     slug = models.SlugField(_("url"),null=True,blank=True)
