@@ -31,3 +31,7 @@
 a {
     text-decoration: none !important;
 }
+.blog .cat-style{
+    top: -7%;
+    left: 40%;
+}
