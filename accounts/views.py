@@ -251,6 +251,9 @@ def dashboard(request):
         'orders_count':orders_count,
     })
 
+def orders(request):
+    return render(request , 'profile/orders.html')
+
 def favourite(request):
     products = Product.objects.filter(like=request.user)
     paginator = Paginator(products,6)
