@@ -17,6 +17,7 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from carts.models import Cart , CartItem
 from carts.views import _cart_id
 import requests
+from orders.models import Order
 # Create your views here.
 
 def register(request):
@@ -239,8 +240,16 @@ def profile(request):
     }
     return render(request , 'profile/profile.html' , context)
 
+@login_required(login_url='login')
 def dashboard(request):
-    return render(request , 'profile/dashboard.html')
+    profile=Profile.objects.get(user=request.user)
+    orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id,is_orderd=True)
+    orders_count = orders.count()
+    return render(request,'profile/dashboard.html',{
+        'profile':profile,
+        'orders':orders,
+        'orders_count':orders_count,
+    })
 
 def favourite(request):
     products = Product.objects.filter(like=request.user)
