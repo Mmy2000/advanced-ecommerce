@@ -167,11 +167,11 @@
                                     {% endfor %}
                                 </div>
                             </div>
-
+                            <a href="{% url 'blog'%}"
+                                class="nav-item nav-link  {% if request.path == '/blog/' %}active{% endif %}">Blogs</a>
                             <a href="{% url 'contact'%}"
                                 class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
-                            <a href="{% url 'blog'%}"
-                                class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Blogs</a>
+                            
                         </div>
                         {% if user.is_authenticated %}
                         
