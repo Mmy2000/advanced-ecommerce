@@ -251,9 +251,15 @@ def dashboard(request):
         'orders_count':orders_count,
     })
 
+@login_required(login_url='login')
 def orders(request):
-    return render(request , 'profile/orders.html')
+    orders = Order.objects.filter(user=request.user,is_orderd=True).order_by('-created_at')
+    context = {
+        'orders':orders,
+    }
+    return render(request , 'profile/orders.html' , context)
 
+@login_required(login_url='login')
 def favourite(request):
     products = Product.objects.filter(like=request.user)
     paginator = Paginator(products,6)
