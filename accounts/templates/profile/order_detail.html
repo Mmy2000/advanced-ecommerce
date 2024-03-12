@@ -19,7 +19,7 @@
                             <!-- col-lg-6 start here -->
                             <a href="/" class="text-decoration-none">
                                 <h1 class="mb-4 display-5 font-weight-semi-bold"><span
-                                        class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>{{myfooter.site_name}}
+                                        class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>{{about_site.site_name}}
                                 </h1>
                             </a>
                         </div>
@@ -65,7 +65,7 @@
                                             <tr>
                                                 <td class="align-middle"><img src="{{cart_item.product.image.url}}"
                                                         alt="" style="width: 50px;">
-                                                    {{cart_item}}<p class="text-muted small"><br>
+                                                    {{cart_item}}<p class="text-muted small">
                                                         {% if cart_item.variations.all %}
                                                         {% for item in cart_item.variations.all  %}
                                                         {{item.variation_category|capfirst}} :
