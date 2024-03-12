@@ -6,7 +6,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name' , 'price'  , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock' , 'created_at' , 'is_available')
+    list_display = ('name' , 'price'  , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
 
     def get_category(self, obj):
         return obj.subcategory.category
