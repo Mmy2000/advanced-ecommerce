@@ -19,7 +19,7 @@
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
                     <a class="list-group-item active" href="{% url 'dashboard'%}"> Dashboard </a>
-                    <a class="list-group-item" href=""> My Orders </a>
+                    <a class="list-group-item" href="{% url 'orders'%}"> My Orders </a>
                     <a class="list-group-item" href="{% url 'profile'%}">Profile </a>
                     <a class="list-group-item" href="{% url 'change_password'%}">Change Password </a>
                 </ul>
@@ -42,7 +42,7 @@
                                     <div class="card-body" >
                                         <h5 class="card-title">Total Orders</h5>
                                         <h4>{{orders_count}}</h4>
-                                        <a href="">View Orders</a>
+                                        <a href="{% url 'orders'%}">View Orders</a>
                                     </div>
                                 </div>
                             </div>

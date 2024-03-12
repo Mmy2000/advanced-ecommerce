@@ -1,18 +1,26 @@
 {% extends "base.html" %}
 {% block body %}
-
+<div class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">My Orders</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">My Orders</p>
+        </div>
+    </div>
+</div>
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y bg">
-
-    <div class="container">
-        <div class="row">
+<div class="container-fluid p-5">
+	<div class="row p-3">
             <aside class="col-md-3">
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
-                    <a class="list-group-item " href="{% url 'accounts:dashboard'%}"> Dashboard </a>
-                    <a class="list-group-item active" href="{% url 'accounts:my_orders'%}"> My Orders </a>
-                    <a class="list-group-item" href="{% url 'accounts:edit_profile'%}"> Edit Profile </a>
-                    <a class="list-group-item" href="{% url 'password_change'%}">Change Password </a>
+                    <a class="list-group-item " href="{% url 'dashboard'%}"> Dashboard </a>
+                    <a class="list-group-item active" href="{% url 'orders'%}"> My Orders </a>
+                    <a class="list-group-item" href="{% url 'profile'%}"> Edit Profile </a>
+                    <a class="list-group-item" href="{% url 'change_password'%}">Change Password </a>
                 </ul>
                 <br>
                 <a class="btn btn-light btn-block" href="{% url 'logout'%}"> <i class="fa fa-power-off"></i> <span
@@ -42,7 +50,7 @@
                                         <tbody>
                                             {% for order in orders %}
                                             <tr>
-                                                <th scope="row"><a href="{% url 'accounts:order_detail' order.order_number %}">{{order.order_number}}</a></th>
+                                                <th scope="row"><a href="">{{order.order_number}}</a></th>
                                                 <td>{{order.full_name}}</td>
                                                 <td>{{order.phone}}</td>
                                                 <td>${{order.order_total}}</td>
