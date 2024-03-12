@@ -17,7 +17,7 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from carts.models import Cart , CartItem
 from carts.views import _cart_id
 import requests
-from orders.models import Order
+from orders.models import Order , OrderProduct
 # Create your views here.
 
 def register(request):
@@ -259,6 +259,20 @@ def orders(request):
     }
     return render(request , 'profile/orders.html' , context)
 
+def order_detail(request,order_id):
+    profile=Profile.objects.get(user=request.user)
+    orders = Order.objects.get(order_number=order_id)
+    order_detail = OrderProduct.objects.filter(order__order_number=order_id)
+    subtotal = 0
+    for i in order_detail:
+        subtotal += i.product_price * i.quantity
+    context = {
+        'profile':profile,
+        'orders':orders,
+        'order_detail':order_detail,
+        'subtotal':subtotal,
+    }
+    return render(request,'profile/order_detail.html',context)
 @login_required(login_url='login')
 def favourite(request):
     products = Product.objects.filter(like=request.user)

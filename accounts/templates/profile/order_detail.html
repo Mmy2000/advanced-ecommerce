@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+
+
+<div class="container"
+    style="margin: 0 auto;width: 50%;padding: 50px;background: #f1f1f1;margin-top: 50px;margin-bottom: 50px;">
+    <div class="row invoice row-printable">
+        <div class="col-md-12">
+            <!-- col-lg-12 start here -->
+            <div class="panel panel-default plain" id="dash_0">
+                <!-- Start .panel -->
+                <div class="panel-body p30">
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-6">
+                            <!-- col-lg-6 start here -->
+                            <a href="/" class="text-decoration-none">
+                                <h1 class="mb-4 display-5 font-weight-semi-bold"><span
+                                        class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>{{myfooter.site_name}}
+                                </h1>
+                            </a>
+                        </div>
+                        <!-- col-lg-6 end here -->
+                        <div class="col-lg-6">
+                            <!-- col-lg-6 start here -->
+                            <div class="invoice-from">
+                                <ul class="list-unstyled text-right">
+                                    <li><strong>Invoiced To</strong></li>
+                                    <li>{{profile.full_name}}</li>
+                                    <li>{{orders.full_address}} 37</li>
+                                    <li>{{orders.created_at}}</li>
+                                    <li>{{orders.country}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- col-lg-6 end here -->
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <div class="invoice-details mt25">
+                                <div class="well">
+                                    <ul class="list-unstyled mb0">
+                                        <li><strong>Order</strong> #{{orders.order_number}}</li>
+                                        <li><strong>Transaction ID</strong> {{orders.payment.payment_id}}</li>
+                                        <li><strong>Order Date:</strong> {{orders.created_at}}</li>
+                                        <li><strong>Status:</strong> {{orders.payment.status}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="invoice-items">
+                                <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead class="bg-secondary text-dark">
+                                            <tr>
+                                                <th>Products</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle">
+                                            {% for cart_item in order_detail %}
+                                            <tr>
+                                                <td class="align-middle"><img src="{{cart_item.product.image.url}}"
+                                                        alt="" style="width: 50px;">
+                                                    {{cart_item}}<p class="text-muted small"><br>
+                                                        {% if cart_item.variations.all %}
+                                                        {% for item in cart_item.variations.all  %}
+                                                        {{item.variation_category|capfirst}} :
+                                                        {{item.variation_value|capfirst}}<br>
+                                                        {% endfor %}
+                                                        {% endif %}
+                                                    </p>
+                                                </td>
+                                                <td class="align-middle">${{cart_item.product.price}}</td>
+                                                <td class="align-middle">
+                                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+
+                                                        <input type="text"
+                                                            class="form-control form-control-sm bg-secondary text-center"
+                                                            value="{{cart_item.quantity}}">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-center">Order SubTotal & Tax</h5>
+                                <h6 class="text-center">${{subtotal}} + ${{orders.tax}}</h6>
+                                <h5 class="text-center">Order Total</h5>
+                                <h6 class="text-center">${{orders.order_total}} USD</h6>
+                            </div>
+                            <br>
+                            <div class="invoice-footer mt25">
+                                <p class="text-center">Thank you for shopping with us!</p>
+                                <br>
+                                <div class="text-center">
+                                    <a href="{% url 'product_list' %}" class="btn btn-primary">Shop more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    <!-- End .row -->
+                </div>
+            </div>
+            <!-- End .panel -->
+        </div>
+        <!-- col-lg-12 end here -->
+    </div>
+</div>
+
+{% endblock %}
