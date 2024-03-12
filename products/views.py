@@ -52,11 +52,13 @@ def product_detail(request ,subcategory_id,product_slug):
         single_product.views+=1
         single_product.save()
         related = Product.objects.filter(subcategory=single_product.subcategory)
+        related_count = related.count()
     except Exception as e:
         raise e
     context = {
         'single_product':single_product,
         'related':related,
+        'related_count':related_count
     }
     return render(request , 'products/product_detail.html' , context)
 def category_list(request):

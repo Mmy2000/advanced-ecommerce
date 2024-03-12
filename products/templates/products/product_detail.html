@@ -196,6 +196,8 @@
 
 
 <!-- Products Start -->
+{% if related_count <= 1 %}
+{% else %}
 <div class="container-fluid py-5">
     <div class="text-center mb-4">
         <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
@@ -227,5 +229,6 @@
         </div>
     </div>
 </div>
+{% endif %}
 <!-- Products End -->
 {% endblock body %}
