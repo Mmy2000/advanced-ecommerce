@@ -122,3 +122,6 @@ def filter_by_variations(request):
         'products':products
     }
     return render(request , 'products/product_list.html', context)
+
+def submit_review(request , product_id):
+    pass
