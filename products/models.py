@@ -36,6 +36,20 @@ class Product(models.Model):
         else :
             self.is_available = True
         super(Product,self).save(*args,**kwargs)
+    
+    def avr_review(self):
+        reviews = ReviewRating.objects.filter(product=self , status=True).aggregate(average=Avg('rating'))
+        avg =0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
+    
+    def count_review(self):
+        reviews = ReviewRating.objects.filter(product=self , status=True).aggregate(count=Count('rating'))
+        count = 0
+        if reviews['count'] is not None:
+            count = int(reviews['count'])
+        return count
 
 
     def get_absolute_url(self):
