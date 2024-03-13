@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.db.models import Count
 from .forms import ReviewForm
 from django.contrib import messages
+from orders.models import OrderProduct
 
 # Create your views here.
 def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None):
@@ -16,7 +17,6 @@ def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None
     if subcategory_id != None :
         categories = get_object_or_404(Subcategory,id = subcategory_id)
         products = Product.objects.filter(subcategory=categories  ,is_available=True)
-        
         paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
@@ -52,6 +52,13 @@ def product_detail(request ,subcategory_id,product_slug):
     try:
         single_product = Product.objects.get(subcategory_id=subcategory_id,slug=product_slug)
         reviews = ReviewRating.objects.filter(product_id=single_product.id , status=True)
+        if request.user.is_authenticated:
+            try:
+                orderproduct = OrderProduct.objects.filter(user=request.user , product_id=single_product.id).exists()
+            except OrderProduct.DoesNotExist:
+                orderproduct = None
+        else :
+            orderproduct = None
         single_product.views+=1
         single_product.save()
         related = Product.objects.filter(subcategory=single_product.subcategory)
@@ -62,7 +69,8 @@ def product_detail(request ,subcategory_id,product_slug):
         'single_product':single_product,
         'related':related,
         'related_count':related_count,
-        'reviews':reviews
+        'reviews':reviews,
+        'orderproduct':orderproduct
     }
     return render(request , 'products/product_detail.html' , context)
 def category_list(request):
