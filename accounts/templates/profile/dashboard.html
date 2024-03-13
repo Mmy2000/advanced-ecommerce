@@ -13,9 +13,9 @@
 </div>
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y bg">
-<div class="container-fluid p-5">
-	<div class="row p-3">
-	<aside class="col-md-3">
+    <div class="container-fluid p-5">
+        <div class="row p-3">
+            <aside class="col-md-3">
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
                     <a class="list-group-item active" href="{% url 'dashboard'%}"> Dashboard </a>
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card" style="text-align:center;">
-                                    <div class="card-body" >
+                                    <div class="card-body">
                                         <h5 class="card-title">Total Orders</h5>
                                         <h4>{{orders_count}}</h4>
                                         <a href="{% url 'orders'%}">View Orders</a>
@@ -48,8 +48,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card" style="text-align:center;">
-                                    <div class="card-body" >
-                                        <img src="{% if profile.image %}{{profile.image.url}}{% else %} https://www.w3schools.com/howto/img_avatar.png {% endif %}" width="50" hight="50" style="border-radius:50%;" >
+                                    <div class="card-body">
+                                        <img src="{% if profile.image %}{{profile.image.url}}{% else %} https://www.w3schools.com/howto/img_avatar.png {% endif %}"
+                                            width="50" hight="50" style="border-radius:50%;">
                                         <p class="mb-0">{{user.email}}</p>
                                         <p class="mb-0">{{user.phone_number}}</p>
                                     </div>
@@ -59,11 +60,10 @@
                     </div> <!-- card-body .// -->
                 </article> <!-- order-group.// -->
             </main>
-</div> <!-- row.// -->
-</div>
+        </div> <!-- row.// -->
+    </div>
 
 
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
-{% endblock body %} 
-
+{% endblock body %}
