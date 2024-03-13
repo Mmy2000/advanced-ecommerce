@@ -5,7 +5,7 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect
 from django.db.models import Count
-
+from .forms import ReviewForm
 
 # Create your views here.
 def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None):
