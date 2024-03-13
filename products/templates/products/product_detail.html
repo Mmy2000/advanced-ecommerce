@@ -43,13 +43,20 @@
             <h3 class="font-weight-semi-bold">{{single_product}}</h3>
             <div class="d-flex mb-3">
                 <div class="text-primary mr-2">
-                    <small class="fas fa-star"></small>
-                    <small class="fas fa-star"></small>
-                    <small class="fas fa-star"></small>
-                    <small class="fas fa-star-half-alt"></small>
-                    <small class="far fa-star"></small>
+                    <span>
+                            <i class="fa fa-star{% if single_product.avr_review < 0.5%}-o{% elif single_product.avr_review >= 0.5 and single_product.avr_review < 1%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.avr_review < 1.5%}-o{% elif single_product.avr_review >= 1.5 and single_product.avr_review < 2%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.avr_review < 2.5%}-o{% elif single_product.avr_review >= 2.5 and single_product.avr_review < 3%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.avr_review < 3.5%}-o{% elif single_product.avr_review >= 3.5 and single_product.avr_review < 4%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.avr_review < 4.5%}-o{% elif single_product.avr_review >= 4.5 and single_product.avr_review < 5%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                        </span>
                 </div>
-                <small class="pt-1">(50 Reviews)</small>
+                <small class="pt-1">({{single_product.count_review}} Reviews)</small>
                 
             </div>
             <h3 class="font-weight-semi-bold mb-4">${{single_product.price}}</h3>
@@ -138,22 +145,37 @@
                 <div class="tab-pane fade" id="tab-pane-2">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
+                            <h4 class="mb-4">{{single_product.count_review}} review for "{{single_product.name}}"</h4>
+                            {% for review in reviews %}
                             <div class="media mb-4">
-                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                <div class="media-body">
-                                    <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                    <div class="text-primary mb-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no
-                                        at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                            {% if review.user.profile.image %}
+                            <img src="{{review.user.profile.image.url}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1"
+                                style="width: 45px;">
+                            {% else %}
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image"
+                                class="img-fluid mr-3 mt-1" style="width: 45px;">
+                            {% endif %}
+                            <div class="media-body">
+                                <h6>{{review.user.profile.full_name}}<small> - <i>{{review.updated_at}}</i></small></h6>
+                                <div class="rating-star">
+                                    <span>
+                                        <i class="fa fa-star{% if review.rating == 0.5%}-half-o{% elif review.rating < 1%}-o{%endif%}"
+                                            aria-hidden="true"></i>
+                                        <i class="fa fa-star{% if review.rating == 1.5%}-half-o{% elif review.rating < 2%}-o{%endif%}"
+                                            aria-hidden="true"></i>
+                                        <i class="fa fa-star{% if review.rating == 2.5%}-half-o{% elif review.rating < 3%}-o{%endif%}"
+                                            aria-hidden="true"></i>
+                                        <i class="fa fa-star{% if review.rating == 3.5%}-half-o{% elif review.rating < 4%}-o{%endif%}"
+                                            aria-hidden="true"></i>
+                                        <i class="fa fa-star{% if review.rating == 4.5%}-half-o{% elif review.rating < 5%}-o{%endif%}"
+                                            aria-hidden="true"></i>
+                                    </span>
                                 </div>
+                                <h6>{{review.subject}}</h6>
+                                <p>{{review.review}}</p>
                             </div>
+                        </div>
+                            {% endfor %}
                         </div>
                         <div class="col-md-6">
                             <h4 class="mb-4">Leave a review</h4>

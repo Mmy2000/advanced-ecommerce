@@ -50,6 +50,7 @@ def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None
 def product_detail(request ,subcategory_id,product_slug):
     try:
         single_product = Product.objects.get(subcategory_id=subcategory_id,slug=product_slug)
+        reviews = ReviewRating.objects.filter(product_id=single_product.id , status=True)
         single_product.views+=1
         single_product.save()
         related = Product.objects.filter(subcategory=single_product.subcategory)
@@ -59,7 +60,8 @@ def product_detail(request ,subcategory_id,product_slug):
     context = {
         'single_product':single_product,
         'related':related,
-        'related_count':related_count
+        'related_count':related_count,
+        'reviews':reviews
     }
     return render(request , 'products/product_detail.html' , context)
 def category_list(request):
