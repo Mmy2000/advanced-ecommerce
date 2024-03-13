@@ -183,7 +183,6 @@
                             <h4 class="mb-4">Leave a review</h4>
                             <form action="{% url 'submit_review' single_product.id %}" method="POST">
                                 {% csrf_token %}
-                                <h5>Write Your Rating</h5>
                                 <div>
                                     <label>How do you rate this product?</label>
                                     <br>
