@@ -1,5 +1,5 @@
 from django.shortcuts import render , get_object_or_404 , redirect
-from .models import Product , Category , Subcategory , Brand , ReviewRating
+from .models import Product , Category , Subcategory , Brand , ReviewRating , Variation
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
@@ -10,6 +10,7 @@ from django.contrib import messages
 from orders.models import OrderProduct
 
 # Create your views here.
+
 def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None):
     categories = None
     brands = None
