@@ -1,7 +1,14 @@
 from django.contrib import admin
 from .models import Product , Category , Subcategory , Brand , ProductImages , Variation , ReviewRating
+import admin_thumbnails
+
 # Register your models here.
 
+
+@admin_thumbnails.thumbnail('image')
+class ProductGallaryInline(admin.TabularInline):
+    model = ProductImages
+    extra = 1
 class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
@@ -12,6 +19,7 @@ class ProductAdmin(admin.ModelAdmin):
         return obj.subcategory.category
     
     get_category.short_description = 'Category'
+    inlines = [ProductGallaryInline]
 
 class VariationAdmin(admin.ModelAdmin):
     list_display = ('product' , 'variation_category' , 'variation_value' , 'created_at' , 'is_active' )
