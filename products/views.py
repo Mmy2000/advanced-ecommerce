@@ -63,6 +63,8 @@ def product_detail(request ,subcategory_id,product_slug):
         single_product.save()
         related = Product.objects.filter(subcategory=single_product.subcategory)
         related_count = related.count()
+        orderproduct_counter =  OrderProduct.objects.filter( product_id=single_product.id)
+        orderproduct_count = orderproduct_counter.count()
     except Exception as e:
         raise e
     context = {
@@ -70,7 +72,8 @@ def product_detail(request ,subcategory_id,product_slug):
         'related':related,
         'related_count':related_count,
         'reviews':reviews,
-        'orderproduct':orderproduct
+        'orderproduct':orderproduct,
+        'orderproduct_count':orderproduct_count
     }
     return render(request , 'products/product_detail.html' , context)
 def category_list(request):
