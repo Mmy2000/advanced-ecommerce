@@ -157,34 +157,54 @@
                         </div>
                         <div class="col-md-6">
                             <h4 class="mb-4">Leave a review</h4>
-                            <small>Your email address will not be published. Required fields are marked *</small>
-                            <div class="d-flex my-3">
-                                <p class="mb-0 mr-2">Your Rating * :</p>
-                                <div class="text-primary">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+                            <form action="{% url 'submit_review' single_product.id %}" method="POST">
+                            {% csrf_token %}
+                            <h5>Write Your Rating</h5>
+                            <div>
+                                <label>How do you rate this product?</label>
+                                <br>
+                                <div class="rate">
+                                    <input id="rating10" value="5" type="radio" name="rating" required><label
+                                        for="rating10" title="5"></label>
+                                    <input id="rating9" value="4.5" type="radio" name="rating" required><label
+                                        for="rating9" title="4.5" class="half"></label>
+                                    <input id="rating8" value="4" type="radio" name="rating" required><label
+                                        for="rating8" title="4"></label>
+                                    <input id="rating7" value="3.5" type="radio" name="rating" required><label
+                                        for="rating7" title="3.5" class="half"></label>
+                                    <input id="rating6" value="3" type="radio" name="rating" required><label
+                                        for="rating6" title="3"></label>
+                                    <input id="rating5" value="2.5" type="radio" name="rating" required><label
+                                        for="rating5" title="2.5" class="half"></label>
+                                    <input id="rating4" value="2" type="radio" name="rating" required><label
+                                        for="rating4" title="2"></label>
+                                    <input id="rating3" value="1.5" type="radio" name="rating" required><label
+                                        for="rating3" title="1.5" class="half"></label>
+                                    <input id="rating2" value="1" type="radio" name="rating" required><label
+                                        for="rating2" title="1"></label>
+                                    <input id="rating1" value="0.5" type="radio" name="rating" required><label
+                                        for="rating1" title="0.5" class="half"></label>
                                 </div>
+                                <br>
+                                Subject :
+                                <input type="text" class="form-control" name="subject">
+                                <br>
+                                Your Review :
+                                <textarea name="review" rows="4" class="form-control" value="Your Rating"></textarea>
+                                <br>
+                                {% if user.is_authenticated %}
+                                {% if orderproduct %}
+                                <input type="submit" value="Submit Review" class="btn btn-primary">
+                                {% else %}
+                                <p>You must purchase this product to post a review.</p>
+                                {% endif %}
+                                {% else %}
+                                <p>You must be logged in to post a review. <span><a href="{% url 'login'%}">Login
+                                            now</a></span>
+                                </p>
+                                {% endif %}
                             </div>
-                            <form>
-                                <div class="form-group">
-                                    <label for="message">Your Review *</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Your Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Your Email *</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group mb-0">
-                                    <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                                </div>
-                            </form>
+                        </form>
                         </div>
                     </div>
                 </div>
