@@ -32,13 +32,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="min_price">Min Price:</label>
-                            <input class="mr-2 form-control" type="text" name="min_price"
-                                value="">
+                            <input class="mr-2 form-control" type="text" name="min_price" value="">
                         </div>
                         <div class="form-group text-right col-md-6">
                             <label for="max_price">Max Price:</label>
-                            <input class="mr-2 form-control" type="text" name="max_price"
-                                value="">
+                            <input class="mr-2 form-control" type="text" name="max_price" value="">
                         </div>
                     </div>
                     <button class="btn btn-block btn-primary">Apply</button>
@@ -104,6 +102,20 @@
                             <div class="d-flex justify-content-center">
                                 <h6>${{product.price}}</h6>
                                 <h6 class="text-muted ml-2"><del>${{product.price}}</del></h6>
+                            </div>
+                            <div class="rating-star">
+                                <span>
+                                    <i class="fa fa-star{% if product.avr_review < 0.5%}-o{% elif product.avr_review >= 0.5 and product.avr_review < 1%}-half-o{%endif%}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.avr_review < 1.5%}-o{% elif product.avr_review >= 1.5 and product.avr_review < 2%}-half-o{%endif%}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.avr_review < 2.5%}-o{% elif product.avr_review >= 2.5 and product.avr_review < 3%}-half-o{%endif%}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.avr_review < 3.5%}-o{% elif product.avr_review >= 3.5 and product.avr_review < 4%}-half-o{%endif%}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.avr_review < 4.5%}-o{% elif product.avr_review >= 4.5 and product.avr_review < 5%}-half-o{%endif%}"
+                                        aria-hidden="true"></i>
+                                </span>({{product.count_review}} reviews)
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">

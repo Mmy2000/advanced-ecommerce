@@ -16,6 +16,7 @@ def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None
     if subcategory_id != None :
         categories = get_object_or_404(Subcategory,id = subcategory_id)
         products = Product.objects.filter(subcategory=categories  ,is_available=True)
+        
         paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
