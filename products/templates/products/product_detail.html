@@ -60,7 +60,7 @@
                 <small class="pt-1">({{single_product.count_review}} Reviews)</small>
 
             </div>
-            <p class="badge bg-secondary">{{orderproduct_count}} orders</p>
+            <p class="badge bg-secondary">{{orderproduct_count}} orders & {{single_product.stock}} In Stock</p>
             <h3 class="font-weight-semi-bold mb-4">${{single_product.price}}</h3>
             {% if single_product.stock <= 0 %}
             <span class="badge bg-secondary">Out of Stock</span>
