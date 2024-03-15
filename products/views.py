@@ -165,39 +165,39 @@ def submit_review(request , product_id):
 
 def product_list_orderd_by_rating(request):
     products = Product.objects.all().order_by('-reviewrating')
-    paginator = Paginator(products, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    context = {'products': page_obj,}
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    context = {'products': paged_product,}
     return render(request, 'products/product_list.html', context)
 
 def product_list_orderd_by_created(request):
     products = Product.objects.all().order_by('-created_at')
-    paginator = Paginator(products, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    context = context = {'products': page_obj,}
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    context =  {'products': paged_product,}
     return render(request , 'products/product_list.html' , context)
 def product_list_orderd_by_papularty(request):
     products = Product.objects.all().order_by('-views')
-    paginator = Paginator(products, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    context = context = {'products': page_obj,}
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    context =  {'products': paged_product,}
     return render(request , 'products/product_list.html' , context)
 
 def product_list_orderd_by_price(request):
     products = Product.objects.all().order_by('price')
-    paginator = Paginator(products, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    context = context = {'products': page_obj,}
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    context =  {'products': paged_product,}
     return render(request , 'products/product_list.html' , context)
 
 def product_list_orderd_by_price2(request):
     products = Product.objects.all().order_by('-price')
-    paginator = Paginator(products, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    context = context = {'products': page_obj,}
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    context =  {'products': paged_product,}
     return render(request , 'products/product_list.html' , context)
