@@ -164,7 +164,7 @@ def submit_review(request , product_id):
             
 
 def product_list_orderd_by_rating(request):
-    products = Product.objects.all().order_by('-reviewrating')
+    products = Product.objects.all().order_by('reviewrating')
     paginator = Paginator(products,6)
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
