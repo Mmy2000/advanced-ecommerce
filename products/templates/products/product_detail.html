@@ -60,7 +60,7 @@
                 <small class="pt-1">({{single_product.count_review}} Reviews)</small>
 
             </div>
-            <p class="badge bg-secondary">{{orderproduct_count}} orders & {{single_product.stock}} In Stock</p>
+            <p class="badge bg-secondary ">{{orderproduct_count}} orders & {{single_product.stock}} In Stock</p>
             <h3 class="font-weight-semi-bold mb-4">${{single_product.price}}</h3>
             {% if single_product.stock <= 0 %}
             <span class="badge bg-secondary">Out of Stock</span>
@@ -126,7 +126,7 @@
                     <div class="d-inline-flex">
                         {% for tag in single_product.tags.all  %}
                         <a href="{% url 'product_by_tag' tag.slug %}"><span
-                                class="badge bg-secondary">{{tag}}</span></a>
+                                class="badge bg-secondary mx-1 p-2">{{tag}}</span></a>
                         {% endfor %}
                     </div>
                 </div>
