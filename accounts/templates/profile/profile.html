@@ -43,10 +43,8 @@
 </head>
 
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
@@ -55,29 +53,25 @@
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-                    {% if cart_counter == 0 %}
-                    <a class="nav-link nav-icon" href="{% url 'cart'%}">
-                        <i class="bi bi-cart"></i>
-                        <span class="badge bg-success badge-number">{{cart_counter}}</span>
-                    </a>
-                    {% else %}
-                    <a class="nav-link nav-icon" href="{% url 'cart'%}" >
-                        <i class="bi bi-cart-check"></i>
-                        <span class="badge bg-success badge-number">{{cart_counter}}</span>
-                    </a>
-                    {% endif %}
-
+                {% if cart_counter == 0 %}
+                <a class="nav-link nav-icon" href="{% url 'cart'%}">
+                    <i class="bi bi-cart"></i>
+                    <span class="badge bg-success badge-number">{{cart_counter}}</span>
+                </a>
+                {% else %}
+                <a class="nav-link nav-icon" href="{% url 'cart'%}">
+                    <i class="bi bi-cart-check"></i>
+                    <span class="badge bg-success badge-number">{{cart_counter}}</span>
+                </a>
+                {% endif %}
                 <li class="nav-item dropdown pe-3">
-
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="{% if profile.image %}{{profile.image.url}}{% else %}https://bootdey.com/img/Content/avatar/avatar7.png{% endif %}"
                             alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{profile.full_name}}</span>
                     </a><!-- End Profile Iamge Icon -->
-
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{profile.full_name}}</h6>
@@ -86,7 +80,6 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'profile'%}">
                                 <i class="bi bi-gear"></i>
@@ -96,7 +89,6 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'contact'%}">
                                 <i class="bi bi-question-circle"></i>
@@ -106,22 +98,17 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'logout'%}">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
                         </li>
-
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
-
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -139,15 +126,12 @@
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'product_list'%}">
                     <i class="bi bi-shop"></i>
                     <span>Store</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
-
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'contact'%}">
                     <i class="bi bi-envelope"></i>
@@ -165,11 +149,8 @@
                 </a>
             </li><!-- End Contact Page Nav -->
         </ul>
-
     </aside><!-- End Sidebar-->
-
     <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>Profile</h1>
             <nav>
@@ -181,7 +162,6 @@
             </nav>
         </div><!-- End Page Title -->
         {% if messages %}
-
         {% for message in messages %}
         <div id="message" class="container">
             <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">
@@ -190,15 +170,12 @@
             </div>
         </div>
         {% endfor %}
-
         {% endif %}
         <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
-
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
                             <img src="{% if profile.image %}{{profile.image.url}}{% else %}https://bootdey.com/img/Content/avatar/avatar7.png{% endif %}"
                                 alt="Profile" class="rounded-circle">
                             <h2>{{profile.full_name}}</h2>
@@ -211,79 +188,60 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="col-xl-8">
-
                     <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
-
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab"
                                         data-bs-target="#profile-overview">Overview</button>
                                 </li>
-
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
                                         Profile</button>
                                 </li>
-
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#profile-change-password">Change Password</button>
                                 </li>
-
                             </ul>
                             <div class="tab-content pt-2">
-
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <h5 class="card-title">About</h5>
                                     <p class="small fst-italic">{{profile.about}}</p>
-
                                     <h5 class="card-title">Profile Details</h5>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">Full Name</div>
                                         <div class="col-lg-9 col-md-8">{{profile.full_name}}</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Company</div>
                                         <div class="col-lg-9 col-md-8">{{profile.country}}</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Job</div>
                                         <div class="col-lg-9 col-md-8">{{profile.headline}}</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Country</div>
                                         <div class="col-lg-9 col-md-8">{{profile.country}}</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Address</div>
                                         <div class="col-lg-9 col-md-8">{{profile.full_address}}</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
                                         <div class="col-lg-9 col-md-8">{{profile.user.phone_number}}</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
                                         <div class="col-lg-9 col-md-8">{{profile.user.email}}</div>
                                     </div>
-
                                 </div>
-
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
                                     <!-- Profile Edit Form -->
                                     <form method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
@@ -292,13 +250,10 @@
                                         {% bootstrap_button button_type="submit" content="Edit Profile" %}
                                     </form>
                                     <!-- End Profile Edit Form -->
-
                                 </div>
-
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                     <!-- Change Password Form -->
                                     <h4 class="card-title mb-4">Change Password</h4>
-                                    
                                     <form action="{% url 'change_password' %}" method="POST">
                                         {% csrf_token %}
                                         <div class="form-group">
@@ -316,25 +271,18 @@
                                             <input type="password" class="form-control"
                                                 placeholder="Confirm New Password" name="confirm_password" required>
                                         </div><br><!-- form-group// -->
-
-
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block"> Submit </button>
                                         </div> <!-- form-group// -->
                                     </form>
                                     <!-- End Change Password Form -->
-
                                 </div>
-
                             </div><!-- End Bordered Tabs -->
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
-
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
