@@ -209,7 +209,7 @@ def change_password(request):
                 user.set_password(new_password)
                 user.save()
                 messages.success(request,'Password Updated Successfully.')
-                return redirect('change_password')
+                return redirect('profile')
             else:
                 messages.error(request,'Please enter a valid current password.')
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
