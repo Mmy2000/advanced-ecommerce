@@ -279,7 +279,7 @@
                     <div class="card-footer d-flex justify-content-between bg-light border">
                             <a href="{{product.get_absolute_url}}" class="btn btn-sm text-dark p-0"><i
                                     class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                            {% if request.user in product.like.all %}
+                            {% if request.user in single_product.like.all %}
                             <a href="{% url 'add_to_favourit' single_product.id%}" class="btn btn-sm text-dark p-0"><i
                                     class="fa-solid fa-heart text-primary mr-1"></i>Remove</a>
                             {% else %}
