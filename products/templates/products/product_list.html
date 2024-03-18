@@ -130,7 +130,7 @@
                                     class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                             {% if request.user in product.like.all %}
                             <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
-                                    class="fa-solid fa-heart text-primary mr-1"></i>To Favourite</a>
+                                    class="fa-solid fa-heart text-primary mr-1"></i>Remove</a>
                             {% else %}
                             <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
                                     class="fa-regular fa-heart text-primary mr-1"></i>To Favourite</a>
