@@ -263,27 +263,27 @@
                         </div>
                         <div class="rating-star">
                                 <span>
-                                    <i class="fa fa-star{% if single_product.avr_review < 0.5%}-o{% elif single_product.avr_review >= 0.5 and single_product.avr_review < 1%}-half-o{%endif%}"
+                                    <i class="fa fa-star{% if related_product.avr_review < 0.5%}-o{% elif related_product.avr_review >= 0.5 and related_product.avr_review < 1%}-half-o{%endif%}"
                                         aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if single_product.avr_review < 1.5%}-o{% elif single_product.avr_review >= 1.5 and single_product.avr_review < 2%}-half-o{%endif%}"
+                                    <i class="fa fa-star{% if related_product.avr_review < 1.5%}-o{% elif related_product.avr_review >= 1.5 and related_product.avr_review < 2%}-half-o{%endif%}"
                                         aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if single_product.avr_review < 2.5%}-o{% elif single_product.avr_review >= 2.5 and single_product.avr_review < 3%}-half-o{%endif%}"
+                                    <i class="fa fa-star{% if related_product.avr_review < 2.5%}-o{% elif related_product.avr_review >= 2.5 and related_product.avr_review < 3%}-half-o{%endif%}"
                                         aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if single_product.avr_review < 3.5%}-o{% elif single_product.avr_review >= 3.5 and single_product.avr_review < 4%}-half-o{%endif%}"
+                                    <i class="fa fa-star{% if related_product.avr_review < 3.5%}-o{% elif related_product.avr_review >= 3.5 and related_product.avr_review < 4%}-half-o{%endif%}"
                                         aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if single_product.avr_review < 4.5%}-o{% elif single_product.avr_review >= 4.5 and single_product.avr_review < 5%}-half-o{%endif%}"
+                                    <i class="fa fa-star{% if related_product.avr_review < 4.5%}-o{% elif related_product.avr_review >= 4.5 and related_product.avr_review < 5%}-half-o{%endif%}"
                                         aria-hidden="true"></i>
-                                </span>({{product.count_review}} reviews)
+                                </span>({{related_product.count_review}} reviews)
                             </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                             <a href="{{product.get_absolute_url}}" class="btn btn-sm text-dark p-0"><i
                                     class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                            {% if request.user in single_product.like.all %}
-                            <a href="{% url 'add_to_favourit' single_product.id%}" class="btn btn-sm text-dark p-0"><i
+                            {% if request.user in related_product.like.all %}
+                            <a href="{% url 'add_to_favourit' related_product.id%}" class="btn btn-sm text-dark p-0"><i
                                     class="fa-solid fa-heart text-primary mr-1"></i>Remove</a>
                             {% else %}
-                            <a href="{% url 'add_to_favourit' single_product.id%}" class="btn btn-sm text-dark p-0"><i
+                            <a href="{% url 'add_to_favourit' related_product.id%}" class="btn btn-sm text-dark p-0"><i
                                     class="fa-regular fa-heart text-primary mr-1"></i>To Favourite</a>
                             {% endif %}
                         </div>
