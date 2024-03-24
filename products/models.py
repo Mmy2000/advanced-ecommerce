@@ -35,6 +35,9 @@ class Product(models.Model):
             self.is_available = False
         else :
             self.is_available = True
+
+        if self.discount > 0:
+            self.price = self.price - (self.price * self.discount)
         super(Product,self).save(*args,**kwargs)
     
     def avr_review(self):
