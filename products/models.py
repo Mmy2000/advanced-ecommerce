@@ -13,7 +13,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product/')
     stock = models.IntegerField(default=1)
     price = models.IntegerField(default=0)
-    discount = models.IntegerField(default=0)
+    discount = models.FloatField(default=0)
     description = models.TextField(max_length=10000)
     created_at = models.DateTimeField( default=timezone.now)
     slug = models.SlugField(null=True,blank=True , unique=True)
