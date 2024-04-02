@@ -4,6 +4,7 @@ from .models import Cart , CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -47,12 +48,14 @@ def add_cart(request,product_id):
                 item = CartItem.objects.get(product=product , id=item_id)
                 item.quantity+=int(request.POST["quantity"])
                 item.save()
+                messages.success(request,"Product added successfully")
             else :
                 item = CartItem.objects.create(product=product , quantity = request.POST["quantity"], user=current_user)
                 if len(product_variation)>0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
                 item.save()
+                messages.success(request,"Product added successfully")
         else :
             cart_item = CartItem.objects.create(
                 product=product,
@@ -63,6 +66,7 @@ def add_cart(request,product_id):
                 cart_item.variations.clear()
                 cart_item.variations.add(*product_variation)
             cart_item.save()
+            messages.success(request,"Product added successfully")
         return redirect('cart')
     else:
         product_variation = []
@@ -99,12 +103,14 @@ def add_cart(request,product_id):
                 item = CartItem.objects.get(product=product , id=item_id)
                 item.quantity+=int(request.POST["quantity"])
                 item.save()
+                messages.success(request,"Product added successfully")
             else :
                 item = CartItem.objects.create(product=product , quantity = request.POST["quantity"], cart=cart)
                 if len(product_variation)>0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
                 item.save()
+                messages.success(request,"Product added successfully")
         else :
             cart_item = CartItem.objects.create(
                 product=product,
@@ -115,6 +121,7 @@ def add_cart(request,product_id):
                 cart_item.variations.clear()
                 cart_item.variations.add(*product_variation)
             cart_item.save()
+            messages.success(request,"Product added successfully")
         return redirect('cart')
 
 def decrement_cart(request , product_id,cart_item_id):
