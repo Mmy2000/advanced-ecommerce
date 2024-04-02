@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -67,7 +68,7 @@ def add_cart(request,product_id):
                 cart_item.variations.add(*product_variation)
             cart_item.save()
             messages.success(request,"Product added successfully")
-        return redirect('cart')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     else:
         product_variation = []
         if request.method == "POST":
@@ -122,7 +123,7 @@ def add_cart(request,product_id):
                 cart_item.variations.add(*product_variation)
             cart_item.save()
             messages.success(request,"Product added successfully")
-        return redirect('cart')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def decrement_cart(request , product_id,cart_item_id):
     
