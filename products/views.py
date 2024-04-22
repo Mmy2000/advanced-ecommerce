@@ -117,25 +117,38 @@ def filter_by_price(request):
     products = Product.objects.filter(is_available=True)
     min_price = request.GET.get("min_price")
     max_price = request.GET.get("max_price")
-    for product in products:
-        if min_price:
-                product = products.filter(price__gte=min_price,is_available=True)
+    paged_product = []
 
-        if max_price:
-                product = products.filter(price__lte=max_price,is_available=True)
+    # for product in products:
+    if min_price:
+            product = products.filter(price__gte=min_price,is_available=True)
+            paginator = Paginator(product,6)
+            page = request.GET.get('page')
+            paged_product = paginator.get_page(page)
+            print(product)
+
+    if max_price:
+            product = products.filter(price__lte=max_price,is_available=True)
+            paginator = Paginator(product,6)
+            page = request.GET.get('page')
+            paged_product = paginator.get_page(page)
 
     context = {
-        'products':product
+        'products':paged_product
     }
     return render(request , 'products/product_list.html', context)
 
 def filter_by_variations(request):
     products = Product.objects.filter(is_available=True)
     variation_name = request.GET.get('variation_name')
+    paged_product = []
     if variation_name:
         products = products.filter(variation__variation_value__icontains=variation_name)
+        paginator = Paginator(products,3)
+        page = request.GET.get('page')
+        paged_product = paginator.get_page(page)
     context = {
-        'products':products
+        'products':paged_product
     }
     return render(request , 'products/product_list.html', context)
 
