@@ -144,3 +144,9 @@ class ReviewRating(models.Model):
 
     def __str__(self):
         return self.subject
+    
+class Coupon(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    discount = models.FloatField()
+    expiration_date = models.DateField()
+    is_expired = models.BooleanField(default=False)

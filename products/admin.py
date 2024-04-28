@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product , Category , Subcategory , Brand , ProductImages , Variation , ReviewRating
+from .models import Product , Category , Subcategory , Brand , ProductImages , Variation , ReviewRating , Coupon
 import admin_thumbnails
 
 # Register your models here.
@@ -33,3 +33,4 @@ admin.site.register(Brand)
 admin.site.register(ReviewRating)
 admin.site.register(ProductImages)
 admin.site.register(Variation,VariationAdmin)
+admin.site.register(Coupon)
