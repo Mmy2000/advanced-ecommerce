@@ -1,10 +1,12 @@
 from django.db import models
 from django.utils import timezone
+from products.models import Coupon
 
 # Create your models here.
 class Cart(models.Model):
     cart_id = models.CharField( max_length=50 , blank=True)
     date_added = models.DateField(default=timezone.now)
+    coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL ,null=True,blank=True)
 
 
     def __str__(self):
