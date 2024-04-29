@@ -6,7 +6,7 @@ from django.urls import reverse
 from accounts.models import  User
 from django.db.models import Avg , Count
 from taggit.managers import TaggableManager
-
+from django.core.validators import MaxValueValidator , MinValueValidator
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(unique=True, max_length=50)
@@ -147,6 +147,11 @@ class ReviewRating(models.Model):
     
 class Coupon(models.Model):
     code = models.CharField(max_length=50, unique=True)
-    discount = models.FloatField()
-    expiration_date = models.DateField()
+    discount = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(100)])
+    valid_from = models.DateField(default=timezone.now)
+    valid_to = models.DateField(default=timezone.now)
     is_expired = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.code
+    

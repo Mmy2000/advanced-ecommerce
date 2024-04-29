@@ -96,11 +96,13 @@
             </table>
         </div>
         <div class="col-lg-4">
-            <form class="mb-5" action="">
+            <form class="mb-5"   method="POST">
+                {% include "includes/alerts.html" %}
+                {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                        <input type="text" name="coupon" class="form-control p-4" placeholder="Coupon Code">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
+                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
                         </div>
                     </div>
                 </form>

@@ -1,12 +1,14 @@
+from decimal import Decimal
 from django.shortcuts import render , redirect , get_object_or_404
-from products.models import Product , Variation
+from products.models import Product , Variation , Coupon
 from .models import Cart , CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-
+from .forms import CouponApplyForm
+from django.utils import timezone
 # Create your views here.
 
 def _cart_id(request):
@@ -160,7 +162,8 @@ def cart(request , total = 0 , quantity = 0 , cart_items = None):
         tax = 0
         grand_total = 0
         if request.user.is_authenticated:
-            cart_items = CartItem.objects.filter(user=request.user , is_active = True)
+            cart_items = CartItem.objects.filter(user=request.user , is_active = True)            
+
         else:
             cart = Cart.objects.get(cart_id=_cart_id(request))
             cart_items = CartItem.objects.filter(cart=cart , is_active = True)
@@ -169,6 +172,7 @@ def cart(request , total = 0 , quantity = 0 , cart_items = None):
             quantity += cart_item.quantity
         tax = (2 * total) / 100
         grand_total = total + tax
+        
     except ObjectDoesNotExist:
         pass
     context = {
@@ -205,3 +209,19 @@ def checkout(request, total = 0 , quantity = 0 , cart_items = None):
         'grand_total':grand_total,
     }
     return render(request , 'checkout.html',context)
+
+def apply_coupon(request):
+    now = timezone.now()
+    if request.method == 'POST':
+        code = request.POST.get('coupon')
+        try:
+            coupon = Coupon.objects.get(
+                code__iexact = code,
+                valid_from__lte = now,
+                valid_to__gte = now,
+                is_expired = False
+            )
+            request.session['coupon_id'] = coupon.id
+        except Coupon.DoesNotExist:
+            request.session['coupon_id'] = None
+    return redirect('cart')
