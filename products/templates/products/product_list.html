@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}
+{% if 'search' in request.path %}
+Search Result
+{% else %}
+Products
+{% endif %}
+{% endblock title %}
 {% block body %}
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+Login
+{% endblock title %}
 {% block body %}
+
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y" style="min-height:84vh">
   {% if request.GET.command == 'verification' %}
