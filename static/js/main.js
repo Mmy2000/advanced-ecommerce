@@ -146,7 +146,7 @@ const url = window.location.href
 const sendData = (product)=>{
     $.ajax({
         type: "POST",
-        url: `${url}results/`,
+        url: 'products/results/',
         data: {
             'csrfmiddlewaretoken':csrf,
             'product':product
