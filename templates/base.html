@@ -76,10 +76,11 @@
                             class="text-primary font-weight-bold border px-3 mr-1">E</span>{{about_site.site_name}}</h1>
                 </a>
             </div>
-            <div class="col-lg-6 col-6 text-left">
-                <form action="{% url 'search'%}">
+            <div class="col-lg-6 col-6 position-relative text-left">
+                <form id="searchForm" action="">
+                    {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search for products">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search for products">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -87,6 +88,7 @@
                         </div>
                     </div>
                 </form>
+                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">test</div>
             </div>
             <div class="col-lg-3 col-6 text-right">
                 <a href="{% url 'favourite'%}" class="btn border">

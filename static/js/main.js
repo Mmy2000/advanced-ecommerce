@@ -136,3 +136,5 @@ $("#newsletter_form").submit(function (e) {
             }
         })
     })
+
+    console.log('hello');
