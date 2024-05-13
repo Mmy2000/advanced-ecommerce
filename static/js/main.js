@@ -152,7 +152,32 @@ const sendData = (product)=>{
             'product':product
         },
         success:  (res)=> {
-            console.log(res);
+            // console.log(res);
+            const data = res.data
+            if (Array.isArray(data)) {
+                results.innerHTML = ``
+                data.forEach(product=>{
+                    results.innerHTML +=`
+                        <a href="${url}products/category/${product.subcategory}/${product.slug}" class="text-decoration-none">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-2">
+                                    <img src="${product.image}" class="game-image" />
+                                </div>
+                                <div class="col-10 ">
+                                    <h5>${product.name}</h5>
+                                    <p class="text-muted">${product.price}$</p>
+                                </div>
+                            </div>
+                        </a>
+                    `
+                })
+            }else{
+                if (searchInput.value.length > 0) {
+                    results.innerHTML = `<b>${data}</b>`
+                }else{
+                    results.classList.add('not-visible')
+                }
+            }
         },
         error:  (error)=>{
             console.log(error);
@@ -162,7 +187,7 @@ const sendData = (product)=>{
 
 
 searchInput.addEventListener('keyup' , (e)=>{
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     if (results.classList.contains('not-visible')) {
         results.classList.remove('not-visible')

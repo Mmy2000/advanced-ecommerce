@@ -123,10 +123,12 @@ def search_result(request):
                     'name':pos.name,
                     'slug':pos.slug,
                     'image':str(pos.image.url),
+                    'subcategory':pos.subcategory.id,
                     'price':pos.price
                 }
                 data.append(item)
             res = data
+            
         else:
             res = 'No Products Found ...'
 
