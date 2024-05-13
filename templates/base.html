@@ -77,7 +77,7 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 position-relative text-left">
-                <form id="searchForm" action="">
+                <form id="searchForm" autocomplete="off" action="">
                     {% csrf_token %}
                     <div class="input-group">
                         <input type="text" id="searchInput" class="form-control" placeholder="Search for products">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </form>
-                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">test</div>
+                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">Go to shop page...</div>
             </div>
             <div class="col-lg-3 col-6 text-right">
                 <a href="{% url 'favourite'%}" class="btn border">
