@@ -3,7 +3,7 @@ from .models import Product , Category , Subcategory , Brand , ReviewRating , Va
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Count
 from .forms import ReviewForm
 from django.contrib import messages
@@ -104,6 +104,34 @@ def search(request):
         'product_count':product_count
     }
     return render(request , 'products/product_list.html', context)
+
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+def search_result(request):
+    if is_ajax(request=request):
+        product = request.POST.get('product')
+        # print(product)
+        res = None
+        query = Product.objects.filter(name__icontains=product)
+        # print(query)
+        if (len(query) > 0 and len(product) > 0):
+            data = []
+            for pos in query:
+                item = {
+                    'name':pos.name,
+                    'slug':pos.slug,
+                    'image':str(pos.image.url),
+                    'price':pos.price
+                }
+                data.append(item)
+            res = data
+        else:
+            res = 'No Products Found ...'
+
+        return JsonResponse({'data':res})
+    return JsonResponse({})
 
 def add_to_favourit(request,id):
     product = Product.objects.get(id=id)
