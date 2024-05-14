@@ -118,6 +118,7 @@ def search_result(request):
             Q(name__icontains=product) | 
             Q(description__icontains=product) | 
             Q(subcategory__name__icontains=product)|
+            Q(subcategory__category__name__icontains=product)|
             Q(PRDBrand__BRDName__icontains=product)
             )
         # print(query)
