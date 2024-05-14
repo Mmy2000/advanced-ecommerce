@@ -114,7 +114,12 @@ def search_result(request):
         product = request.POST.get('product')
         # print(product)
         res = None
-        query = Product.objects.filter(name__icontains=product)
+        query = Product.objects.filter(
+            Q(name__icontains=product) | 
+            Q(description__icontains=product) | 
+            Q(subcategory__name__icontains=product)|
+            Q(PRDBrand__BRDName__icontains=product)
+            )
         # print(query)
         if (len(query) > 0 and len(product) > 0):
             data = []
