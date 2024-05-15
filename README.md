@@ -10,3 +10,4 @@ and the dashboard that The orders and details of these orders are displayed.
 * bootstrap
 * django
 * AJAX
+https://nesetim305.pythonanywhere.com/
