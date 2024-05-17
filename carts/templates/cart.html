@@ -33,7 +33,7 @@ Cart
 </div>
 
 {% else %}
-
+{% include "includes/alerts.html" %}
 <!-- Cart Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -82,7 +82,7 @@ Cart
                                             name="{{ item.variation_category | lower }}"
                                             value="{{ item.variation_value | capfirst }}">
                                         {% endfor %}
-                                        <button type="submit" class="btn btn-sm btn-primary btn-plus">
+                                        <button type="submit" class="btn btn-sm btn-primary btn-plus1">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </form>
@@ -100,7 +100,7 @@ Cart
         </div>
         <div class="col-lg-4">
             <form class="mb-5"   method="POST">
-                {% include "includes/alerts.html" %}
+                
                 {% csrf_token %}
                     <div class="input-group">
                         <input type="text" name="coupon" class="form-control p-4" placeholder="Coupon Code">

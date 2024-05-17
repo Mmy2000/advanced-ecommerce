@@ -49,7 +49,7 @@ def add_cart(request,product_id):
                 index=ex_var_list.index(product_variation)
                 item_id=id[index]
                 item = CartItem.objects.get(product=product , id=item_id)
-                item.quantity+=int(request.POST["quantity"])
+                item.quantity+=1
                 item.save()
                 messages.success(request,"Product added successfully")
             else :
@@ -139,8 +139,10 @@ def decrement_cart(request , product_id,cart_item_id):
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
             cart_item.save()
+            messages.success(request,"Product removed successfully")
         else:
             cart_item.delete()
+            messages.success(request,"Product deleted successfully")
     except:
         pass
     return redirect('cart')
@@ -154,6 +156,7 @@ def delete_cart(request , product_id ,cart_item_id):
         cart = Cart.objects.get(cart_id = _cart_id(request))
         cart_item = CartItem.objects.get(product=product , cart = cart,id=cart_item_id)
     cart_item.delete()
+    messages.success(request,"Product deleted successfully")
     return redirect('cart')
 
 def cart(request , total = 0 , quantity = 0 , cart_items = None):
