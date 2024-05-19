@@ -132,6 +132,8 @@ def search_result(request):
                     'subcategory':pos.subcategory.id,
                     'price':pos.price,
                     'discount':pos.discount,
+                    'rate':pos.count_review(),
+                    'avgRate':pos.avr_review()
                     
                 }
                 data.append(item)

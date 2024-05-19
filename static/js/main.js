@@ -224,6 +224,11 @@ const dataSend = (product)=>{
                                 <div class="d-flex justify-content-center">
                                     <h6>$${product.price}</h6>
                                 </div>
+                                <div class="rating-star">
+                                    <span>
+                                        ${product.avgRate}/5<i class="fa fa-star ms-2"></i>
+                                    </span>(${product.rate} reviews)
+                                </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a href="${url}category/${product.subcategory}/${product.slug}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
