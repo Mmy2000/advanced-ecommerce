@@ -73,9 +73,10 @@ Products
             <div class="row pb-3">
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="{% url 'search'%}">
+                        <form id="formSearch" >
+                            {% csrf_token %}
                             <div class="input-group">
-                                <input type="text" name="q" class="form-control" placeholder="Search by name">
+                                <input type="text" id="inputSearch"  class="form-control" placeholder="Search by name">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-primary">
                                         <i class="fa fa-search"></i>
@@ -102,7 +103,7 @@ Products
                         </div>
                     </div>
                 </div>
-                <div class="row" id="rowData">
+                <div class="row "  id="rowData">
                     {% if products %}
                     {% for product in products %}
 
@@ -157,7 +158,7 @@ Products
                     </div>
                     {% endif %}
                 </div>
-                <div class="col-12 pb-1">
+                <div class="col-12 pb-1" id="navigation">
                     <nav aria-label="Page navigation">
                         {% if products.has_other_pages %}
                         <ul class="pagination justify-content-center mb-3">

@@ -130,13 +130,15 @@ def search_result(request):
                     'slug':pos.slug,
                     'image':str(pos.image.url),
                     'subcategory':pos.subcategory.id,
-                    'price':pos.price
+                    'price':pos.price,
+                    'discount':pos.discount,
+                    
                 }
                 data.append(item)
             res = data
             
         else:
-            res = 'No Products Found ...'
+            res = "<div class='col-12 my-5 mx-5 text-center'><h2>Nothing Found , PLS Try Again</h2></div>"
 
         return JsonResponse({'data':res})
     return JsonResponse({})
