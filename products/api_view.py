@@ -41,6 +41,15 @@ def category_api(request):
     data = CategorySerializer(category , many=True , context = {'request':request}).data
     return Response({'data':data})
 
+@api_view(['GET'])
+def search_api(request , query):
+    product = Product.objects.filter(
+        Q(name__icontains=query)|Q(description__icontains=query)
+        
+    )
+    data = ProductsSerializer(product ,many=True , context = {'request':request}).data
+    return Response({'data':data})
+
 # @api_view(['GET'])
 # def searchByTag(requset , query):
 #     post = Note.objects.filter(
