@@ -89,10 +89,10 @@ def searchByBrand(request , query):
     data = ProductsSerializer(product , many=True , context={'request':request}).data
     return Response({'data':data})
 
-# @api_view(['GET'])
-# def searchByTag(requset , query):
-#     post = Note.objects.filter(
-#         Q(tags__name__icontains = query)
-#     )
-#     data = ProductsSerializer(post , many=True).data
-#     return Response({'data':data})
+@api_view(['GET'])
+def searchByTag(request , query):
+    post = Product.objects.filter(
+        Q(tags__name__icontains = query)
+    )
+    data = ProductsSerializer(post , many=True ,context={'request':request}).data
+    return Response({'data':data})
