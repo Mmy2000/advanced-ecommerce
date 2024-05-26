@@ -1,11 +1,13 @@
-from .models import Product , Subcategory , Category , Brand
+from .models import Product , Subcategory , Category , Brand 
+from taggit.models import Tag
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer
+from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer , TagsSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models.query_utils import Q
+
 
 class NotesListApi(generics.ListCreateAPIView):
     serializer_class = ProductsSerializer
@@ -43,6 +45,12 @@ def category_api(request):
     return Response({'data':data})
 
 @api_view(['GET'])
+def tags_api(request):
+    tag = Tag.objects.all()
+    data = TagsSerializer(tag , many=True , context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
 def brand_api(request):
     brand = Brand.objects.all()
     data = BrandSerializer(brand , many=True , context = {'request':request}).data
@@ -56,6 +64,7 @@ def search_api(request , query):
     )
     data = ProductsSerializer(product ,many=True , context = {'request':request}).data
     return Response({'data':data})
+
 @api_view(['GET'])
 def searchByCategory(request , query):
     product = Product.objects.filter(
