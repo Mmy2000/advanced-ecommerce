@@ -1,6 +1,6 @@
 from django.urls import path
 from . views import product_list  , product_detail , search , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , product_list_orderd_by_rating , product_list_orderd_by_papularty , product_list_orderd_by_price , product_list_orderd_by_created , product_list_orderd_by_price2 , search_result
-
+from . import api_view
 urlpatterns = [
     path('', product_list ,name = 'product_list'),
     path('category/<int:subcategory_id>/',product_list ,name='product_by_subcategory'),
@@ -19,4 +19,7 @@ urlpatterns = [
     path('orderd_by_popularty/',product_list_orderd_by_papularty , name='product_list_orderd_by_papularty'),
     path('orderd_by_price/',product_list_orderd_by_price , name='product_list_orderd_by_price'),
     path('orderd_by_highest price/',product_list_orderd_by_price2 , name='product_list_orderd_by_price2'),
+    #api
+    path('api/list' , api_view.product_list, name='products_api_list'),
+    path('api/list/<int:id>' , api_view.product_deatils_api, name='products_api_detail'),
 ]
