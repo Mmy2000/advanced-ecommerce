@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models.query_utils import Q
+from rest_framework.pagination import PageNumberPagination
 
 
 class ProductListApi(generics.ListCreateAPIView):
@@ -128,3 +129,32 @@ def product_list_ordered_by_price2_api(request):
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
     return Response({'data':data})
 
+
+@api_view(['GET'])
+def product_list_api_filter(request):
+    products = Product.objects.filter(is_available=True)
+    variation_name = request.GET.get('variation_name')
+
+    if variation_name:
+        products = products.filter(variation__variation_value__icontains=variation_name)
+
+    
+    serializer = ProductsSerializer(products, many=True).data
+    return Response({'data':serializer})
+
+@api_view(['GET'])
+def filter_by_price_api(request):
+    products = Product.objects.filter(is_available=True)
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+    if min_price:
+        products = products.filter(price__gte=min_price)
+
+    if max_price:
+        products = products.filter(price__lte=max_price)
+
+
+    
+    serializer = ProductsSerializer(products, many=True).data
+    return Response({'data':serializer})

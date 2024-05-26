@@ -192,6 +192,8 @@ def filter_by_variations(request):
     }
     return render(request , 'products/product_list.html', context)
 
+
+
 def submit_review(request , product_id):
     url = request.META.get('HTTP_REFERER')
     if request.method =="POST":

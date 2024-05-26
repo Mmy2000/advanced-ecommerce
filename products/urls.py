@@ -36,4 +36,6 @@ urlpatterns = [
     path('api/list/ordered_by_review' , api_view.product_list_ordered_by_review_api, name='products_api_list_ordered_by_review'),
     path('api/list/ordered_by_price_low_to_high' , api_view.product_list_ordered_by_price_api, name='products_api_list_ordered_by_price'),
     path('api/list/ordered_by_price_high_to_low' , api_view.product_list_ordered_by_price2_api, name='products_api_list_ordered_by_price2'),
+    path('api/list/variation/' , api_view.product_list_api_filter, name='product_list_api_filter'),
+    path('api/list/price/' , api_view.filter_by_price_api, name='filter_by_price_api'),
 ]
