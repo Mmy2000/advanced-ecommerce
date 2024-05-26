@@ -73,6 +73,22 @@ def searchByCategory(request , query):
     data = ProductsSerializer(product , many=True , context={'request':request}).data
     return Response({'data':data})
 
+@api_view(['GET'])
+def searchBySubcategory(request , query):
+    product = Product.objects.filter(
+        Q(subcategory__name__icontains=query)
+    )
+    data = ProductsSerializer(product , many=True , context={'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def searchByBrand(request , query):
+    product = Product.objects.filter(
+        Q(PRDBrand__BRDName__icontains=query)
+    )
+    data = ProductsSerializer(product , many=True , context={'request':request}).data
+    return Response({'data':data})
+
 # @api_view(['GET'])
 # def searchByTag(requset , query):
 #     post = Note.objects.filter(
