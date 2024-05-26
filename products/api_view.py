@@ -44,7 +44,7 @@ def category_api(request):
 @api_view(['GET'])
 def search_api(request , query):
     product = Product.objects.filter(
-        Q(name__icontains=query)|Q(description__icontains=query)
+        Q(name__icontains=query)|Q(description__icontains=query)|Q(subcategory__name__icontains=query)
         
     )
     data = ProductsSerializer(product ,many=True , context = {'request':request}).data
