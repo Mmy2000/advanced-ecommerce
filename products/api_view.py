@@ -1,7 +1,7 @@
-from .models import Product
+from .models import Product , Subcategory , Category
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializer import ProductsSerializer
+from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -27,6 +27,18 @@ def product_list(request):
 def product_deatils_api(request , id):
     product = get_object_or_404(Product , id=id)
     data = ProductsSerializer(product,context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def subcategory_api(request):
+    subcategory = Subcategory.objects.all()
+    data = SubcategorySerializer(subcategory , many=True , context = {'request':request}).data
+    return Response({'data':data})
+@api_view(['GET'])
+
+def category_api(request):
+    category = Category.objects.all()
+    data = CategorySerializer(category , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 # @api_view(['GET'])

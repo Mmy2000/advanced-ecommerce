@@ -22,4 +22,6 @@ urlpatterns = [
     #api
     path('api/list' , api_view.product_list, name='products_api_list'),
     path('api/list/<int:id>' , api_view.product_deatils_api, name='products_api_detail'),
+    path('api/subcategories' , api_view.subcategory_api, name='subcategory_api'),
+    path('api/categories' , api_view.category_api, name='category_api'),
 ]
