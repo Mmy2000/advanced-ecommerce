@@ -9,12 +9,12 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models.query_utils import Q
 
 
-class NotesListApi(generics.ListCreateAPIView):
+class ProductListApi(generics.ListCreateAPIView):
     serializer_class = ProductsSerializer
     queryset = Product.objects.all()
     # permission_classes = [IsAuthenticated,]
 
-class NotesDetailsApi(generics.RetrieveUpdateDestroyAPIView):
+class ProsuctDetailsApi(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductsSerializer
     queryset = Product.objects.all()
 
@@ -96,3 +96,35 @@ def searchByTag(request , query):
     )
     data = ProductsSerializer(post , many=True ,context={'request':request}).data
     return Response({'data':data})
+
+
+@api_view(['GET'])
+def product_list_ordered_by_review_api(request):
+    all_products = Product.objects.all().order_by('reviewrating')
+    data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def product_list_ordered_by_createdAt_api(request):
+    all_products = Product.objects.all().order_by('-created_at')
+    data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def product_list_ordered_by_papularty_api(request):
+    all_products = Product.objects.all().order_by('-views')
+    data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def product_list_ordered_by_price_api(request):
+    all_products = Product.objects.all().order_by('price')
+    data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def product_list_ordered_by_price2_api(request):
+    all_products = Product.objects.all().order_by('-price')
+    data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
+    return Response({'data':data})
+

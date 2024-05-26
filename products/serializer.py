@@ -4,7 +4,14 @@ from taggit.models import Tag
 from taggit.serializers import (TagListSerializerField, TaggitSerializer)
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
 class SubcategorySerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
     class Meta:
         model = Subcategory
         fields = '__all__'
@@ -35,7 +42,3 @@ class ProductsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = '__all__'

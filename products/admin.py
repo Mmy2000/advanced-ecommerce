@@ -13,13 +13,18 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name' , 'price'  , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
+    list_display = ('name' , 'price' , 'avr_review' , 'count_review'  , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
 
     def get_category(self, obj):
         return obj.subcategory.category
     
     get_category.short_description = 'Category'
-    inlines = [ProductGallaryInline]
+    inlines = [ProductGallaryInline] 
+
+class ReviewsAdmin(admin.ModelAdmin):
+    list_display = ('user' , 'product' , 'subject' , 'review' , 'rating' , 'status' )
+    list_editable = ('status',)
+    list_filter = ('product' , 'user' , 'rating')
 
 class VariationAdmin(admin.ModelAdmin):
     list_display = ('product' , 'variation_category' , 'variation_value' , 'created_at' , 'is_active' )
@@ -30,7 +35,7 @@ admin.site.register(Product , ProductAdmin)
 admin.site.register(Category)
 admin.site.register(Subcategory , SubCategoryAdmin)
 admin.site.register(Brand)
-admin.site.register(ReviewRating)
+admin.site.register(ReviewRating , ReviewsAdmin)
 admin.site.register(ProductImages)
 admin.site.register(Variation,VariationAdmin)
 admin.site.register(Coupon)
