@@ -13,8 +13,9 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name' , 'price' , 'avr_review' , 'count_review'  , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
-
+    list_display = ('name' , 'price' , 'avr_review' , 'count_review' , 'discount' , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
+    list_editable = ('is_available',)
+    list_filter = ('price' , 'subcategory' , 'name','stock','PRDBrand' , 'discount' )
     def get_category(self, obj):
         return obj.subcategory.category
     
