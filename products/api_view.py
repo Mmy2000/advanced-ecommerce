@@ -1,7 +1,7 @@
-from .models import Product , Subcategory , Category
+from .models import Product , Subcategory , Category , Brand
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer
+from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -34,11 +34,18 @@ def subcategory_api(request):
     subcategory = Subcategory.objects.all()
     data = SubcategorySerializer(subcategory , many=True , context = {'request':request}).data
     return Response({'data':data})
-@api_view(['GET'])
 
+
+@api_view(['GET'])
 def category_api(request):
     category = Category.objects.all()
     data = CategorySerializer(category , many=True , context = {'request':request}).data
+    return Response({'data':data})
+
+@api_view(['GET'])
+def brand_api(request):
+    brand = Brand.objects.all()
+    data = BrandSerializer(brand , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
@@ -48,6 +55,13 @@ def search_api(request , query):
         
     )
     data = ProductsSerializer(product ,many=True , context = {'request':request}).data
+    return Response({'data':data})
+@api_view(['GET'])
+def searchByCategory(request , query):
+    product = Product.objects.filter(
+        Q(subcategory__category__name__icontains=query)
+    )
+    data = ProductsSerializer(product , many=True , context={'request':request}).data
     return Response({'data':data})
 
 # @api_view(['GET'])
