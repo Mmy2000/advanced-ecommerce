@@ -20,7 +20,6 @@ class BrandSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductImagesSerializer(serializers.ModelSerializer):
-    product = 'ProductsSerializer()'
     class Meta:
         model = ProductImages
         fields = '__all__'
