@@ -25,7 +25,7 @@ def register(request):
             refresh = RefreshToken.for_user(user)
             # USER ACTIVATION
             current_site = get_current_site(request)
-            mail_subject = 'Please activate your account'
+            mail_subject = 'activation link send to your email , Please activate your account'
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
                 'domain': current_site,
@@ -60,4 +60,5 @@ class LoginAPIView(APIView):
         return Response({
             'refresh token': str(refresh),
             'access token': str(refresh.access_token),
+            'message':'Loged in successfully'
         })
