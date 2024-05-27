@@ -24,6 +24,8 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from accounts.models import User
+from django.views.decorators.csrf import csrf_exempt
+
 # from django.contrib.auth import get_user_model
 # User = get_user_model()
 
@@ -77,6 +79,7 @@ class LoginAPIView(APIView):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def forgot_password_api(request):
     serializer = ForgotPasswordSerializer(data=request.data)
     if serializer.is_valid():
@@ -104,6 +107,7 @@ def forgot_password_api(request):
             return Response({'error': 'Account does not exist!'}, status=status.HTTP_400_BAD_REQUEST)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@csrf_exempt
 def resetpassword_validate_api(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -119,8 +123,9 @@ def resetpassword_validate_api(request, uidb64, token):
         messages.error(request, 'This link has expired!')
         return redirect('login')
 
-
+@csrf_exempt
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def reset_password_api(request):
     serializer = ResetPasswordSerializer(data=request.data)
     if serializer.is_valid():
