@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product , Subcategory , Category , Brand , ProductImages
+from .models import Product , Subcategory , Category , Brand , ProductImages , ReviewRating
 from taggit.models import Tag
 from taggit.serializers import (TagListSerializerField, TaggitSerializer)
 
@@ -7,6 +7,11 @@ from taggit.serializers import (TagListSerializerField, TaggitSerializer)
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = '__all__'
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReviewRating
         fields = '__all__'
 
 
@@ -29,13 +34,14 @@ class BrandSerializer(serializers.ModelSerializer):
 class ProductImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImages
-        fields = '__all__'
+        fields = ['image']
 
 
 class ProductsSerializer(serializers.ModelSerializer):
     subcategory = SubcategorySerializer()
     PRDBrand = BrandSerializer()
     tags = TagListSerializerField()
+    reviewrating = ReviewSerializer(many=True, read_only=True)
     product_image = ProductImagesSerializer(many=True, read_only=True)
     class Meta:
         model = Product

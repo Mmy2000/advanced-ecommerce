@@ -7,17 +7,16 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models.query_utils import Q
-from rest_framework.pagination import PageNumberPagination
 
 
-class ProductListApi(generics.ListCreateAPIView):
-    serializer_class = ProductsSerializer
-    queryset = Product.objects.all()
-    # permission_classes = [IsAuthenticated,]
+# class ProductListApi(generics.ListCreateAPIView):
+#     serializer_class = ProductsSerializer
+#     queryset = Product.objects.all()
+#     # permission_classes = [IsAuthenticated,]
 
-class ProsuctDetailsApi(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = ProductsSerializer
-    queryset = Product.objects.all()
+# class ProsuctDetailsApi(generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = ProductsSerializer
+#     queryset = Product.objects.all()
 
 
 @api_view(['GET'])
@@ -142,6 +141,7 @@ def product_list_api_filter(request):
     serializer = ProductsSerializer(products, many=True).data
     return Response({'data':serializer})
 
+
 @api_view(['GET'])
 def filter_by_price_api(request):
     products = Product.objects.filter(is_available=True)
@@ -154,7 +154,5 @@ def filter_by_price_api(request):
     if max_price:
         products = products.filter(price__lte=max_price)
 
-
-    
     serializer = ProductsSerializer(products, many=True).data
     return Response({'data':serializer})
