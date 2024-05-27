@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from. import api_view
 urlpatterns = [
     path('' , views.profile , name="profile" ),
     path('register/' , views.register , name="register" ),
@@ -15,4 +16,7 @@ urlpatterns = [
     path('order_detail/<int:order_id>/' , views.order_detail , name="order_detail" ),
     path('favourite/' , views.favourite , name="favourite" ),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+
+    #api 
+    path('api/register/', api_view.register, name='register'),
 ]
