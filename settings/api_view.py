@@ -10,6 +10,10 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import NewsLitter
 import json
 import re
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
 
 @api_view(['GET'])
 def about_api(request):
@@ -79,3 +83,24 @@ def newsletter_subscription(request):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
+@csrf_exempt
+def contact_api(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            form = ContactForm(data)
+            if form.is_valid():
+                form.save()
+                subject = "Welcome to EShopper site"
+                message = "Our team will contact you within 24hrs."
+                email_from = settings.EMAIL_HOST_USER
+                email = form.cleaned_data['email']
+                recipient_list = [email]
+                send_mail(subject, message, email_from, recipient_list)
+                return JsonResponse({'message': 'Your message was sent successfully.'}, status=201)
+            else:
+                return JsonResponse({'error': 'Invalid form submission', 'details': form.errors}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)

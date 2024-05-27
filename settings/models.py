@@ -10,7 +10,7 @@ from django.urls import reverse
 class Contact(models.Model):
     name = models.CharField(max_length=250)
     email = models.EmailField()
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=11)
     message = models.TextField(max_length=3000)
 
     def __str__(self):
