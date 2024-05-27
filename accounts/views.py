@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from .forms import RegistrationForm , UserForm , ProfileForm
 from django.contrib.auth import authenticate , login 
-from .models import User , Profile
+from .models import Profile
 from products.models import Product
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -18,6 +18,8 @@ from carts.models import Cart , CartItem
 from carts.views import _cart_id
 import requests
 from orders.models import Order , OrderProduct
+from django.contrib.auth import get_user_model
+User = get_user_model()
 # Create your views here.
 
 def register(request):

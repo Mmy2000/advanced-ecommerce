@@ -20,4 +20,7 @@ urlpatterns = [
     #api 
     path('api/register/', api_view.register, name='register'),
     path('api/login/', api_view.LoginAPIView.as_view(), name='login'),
+    path('api/forgot-password/', api_view.forgot_password_api, name='forgot-password-api'),
+    path('api/reset-password/', api_view.reset_password_api, name='reset-password-api'),
+    path('api/reset-password-validate/<uidb64>/<token>/', api_view.resetpassword_validate_api, name='resetpassword_validate_api'),
 ]
