@@ -23,13 +23,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from accounts.models import User
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
 
-
-User = get_user_model()
 
 @api_view(['POST'])
 def register(request):
-
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -37,10 +37,10 @@ def register(request):
             refresh = RefreshToken.for_user(user)
             # USER ACTIVATION
             current_site = get_current_site(request)
-            mail_subject = 'activation link send to your email , Please activate your account'
+            mail_subject = 'Activation link sent to your email, please activate your account'
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
-                'domain': current_site,
+                'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
@@ -51,7 +51,7 @@ def register(request):
                 'message': 'User registered successfully',
                 'refresh token': str(refresh),
                 'access token': str(refresh.access_token),
-                'mail_subject':mail_subject
+                'mail_subject': mail_subject
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
