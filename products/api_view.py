@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer , TagsSerializer
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view , permission_classes
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models.query_utils import Q
 
@@ -20,17 +20,20 @@ from django.db.models.query_utils import Q
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list(request):
     all_products = Product.objects.all()
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_deatils_api(request , id):
     product = get_object_or_404(Product , id=id)
     data = ProductsSerializer(product,context = {'request':request}).data
     return Response({'data':data})
 
+@permission_classes([IsAuthenticated])
 @api_view(['GET'])
 def subcategory_api(request):
     subcategory = Subcategory.objects.all()
@@ -39,24 +42,28 @@ def subcategory_api(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def category_api(request):
     category = Category.objects.all()
     data = CategorySerializer(category , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def tags_api(request):
     tag = Tag.objects.all()
     data = TagsSerializer(tag , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def brand_api(request):
     brand = Brand.objects.all()
     data = BrandSerializer(brand , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def search_api(request , query):
     product = Product.objects.filter(
         Q(name__icontains=query)|Q(description__icontains=query)|Q(subcategory__name__icontains=query)
@@ -66,6 +73,7 @@ def search_api(request , query):
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def searchByCategory(request , query):
     product = Product.objects.filter(
         Q(subcategory__category__name__icontains=query)
@@ -74,6 +82,7 @@ def searchByCategory(request , query):
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def searchBySubcategory(request , query):
     product = Product.objects.filter(
         Q(subcategory__name__icontains=query)
@@ -82,6 +91,7 @@ def searchBySubcategory(request , query):
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def searchByBrand(request , query):
     product = Product.objects.filter(
         Q(PRDBrand__BRDName__icontains=query)
@@ -90,6 +100,7 @@ def searchByBrand(request , query):
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def searchByTag(request , query):
     post = Product.objects.filter(
         Q(tags__name__icontains = query)
@@ -99,30 +110,35 @@ def searchByTag(request , query):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list_ordered_by_review_api(request):
     all_products = Product.objects.all().order_by('reviewrating')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list_ordered_by_createdAt_api(request):
     all_products = Product.objects.all().order_by('-created_at')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list_ordered_by_papularty_api(request):
     all_products = Product.objects.all().order_by('-views')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list_ordered_by_price_api(request):
     all_products = Product.objects.all().order_by('price')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
     return Response({'data':data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list_ordered_by_price2_api(request):
     all_products = Product.objects.all().order_by('-price')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
@@ -130,6 +146,7 @@ def product_list_ordered_by_price2_api(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list_api_filter(request):
     products = Product.objects.filter(is_available=True)
     variation_name = request.GET.get('variation_name')
@@ -143,6 +160,7 @@ def product_list_api_filter(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def filter_by_price_api(request):
     products = Product.objects.filter(is_available=True)
     min_price = request.GET.get('min_price')

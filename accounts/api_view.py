@@ -1,4 +1,4 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view , permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -20,6 +20,10 @@ from django.contrib.auth import get_user_model
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 User = get_user_model()
 
@@ -132,3 +136,37 @@ def reset_password_api(request):
         else:
             return Response({'error': 'Session expired or invalid'}, status=status.HTTP_400_BAD_REQUEST)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def change_password_api(request):
+    if request.method == "POST":
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+        confirm_password = request.data.get('confirm_password')
+
+        # Ensure all required fields are provided
+        if not all([current_password, new_password, confirm_password]):
+            return Response({'error': 'All fields are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Retrieve the authenticated user
+        user = User.objects.get(username=request.user.username)
+
+        # Verify that the new passwords match
+        if new_password == confirm_password:
+            # Attempt to authenticate the user with the current password
+            success = user.check_password(current_password)
+            if success:
+                # Update the password if authentication succeeds
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, 'Password updated successfully.')
+                return Response({'message': 'Password updated successfully.'}, status=status.HTTP_200_OK)
+            else:
+                # Return an error if the current password is incorrect
+                return Response({'error': 'Invalid current password.'}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            # Return an error if the new passwords do not match
+            return Response({'error': 'New passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)

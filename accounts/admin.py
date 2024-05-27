@@ -20,8 +20,8 @@ class AccountAdmin(UserAdmin):
         refresh = RefreshToken.for_user(obj)
         return str(refresh.access_token)
 
-    refresh_token.short_description = ('Refresh Token')
-    access_token.short_description = ('Access Token')
+    refresh_token.short_description = ('Refresh ')
+    access_token.short_description = ('Access ')
 
     filter_horizontal = ()
     list_filter = ()
