@@ -275,6 +275,7 @@ def order_detail(request,order_id):
         'subtotal':subtotal,
     }
     return render(request,'profile/order_detail.html',context)
+
 @login_required(login_url='login')
 def favourite(request):
     products = Product.objects.filter(like=request.user)

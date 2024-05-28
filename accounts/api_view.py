@@ -28,7 +28,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from .serializer import ProfileSerializer , ProfileSerializer2 , UserSerializer2
 from rest_framework.parsers import MultiPartParser, FormParser
-
+from products.models import Product
+from products.serializer import ProductsSerializer
 
 
 @api_view(['POST'])
@@ -236,3 +237,11 @@ class EditProfileAPIView(APIView):
             'user_errors': user_serializer.errors,
             'profile_errors': profile_serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
+
+class FavouriteAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        products = Product.objects.filter(like=request.user)
+        serializer = ProductsSerializer(products, many=True)
+        return Response(serializer.data)
