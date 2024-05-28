@@ -28,7 +28,7 @@ class ReviewsAdmin(admin.ModelAdmin):
     list_filter = ('product' , 'user' , 'rating')
 
 class VariationAdmin(admin.ModelAdmin):
-    list_display = ('product' , 'variation_category' , 'variation_value' , 'created_at' , 'is_active' )
+    list_display = ('id' , 'product' , 'variation_category' , 'variation_value' , 'created_at' , 'is_active' )
     list_editable = ('is_active',)
     list_filter = ('product' , 'variation_category' , 'variation_value')
 
