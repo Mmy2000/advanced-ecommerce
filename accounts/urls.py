@@ -24,4 +24,6 @@ urlpatterns = [
     path('api/reset-password/', api_view.reset_password_api, name='reset-password-api'),
     path('api/reset-password-validate/<uidb64>/<token>/', api_view.resetpassword_validate_api, name='resetpassword_validate_api'),
     path('api/change_password_api/', api_view.change_password_api, name='change_password_api'),
+    path('api/profile/', api_view.ProfileAPIView.as_view(), name='profile-api'),
+    path('api/profile/edit/', api_view.EditProfileAPIView.as_view(), name='edit-profile-api'),
 ]

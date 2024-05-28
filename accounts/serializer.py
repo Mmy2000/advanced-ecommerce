@@ -21,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
 
+
 class ForgotPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
@@ -37,3 +38,27 @@ class ResetPasswordSerializer(serializers.Serializer):
         if data['password'] != data['confirm_password']:
             raise serializers.ValidationError("Passwords do not match.")
         return data
+
+
+class UserSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+class ProfileSerializer2(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+    class Meta:
+        model = Profile
+        fields = ['address','image','image_url','country','city','company','headline','about','address_line_1','address_line_2']
+
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        if obj.image and hasattr(obj.image, 'url'):
+            return request.build_absolute_uri(obj.image.url)
+        return None

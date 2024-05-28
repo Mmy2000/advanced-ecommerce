@@ -23,11 +23,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from accounts.models import User
+from accounts.models import User , Profile
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import generics
+from .serializer import ProfileSerializer , ProfileSerializer2 , UserSerializer2
+from rest_framework.parsers import MultiPartParser, FormParser
 
-# from django.contrib.auth import get_user_model
-# User = get_user_model()
 
 
 @api_view(['POST'])
@@ -175,3 +176,63 @@ def change_password_api(request):
         else:
             # Return an error if the new passwords do not match
             return Response({'error': 'New passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+
+class ProfileAPIView(generics.RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.queryset.get(user=self.request.user)
+    
+
+
+class EditProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        user_serializer = UserSerializer2(user, context={'request': request})
+        profile_serializer = ProfileSerializer2(profile, context={'request': request})
+        return Response({
+            'user': user_serializer.data,
+            'profile': profile_serializer.data
+        })
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        user_data = {
+            'username': request.data.get('username'),
+            'first_name': request.data.get('first_name'),
+            'last_name': request.data.get('last_name'),
+            'email': request.data.get('email')
+        }
+        profile_data = {
+            'address': request.data.get('address'),
+            'image': request.FILES.get('image'),  # Handle file upload
+            'country': request.data.get('country'),
+            'city': request.data.get('city'),
+            'company': request.data.get('company'),
+            'headline': request.data.get('headline'),
+            'about': request.data.get('about'),
+            'address_line_1': request.data.get('address_line_1'),
+            'address_line_2': request.data.get('address_line_2')
+        }
+
+        user_serializer = UserSerializer2(user, data=user_data, partial=True, context={'request': request})
+        profile_serializer = ProfileSerializer2(profile, data=profile_data, partial=True, context={'request': request})
+
+        if user_serializer.is_valid() and profile_serializer.is_valid():
+            user_serializer.save()
+            profile_serializer.save()
+            return Response({
+                'user': user_serializer.data,
+                'profile': profile_serializer.data
+            }, status=status.HTTP_200_OK)
+        return Response({
+            'user_errors': user_serializer.errors,
+            'profile_errors': profile_serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
