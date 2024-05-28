@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view , permission_classes
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models.query_utils import Q
+from rest_framework.views import APIView
+from rest_framework import status
 
 
 # class ProductListApi(generics.ListCreateAPIView):
@@ -156,7 +158,7 @@ def product_list_api_filter(request):
 
     
     serializer = ProductsSerializer(products, many=True).data
-    return Response({'data':serializer})
+    return Response({'data':serializer}, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -173,4 +175,18 @@ def filter_by_price_api(request):
         products = products.filter(price__lte=max_price)
 
     serializer = ProductsSerializer(products, many=True).data
-    return Response({'data':serializer})
+    return Response({'data':serializer} , status=status.HTTP_200_OK)
+
+class AddToFavouriteAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, id):
+        product = get_object_or_404(Product, id=id)
+        user = request.user
+        if user in product.like.all():
+            product.like.remove(user)
+            message = 'Removed from favourites'
+        else:
+            product.like.add(user)
+            message = 'Added to favourites'
+        return Response({'message': message}, status=status.HTTP_200_OK)

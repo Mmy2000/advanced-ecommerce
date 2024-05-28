@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import  Profile
 from accounts.models import User
 from rest_framework.authtoken.models import Token
+from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth.tokens import default_token_generator
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,18 +19,12 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             password=validated_data['password'],
         )
-        Token.objects.create(user=user)
         return user
     
-
-
 class ForgotPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
-from rest_framework import serializers
-# from django.contrib.auth.models import User
-from django.utils.http import urlsafe_base64_decode
-from django.contrib.auth.tokens import default_token_generator
+
 
 class ResetPasswordSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=True)
