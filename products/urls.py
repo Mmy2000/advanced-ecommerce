@@ -40,4 +40,5 @@ urlpatterns = [
     path('api/list/variation/' , api_view.product_list_api_filter, name='product_list_api_filter'),
     path('api/list/price/' , api_view.filter_by_price_api, name='filter_by_price_api'),
     path('api/favourite/<int:id>/', api_view.AddToFavouriteAPIView.as_view(), name='add_to_favourite'),
+    path('api/submit_review/<product_id>/', api_view.SubmitReview.as_view(), name='submit_review'),
 ]

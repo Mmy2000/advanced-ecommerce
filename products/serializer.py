@@ -19,6 +19,10 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = ReviewRating
         fields = '__all__'
 
+class ReviewSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = ReviewRating
+        fields = ['subject', 'rating', 'review']
 
 class SubcategorySerializer(serializers.ModelSerializer):
     category = CategorySerializer()

@@ -1,8 +1,8 @@
-from .models import Product , Subcategory , Category , Brand , Variation
+from .models import Product , Subcategory , Category , Brand , Variation , ReviewRating
 from taggit.models import Tag
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer , TagsSerializer , VariationSerializer
+from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer , TagsSerializer , VariationSerializer , ReviewSerializer2
 from rest_framework.response import Response
 from rest_framework.decorators import api_view , permission_classes
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -196,3 +196,20 @@ def variations(request):
     variation = Variation.objects.all()
     data = VariationSerializer(variation  , many=True).data
     return Response({'data':data} , status=status.HTTP_200_OK)
+
+class SubmitReview(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, product_id):
+        try:
+            review = ReviewRating.objects.get(user=request.user, product_id=product_id)
+            serializer = ReviewSerializer2(review, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response({'detail': 'Thank You, Your Review has been updated.'}, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except ReviewRating.DoesNotExist:
+            serializer = ReviewSerializer2(data=request.data)
+            if serializer.is_valid():
+                serializer.save(user=request.user, product_id=product_id)
+                return Response({'detail': 'Thank You, Your Review has been submitted.'}, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
