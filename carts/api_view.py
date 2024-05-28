@@ -46,3 +46,20 @@ class DecrementCart(APIView):
         
         except CartItem.DoesNotExist:
             return Response({"error": "CartItem not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+class DeleteCartItem(APIView):
+    def post(self, request, product_id, cart_item_id):
+        product = get_object_or_404(Product, id=product_id)
+        
+        try:
+            if request.user.is_authenticated:
+                cart_item = CartItem.objects.get(product=product, user=request.user, id=cart_item_id)
+            else:
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
+            
+            cart_item.delete()
+            return Response({"message": "Product deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+        
+        except CartItem.DoesNotExist:
+            return Response({"error": "CartItem not found"}, status=status.HTTP_404_NOT_FOUND)
