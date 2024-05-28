@@ -65,3 +65,8 @@ class CartItemSerializer(serializers.ModelSerializer):
 
         cart_item.save()
         return cart_item
+    
+class CartItemDecrementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ['id', 'quantity']
