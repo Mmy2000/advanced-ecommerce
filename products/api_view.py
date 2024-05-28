@@ -26,21 +26,21 @@ from rest_framework import status
 def product_list(request):
     all_products = Product.objects.all()
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def product_deatils_api(request , id):
     product = get_object_or_404(Product , id=id)
     data = ProductsSerializer(product,context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
 def subcategory_api(request):
     subcategory = Subcategory.objects.all()
     data = SubcategorySerializer(subcategory , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -48,21 +48,21 @@ def subcategory_api(request):
 def category_api(request):
     category = Category.objects.all()
     data = CategorySerializer(category , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def tags_api(request):
     tag = Tag.objects.all()
     data = TagsSerializer(tag , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def brand_api(request):
     brand = Brand.objects.all()
     data = BrandSerializer(brand , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -72,7 +72,7 @@ def search_api(request , query):
         
     )
     data = ProductsSerializer(product ,many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -81,7 +81,7 @@ def searchByCategory(request , query):
         Q(subcategory__category__name__icontains=query)
     )
     data = ProductsSerializer(product , many=True , context={'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -90,7 +90,7 @@ def searchBySubcategory(request , query):
         Q(subcategory__name__icontains=query)
     )
     data = ProductsSerializer(product , many=True , context={'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -99,7 +99,7 @@ def searchByBrand(request , query):
         Q(PRDBrand__BRDName__icontains=query)
     )
     data = ProductsSerializer(product , many=True , context={'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -108,7 +108,7 @@ def searchByTag(request , query):
         Q(tags__name__icontains = query)
     )
     data = ProductsSerializer(post , many=True ,context={'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -116,35 +116,35 @@ def searchByTag(request , query):
 def product_list_ordered_by_review_api(request):
     all_products = Product.objects.all().order_by('reviewrating')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def product_list_ordered_by_createdAt_api(request):
     all_products = Product.objects.all().order_by('-created_at')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def product_list_ordered_by_papularty_api(request):
     all_products = Product.objects.all().order_by('-views')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def product_list_ordered_by_price_api(request):
     all_products = Product.objects.all().order_by('price')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def product_list_ordered_by_price2_api(request):
     all_products = Product.objects.all().order_by('-price')
     data = ProductsSerializer(all_products , many=True , context = {'request':request}).data
-    return Response({'data':data})
+    return Response({'data':data} , status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
