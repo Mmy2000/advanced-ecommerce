@@ -3,11 +3,11 @@ from rest_framework import serializers
 from .models import CartItem , Cart
 from products.models import Product, Variation
 
+
+
 class CartItemSerializer(serializers.ModelSerializer):
     product_id = serializers.IntegerField(write_only=True)
-    variations = serializers.ListField(
-        child=serializers.IntegerField(), write_only=True, required=False
-    )
+    variations = serializers.ListField(child=serializers.DictField(), write_only=True, required=False)
 
     class Meta:
         model = CartItem
@@ -16,7 +16,7 @@ class CartItemSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         request = self.context.get('request')
         product_id = validated_data.pop('product_id')
-        variation_ids = validated_data.pop('variations', [])
+        variation_values = validated_data.pop('variations', [])
         quantity = validated_data.get('quantity', 1)
 
         product = Product.objects.get(id=product_id)
@@ -24,35 +24,44 @@ class CartItemSerializer(serializers.ModelSerializer):
 
         cart = None
         if user:
-            cart_item, created = CartItem.objects.get_or_create(
-                product=product,
-                user=user,
-                defaults={'quantity': quantity}
-            )
+            cart_items = CartItem.objects.filter(product=product, user=user)
         else:
             cart_id = request.session.session_key
             if not cart_id:
                 request.session.create()
                 cart_id = request.session.session_key
             cart, created = Cart.objects.get_or_create(cart_id=cart_id)
-            cart_item, created = CartItem.objects.get_or_create(
-                product=product,
-                cart=cart,
-                defaults={'quantity': quantity}
-            )
+            cart_items = CartItem.objects.filter(product=product, cart=cart)
 
-        if not created:
-            cart_item.quantity += quantity
-            cart_item.save()
+        # Convert variation_values to Variation instances
+        variations = []
+        for var in variation_values:
+            category = var.get('category')
+            value = var.get('value')
+            try:
+                variation = Variation.objects.get(product=product, variation_category=category, variation_value=value, is_active=True)
+                variations.append(variation)
+            except Variation.DoesNotExist:
+                raise serializers.ValidationError(f"Variation {category}: {value} does not exist or is inactive for this product.")
 
-        if variation_ids:
-            cart_item.variations.clear()
-            for var_id in variation_ids:
-                try:
-                    variation = Variation.objects.get(id=var_id, product=product, is_active=True)
-                    cart_item.variations.add(variation)
-                except Variation.DoesNotExist:
-                    raise serializers.ValidationError(f"Variation ID {var_id} does not exist or is inactive.")
+        # Check if a cart item with the same variations already exists
+        for cart_item in cart_items:
+            existing_variations = list(cart_item.variations.all())
+            if set(existing_variations) == set(variations):
+                cart_item.quantity += quantity
+                cart_item.save()
+                return cart_item
+
+        # If no matching cart item exists, create a new one
+        cart_item = CartItem.objects.create(
+            product=product,
+            quantity=quantity,
+            user=user if user else None,
+            cart=cart if not user else None
+        )
+
+        if variations:
+            cart_item.variations.set(variations)
 
         cart_item.save()
         return cart_item
