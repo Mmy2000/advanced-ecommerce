@@ -4,7 +4,7 @@ from products.models import Coupon
 
 # Create your models here.
 class Cart(models.Model):
-    cart_id = models.CharField( max_length=50 , blank=True)
+    cart_id = models.CharField( max_length=50 , null=True, blank=True)
     date_added = models.DateField(default=timezone.now)
 
 
@@ -15,7 +15,7 @@ class CartItem(models.Model):
     user = models.ForeignKey("accounts.User",null=True, on_delete=models.CASCADE)
     product = models.ForeignKey("products.Product", on_delete=models.CASCADE)
     variations = models.ManyToManyField("products.Variation",blank=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE , null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE ,blank=True ,  null=True)
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
 

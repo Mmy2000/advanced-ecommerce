@@ -70,3 +70,4 @@ class CartItemDecrementSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
         fields = ['id', 'quantity']
+

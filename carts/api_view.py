@@ -5,6 +5,8 @@ from .models import  Cart, CartItem
 from .serializer import CartItemSerializer , CartItemDecrementSerializer
 from products.models import Product, Variation
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
+
 
 
 def _cart_id(request):
@@ -63,3 +65,40 @@ class DeleteCartItem(APIView):
         
         except CartItem.DoesNotExist:
             return Response({"error": "CartItem not found"}, status=status.HTTP_404_NOT_FOUND)
+
+# class CartAPI(APIView):
+#     def get(self, request):
+#         total = 0
+#         quantity = 0
+#         tax = 0
+#         grand_total = 0
+#         cart_items = None
+        
+#         try:
+#             if request.user.is_authenticated:
+#                 cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+#             else:
+#                 cart = Cart.objects.get(cart_id=_cart_id(request))
+#                 cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+                
+#             for cart_item in cart_items:
+#                 total += (cart_item.product.price * cart_item.quantity)
+#                 quantity += cart_item.quantity
+            
+#             tax = (2 * total) / 100
+#             grand_total = total + tax
+            
+#         except ObjectDoesNotExist:
+#             pass
+        
+#         serializer = CartItemSerializer(cart_items, many=True)
+        
+#         data = {
+#             'total': total,
+#             'quantity': quantity,
+#             'cart_items': serializer.data,
+#             'tax': tax,
+#             'grand_total': grand_total
+#         }
+        
+#         return Response(data)
