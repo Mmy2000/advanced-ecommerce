@@ -1,8 +1,8 @@
-from .models import Product , Subcategory , Category , Brand 
+from .models import Product , Subcategory , Category , Brand , Variation
 from taggit.models import Tag
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer , TagsSerializer
+from .serializer import ProductsSerializer , SubcategorySerializer , CategorySerializer , BrandSerializer , TagsSerializer , VariationSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view , permission_classes
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -190,3 +190,9 @@ class AddToFavouriteAPIView(APIView):
             product.like.add(user)
             message = 'Added to favourites'
         return Response({'message': message}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])    
+def variations(request):
+    variation = Variation.objects.all()
+    data = VariationSerializer(variation  , many=True).data
+    return Response({'data':data} , status=status.HTTP_200_OK)
