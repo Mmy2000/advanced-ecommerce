@@ -2,7 +2,7 @@
 from rest_framework import serializers
 from .models import CartItem , Cart
 from products.models import Product, Variation
-
+from products.serializer import ProductImagesSerializer
 
 
 class CartItemSerializer(serializers.ModelSerializer):
@@ -71,3 +71,21 @@ class CartItemDecrementSerializer(serializers.ModelSerializer):
         model = CartItem
         fields = ['id', 'quantity']
 
+class VariationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Variation
+        fields = ['variation_category', 'variation_value']
+
+class ProductSerializer(serializers.ModelSerializer):
+    product_image = ProductImagesSerializer(many=True, read_only=True)
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'price' ,'product_image' , 'image']
+
+
+class CartItemsSerializer(serializers.ModelSerializer):
+    variations = VariationSerializer(many=True, read_only=True)
+    product = ProductSerializer(read_only=True)
+    class Meta:
+        model = CartItem
+        fields = ['id', 'product','variations', 'quantity', 'is_active']

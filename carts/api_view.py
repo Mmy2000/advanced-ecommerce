@@ -2,10 +2,11 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  Cart, CartItem
-from .serializer import CartItemSerializer , CartItemDecrementSerializer
+from .serializer import CartItemSerializer , CartItemDecrementSerializer , CartItemsSerializer
 from products.models import Product, Variation
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.permissions import IsAuthenticated
 
 
 
@@ -16,6 +17,7 @@ def _cart_id(request):
     return cart
 
 class AddToCart(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, product_id):
         data = request.data.copy()
         data['product_id'] = product_id
@@ -27,6 +29,7 @@ class AddToCart(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class DecrementCart(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, product_id, cart_item_id):
         product = get_object_or_404(Product, id=product_id)
         
@@ -50,6 +53,7 @@ class DecrementCart(APIView):
             return Response({"error": "CartItem not found"}, status=status.HTTP_404_NOT_FOUND)
         
 class DeleteCartItem(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, product_id, cart_item_id):
         product = get_object_or_404(Product, id=product_id)
         
@@ -66,39 +70,38 @@ class DeleteCartItem(APIView):
         except CartItem.DoesNotExist:
             return Response({"error": "CartItem not found"}, status=status.HTTP_404_NOT_FOUND)
 
-# class CartAPI(APIView):
-#     def get(self, request):
-#         total = 0
-#         quantity = 0
-#         tax = 0
-#         grand_total = 0
-#         cart_items = None
+
+class CartAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        total = 0
+        quantity = 0
+        tax = 0
+        grand_total = 0
+
+        try:
+            cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+            for cart_item in cart_items:
+                total += (cart_item.product.price * cart_item.quantity)
+                quantity += cart_item.quantity
+
+            tax = (2 * total) / 100
+            grand_total = total + tax
+
+        except ObjectDoesNotExist:
+            # Handle the case where no cart items are found for the user
+            # You might want to return an empty response or a specific message
+            return Response({'detail': 'No cart items found for the user.'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CartItemsSerializer(cart_items, many=True)
         
-#         try:
-#             if request.user.is_authenticated:
-#                 cart_items = CartItem.objects.filter(user=request.user, is_active=True)
-#             else:
-#                 cart = Cart.objects.get(cart_id=_cart_id(request))
-#                 cart_items = CartItem.objects.filter(cart=cart, is_active=True)
-                
-#             for cart_item in cart_items:
-#                 total += (cart_item.product.price * cart_item.quantity)
-#                 quantity += cart_item.quantity
-            
-#             tax = (2 * total) / 100
-#             grand_total = total + tax
-            
-#         except ObjectDoesNotExist:
-#             pass
-        
-#         serializer = CartItemSerializer(cart_items, many=True)
-        
-#         data = {
-#             'total': total,
-#             'quantity': quantity,
-#             'cart_items': serializer.data,
-#             'tax': tax,
-#             'grand_total': grand_total
-#         }
-        
-#         return Response(data)
+        data = {
+            'total': total,
+            'quantity': quantity,
+            'cart_items': serializer.data,
+            'tax': tax,
+            'grand_total': grand_total
+        }
+
+        return Response(data, status=status.HTTP_200_OK)

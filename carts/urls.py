@@ -10,7 +10,7 @@ urlpatterns = [
     path('delete_cart/<int:product_id>/<int:cart_item_id>/', views.delete_cart , name='delete_cart'),
 
     #api
-    # path('api/cart/', api_view.CartAPI.as_view(), name='cart_api'),
+    path('api/cart/', api_view.CartAPIView.as_view(), name='cart_api'),
     path('api/add_to_cart/<int:product_id>/', api_view.AddToCart.as_view(), name='add_to_cart'),
     path('api/decrement_cart/<int:product_id>/<int:cart_item_id>/', api_view.DecrementCart.as_view(), name='decrement_cart'),
     path('api/delete_cart/<int:product_id>/<int:cart_item_id>/', api_view.DeleteCartItem.as_view(), name='delete_cart'),
