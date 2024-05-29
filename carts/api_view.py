@@ -30,8 +30,11 @@ class AddToCart(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
 class DecrementCart(APIView):
     permission_classes = [IsAuthenticated]
+
     def post(self, request, product_id, cart_item_id):
         product = get_object_or_404(Product, id=product_id)
         
@@ -45,14 +48,24 @@ class DecrementCart(APIView):
             if cart_item.quantity > 1:
                 cart_item.quantity -= 1
                 cart_item.save()
-                serializer = CartItemDecrementSerializer(cart_item)
-                return Response(serializer.data, status=status.HTTP_200_OK)
             else:
                 cart_item.delete()
-                return Response({"message": "Product deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+            
+            # Call the CartAPIView to get the updated cart data
+            cart_api_url = reverse('cart_api')  # Assuming 'cart-api' is the name of your CartAPIView URL
+            cart_api_url = request.build_absolute_uri(cart_api_url)
+            response = requests.get(cart_api_url, headers={'Authorization': request.headers.get('Authorization')})
+            
+            if response.status_code == 200:
+                updated_cart_data = response.json()
+                # Process the updated cart data as needed
+                return Response({"message": "Product quantity decremented successfully", "updated_cart": updated_cart_data}, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": "Failed to retrieve updated cart data"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         except CartItem.DoesNotExist:
             return Response({"error": "CartItem not found"}, status=status.HTTP_404_NOT_FOUND)
+
         
 
 class DeleteCartItem(APIView):
