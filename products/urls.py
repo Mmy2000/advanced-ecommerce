@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/categories' , api_view.category_api, name='category_api'),
     path('api/categories/category=<str:query>' , api_view.searchByCategory, name='searchByCategory'),
     path('api/subcategory/subcategory=<str:query>' , api_view.searchBySubcategory, name='searchBySubcategory'),
+    path('api/category/query=<str:query>' , api_view.getAllSubcategoriesInCategories, name='getAllSubcategoriesInCategories'),
     path('api/brands/brand=<str:query>' , api_view.searchByBrand, name='searchByBrand'),
     path('api/brands' , api_view.brand_api, name='brand_api'),
     path('api/tags' , api_view.tags_api, name='tags_api'),

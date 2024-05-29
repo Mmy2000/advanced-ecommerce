@@ -20,6 +20,11 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
 class PostSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     tags = TagListSerializerField()

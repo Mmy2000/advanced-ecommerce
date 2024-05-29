@@ -85,6 +85,15 @@ def searchByCategory(request , query):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
+def getAllSubcategoriesInCategories(request , query):
+    product = Subcategory.objects.filter(
+        Q(category__name__icontains=query)
+    )
+    data = SubcategorySerializer(product , many=True , context={'request':request}).data
+    return Response({'data':data} , status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def searchBySubcategory(request , query):
     product = Product.objects.filter(
         Q(subcategory__name__icontains=query)
@@ -154,7 +163,7 @@ def product_list_api_filter(request):
     variation_name = request.GET.get('variation_name')
 
     if variation_name:
-        products = products.filter(variation__variation_value__icontains=variation_name)
+        products = products.filter(product_variation__variation_value__icontains=variation_name)
 
     
     serializer = ProductsSerializer(products, many=True).data
