@@ -20,16 +20,16 @@ def _cart_id(request):
 
 class AddToCart(APIView):
     permission_classes = [IsAuthenticated]
+
     def post(self, request, product_id):
         data = request.data.copy()
         data['product_id'] = product_id
         
         serializer = CartItemSerializer(data=data, context={'request': request})
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            cart_data = serializer.save()
+            return Response(cart_data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 class DecrementCart(APIView):

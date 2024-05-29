@@ -3,6 +3,8 @@ from rest_framework import serializers
 from .models import CartItem , Cart
 from products.models import Product, Variation
 from products.serializer import ProductImagesSerializer
+from django.db import transaction
+
 
 
 class CartItemSerializer(serializers.ModelSerializer):
@@ -19,9 +21,14 @@ class CartItemSerializer(serializers.ModelSerializer):
         variation_values = validated_data.pop('variations', [])
         quantity = validated_data.get('quantity', 1)
 
-        product = Product.objects.get(id=product_id)
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            raise serializers.ValidationError(f"Product with id {product_id} does not exist.")
+
         user = request.user if request.user.is_authenticated else None
 
+        cart_items = None
         cart = None
         if user:
             cart_items = CartItem.objects.filter(product=product, user=user)
@@ -33,38 +40,75 @@ class CartItemSerializer(serializers.ModelSerializer):
             cart, created = Cart.objects.get_or_create(cart_id=cart_id)
             cart_items = CartItem.objects.filter(product=product, cart=cart)
 
-        # Convert variation_values to Variation instances
         variations = []
         for var in variation_values:
             category = var.get('category')
             value = var.get('value')
             try:
-                variation = Variation.objects.get(product=product, variation_category=category, variation_value=value, is_active=True)
+                variation = Variation.objects.get(
+                    product=product, 
+                    variation_category=category, 
+                    variation_value=value, 
+                    is_active=True
+                )
                 variations.append(variation)
             except Variation.DoesNotExist:
                 raise serializers.ValidationError(f"Variation {category}: {value} does not exist or is inactive for this product.")
 
-        # Check if a cart item with the same variations already exists
+        with transaction.atomic():
+            for cart_item in cart_items:
+                existing_variations = list(cart_item.variations.all())
+                if set(existing_variations) == set(variations):
+                    cart_item.quantity += quantity
+                    cart_item.save()
+                    return self.return_cart(cart if cart else user)
+
+            cart_item = CartItem.objects.create(
+                product=product,
+                quantity=quantity,
+                user=user if user else None,
+                cart=cart if not user else None
+            )
+
+            if variations:
+                cart_item.variations.set(variations)
+
+            cart_item.save()
+
+        return self.return_cart(cart if cart else user)
+
+    def return_cart(self, cart_or_user):
+        total = 0
+        quantity = 0
+        tax = 0
+        grand_total = 0
+
+        if isinstance(cart_or_user, Cart):
+            cart_items = CartItem.objects.filter(cart=cart_or_user, is_active=True)
+        else:  # it's a User
+            cart_items = CartItem.objects.filter(user=cart_or_user, is_active=True)
+
         for cart_item in cart_items:
-            existing_variations = list(cart_item.variations.all())
-            if set(existing_variations) == set(variations):
-                cart_item.quantity += quantity
-                cart_item.save()
-                return cart_item
+            total += (cart_item.product.price * cart_item.quantity)
+            quantity += cart_item.quantity
 
-        # If no matching cart item exists, create a new one
-        cart_item = CartItem.objects.create(
-            product=product,
-            quantity=quantity,
-            user=user if user else None,
-            cart=cart if not user else None
-        )
+        tax = (2 * total) / 100
+        grand_total = total + tax
 
-        if variations:
-            cart_item.variations.set(variations)
+        serializer = CartItemsSerializer(cart_items, many=True, context={'request': self.context.get('request')})
 
-        cart_item.save()
-        return cart_item
+        data = {
+            'total': total,
+            'quantity': quantity,
+            'cart_items': serializer.data,
+            'tax': tax,
+            'grand_total': grand_total
+        }
+
+        return data
+
+
+        return data
     
 class CartItemDecrementSerializer(serializers.ModelSerializer):
     class Meta:

@@ -109,7 +109,9 @@ def forgot_password_api(request):
             return Response({'error': 'Account does not exist!'}, status=status.HTTP_400_BAD_REQUEST)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
 @csrf_exempt
+@permission_classes([IsAuthenticated])
 def resetpassword_validate_api(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -119,11 +121,9 @@ def resetpassword_validate_api(request, uidb64, token):
 
     if user is not None and default_token_generator.check_token(user, token):
         request.session['uid'] = uid
-        messages.success(request, 'Please reset your password')
-        return redirect('reset-password-api')
+        return Response({'message': 'Token is valid. Proceed to reset password.'}, status=status.HTTP_200_OK)
     else:
-        messages.error(request, 'This link has expired!')
-        return redirect('login')
+        return Response({'error': 'Invalid or expired token.'}, status=status.HTTP_400_BAD_REQUEST)
 
 @csrf_exempt
 @api_view(['POST'])
@@ -226,17 +226,22 @@ class EditProfileAPIView(APIView):
         user_serializer = UserSerializer2(user, data=user_data, partial=True, context={'request': request})
         profile_serializer = ProfileSerializer2(profile, data=profile_data, partial=True, context={'request': request})
 
-        if user_serializer.is_valid() and profile_serializer.is_valid():
+        user_valid = user_serializer.is_valid()
+        profile_valid = profile_serializer.is_valid()
+
+        if user_valid and profile_valid:
             user_serializer.save()
             profile_serializer.save()
             return Response({
                 'user': user_serializer.data,
                 'profile': profile_serializer.data
             }, status=status.HTTP_200_OK)
+
         return Response({
-            'user_errors': user_serializer.errors,
-            'profile_errors': profile_serializer.errors
+            'user_errors': user_serializer.errors if not user_valid else {},
+            'profile_errors': profile_serializer.errors if not profile_valid else {}
         }, status=status.HTTP_400_BAD_REQUEST)
+
 
 class FavouriteAPIView(APIView):
     permission_classes = [IsAuthenticated]
