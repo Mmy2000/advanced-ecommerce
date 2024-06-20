@@ -56,3 +56,8 @@ def newsletters(request):
     email = request.POST.get('email')
     NewsLitter.objects.create(email=email)
     return JsonResponse({'done':'done'})
+
+from django.http import HttpResponseNotFound
+
+def custom_404_view(request, exception=None):
+    return render(request, '404.html', {}, status=404)

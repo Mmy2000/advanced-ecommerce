@@ -100,3 +100,28 @@ ul.thumb li img{
     height: 50px;
     border-radius: 50%;
 }
+.error-page {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .error-page h1 {
+        font-size: 6em;
+        margin: 0;
+        color: #e74c3c;
+    }
+    .error-page p {
+        font-size: 1.5em;
+        margin: 20px 0;
+    }
+    .error-page a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #D19C97;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .error-page a:hover {
+        background-color: #9d5959;
+    }

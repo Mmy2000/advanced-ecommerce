@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-(7(s&rq2+jakuk_0r+t5el%9+m5w*bg(upm&j949$@3ld&!ur3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    "corsheaders",
 ]
 
 
@@ -87,8 +89,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
 ROOT_URLCONF = 'project.urls'
 
 
@@ -159,6 +173,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+from pathlib import Path
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
