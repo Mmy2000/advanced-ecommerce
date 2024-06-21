@@ -13,9 +13,9 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'discount' , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
+    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
     list_editable = ('is_available',)
-    list_filter = ('price' , 'subcategory' , 'name','stock','PRDBrand' , 'discount' )
+    list_filter = ('price' , 'subcategory' , 'name','stock','PRDBrand')
     def get_category(self, obj):
         return obj.subcategory.category
     
@@ -38,5 +38,3 @@ admin.site.register(Subcategory , SubCategoryAdmin)
 admin.site.register(Brand)
 admin.site.register(ReviewRating , ReviewsAdmin)
 admin.site.register(ProductImages)
-admin.site.register(Variation,VariationAdmin)
-admin.site.register(Coupon)

@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import product_list  , product_detail , search , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , product_list_orderd_by_rating , product_list_orderd_by_papularty , product_list_orderd_by_price , product_list_orderd_by_created , product_list_orderd_by_price2 , search_result
+from . views import product_list  , product_detail , search , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , search_result
 from . import api_view
 urlpatterns = [
     path('', product_list ,name = 'product_list'),
@@ -14,11 +14,7 @@ urlpatterns = [
     path('filter_by_price/',filter_by_price ,name='filter_by_price'),
     path('filter_by_variations/',filter_by_variations ,name='filter_by_variations'),
     path('submit_review/<int:product_id>/',submit_review ,name='submit_review'),
-    path('orderd_by_rating/',product_list_orderd_by_rating,name='product_list_orderd_by_rating'),
-    path('orderd_by_created/',product_list_orderd_by_created , name='product_list_orderd_by_created'),
-    path('orderd_by_popularty/',product_list_orderd_by_papularty , name='product_list_orderd_by_papularty'),
-    path('orderd_by_price/',product_list_orderd_by_price , name='product_list_orderd_by_price'),
-    path('orderd_by_highest price/',product_list_orderd_by_price2 , name='product_list_orderd_by_price2'),
+
     #api
     path('api/list' , api_view.product_list, name='products_api_list'),
     path('api/list/variation' , api_view.variations, name='variation'),

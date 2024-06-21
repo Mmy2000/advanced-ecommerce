@@ -8,46 +8,44 @@ from django.db.models import Count
 from .forms import ReviewForm
 from django.contrib import messages
 from orders.models import OrderProduct
+from .filters import ProductFilter
+
 
 # Create your views here.
 
-def product_list(request , subcategory_id=None , brand_slug=None , tag_slug=None):
+def product_list(request, subcategory_id=None, brand_slug=None, tag_slug=None):
     categories = None
     brands = None
     tags = None
-    if subcategory_id != None :
-        categories = get_object_or_404(Subcategory,id = subcategory_id)
-        products = Product.objects.filter(subcategory=categories  ,is_available=True)
-        paginator = Paginator(products,6)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-    elif brand_slug != None:
-        brands = get_object_or_404(Brand,slug=brand_slug)
-        products = Product.objects.filter(PRDBrand=brands ,is_available=True )
-        paginator = Paginator(products,6)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-    elif tag_slug != None:
-        tags = get_object_or_404(Tag , slug = tag_slug)
-        products = Product.objects.filter(tags = tags , is_available = True)
-        paginator = Paginator(products,6)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-    else :
-        products = Product.objects.filter(is_available=True)
-        paginator = Paginator(products,6)
-        page = request.GET.get('page')
-        paged_product = paginator.get_page(page)
-        product_count = products.count()
-    
 
-    context={
-        'products':paged_product,
+    if subcategory_id is not None:
+        categories = get_object_or_404(Subcategory, id=subcategory_id)
+        products = Product.objects.filter(subcategory=categories, is_available=True)
+    elif brand_slug is not None:
+        brands = get_object_or_404(Brand, slug=brand_slug)
+        products = Product.objects.filter(PRDBrand=brands, is_available=True)
+    elif tag_slug is not None:
+        tags = get_object_or_404(Tag, slug=tag_slug)
+        products = Product.objects.filter(tags=tags, is_available=True)
+    else:
+        products = Product.objects.filter(is_available=True)
+
+    # Apply the filter
+    product_filter = ProductFilter(request.GET, queryset=products)
+    filtered_products = product_filter.qs
+
+    # Pagination
+    paginator = Paginator(filtered_products, 6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    product_count = filtered_products.count()
+
+    context = {
+        'products': paged_product,
+        'filter': product_filter,  # Pass the filter to the context
+        'product_count': product_count,
     }
-    return render(request , 'products/product_list.html' , context )
+    return render(request, 'products/product_list.html', context)
 
 def product_detail(request ,subcategory_id,product_slug):
     try:
@@ -217,42 +215,3 @@ def submit_review(request , product_id):
                 messages.success(request,'Thank You , Your Review has been submitted.')
                 return redirect(url)
             
-
-def product_list_orderd_by_rating(request):
-    products = Product.objects.all().order_by('reviewrating')
-    paginator = Paginator(products,6)
-    page = request.GET.get('page')
-    paged_product = paginator.get_page(page)
-    context = {'products': paged_product,}
-    return render(request, 'products/product_list.html', context)
-
-def product_list_orderd_by_created(request):
-    products = Product.objects.all().order_by('-created_at')
-    paginator = Paginator(products,6)
-    page = request.GET.get('page')
-    paged_product = paginator.get_page(page)
-    context =  {'products': paged_product,}
-    return render(request , 'products/product_list.html' , context)
-def product_list_orderd_by_papularty(request):
-    products = Product.objects.all().order_by('-views')
-    paginator = Paginator(products,6)
-    page = request.GET.get('page')
-    paged_product = paginator.get_page(page)
-    context =  {'products': paged_product,}
-    return render(request , 'products/product_list.html' , context)
-
-def product_list_orderd_by_price(request):
-    products = Product.objects.all().order_by('price')
-    paginator = Paginator(products,6)
-    page = request.GET.get('page')
-    paged_product = paginator.get_page(page)
-    context =  {'products': paged_product,}
-    return render(request , 'products/product_list.html' , context)
-
-def product_list_orderd_by_price2(request):
-    products = Product.objects.all().order_by('-price')
-    paginator = Paginator(products,6)
-    page = request.GET.get('page')
-    paged_product = paginator.get_page(page)
-    context =  {'products': paged_product,}
-    return render(request , 'products/product_list.html' , context)

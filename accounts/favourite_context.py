@@ -13,4 +13,4 @@ def counter(request):
             except Product.DoesNotExist:
                 product_count=0
 
-    return dict(product_count=product_count)
+    return dict(product_counter=product_count)

@@ -13,7 +13,6 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product/')
     stock = models.IntegerField(default=1)
     price = models.IntegerField(default=0)
-    discount = models.FloatField(default=0)
     description = models.TextField(max_length=10000)
     created_at = models.DateTimeField( default=timezone.now)
     slug = models.SlugField(null=True,blank=True , unique=True)
@@ -36,8 +35,6 @@ class Product(models.Model):
         else :
             self.is_available = True
 
-        if self.discount > 0:
-            self.price = self.price - (self.price * self.discount / 100)
         super(Product,self).save(*args,**kwargs)
     
     def avr_review(self):

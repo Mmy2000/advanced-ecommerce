@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django_bootstrap5",
     'django_filters',
     'django_seed',
+    "bootstrap4",
     #api
     'rest_framework',
     "rest_framework.authtoken",
