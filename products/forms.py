@@ -18,6 +18,7 @@ class CategorySubcategoryForm(forms.Form):
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True, label="Category")
     subcategory = forms.ModelChoiceField(queryset=Subcategory.objects.none(), required=True, label="Subcategory")
 
+
 class ProductFilter(django_filters.FilterSet):
     category = django_filters.ModelChoiceFilter(queryset=Category.objects.all(), label="Category", field_name='subcategory__category', distinct=True, required=False)
     subcategory = django_filters.ModelChoiceFilter(queryset=Subcategory.objects.all(), label="Subcategory", required=False)

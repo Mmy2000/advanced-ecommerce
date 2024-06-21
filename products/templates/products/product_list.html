@@ -55,19 +55,9 @@ Products
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
                 <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="d-flex align-items-center   mb-4">
                         <span class="mr-md-auto">{{product_count}} Products found </span>
-                        <form id="formSearch" >
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <input type="text" id="inputSearch"  class="form-control" placeholder="Search by name">
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-transparent text-primary">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
+                        
                     </div>
                 </div>
                 <div class="row "  id="rowData">
