@@ -5,10 +5,10 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Count
-from .forms import ReviewForm
+from .forms import ReviewForm , CategorySubcategoryForm
 from django.contrib import messages
 from orders.models import OrderProduct
-from .filters import ProductFilter
+from .forms import ProductFilter
 
 
 # Create your views here.
@@ -46,6 +46,13 @@ def product_list(request, subcategory_id=None, brand_slug=None, tag_slug=None):
         'product_count': product_count,
     }
     return render(request, 'products/product_list.html', context)
+
+def load_subcategories(request):
+    category_id = request.GET.get('category_id')
+    print(f"Received category_id: {category_id}")  # Debugging statement
+    subcategories = Subcategory.objects.filter(category_id=category_id).all()
+    print(f"Subcategories: {subcategories}")  # Debugging statement
+    return JsonResponse(list(subcategories.values('id', 'name')), safe=False)
 
 def product_detail(request ,subcategory_id,product_slug):
     try:

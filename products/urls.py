@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import product_list  , product_detail , search , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , search_result
+from . views import product_list  , product_detail , search , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , search_result ,  load_subcategories
 from . import api_view
 urlpatterns = [
     path('', product_list ,name = 'product_list'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('filter_by_price/',filter_by_price ,name='filter_by_price'),
     path('filter_by_variations/',filter_by_variations ,name='filter_by_variations'),
     path('submit_review/<int:product_id>/',submit_review ,name='submit_review'),
+    path('load-subcategories/', load_subcategories, name='load_subcategories'),
 
     #api
     path('api/list' , api_view.product_list, name='products_api_list'),

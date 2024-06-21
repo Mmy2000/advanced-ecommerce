@@ -36,13 +36,13 @@ Products
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Products Filter </h5>
-                <form >
-                        {% csrf_token %}
-                        {% bootstrap_form filter.form %}
-                        {% buttons %}
-                        <button type="submit" class="btn btn-primary">Search</button>
-                        {% endbuttons %}
-                    </form>
+                <form method="get">
+        {% csrf_token %}
+        {% bootstrap_form filter.form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Search</button>
+        {% endbuttons %}
+    </form>
             </div>
             <!-- Price End -->
 
