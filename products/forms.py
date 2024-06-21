@@ -22,6 +22,7 @@ class CategorySubcategoryForm(forms.Form):
 class ProductFilter(django_filters.FilterSet):
     category = django_filters.ModelChoiceFilter(queryset=Category.objects.all(), label="Category", field_name='subcategory__category', distinct=True, required=False)
     subcategory = django_filters.ModelChoiceFilter(queryset=Subcategory.objects.all(), label="Subcategory", required=False)
+    price = django_filters.RangeFilter(field_name='price', label="Price Range")
 
     class Meta:
         model = Product

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const categorySelect = document.getElementById('id_category');
     const subcategorySelect = document.getElementById('id_subcategory');
+    subcategorySelect.classList.add('d-none')
 
     categorySelect.addEventListener('change', function () {
         const categoryId = this.value;
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
+                subcategorySelect.classList.replace('d-none' , 'd-block')
                 return response.json();
             })
             .then(data => {
