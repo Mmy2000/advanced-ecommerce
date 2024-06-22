@@ -36,7 +36,7 @@ Products
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Products Filter </h5>
-                <form method="get">
+                <form method="get" novalidate>
         {% csrf_token %}
         {% bootstrap_form filter.form %}
         {% buttons %}

@@ -21,7 +21,7 @@ class CategorySubcategoryForm(forms.Form):
 
 class ProductFilter(django_filters.FilterSet):
     category = django_filters.ModelChoiceFilter(queryset=Category.objects.all(), label="Category", field_name='subcategory__category', distinct=True, required=False)
-    subcategory = django_filters.ModelChoiceFilter(queryset=Subcategory.objects.all(), label="Subcategory", required=False)
+    subcategory = django_filters.ModelChoiceFilter(queryset=Subcategory.objects.none(), label="Subcategory", required=False)
     price = django_filters.RangeFilter(field_name='price', label="Price Range")
 
     class Meta:
@@ -35,9 +35,7 @@ class ProductFilter(django_filters.FilterSet):
                 category_id = int(self.data.get('category'))
                 if category_id:
                     self.filters['subcategory'].queryset = Subcategory.objects.filter(category_id=category_id).order_by('name')
-                else:
-                    self.filters['subcategory'].queryset = Subcategory.objects.filter(category__isnull=True).order_by('name')
             except (ValueError, TypeError):
                 self.filters['subcategory'].queryset = Subcategory.objects.none()
         else:
-            self.filters['subcategory'].queryset = Subcategory.objects.filter(category__isnull=True).order_by('name')
+            self.filters['subcategory'].queryset = Subcategory.objects.none()
