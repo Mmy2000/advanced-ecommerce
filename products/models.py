@@ -20,7 +20,6 @@ class Product(models.Model):
     is_available = models.BooleanField(default=True)
     tags = TaggableManager()
     subcategory = models.ForeignKey("Subcategory",related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
-    PRDBrand = models.ForeignKey('Brand' ,related_name='product_brand', on_delete=models.CASCADE , blank=True, null=True ,verbose_name=_("Brand "))
     like = models.ManyToManyField(User , blank=True,related_name='product_favourite')
 
 
@@ -107,26 +106,7 @@ class Subcategory(models.Model):
     def __str__(self):
         return self.name
     
-class Brand(models.Model):
-    BRDName = models.CharField(max_length=40)
-    image = models.ImageField(upload_to='product_prand/',blank=True, null=True)
-    BRDDesc = models.TextField(blank=True, null=True)
-    slug = models.SlugField(null=True,blank=True , unique=True)
 
-    class Meta:
-        verbose_name = _("Brand")
-        verbose_name_plural = _("Brands")
-
-    def save(self,*args, **kwargs):
-        if not self.slug:
-            self.slug=slugify(self.BRDName)
-        super(Brand,self).save(*args,**kwargs)
-    
-    def get_url(self):
-        return reverse('product_by_brand',args=[self.slug])
-
-    def __str__(self):
-        return self.BRDName
     
 class ReviewRating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

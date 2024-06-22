@@ -4,4 +4,4 @@ from .models import Product
 class ProductFilter(django_filters.FilterSet):
     class Meta:
         model = Product
-        fields = ['name', 'PRDBrand', 'description','subcategory','price']
+        fields = ['name', 'description','subcategory','price']

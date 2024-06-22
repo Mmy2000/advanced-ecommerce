@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from. import api_view
+
 urlpatterns = [
     path('' , views.profile , name="profile" ),
     path('register/' , views.register , name="register" ),
@@ -17,14 +17,5 @@ urlpatterns = [
     path('favourite/' , views.favourite , name="favourite" ),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
 
-    #api 
-    path('api/register/', api_view.register, name='api_register'),
-    path('api/login/', api_view.LoginAPIView.as_view(), name='api_login'),
-    path('api/forgot-password/', api_view.forgot_password_api, name='forgot-password-api'),
-    path('api/reset-password/', api_view.reset_password_api, name='reset-password-api'),
-    path('api/reset-password-validate/<uidb64>/<token>/', api_view.resetpassword_validate_api, name='resetpassword_validate_api'),
-    path('api/change_password_api/', api_view.change_password_api, name='change_password_api'),
-    path('api/profile/', api_view.ProfileAPIView.as_view(), name='profile-api'),
-    path('api/profile/edit/', api_view.EditProfileAPIView.as_view(), name='edit-profile-api'),
-    path('api/favourite/', api_view.FavouriteAPIView.as_view(), name='favourite-api'),
+
 ]

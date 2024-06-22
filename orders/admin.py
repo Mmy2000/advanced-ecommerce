@@ -6,6 +6,7 @@ from .models import Payment , Order , OrderProduct
 
 class OrderProductInline(admin.TabularInline):
     model = OrderProduct
+    list_display = ['payment', 'user', 'product', 'quantity', 'product_price', 'ordered']
     readonly_fields = ('payment', 'user', 'product', 'quantity', 'product_price', 'ordered')
     extra = 0
 

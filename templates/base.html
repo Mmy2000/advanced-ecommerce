@@ -165,16 +165,7 @@
                                 class="nav-item nav-link {% if request.path == '/products/' %}active{% endif %} ">Shop</a>
                             <a href="{% url 'categories'%}"
                                 class="nav-item nav-link {% if request.path == '/products/categories/' %}active{% endif %}">All Categories</a>
-                            <div class="nav-item dropdown">
-                                <a href="#"
-                                    class="nav-link dropdown-toggle "
-                                    data-toggle="dropdown">Brands</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    {% for brand in brands %}
-                                    <a href="{{ brand.get_url }}" class="dropdown-item">{{ brand }}</a>
-                                    {% endfor %}
-                                </div>
-                            </div>
+                            
                             <a href="{% url 'blog'%}"
                                 class="nav-item nav-link  {% if request.path == '/blog/' %}active{% endif %}">Blogs</a>
                             <a href="{% url 'contact'%}"

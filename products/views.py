@@ -1,5 +1,5 @@
 from django.shortcuts import render , get_object_or_404 , redirect
-from .models import Product , Category , Subcategory , Brand , ReviewRating , Variation
+from .models import Product , Category , Subcategory  , ReviewRating , Variation
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
@@ -13,17 +13,13 @@ from .forms import ProductFilter
 
 # Create your views here.
 
-def product_list(request, subcategory_id=None, brand_slug=None, tag_slug=None):
+def product_list(request, subcategory_id=None, tag_slug=None):
     categories = None
-    brands = None
     tags = None
 
     if subcategory_id is not None:
         categories = get_object_or_404(Subcategory, id=subcategory_id)
         products = Product.objects.filter(subcategory=categories, is_available=True)
-    elif brand_slug is not None:
-        brands = get_object_or_404(Brand, slug=brand_slug)
-        products = Product.objects.filter(PRDBrand=brands, is_available=True)
     elif tag_slug is not None:
         tags = get_object_or_404(Tag, slug=tag_slug)
         products = Product.objects.filter(tags=tags, is_available=True)
@@ -92,24 +88,7 @@ def category_list(request):
         'category':paged_product
     }
     return render(request,'products/categories.html',context)
-def search(request):
-    if 'q' in request.GET:
-        q = request.GET['q']
-        if q :
-            product = Product.objects.order_by('-created_at').filter(
-                Q(description__icontains=q ) |
-                Q( name__icontains=q)|
-                Q(subcategory__name__icontains=q)|
-                Q(PRDBrand__BRDName__icontains=q)
-                )
-            product_count = product.count()
-        else :
-            return render(request , 'products/product_list.html')
-    context = {
-        'products':product , 
-        'product_count':product_count
-    }
-    return render(request , 'products/product_list.html', context)
+
 
 
 def is_ajax(request):

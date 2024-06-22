@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product , Category , Subcategory , Brand , ProductImages , Variation , ReviewRating , Coupon
+from .models import Product , Category , Subcategory  , ProductImages , Variation , ReviewRating , Coupon
 import admin_thumbnails
 
 # Register your models here.
@@ -13,9 +13,9 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name','category')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory' , 'get_category' , 'PRDBrand' , 'stock','views' , 'created_at' , 'is_available')
+    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory' , 'get_category'  , 'stock','views' , 'created_at' , 'is_available')
     list_editable = ('is_available',)
-    list_filter = ('price' , 'subcategory' , 'name','stock','PRDBrand')
+    list_filter = ('price' , 'subcategory' , 'name','stock')
     def get_category(self, obj):
         return obj.subcategory.category
     
@@ -35,7 +35,6 @@ class VariationAdmin(admin.ModelAdmin):
 admin.site.register(Product , ProductAdmin)
 admin.site.register(Category)
 admin.site.register(Subcategory , SubCategoryAdmin)
-admin.site.register(Brand)
 admin.site.register(ReviewRating , ReviewsAdmin)
 admin.site.register(ProductImages)
-admin.site.register(Variation , VariationAdmin)
+# admin.site.register(Variation , VariationAdmin)
