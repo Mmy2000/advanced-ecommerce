@@ -22,6 +22,7 @@ Blogs
     <div class="blog" id="blog">
         <div class="container my-5">
             <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% if object_list %}
                 {% for post in object_list %}
                 
                 <div class="col-lg-4 col-md-6 col-sm-12 card-style">
@@ -44,6 +45,11 @@ Blogs
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="col-md-12 d-flex justify-content-center   ">
+                        <h2 class="text-center">Nothing Found , PLS Try Again</h2>
+                    </div>
+                {% endif %}
                 
             </div>
             
