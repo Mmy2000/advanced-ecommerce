@@ -1,14 +1,13 @@
 from django.shortcuts import render , get_object_or_404 , redirect
-from .models import Product , Category , Subcategory  , ReviewRating , Variation
+from .models import Product  , Subcategory  , ReviewRating , Variation
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Count
-from .forms import ReviewForm , CategorySubcategoryForm
+from .forms import ReviewForm 
 from django.contrib import messages
 from orders.models import OrderProduct
-from .forms import ProductFilter
 
 
 # Create your views here.
@@ -27,18 +26,15 @@ def product_list(request, subcategory_id=None, tag_slug=None):
         products = Product.objects.filter(is_available=True)
 
     # Apply the filter
-    product_filter = ProductFilter(request.GET, queryset=products)
-    filtered_products = product_filter.qs
 
     # Pagination
-    paginator = Paginator(filtered_products, 6)
+    paginator = Paginator(products, 6)
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
-    product_count = filtered_products.count()
+    product_count = products.count()
 
     context = {
         'products': paged_product,
-        'filter': product_filter,  # Pass the filter to the context
         'product_count': product_count,
         'subcategory_id':subcategory_id
     }

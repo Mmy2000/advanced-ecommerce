@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product , Category , Subcategory  , ProductImages , Variation , ReviewRating , Coupon
+from .models import Product  , Subcategory  , ProductImages , Variation , ReviewRating , Coupon
 import admin_thumbnails
 
 # Register your models here.
@@ -10,16 +10,14 @@ class ProductGallaryInline(admin.TabularInline):
     model = ProductImages
     extra = 1
 class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name','category')
+    list_display = ('name',)
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory' , 'get_category'  , 'stock','views' , 'created_at' , 'is_available')
+    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory'   , 'stock','views' , 'created_at' , 'is_available')
     list_editable = ('is_available',)
     list_filter = ('price' , 'subcategory' , 'name','stock')
-    def get_category(self, obj):
-        return obj.subcategory.category
+
     
-    get_category.short_description = 'Category'
     inlines = [ProductGallaryInline] 
 
 class ReviewsAdmin(admin.ModelAdmin):
@@ -33,7 +31,6 @@ class VariationAdmin(admin.ModelAdmin):
     list_filter = ('product' , 'variation_category' , 'variation_value')
 
 admin.site.register(Product , ProductAdmin)
-admin.site.register(Category)
 admin.site.register(Subcategory , SubCategoryAdmin)
 admin.site.register(ReviewRating , ReviewsAdmin)
 admin.site.register(ProductImages)
