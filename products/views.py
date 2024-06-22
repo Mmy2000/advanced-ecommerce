@@ -44,6 +44,7 @@ def product_list(request, subcategory_id=None, brand_slug=None, tag_slug=None):
         'products': paged_product,
         'filter': product_filter,  # Pass the filter to the context
         'product_count': product_count,
+        'subcategory_id':subcategory_id
     }
     return render(request, 'products/product_list.html', context)
 
