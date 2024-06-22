@@ -262,3 +262,4 @@ inputSearch.addEventListener('keyup' , (e)=>{
     dataSend(e.target.value)
     navigation.classList.add('d-none')
 })
+

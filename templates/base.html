@@ -10,7 +10,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="{% static 'img/favicon.ico'%}" rel="icon">
+    <link href="{{about_site.logo.url}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -37,6 +37,7 @@
 </head>
 
 <body>
+    
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -334,11 +335,13 @@
     <!-- Contact Javascript File -->
     <script src="{% static 'mail/jqBootstrapValidation.min.js'%}"></script>
     <script src="{% static 'mail/contact.js'%}"></script>
+    
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js'%}"></script>
     
     <script src="{% static 'js/category_subcategory.js' %}"></script>
+    
 </body>
 
 </html>
