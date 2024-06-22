@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_seed',
     "bootstrap4",
+    'django_summernote',
     #api
     'rest_framework',
     "rest_framework.authtoken",

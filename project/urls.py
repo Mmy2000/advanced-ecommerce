@@ -33,6 +33,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('blog/', include('blog.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

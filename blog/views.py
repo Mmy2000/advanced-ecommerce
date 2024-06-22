@@ -4,7 +4,7 @@ from .models import Post , Category
 from taggit.models import Tag
 from django.db.models import Count
 from django.db.models.query_utils import Q
-from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+
 
 # Create your views here.
 class PostList(ListView):
@@ -27,6 +27,14 @@ class PostDetail(DetailView):
         context["tags"] = Tag.objects.filter(post__isnull=False).distinct()
         context["recent_posts"] = Post.objects.all()[:3]
         return context
+    def get(self, request, *args, **kwargs):
+        # Get the post object
+        self.object = self.get_object()
+        # Increase the view count
+        self.object.views += 1
+        self.object.save()
+        # Call the superclass implementation of get to handle the rest
+        return super().get(request, *args, **kwargs)
     
 class PostByCategory(ListView):
     model = Post
