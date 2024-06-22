@@ -125,3 +125,10 @@ ul.thumb li img{
     .error-page a:hover {
         background-color: #9d5959;
     }
+
+form .form-control::after {
+    content: none !important;
+}
+form .form-control {
+    background-image: none !important;
+}
