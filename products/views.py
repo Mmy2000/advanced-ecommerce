@@ -8,6 +8,7 @@ from django.db.models import Count
 from .forms import ReviewForm 
 from django.contrib import messages
 from orders.models import OrderProduct
+from .filters import ProductFilter
 
 
 # Create your views here.
@@ -26,15 +27,18 @@ def product_list(request, subcategory_id=None, tag_slug=None):
         products = Product.objects.filter(is_available=True)
 
     # Apply the filter
+    product_filter = ProductFilter(request.GET, queryset=products)
+    filtered_products = product_filter.qs
 
     # Pagination
-    paginator = Paginator(products, 6)
+    paginator = Paginator(filtered_products, 6)
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
-    product_count = products.count()
+    product_count = filtered_products.count()
 
     context = {
         'products': paged_product,
+        'filter': product_filter,  # Pass the filter to the context
         'product_count': product_count,
         'subcategory_id':subcategory_id
     }

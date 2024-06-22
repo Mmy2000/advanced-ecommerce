@@ -19,7 +19,7 @@ class Product(models.Model):
     views = models.PositiveIntegerField(default=0)
     is_available = models.BooleanField(default=True)
     tags = TaggableManager()
-    subcategory = models.ForeignKey("Subcategory",related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
+    subcategory = models.ForeignKey("Subcategory",verbose_name='Category',related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
     like = models.ManyToManyField(User , blank=True,related_name='product_favourite')
 
 
@@ -98,8 +98,13 @@ class Subcategory(models.Model):
     def get_url(self):
         return reverse('product_by_subcategory',args=[self.id])
     
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
+    
+
     
 
     
