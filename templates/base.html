@@ -170,6 +170,8 @@
                             
                             <a href="{% url 'blog'%}"
                                 class="nav-item nav-link  {% if request.path == '/blog/' %}active{% endif %}">Blogs</a>
+                            <a href="{% url 'about'%}"
+                                class="nav-item nav-link  {% if request.path == '/about/' %}active{% endif %}">About</a>
                             <a href="{% url 'contact'%}"
                                 class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
                             

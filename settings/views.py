@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from products.models import Product , Subcategory
-from .models import Settings , NewsLitter 
+from .models import Settings , NewsLitter  , About , FAQ
 from django.db.models import Count
 from .forms import ContactForm
 from django.core.mail import send_mail
@@ -49,7 +49,15 @@ def newsletters(request):
     NewsLitter.objects.create(email=email)
     return JsonResponse({'done':'done'})
 
-from django.http import HttpResponseNotFound
+def about(request):
+    about = About.objects.last()
+    faq = FAQ.objects.all()
+    context = {
+        'about':about,
+        'faq':faq
+    }
+    return render(request , 'about.html' , context)
 
 def custom_404_view(request, exception=None):
     return render(request, '404.html', {}, status=404)
+

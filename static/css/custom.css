@@ -196,3 +196,46 @@ form .form-control {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
 
+
+#accordion .card {
+  margin-bottom: 5px;
+  border: 1px solid #e6e6e6;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0; }
+  #accordion .card .card-header {
+    padding: 0;
+    background: transparent;
+    border-bottom: 1px solid #e6e6e6;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0; }
+    #accordion .card .card-header a {
+      padding: 12px 20px;
+      display: block;
+      font-size: 20px;
+      font-weight: 400;
+      color: #000000; }
+      #accordion .card .card-header a span {
+        float: right; }
+        #accordion .card .card-header a span i {
+          color: #8bc34a; }
+
+#accordion .card-body {
+  border: 1px solid transparent; }
+
+#accordion [aria-expanded="false"] > .expanded, #accordion [aria-expanded="true"] > .collapsed {
+  display: none; }
+
+.about-image {
+    height: 400px;
+    margin-bottom: 30px; }
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  background-size: cover;
+  background-position: center center;
+ }
