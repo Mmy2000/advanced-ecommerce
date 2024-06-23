@@ -25,6 +25,8 @@ class Product(models.Model):
 
     class Meta:
         ordering = ["name"]
+        verbose_name = ("Products")
+        verbose_name_plural = ("Products")
 
     def save(self,*args, **kwargs):
         if not self.slug:
@@ -86,6 +88,11 @@ class ProductImages(models.Model):
     product = models.ForeignKey(Product,related_name='product_image',on_delete=models.CASCADE)
     image = models.ImageField(upload_to='productimages/')
 
+
+    class Meta:
+        verbose_name = ("Product Images")
+        verbose_name_plural = ("Product Images")
+
     def __str__(self):
         return str(self.product)
 
@@ -119,16 +126,12 @@ class ReviewRating(models.Model):
     created_at = models.DateTimeField( auto_now_add=True)
     updated_at = models.DateTimeField( auto_now=True)
 
+    class Meta:
+        verbose_name = ("Rating")
+        verbose_name_plural = ("Rating")
+
     def __str__(self):
         return self.subject
     
-class Coupon(models.Model):
-    code = models.CharField(max_length=50, unique=True)
-    discount = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(100)])
-    valid_from = models.DateField(default=timezone.now)
-    valid_to = models.DateField(default=timezone.now)
-    is_expired = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.code
     

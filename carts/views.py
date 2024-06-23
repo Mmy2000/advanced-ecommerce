@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django.shortcuts import render , redirect , get_object_or_404
-from products.models import Product , Variation , Coupon
+from products.models import Product , Variation 
 from .models import Cart , CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -213,18 +213,3 @@ def checkout(request, total = 0 , quantity = 0 , cart_items = None):
     }
     return render(request , 'checkout.html',context)
 
-def apply_coupon(request):
-    now = timezone.now()
-    if request.method == 'POST':
-        code = request.POST.get('coupon')
-        try:
-            coupon = Coupon.objects.get(
-                code__iexact = code,
-                valid_from__lte = now,
-                valid_to__gte = now,
-                is_expired = False
-            )
-            request.session['coupon_id'] = coupon.id
-        except Coupon.DoesNotExist:
-            request.session['coupon_id'] = None
-    return redirect('cart')

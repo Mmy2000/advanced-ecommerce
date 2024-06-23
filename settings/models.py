@@ -13,6 +13,10 @@ class Contact(models.Model):
     phone = models.CharField(max_length=11)
     message = models.TextField(max_length=3000)
 
+    class Meta:
+        verbose_name = ("Contacts")
+        verbose_name_plural = ("Contacts")
+
     def __str__(self):
         return self.email
     
@@ -27,6 +31,10 @@ class Settings(models.Model):
     instagram_link = models.URLField( max_length=200)
     address = models.CharField( max_length=50)
     get_in_touch = models.TextField(max_length=1000)
+
+    class Meta:
+        verbose_name = ("Settings")
+        verbose_name_plural = ("Settings")
 
     def __str__(self):
         return self.site_name

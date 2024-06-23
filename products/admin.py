@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product  , Subcategory  , ProductImages , Variation , ReviewRating , Coupon
+from .models import Product  , Subcategory  , ProductImages , Variation , ReviewRating 
 import admin_thumbnails
 
 # Register your models here.

@@ -18,6 +18,10 @@ class Post(models.Model):
     slug = models.SlugField(_("url"),null=True,blank=True)
     views = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        verbose_name = ("Blogs")
+        verbose_name_plural = ("Blogs")
+
     def save(self,*args, **kwargs):
         if not self.slug:
             self.slug=slugify(self.title)
@@ -33,6 +37,6 @@ class Post(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=60)
     class Meta:
-        verbose_name = "Post Category"
+        verbose_name = "Blog Category"
     def __str__(self):
         return self.name
