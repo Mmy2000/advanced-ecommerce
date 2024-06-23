@@ -102,9 +102,7 @@ def search_result(request):
         query = Product.objects.filter(
             Q(name__icontains=product) | 
             Q(description__icontains=product) | 
-            Q(subcategory__name__icontains=product)|
-            Q(subcategory__category__name__icontains=product)|
-            Q(PRDBrand__BRDName__icontains=product)
+            Q(subcategory__name__icontains=product)
             )
         # print(query)
         if (len(query) > 0 and len(product) > 0):
@@ -116,7 +114,6 @@ def search_result(request):
                     'image':str(pos.image.url),
                     'subcategory':pos.subcategory.id,
                     'price':pos.price,
-                    'discount':pos.discount,
                     'rate':pos.count_review(),
                     'avgRate':pos.avr_review()
                     
