@@ -9549,7 +9549,16 @@ a.text-dark:hover, a.text-dark:focus {
 .product-item .product-img img {
   transition: .5s;
 }
-
+.cat-img{
+  height: 400px;
+  background-position: center center;
+  background-size: cover;
+}
+.product-img{
+  height: 350px;
+  background-position: center center;
+  background-size: cover;
+}
 .cat-item:hover .cat-img img,
 .product-item:hover .product-img img {
   transform: scale(1.2);
