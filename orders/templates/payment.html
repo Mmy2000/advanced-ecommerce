@@ -106,16 +106,119 @@ Payment
                         <h5 class="font-weight-bold">Total</h5>
                         <h5 class="font-weight-bold">${{grand_total}}</h5>
                     </div>
-                     <div id="paypal-button-container">
-                        <!-- PayPal Button Will Load -->
-                    </div> 
+                     <form id="payment-form">
+                            <input type="text" id="email" placeholder="Email address" />
+                            <div id="card-element">
+                                <!--Stripe.js injects the Card Element-->
+                            </div>
+                            <button id="submit">
+                                <div class="spinner hidden" id="spinner"></div>
+                                <span id="button-text">Pay</span>
+                            </button>
+                            <p id="card-error" role="alert"></p>
+                            <p class="result-message hidden">
+                                Payment succeeded, see the result in your
+                                <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                            </p>
+                        </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Cart End -->
+ <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stripe = Stripe('{{ stripe_publishable_key }}');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        const submitButton = document.getElementById('submit');
+        submitButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            const response = await fetch("{% url 'create_payment_intent' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({
+                    orderID: "{{ order.order_number }}",
+                }),
+            });
+
+            if (!response.ok) {
+                const error = await response.text();
+                console.error('Error response from server:', error);
+                return;
+            }
+
+            const data = await response.json();
+            const {
+                clientSecret
+            } = data;
+
+            const {
+                paymentIntent,
+                error
+            } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: cardElement,
+                    billing_details: {
+                        name: '{{ order.full_name }}',
+                        email: '{{ order.email }}'
+                    },
+                }
+            });
+
+            if (error) {
+                console.error('Error:', error);
+            } else {
+                if (paymentIntent.status === 'succeeded') {
+                    fetch("{% url 'payments' %}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': getCookie('csrftoken'),
+                            },
+                            body: JSON.stringify({
+                                orderID: "{{ order.order_number }}",
+                                paymentIntentId: paymentIntent.id,
+                                payment_method: 'Stripe',
+                                status: paymentIntent.status,
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            window.location.href = "{% url 'order_complete' %}" +
+                                '?order_number=' + data.order_number + '&payment_id=' + data
+                                .payment_id;
+                        });
+                }
+            }
+        });
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+</script>
+{% comment %} <script>
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -190,5 +293,5 @@ Payment
 
 
     }).render('#paypal-button-container');
-</script>
+</script> {% endcomment %}
 {% endblock body %}
