@@ -28,15 +28,21 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            subject = "Welcome to EShopper site"
+            subject = "Welcome to EL SAADA Website"
             message = "Our team will contact you within 24hrs."
             email_from = settings.EMAIL_HOST_USER
             email = form.cleaned_data['email']
-            recipient_list =email
-            send_mail(subject, message, email_from, [recipient_list])
-            messages.success(request, 'Your Message send successfully.')
+            recipient_list = email
+
+            try:
+                send_mail(subject, message, email_from, [recipient_list])
+            except Exception as e:
+                # Log the exception (optional)
+                print(f"Failed to send email: {e}")
+
+            messages.success(request, 'Your message was sent successfully.')
         else:
-            messages.error(request, 'Pls try agian.')
+            messages.error(request, 'Please try again.')
     else:
         form = ContactForm()
     about = Settings.objects.last()

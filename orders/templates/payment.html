@@ -20,7 +20,7 @@ Payment
 <h4 class="text-center mb-10">Review Your Order and make payment</h4>
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
+        <div class="col-lg-12 table-responsive mb-5">
             <div class="card">
                 <h5 class="card-header">Billing Address</h5>
                 <div class="card-body">
@@ -34,13 +34,12 @@ Payment
                     {% if order.order_note %}
                     <p class="card-text mb-0"><b>Order Note: </b>{{order.order_note}}</p>
                     {% endif %}
-
                 </div>
             </div>
             <div class="card">
                 <h5 class="card-header">Payment Method</h5>
                 <div class="card-body">
-                    <p class="card-text">Paypal</p>
+                    <p class="card-text">Stripe</p>
                 </div>
             </div>
             <div class="card">
@@ -85,8 +84,8 @@ Payment
                 </table>
             </div>
         </div>
-        <div class="col-lg-4">
-            
+        <div class="col-lg-12">
+
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
                     <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
@@ -106,28 +105,28 @@ Payment
                         <h5 class="font-weight-bold">Total</h5>
                         <h5 class="font-weight-bold">${{grand_total}}</h5>
                     </div>
-                     <form id="payment-form">
-    <input type="text" id="email" placeholder="Email address" />
-    <div id="card-element">
-        <!--Stripe.js injects the Card Element-->
-    </div>
-    <button id="submit" disabled>
-        <div class="spinner hidden" id="spinner"></div>
-        <span id="button-text">Pay</span>
-    </button>
-    <p id="card-error" role="alert"></p>
-    <p class="result-message hidden">
-        Payment succeeded, see the result in your
-        <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-    </p>
-</form>
+                    <form id="payment-form">
+                        <input type="text" id="email" placeholder="Email address" />
+                        <div id="card-element">
+                            <!--Stripe.js injects the Card Element-->
+                        </div>
+                        <button id="submit" disabled>
+                            <div class="spinner hidden" id="spinner"></div>
+                            <span id="button-text">Pay</span>
+                        </button>
+                        <p id="card-error" role="alert"></p>
+                        <p class="result-message hidden">
+                            Payment succeeded, see the result in your
+                            <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Cart End -->
- 
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const stripe = Stripe('{{ stripe_publishable_key }}');
@@ -144,7 +143,7 @@ Payment
         submitButton.disabled = true;
 
         // Add an event listener to the card element
-        cardElement.on('change', function(event) {
+        cardElement.on('change', function (event) {
             // Enable the submit button if the card details are complete
             submitButton.disabled = !event.complete;
             // Display card errors if any
@@ -157,6 +156,9 @@ Payment
             // Show spinner and hide button text
             spinner.classList.remove('hidden');
             buttonText.classList.add('hidden');
+
+            // Disable the submit button when spinner is visible
+            submitButton.disabled = true;
 
             const response = await fetch("{% url 'create_payment_intent' %}", {
                 method: 'POST',
@@ -175,13 +177,21 @@ Payment
                 // Hide spinner and show button text
                 spinner.classList.add('hidden');
                 buttonText.classList.remove('hidden');
+
+                // Enable the submit button when spinner is hidden
+                submitButton.disabled = false;
                 return;
             }
 
             const data = await response.json();
-            const { clientSecret } = data;
+            const {
+                clientSecret
+            } = data;
 
-            const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+            const {
+                paymentIntent,
+                error
+            } = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: cardElement,
                     billing_details: {
@@ -197,6 +207,9 @@ Payment
                 // Hide spinner and show button text
                 spinner.classList.add('hidden');
                 buttonText.classList.remove('hidden');
+
+                // Enable the submit button when spinner is hidden
+                submitButton.disabled = false;
             } else {
                 if (paymentIntent.status === 'succeeded') {
                     fetch("{% url 'payments' %}", {

@@ -150,14 +150,18 @@ def payments(request):
         CartItem.objects.filter(user=request.user).delete()
 
         # Send order received email to customer
-        # mail_subject = 'Thank you for your order!'
-        # message = render_to_string('order_recieved_email.html', {
-        #     'user': request.user,
-        #     'order': order,
-        # })
-        # to_email = request.user.email
-        # send_email = EmailMessage(mail_subject, message, to=[to_email])
-        # send_email.send()
+        try:
+            mail_subject = 'Thank you for your order!'
+            message = render_to_string('order_recieved_email.html', {
+                'user': request.user,
+                'order': order,
+            })
+            to_email = request.user.email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+        except Exception as e:
+            # Log the exception (optional)
+            print(f"Failed to send email: {e}")
 
         # Send order number and transaction id back to sendData method via JsonResponse
         data = {
