@@ -61,13 +61,13 @@ a {
     padding-right: 0;
 }
 input:checked ~ label,label:hover ~ label{
-    color: #D19C97;
+    color: #da8f44;
 }
 input:checked + label:hover,input:checked ~ label:hover,input:checked ~ label:hover ~ label,label:hover ~ input:checked ~ label{
-    color: #9d5959;
+    color: #d47f2b;
 }
 .rating-star i{
-    color: #D19C97 !important;
+    color: #da8f44 !important;
 }
 ul.thumb {
     margin: 0 auto;
@@ -117,13 +117,13 @@ ul.thumb li img{
         display: inline-block;
         padding: 10px 20px;
         margin-top: 20px;
-        background-color: #D19C97;
+        background-color: #da8f44;
         color: white;
         border-radius: 5px;
         transition: background-color 0.3s ease;
     }
     .error-page a:hover {
-        background-color: #9d5959;
+        background-color: #d47f2b;
     }
 
 form .form-control::after {
