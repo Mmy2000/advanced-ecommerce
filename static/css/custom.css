@@ -383,3 +383,9 @@ img {
     width: 80vw;
   }
 }
+.bg-style{
+  background-color: #da8f44;
+}
+a.bg-style:hover, a.bg-style:focus, button.bg-style:hover, button.bg-style:focus {
+    background-color: #d47f2b !important;
+}

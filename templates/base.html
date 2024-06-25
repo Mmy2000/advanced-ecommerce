@@ -18,8 +18,10 @@
         rel="stylesheet">
 
     <!-- Font Awesome -->
-    {% comment %} <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}
+    {% comment %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% endcomment %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/de248c41b3.js" crossorigin="anonymous"></script>
     <script
@@ -33,11 +35,11 @@
     <link href="{% static 'css/all.min.css'%}" rel="stylesheet">
     <link href="{% static 'css/style.css'%}" rel="stylesheet">
     <link href="{% static 'css/custom.css'%}" rel="stylesheet">
-    
+
 </head>
 
 <body>
-    
+
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -90,9 +92,10 @@
                         </div>
                     </div>
                 </form>
-                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">this search work in home page only...</div>
+                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">this search work
+                    in home page only...</div>
             </div>
-            
+
             <div class="col-lg-3 col-6  text-right">
                 <a href="{% url 'favourite'%}" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
@@ -112,28 +115,28 @@
     <div class="container-fluid mb-5">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-style text-white w-100"
                     data-toggle="collapse" href="#navbar-vertical"
                     style="height: 65px; margin-top: -1px; padding: 0 30px;">
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse {% if forloop.first %} show {% endif %} position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" 
+                <nav class="collapse {% if forloop.first %} show {% endif %} position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9999;">
-    <div class="navbar-nav w-100 overflow-auto" style="height: 410px">
-       
-        
-        {% if subcategories %}
-            {% for subcategory in subcategories %}
-                {% if not subcategory.category %}
-                    <div class="nav-item">
-                        <a href="{{ subcategory.get_url }}" class="nav-link">{{ subcategory.name }}</a>
+                    <div class="navbar-nav w-100 overflow-auto" style="height: 410px">
+
+
+                        {% if subcategories %}
+                        {% for subcategory in subcategories %}
+                        {% if not subcategory.category %}
+                        <div class="nav-item">
+                            <a href="{{ subcategory.get_url }}" class="nav-link">{{ subcategory.name }}</a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
                     </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    </div>
-</nav>
+                </nav>
 
 
             </div>
@@ -141,7 +144,8 @@
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="/" class="text-decoration-none d-block d-lg-none">
                         <h1 class="m-0 display-5 font-weight-semi-bold"><span
-                                class="text-primary font-weight-bold border px-3 mr-1">E</span>{{about_site.site_name}}</h1>
+                                class="text-primary font-weight-bold border px-3 mr-1">E</span>{{about_site.site_name}}
+                        </h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -152,24 +156,25 @@
                             <a href="{% url 'product_list' %}"
                                 class="nav-item nav-link {% if request.path == '/products/' %}active{% endif %} ">Shop</a>
                             <a href="{% url 'categories'%}"
-                                class="nav-item nav-link {% if request.path == '/products/categories/' %}active{% endif %}">All Categories</a>
-                            
+                                class="nav-item nav-link {% if request.path == '/products/categories/' %}active{% endif %}">All
+                                Categories</a>
+
                             <a href="{% url 'blog'%}"
                                 class="nav-item nav-link  {% if request.path == '/blog/' %}active{% endif %}">Blogs</a>
                             <a href="{% url 'about'%}"
                                 class="nav-item nav-link  {% if request.path == '/about/' %}active{% endif %}">About</a>
                             <a href="{% url 'contact'%}"
                                 class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
-                            
+
                         </div>
                         {% if user.is_authenticated %}
-                        
+
                         <div class="navbar-nav ml-auto py-0">
                             <a href="{% url 'profile'%}" class="nav-item nav-link">Profile</a>
                             <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
                         </div>
                         {% else %}
-                        
+
                         <div class="navbar-nav ml-auto py-0">
                             <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
                             <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
@@ -181,7 +186,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="{% static 'img/carousel-1.jpg'%}" alt="Image">
+                            <img class="img-fluid" src="{% static 'img/cover1.jpg'%}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
@@ -192,7 +197,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="{% static 'img/carousel-2.jpg'%}" alt="Image">
+                            <img class="img-fluid" src="{% static 'img/cover2.png'%}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
@@ -230,7 +235,7 @@
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="/" class="text-decoration-none">
                     <h1 class="mb-1 text-center display-5 font-weight-semi-bold">
-                            <img src="{{about_site.logo.url}}" width="100px" height="100px" alt="Logo">
+                        <img src="{{about_site.logo.url}}" width="100px" height="100px" alt="Logo">
                     </h1>
                 </a>
                 <p>{{about_site.description}}</p>
@@ -244,10 +249,11 @@
                         <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-dark mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="{% url 'product_list'%}"><i class="fa fa-angle-right mr-2"></i>Our
+                            <a class="text-dark mb-2" href="{% url 'product_list'%}"><i
+                                    class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
                             <a class="text-dark mb-2" href="{% url 'blog'%}"><i class="fa fa-angle-right mr-2"></i>Blogs
-                                </a>
+                            </a>
                             <a class="text-dark" href="{% url 'contact'%}"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
@@ -256,26 +262,27 @@
                         <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-dark mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="{% url 'product_list'%}"><i class="fa fa-angle-right mr-2"></i>Our
+                            <a class="text-dark mb-2" href="{% url 'product_list'%}"><i
+                                    class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
                             <a class="text-dark mb-2" href="{% url 'blog'%}"><i class="fa fa-angle-right mr-2"></i>Blogs
-                                </a>
+                            </a>
                             <a class="text-dark" href="{% url 'contact'%}"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
-                    
+
                     <div id="main_form_div" class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
                         <form id="newsletter_form" method="POST" action="{% url 'newsletter_footer'%}">
                             {% csrf_token %}
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" name="name" placeholder="Your Name"
-                                    required="required" />
+                                <input type="text" class="form-control border-0 py-4" name="name"
+                                    placeholder="Your Name" required="required" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" name="email" placeholder="Your Email"
-                                    required="required" />
+                                <input type="email" class="form-control border-0 py-4" name="email"
+                                    placeholder="Your Email" required="required" />
                             </div>
                             <div>
                                 <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe
@@ -314,7 +321,7 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'lib/easing/easing.min.js'%}"></script>
@@ -323,15 +330,15 @@
     <!-- Contact Javascript File -->
     <script src="{% static 'mail/jqBootstrapValidation.min.js'%}"></script>
     <script src="{% static 'mail/contact.js'%}"></script>
-    
+
 
     <!-- Template Javascript -->
-     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-<script src="https://js.stripe.com/v3/"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="{% static 'js/main.js'%}"></script>
-    
+
     <script src="{% static 'js/category_subcategory.js' %}"></script>
-    
+
 </body>
 
 </html>
