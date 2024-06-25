@@ -107,20 +107,20 @@ Payment
                         <h5 class="font-weight-bold">${{grand_total}}</h5>
                     </div>
                      <form id="payment-form">
-                            <input type="text" id="email" placeholder="Email address" />
-                            <div id="card-element">
-                                <!--Stripe.js injects the Card Element-->
-                            </div>
-                            <button id="submit">
-                                <div class="spinner hidden" id="spinner"></div>
-                                <span id="button-text">Pay</span>
-                            </button>
-                            <p id="card-error" role="alert"></p>
-                            <p class="result-message hidden">
-                                Payment succeeded, see the result in your
-                                <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-                            </p>
-                        </form>
+    <input type="text" id="email" placeholder="Email address" />
+    <div id="card-element">
+        <!--Stripe.js injects the Card Element-->
+    </div>
+    <button id="submit" disabled>
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Pay</span>
+    </button>
+    <p id="card-error" role="alert"></p>
+    <p class="result-message hidden">
+        Payment succeeded, see the result in your
+        <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+    </p>
+</form>
                 </div>
             </div>
         </div>
@@ -136,8 +136,27 @@ Payment
         cardElement.mount('#card-element');
 
         const submitButton = document.getElementById('submit');
+        const spinner = document.getElementById('spinner');
+        const buttonText = document.getElementById('button-text');
+        const cardError = document.getElementById('card-error');
+
+        // Disable the submit button initially
+        submitButton.disabled = true;
+
+        // Add an event listener to the card element
+        cardElement.on('change', function(event) {
+            // Enable the submit button if the card details are complete
+            submitButton.disabled = !event.complete;
+            // Display card errors if any
+            cardError.textContent = event.error ? event.error.message : '';
+        });
+
         submitButton.addEventListener('click', async (event) => {
             event.preventDefault();
+
+            // Show spinner and hide button text
+            spinner.classList.remove('hidden');
+            buttonText.classList.add('hidden');
 
             const response = await fetch("{% url 'create_payment_intent' %}", {
                 method: 'POST',
@@ -153,18 +172,16 @@ Payment
             if (!response.ok) {
                 const error = await response.text();
                 console.error('Error response from server:', error);
+                // Hide spinner and show button text
+                spinner.classList.add('hidden');
+                buttonText.classList.remove('hidden');
                 return;
             }
 
             const data = await response.json();
-            const {
-                clientSecret
-            } = data;
+            const { clientSecret } = data;
 
-            const {
-                paymentIntent,
-                error
-            } = await stripe.confirmCardPayment(clientSecret, {
+            const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: cardElement,
                     billing_details: {
@@ -176,6 +193,10 @@ Payment
 
             if (error) {
                 console.error('Error:', error);
+                cardError.textContent = error.message;
+                // Hide spinner and show button text
+                spinner.classList.add('hidden');
+                buttonText.classList.remove('hidden');
             } else {
                 if (paymentIntent.status === 'succeeded') {
                     fetch("{% url 'payments' %}", {
