@@ -32,6 +32,7 @@ class Settings(models.Model):
     address = models.CharField( max_length=50)
     get_in_touch = models.TextField(max_length=1000)
 
+
     class Meta:
         verbose_name = ("Settings")
         verbose_name_plural = ("Settings")
@@ -75,3 +76,16 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Images(models.Model):
+    settings = models.ForeignKey(Settings, related_name='home_image', on_delete=models.CASCADE)
+    title = models.CharField( max_length=150 , help_text='this title is display in slider in home page')
+    image = models.ImageField( upload_to='homeImages/' , help_text='this image is display in slider in home page')
+
+    class Meta:
+        verbose_name = ("Home Images")
+        verbose_name_plural = ("Home Images")
+
+    def __str__(self):
+        return self.title
+    

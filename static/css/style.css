@@ -526,8 +526,7 @@ mark,
 }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
 }
 
 .img-thumbnail {
@@ -3976,7 +3975,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #D19C97;
+  background-color: #da8f44;
 }
 
 .nav-fill > .nav-link,
