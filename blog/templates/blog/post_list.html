@@ -37,7 +37,7 @@ Blogs
                         </div>
                         <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                             <div class="img-profile">
-                                <img src="{{post.auther.profile.image.url}}" class="avatar rounded-circle" alt="">
+                                <img src="{% if post.auther.profile.image %} {{  post.auther.profile.image.url}} {% else %}https://bootdey.com/img/Content/avatar/avatar7.png {% endif %}" class="avatar rounded-circle" alt="">
                                 <a href="#"><span>{{post.auther.full_name}}</span></a>
                             </div>
                             <span class="text-body-secondary"><i class="fa-regular fa-clock"></i> {{post.created_at}}</span>
