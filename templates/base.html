@@ -185,26 +185,17 @@
                 {% if request.path == '/' %}
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="{% static 'img/cover1.jpg'%}" alt="Image">
+                        {% for image in about_site.home_image.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 410px;">
+                            <img class="img-fluid" src="{{ image.image.url }}" alt="{{ image.title }}">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">New caravans</h3>
-                                    <a href="{% url 'product_list'%}" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">{{ image.title }}</h3>
+                                    <a href="{% url 'product_list' %}" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="{% static 'img/cover2.png'%}" alt="Image">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                                    <a href="{% url 'product_list'%}" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
                         <div class="btn btn-dark" style="width: 45px; height: 45px;">
@@ -217,7 +208,6 @@
                         </div>
                     </a>
                 </div>
-                {% else %}
                 {% endif %}
             </div>
         </div>
