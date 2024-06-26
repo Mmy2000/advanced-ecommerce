@@ -122,20 +122,28 @@ setTimeout(function(){
 },4000)
 
 $("#newsletter_form").submit(function (e) {
-        e.preventDefault();
-        var form = $(this);
-        var url = form.attr('action');
+            e.preventDefault();
+            var spinner = document.getElementById('newsletter_submit_form');
+            setTimeout(function() {
+                spinner.classList.add('disabled'); // Show the spinner
+            }, 500); // Delay for 500ms
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(),
-            success: function (data) {
-                document.getElementById('main_form_div').style.display = "none";
-                document.getElementById('success_div').style.display = "block";
-            }
-        })
-    })
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                success: function (data) {
+                    document.getElementById('main_form_div').style.display = "none";
+                    document.getElementById('success_div').style.display = "block";
+                },
+                complete: function() {
+                    spinner.classList.remove('disabled'); // Hide the spinner after the request completes
+                }
+            });
+        });
 
 const searchForm = document.getElementById('searchForm')
 const formSearch = document.getElementById('formSearch')

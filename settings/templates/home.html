@@ -124,15 +124,17 @@ Home
                 <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo
                     labore labore.</p>
             </div>
-            <form id="newsletter_form" method="POST" action="{% url 'newsletters'%}">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input type="text" name="email" class="form-control border-white p-4" placeholder="Email Goes Here">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary px-4">Subscribe</button>
-                    </div>
-                </div>
-            </form>
+            <form id="newsletter_form" method="POST" action="{% url 'newsletters' %}">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" name="email" class="form-control border-white p-4" placeholder="Email Goes Here">
+            <div class="input-group-append">
+                <button class="btn btn-primary px-4" id="newsletter_submit_form" type="submit">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </form>
         </div>
         <div id="success_div" style="display: none;" class="col-md-6 col-12 py-5">
             <div class="text-center mb-2 pb-2">
