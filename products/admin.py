@@ -22,12 +22,6 @@ class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
 
     inlines = [ProductGallaryInline] 
 
-# class ProductAdmin(admin.ModelAdmin):
-#     list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory'   , 'stock','views' , 'created_at' , 'is_available')
-#     list_editable = ('is_available',)
-#     list_filter = ('price' , 'subcategory' , 'name','stock')
-
-#     inlines = [ProductGallaryInline] 
 
 
 class ReviewsAdmin(admin.ModelAdmin):

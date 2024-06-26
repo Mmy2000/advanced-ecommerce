@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -105,7 +106,7 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">{{product_counter}}</span>
                     {% endif %}
-                    
+
                 </a>
                 <a href="{% url 'cart'%}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
@@ -124,7 +125,7 @@
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-style text-white w-100"
                     data-toggle="collapse" href="#navbar-vertical"
                     style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
+                    <h6 class="m-0">{% trans "Categories" %}</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse {% if forloop.first %} show {% endif %} position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
@@ -158,34 +159,50 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="/" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+                            <a href="/"
+                                class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">{% trans "Home" %}</a>
                             <a href="{% url 'product_list' %}"
-                                class="nav-item nav-link {% if request.path == '/products/' %}active{% endif %} ">Shop</a>
+                                class="nav-item nav-link {% if request.path == '/products/' %}active{% endif %} ">{% trans "Shop" %}</a>
                             <a href="{% url 'categories'%}"
-                                class="nav-item nav-link {% if request.path == '/products/categories/' %}active{% endif %}">All
-                                Categories</a>
+                                class="nav-item nav-link {% if request.path == '/products/categories/' %}active{% endif %}">{% trans "All Categories" %}</a>
 
                             <a href="{% url 'blog'%}"
-                                class="nav-item nav-link  {% if request.path == '/blog/' %}active{% endif %}">Blogs</a>
+                                class="nav-item nav-link  {% if request.path == '/blog/' %}active{% endif %}">{% trans "Blog" %}</a>
                             <a href="{% url 'about'%}"
-                                class="nav-item nav-link  {% if request.path == '/about/' %}active{% endif %}">About</a>
+                                class="nav-item nav-link  {% if request.path == '/about/' %}active{% endif %}">{% trans "About" %}</a>
                             <a href="{% url 'contact'%}"
-                                class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
+                                class="nav-item nav-link  {% if request.path == '/contact/' %}active{% endif %}">{% trans "Contact" %}</a>
 
                         </div>
+                        
                         {% if user.is_authenticated %}
 
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{% url 'profile'%}" class="nav-item nav-link">Profile</a>
-                            <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                            <a href="{% url 'profile'%}" class="nav-item nav-link">{% trans "Profile" %}</a>
+                            <a href="{% url 'logout' %}" class="nav-item nav-link">{% trans "logout" %}</a>
                         </div>
                         {% else %}
 
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
-                            <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
+                            <a href="{% url 'login' %}" class="nav-item nav-link">{% trans "Login" %}</a>
+                            <a href="{% url 'register' %}" class="nav-item nav-link">{% trans "Register" %}</a>
                         </div>
                         {% endif %}
+                        <form action="{% url 'set_language' %}"   method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                    selected{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" value="Go">
+                        </form>
                     </div>
                 </nav>
                 {% if request.path == '/' %}

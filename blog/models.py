@@ -35,7 +35,7 @@ class Post(models.Model):
     
 
 class Category(models.Model):
-    name = models.CharField(max_length=60)
+    name = models.CharField(_("name"),max_length=60)
     class Meta:
         verbose_name = "Blog Category"
     def __str__(self):
