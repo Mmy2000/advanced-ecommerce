@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Product  , Subcategory  , ProductImages , Variation , ReviewRating 
 import admin_thumbnails
+from django_summernote.admin import SummernoteModelAdmin
+
 
 # Register your models here.
 
@@ -12,13 +14,21 @@ class ProductGallaryInline(admin.TabularInline):
 class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-class ProductAdmin(admin.ModelAdmin):
+class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
+    summernote_fields = '__all__'
     list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory'   , 'stock','views' , 'created_at' , 'is_available')
     list_editable = ('is_available',)
     list_filter = ('price' , 'subcategory' , 'name','stock')
 
-    
     inlines = [ProductGallaryInline] 
+
+# class ProductAdmin(admin.ModelAdmin):
+#     list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory'   , 'stock','views' , 'created_at' , 'is_available')
+#     list_editable = ('is_available',)
+#     list_filter = ('price' , 'subcategory' , 'name','stock')
+
+#     inlines = [ProductGallaryInline] 
+
 
 class ReviewsAdmin(admin.ModelAdmin):
     list_display = ('user' , 'product' , 'subject' , 'review' , 'rating' , 'status' )
@@ -30,7 +40,7 @@ class VariationAdmin(admin.ModelAdmin):
     list_editable = ('is_active',)
     list_filter = ('product' , 'variation_category' , 'variation_value')
 
-admin.site.register(Product , ProductAdmin)
+admin.site.register(Product  ,SomeModelAdmin)
 admin.site.register(Subcategory , SubCategoryAdmin)
 admin.site.register(ReviewRating , ReviewsAdmin)
 admin.site.register(ProductImages)

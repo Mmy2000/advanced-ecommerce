@@ -15,7 +15,7 @@ class Post(models.Model):
     created_at = models.TimeField( _("created_at"),default=timezone.now)
     description = models.TextField(_("description"),max_length=100000)
     category = models.ForeignKey('Category',related_name='post_category',verbose_name=_('category'),on_delete=models.CASCADE)
-    slug = models.SlugField(_("url"),null=True,blank=True)
+    slug = models.SlugField(null=True,blank=True)
     views = models.PositiveIntegerField(default=0)
 
     class Meta:
