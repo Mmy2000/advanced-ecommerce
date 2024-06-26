@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-26 23:23+0300\n"
+"POT-Creation-Date: 2024-06-26 23:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,25 +31,108 @@ msgstr "العنوان"
 msgid "tags"
 msgstr "وسم"
 
-#: .\blog\models.py:14
+#: .\blog\models.py:14 .\products\models.py:13
 msgid "image"
 msgstr "صوره"
 
-#: .\blog\models.py:15
+#: .\blog\models.py:15 .\products\models.py:17 .\products\models.py:127
 msgid "created_at"
 msgstr "تاريخ الانشاء"
 
-#: .\blog\models.py:16
+#: .\blog\models.py:16 .\products\models.py:16
 msgid "description"
 msgstr "الوصف"
 
 #: .\blog\models.py:17
 msgid "category"
-msgstr "التصنيف"
+msgstr "تصنيف المدونه"
 
 #: .\blog\models.py:38
 msgid "name"
 msgstr "اسم التصنيف"
+
+
+#: .\products\models.py:12
+msgid "product name"
+msgstr "اسم المنتج"
+
+#: .\products\models.py:14
+msgid "stock"
+msgstr "الكميه"
+
+#: .\products\models.py:15
+msgid "price"
+msgstr "السعر"
+
+#: .\products\models.py:18
+msgid "slug"
+msgstr ""
+
+#: .\products\models.py:19
+msgid "views"
+msgstr "المشاهدات"
+
+#: .\products\models.py:20
+msgid "is_available"
+msgstr "متاح"
+
+#: .\products\models.py:22
+msgid "product Category"
+msgstr "تصنيف المنتج"
+
+#: .\products\models.py:23
+msgid "like"
+msgstr "المعجبين"
+
+#: .\products\models.py:88
+msgid "product"
+msgstr "المنتج"
+
+#: .\products\models.py:89
+msgid "product images"
+msgstr "صور المنتج"
+
+#: .\products\models.py:102
+msgid "category name"
+msgstr "اسم التصنيف"
+
+#: .\products\models.py:103
+msgid "category image"
+msgstr "صوره التصنيف"
+
+#: .\products\models.py:120
+msgid "user review"
+msgstr "تقييم المستخدم"
+
+#: .\products\models.py:121
+msgid "product review"
+msgstr "تقييم المنتج"
+
+#: .\products\models.py:122
+msgid "subject"
+msgstr "الموضوع"
+
+#: .\products\models.py:123
+msgid "review"
+msgstr "مراجعه"
+
+#: .\products\models.py:124
+msgid "rating"
+msgstr "التقييم"
+
+#: .\products\models.py:125
+msgid "ip"
+msgstr "الملكيه"
+
+#: .\products\models.py:126
+msgid "status"
+msgstr "الحاله"
+
+#: .\products\models.py:128
+#, fuzzy
+#| msgid "created_at"
+msgid "updated_at"
+msgstr "تاريخ الانشاء"
 
 #: .\templates\base.html:129
 msgid "Categories"
@@ -94,4 +177,3 @@ msgstr "تسجل دخول"
 #: .\templates\base.html:189
 msgid "Register"
 msgstr "سجل"
-

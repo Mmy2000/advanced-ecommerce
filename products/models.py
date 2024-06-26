@@ -9,18 +9,18 @@ from taggit.managers import TaggableManager
 from django.core.validators import MaxValueValidator , MinValueValidator
 # Create your models here.
 class Product(models.Model):
-    name = models.CharField(unique=True, max_length=50)
-    image = models.ImageField(upload_to='product/')
-    stock = models.IntegerField(default=1)
-    price = models.IntegerField(default=0)
-    description = models.TextField(max_length=10000)
-    created_at = models.DateTimeField( default=timezone.now)
-    slug = models.SlugField(null=True,blank=True , unique=True)
-    views = models.PositiveIntegerField(default=0)
-    is_available = models.BooleanField(default=True)
+    name = models.CharField(_("product name"),unique=True, max_length=50)
+    image = models.ImageField(_("image"),upload_to='product/')
+    stock = models.IntegerField(_("stock"),default=1)
+    price = models.IntegerField(_("price"),default=0)
+    description = models.TextField(_("description"),max_length=10000)
+    created_at = models.DateTimeField(_("created_at"), default=timezone.now)
+    slug = models.SlugField(_("slug"),null=True,blank=True , unique=True)
+    views = models.PositiveIntegerField(_("views"),default=0)
+    is_available = models.BooleanField(_("is_available"),default=True)
     tags = TaggableManager()
-    subcategory = models.ForeignKey("Subcategory",verbose_name='Category',related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
-    like = models.ManyToManyField(User , blank=True,related_name='product_favourite')
+    subcategory = models.ForeignKey("Subcategory",verbose_name=_('product Category'),related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
+    like = models.ManyToManyField(User , blank=True,related_name='product_favourite',verbose_name=_('like'))
 
 
     class Meta:
@@ -85,8 +85,8 @@ class Variation(models.Model):
         return self.variation_value
 
 class ProductImages(models.Model):
-    product = models.ForeignKey(Product,related_name='product_image',on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='productimages/')
+    product = models.ForeignKey(Product,related_name='product_image',verbose_name=_('product'),on_delete=models.CASCADE)
+    image = models.ImageField(_("product images"),upload_to='productimages/')
 
 
     class Meta:
@@ -99,8 +99,8 @@ class ProductImages(models.Model):
 
 
 class Subcategory(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(null=True,blank=True,upload_to='category-image/')
+    name = models.CharField(_("category name"),max_length=100)
+    image = models.ImageField(_("category image"),null=True,blank=True,upload_to='category-image/')
 
     def get_url(self):
         return reverse('product_by_subcategory',args=[self.id])
@@ -117,15 +117,15 @@ class Subcategory(models.Model):
 
     
 class ReviewRating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,related_name='reviewrating', on_delete=models.CASCADE)
-    subject = models.CharField(max_length=500 , blank=True)
-    review = models.TextField(max_length=500 , blank=True)
-    rating = models.FloatField()
-    ip = models.CharField( max_length=50 , blank=True)
-    status = models.BooleanField(default=True)
-    created_at = models.DateTimeField( auto_now_add=True)
-    updated_at = models.DateTimeField( auto_now=True)
+    user = models.ForeignKey(User,verbose_name=_('user review'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,related_name='reviewrating',verbose_name=_('product review'), on_delete=models.CASCADE)
+    subject = models.CharField(_("subject"),max_length=500 , blank=True)
+    review = models.TextField(_("review"),max_length=500 , blank=True)
+    rating = models.FloatField(_("rating"),)
+    ip = models.CharField(_("ip"), max_length=50 , blank=True)
+    status = models.BooleanField(_("status"),default=True)
+    created_at = models.DateTimeField(_("created_at"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("updated_at"), auto_now=True)
 
     class Meta:
         verbose_name = ("Rating")
