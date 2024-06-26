@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-26 23:49+0300\n"
+"POT-Creation-Date: 2024-06-27 00:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,6 @@ msgstr "تصنيف المدونه"
 #: .\blog\models.py:38
 msgid "name"
 msgstr "اسم التصنيف"
-
 
 #: .\products\models.py:12
 msgid "product name"
@@ -138,11 +137,13 @@ msgstr "تاريخ الانشاء"
 msgid "Categories"
 msgstr "التصنيفات"
 
-#: .\templates\base.html:164
+#: .\templates\base.html:164 .\templates\base.html:263
+#: .\templates\base.html:275
 msgid "Home"
 msgstr "الرئيسيه"
 
-#: .\templates\base.html:166
+#: .\templates\base.html:166 .\templates\base.html:265
+#: .\templates\base.html:277
 msgid "Shop"
 msgstr "المتجر"
 
@@ -150,7 +151,8 @@ msgstr "المتجر"
 msgid "All Categories"
 msgstr "كل التصنيفات"
 
-#: .\templates\base.html:171
+#: .\templates\base.html:171 .\templates\base.html:266
+#: .\templates\base.html:278
 msgid "Blog"
 msgstr "المدونه"
 
@@ -158,7 +160,8 @@ msgstr "المدونه"
 msgid "About"
 msgstr "عن الموقع"
 
-#: .\templates\base.html:175
+#: .\templates\base.html:175 .\templates\base.html:268
+#: .\templates\base.html:280
 msgid "Contact"
 msgstr "التواصل"
 

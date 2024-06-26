@@ -8,5 +8,6 @@ class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
     list_display = ['auther' , 'title','category'  ,'created_at','views']
 
 
+
 admin.site.register(Post , SomeModelAdmin)
 admin.site.register(Category)
