@@ -98,8 +98,14 @@
 
             <div class="col-lg-3 col-6  text-right">
                 <a href="{% url 'favourite'%}" class="btn border">
+                    {% if product_counter == 0 %}
+                    <i class="fa-regular fa-heart text-primary"></i>
+                    <span class="badge">{{product_counter}}</span>
+                    {% else %}
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">{{product_counter}}</span>
+                    {% endif %}
+                    
                 </a>
                 <a href="{% url 'cart'%}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>

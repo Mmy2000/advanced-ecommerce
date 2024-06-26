@@ -14,7 +14,7 @@ Profile
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="{{about_site.logo.url}}" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -22,7 +22,6 @@ Profile
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
-
     <!-- Vendor CSS Files -->
     <link href="{% static 'profile/assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
     <link href="{% static 'profile/assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
@@ -31,6 +30,7 @@ Profile
     <link href="{% static 'profile/assets/vendor/quill/quill.bubble.css'%}" rel="stylesheet">
     <link href="{% static 'profile/assets/vendor/remixicon/remixicon.css'%}" rel="stylesheet">
     <link href="{% static 'profile/assets/vendor/simple-datatables/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/all.min.css'%}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{% static 'profile/assets/css/style.css'%}" rel="stylesheet">
@@ -135,6 +135,18 @@ Profile
                 </a>
             </li><!-- End F.A.Q Page Nav -->
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'blog'%}">
+                    <i class="fa-solid fa-blog"></i>
+                    <span>Blogs</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'about'%}">
+                    <i class="fa-regular fa-address-card"></i>
+                    <span>About</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'contact'%}">
                     <i class="bi bi-envelope"></i>
                     <span>Contact</span>
@@ -142,7 +154,7 @@ Profile
             </li><!-- End Contact Page Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'favourite'%}">
-                    {% if product_count == 0 %}
+                    {% if product_counter == 0 %}
                     <i class="bi bi-star"></i>
                     {% else %}
                     <i class="bi bi-star-fill"></i>
