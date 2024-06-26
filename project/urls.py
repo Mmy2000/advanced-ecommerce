@@ -19,14 +19,15 @@ from django.urls import path , include , re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler404
-
+from django.conf.urls.i18n import i18n_patterns
 from settings.views import custom_404_view 
 
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
+    path('rosetta/', include('rosetta.urls')),
     path('', include('settings.urls')),
     path('products/', include('products.urls')),
     path('cart/', include('carts.urls')),
@@ -35,7 +36,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("i18n/", include("django.conf.urls.i18n")),
-]
+)
 urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

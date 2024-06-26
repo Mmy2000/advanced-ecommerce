@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_seed',
     "bootstrap4",
     'django_summernote',
+    'rosetta',
     #api
     'rest_framework',
     "rest_framework.authtoken",
@@ -59,7 +60,7 @@ INSTALLED_APPS = [
     "corsheaders",
 ]
 
-
+ROSETTA_ACCESS_CONTROL_FUNCTION = 'products.utils.can_access_rosetta'
 
 
 from datetime import timedelta

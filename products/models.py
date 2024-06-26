@@ -25,7 +25,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ["name"]
-        verbose_name = ("Products")
+        verbose_name = _("Products")
         verbose_name_plural = ("Products")
 
     def save(self,*args, **kwargs):
@@ -90,7 +90,7 @@ class ProductImages(models.Model):
 
 
     class Meta:
-        verbose_name = ("Product Images")
+        verbose_name = _("Product Images")
         verbose_name_plural = ("Product Images")
 
     def __str__(self):
@@ -107,7 +107,10 @@ class Subcategory(models.Model):
     
     class Meta:
         verbose_name_plural = "Categories"
-        verbose_name = ("Categories")
+        verbose_name = _("Categories")
+        permissions = [
+            ('can_translate', 'Can translate using Rosetta'),
+        ]
 
     def __str__(self):
         return self.name
@@ -128,7 +131,7 @@ class ReviewRating(models.Model):
     updated_at = models.DateTimeField(_("updated_at"), auto_now=True)
 
     class Meta:
-        verbose_name = ("Rating")
+        verbose_name = _("Rating")
         verbose_name_plural = ("Rating")
 
     def __str__(self):
