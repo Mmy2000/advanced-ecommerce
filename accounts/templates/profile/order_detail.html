@@ -77,7 +77,7 @@ Order Details
                                                         {% endif %}
                                                     </p>
                                                 </td>
-                                                <td class="align-middle">${{cart_item.product.price}}</td>
+                                                <td class="align-middle">UAE{{cart_item.product.price}}</td>
                                                 <td class="align-middle">
                                                     <div class="input-group quantity mx-auto" style="width: 100px;">
 
@@ -95,9 +95,9 @@ Order Details
                             </div>
                             <div class="text-center">
                                 <h5 class="text-center">Order SubTotal & Tax</h5>
-                                <h6 class="text-center">${{subtotal}} + ${{orders.tax}}</h6>
+                                <h6 class="text-center">UAE{{subtotal}} + UAE{{orders.tax}}</h6>
                                 <h5 class="text-center">Order Total</h5>
-                                <h6 class="text-center">${{orders.order_total}} USD</h6>
+                                <h6 class="text-center">UAE{{orders.order_total}}</h6>
                             </div>
                             <br>
                             <div class="invoice-footer mt25">

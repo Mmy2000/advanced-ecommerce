@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 00:31+0300\n"
-"PO-Revision-Date: 2024-06-28 00:32+0300\n"
+"POT-Creation-Date: 2024-06-28 00:53+0300\n"
+"PO-Revision-Date: 2024-06-28 00:54+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -287,7 +287,8 @@ msgstr "لوحة القيادة"
 #: .\accounts\templates\profile\profile.html:124
 #: .\accounts\templates\profile\profile.html:175
 #: .\blog\templates\blog\post_detail.html:15
-#: .\blog\templates\blog\post_list.html:15
+#: .\blog\templates\blog\post_list.html:15 .\carts\templates\cart.html:12
+#: .\carts\templates\checkout.html:14 .\orders\templates\payment.html:14
 #: .\products\templates\products\categories.html:15
 #: .\products\templates\products\product_detail.html:13
 #: .\products\templates\products\product_list.html:23
@@ -338,6 +339,7 @@ msgid "View Detail"
 msgstr "اظهار التفاصيل"
 
 #: .\accounts\templates\profile\favourite.html:45
+#: .\carts\templates\cart.html:47
 #: .\products\templates\products\product_detail.html:290
 #: .\products\templates\products\product_list.html:103
 #: .\products\templates\products\product_list.html:211
@@ -400,6 +402,8 @@ msgid "Phone"
 msgstr "رقم التليفون"
 
 #: .\accounts\templates\profile\orders.html:48
+#: .\carts\templates\checkout.html:82
+#: .\orders\templates\order_complete.html:108
 msgid "Order Total"
 msgstr "اجمالي الطلب"
 
@@ -585,6 +589,171 @@ msgstr "الكميه"
 msgid "Cart Item"
 msgstr "عنصر العربه"
 
+#: .\carts\templates\cart.html:10 .\carts\templates\cart.html:14
+msgid "Shopping Cart"
+msgstr "عربة التسوق"
+
+#: .\carts\templates\cart.html:23
+msgid "Your Shopping Cart Is Empty"
+msgstr "سلة التسوق الخاصة بك فارغة"
+
+#: .\carts\templates\cart.html:29
+msgid "Continue Shopping"
+msgstr "مواصلة التسوق"
+
+#: .\carts\templates\cart.html:43 .\carts\templates\checkout.html:85
+#: .\orders\templates\order_complete.html:68
+#: .\orders\templates\payment.html:51 .\products\models.py:28
+#: .\products\models.py:29
+msgid "Products"
+msgstr "المنتجات"
+
+#: .\carts\templates\cart.html:44 .\orders\templates\order_complete.html:69
+#: .\orders\templates\payment.html:52
+msgid "Price"
+msgstr "السعر"
+
+#: .\carts\templates\cart.html:45 .\orders\templates\order_complete.html:70
+#: .\orders\templates\payment.html:53
+msgid "Quantity"
+msgstr "الكميه"
+
+#: .\carts\templates\cart.html:46 .\carts\templates\cart.html:118
+#: .\carts\templates\checkout.html:105 .\orders\templates\payment.html:54
+#: .\orders\templates\payment.html:101
+msgid "Total"
+msgstr "اجمالي الطلب"
+
+#: .\carts\templates\cart.html:93
+msgid "Are You Sure You Want To Delete This Item?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا البند؟"
+
+#: .\carts\templates\cart.html:104 .\orders\templates\payment.html:87
+msgid "Cart Summary"
+msgstr "ملخص العربة"
+
+#: .\carts\templates\cart.html:108 .\carts\templates\checkout.html:95
+#: .\orders\templates\payment.html:91
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#: .\carts\templates\cart.html:112 .\carts\templates\checkout.html:99
+#: .\orders\templates\payment.html:95
+msgid "Shipping"
+msgstr "الشحن"
+
+#: .\carts\templates\cart.html:121
+msgid "Proceed To Checkout"
+msgstr "الشروع في الخروج"
+
+#: .\carts\templates\checkout.html:12 .\carts\templates\checkout.html:16
+msgid "Checkout"
+msgstr "الدفع"
+
+#: .\carts\templates\checkout.html:30 .\orders\templates\payment.html:26
+msgid "Billing Address"
+msgstr "عنوان وصول الفواتير"
+
+#: .\carts\templates\checkout.html:33
+#| msgid "First name"
+msgid "First Name"
+msgstr "الاسم الاول"
+
+#: .\carts\templates\checkout.html:34
+msgid "John"
+msgstr ""
+
+#: .\carts\templates\checkout.html:37
+#| msgid "Last name"
+msgid "Last Name"
+msgstr "الاسم الثاني"
+
+#: .\carts\templates\checkout.html:38
+msgid "Doe"
+msgstr ""
+
+#: .\carts\templates\checkout.html:41
+#| msgid "Email"
+msgid "E-mail"
+msgstr "الايميل"
+
+#: .\carts\templates\checkout.html:42
+msgid "example@email.com"
+msgstr ""
+
+#: .\carts\templates\checkout.html:45
+msgid "Mobile No"
+msgstr "رقم التليفون"
+
+#: .\carts\templates\checkout.html:46
+msgid "+123 456 789"
+msgstr ""
+
+#: .\carts\templates\checkout.html:49
+#| msgid "address_line_1"
+msgid "Address Line 1"
+msgstr "عنوان رقم 1"
+
+#: .\carts\templates\checkout.html:50 .\carts\templates\checkout.html:54
+msgid "123 Street"
+msgstr ""
+
+#: .\carts\templates\checkout.html:53
+#| msgid "address_line_2"
+msgid "Address Line 2"
+msgstr "عنوان رقم 2"
+
+#: .\carts\templates\checkout.html:57
+#| msgid "country"
+msgid "Country"
+msgstr "الدوله"
+
+#: .\carts\templates\checkout.html:58
+msgid "Type here"
+msgstr "أكتب هنا"
+
+#: .\carts\templates\checkout.html:61
+msgid "City"
+msgstr "المدينه"
+
+#: .\carts\templates\checkout.html:62 .\carts\templates\checkout.html:66
+#| msgid "New Password"
+msgid "New York"
+msgstr "نيويورك"
+
+#: .\carts\templates\checkout.html:65
+#| msgid "state"
+msgid "State"
+msgstr "ولاية"
+
+#: .\carts\templates\checkout.html:69
+msgid "ZIP Code"
+msgstr "الرمز البريدي"
+
+#: .\carts\templates\checkout.html:70
+msgid "123"
+msgstr ""
+
+#: .\carts\templates\checkout.html:73
+#| msgid "Order Note:"
+msgid "Order Note"
+msgstr "ملاحظة الطلب:"
+
+#: .\carts\templates\checkout.html:112 .\orders\models.py:17
+#: .\orders\templates\payment.html:12 .\orders\templates\payment.html:16
+msgid "Payment"
+msgstr "معرف الدفع"
+
+#: .\carts\templates\checkout.html:115
+#| msgid "Stripe"
+msgid "Stripe Only"
+msgstr "سترايب فقط"
+
+#: .\carts\templates\checkout.html:118
+#| msgid "View Orders"
+msgid "Place Order"
+msgstr "اظهار الطلبات"
+
 #: .\orders\models.py:8
 msgid "user payment"
 msgstr "صاحب الدفع"
@@ -608,10 +777,6 @@ msgstr "الحاله"
 #: .\orders\models.py:16
 msgid "Payments"
 msgstr "المدفوعات"
-
-#: .\orders\models.py:17
-msgid "Payment"
-msgstr "معرف الدفع"
 
 #: .\orders\models.py:30 .\orders\models.py:66
 msgid "user order"
@@ -681,6 +846,83 @@ msgstr "تم"
 msgid "Order Products"
 msgstr "منتجات الطلب"
 
+#: .\orders\templates\order_complete.html:14
+#| msgid "Subcribed Successfuly"
+msgid "Payment Successful"
+msgstr "تم الدفع بنجاح"
+
+#: .\orders\templates\order_complete.html:41
+msgid "Invoiced To"
+msgstr "فاتوره الي"
+
+#: .\orders\templates\order_complete.html:55
+msgid "Order"
+msgstr "الطلب"
+
+#: .\orders\templates\order_complete.html:56
+msgid "Transaction ID"
+msgstr "رقم المعاملة"
+
+#: .\orders\templates\order_complete.html:57
+msgid "Order Date:"
+msgstr "تاريخ الطلب"
+
+#: .\orders\templates\order_complete.html:58
+msgid "Status:"
+msgstr "الحاله"
+
+#: .\orders\templates\order_complete.html:106
+msgid "Order SubTotal & Tax"
+msgstr "اجمالي الطلب"
+
+#: .\orders\templates\order_complete.html:113
+msgid "Thank you for shopping with us!"
+msgstr "شكرا للتسوق معنا!"
+
+#: .\orders\templates\order_complete.html:117
+msgid "Shop more"
+msgstr "تسوق أكثر"
+
+#: .\orders\templates\payment.html:21
+msgid "Review Your Order and make payment"
+msgstr "قم بمراجعة طلبك وقم بالدفع"
+
+#: .\orders\templates\payment.html:36
+msgid "Order Note:"
+msgstr "ملاحظة الطلب:"
+
+#: .\orders\templates\payment.html:41
+msgid "Payment Method"
+msgstr "طريقه الدفع"
+
+#: .\orders\templates\payment.html:43
+msgid "Stripe"
+msgstr "سترايب"
+
+#: .\orders\templates\payment.html:47
+msgid "Review Products"
+msgstr "مراجعه المنتجات"
+
+#: .\orders\templates\payment.html:105
+msgid "Email address"
+msgstr "البريد الالكتروني "
+
+#: .\orders\templates\payment.html:111
+msgid "Pay"
+msgstr "ادفع"
+
+#: .\orders\templates\payment.html:115
+msgid "Payment succeeded, see the result in your"
+msgstr "تم الدفع بنجاح، شاهد النتيجة في حسابك"
+
+#: .\orders\templates\payment.html:116
+msgid "Stripe dashboard."
+msgstr "لوحة القيادة"
+
+#: .\orders\templates\payment.html:117
+msgid "Refresh the page to pay again."
+msgstr "قم بتحديث الصفحة للدفع مرة أخرى."
+
 #: .\products\filters.py:10
 msgid "Enter Price Range from low to high"
 msgstr "أدخل نطاق السعر من الأقل إلى الأعلى"
@@ -716,10 +958,6 @@ msgstr "تصنيف المنتج"
 #: .\products\models.py:23
 msgid "like"
 msgstr "المعجبين"
-
-#: .\products\models.py:28 .\products\models.py:29
-msgid "Products"
-msgstr "المنتجات"
 
 #: .\products\models.py:88
 msgid "product"

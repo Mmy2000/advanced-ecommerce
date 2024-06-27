@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static %}\{% load i18n %}
 {% block title %}
 Cart
 {% endblock title %}
@@ -7,11 +7,11 @@ Cart
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "Shopping Cart" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Shopping Cart</p>
+            <p class="m-0">{% trans "Shopping Cart" %}</p>
         </div>
     </div>
 </div>
@@ -20,14 +20,13 @@ Cart
 {% if not cart_items %}
 <div class="container">
     <div class="row flex-column align-items-center justify-content-center">
-        <h2 class="text-center">Your Shopping Cart Is Empty</h2>
+        <h2 class="text-center">{% trans "Your Shopping Cart Is Empty" %}</h2>
         <div class="col-1 my-2">
-            <img class="w-100" src="{% static 'img/empty-set.png'%}">
+            <img class="w-100" src="{% static 'img/empty-set.png' %}">
         </div>
         <div class="d-flex justify-content-center">
             <a href="{% url 'product_list' %}" class="btn btn-primary px-3"><i
-                    class="fa fa-shopping-cart mr-1"></i>Continue
-                Shopping</a>
+                    class="fa fa-shopping-cart mr-1"></i>{% trans "Continue Shopping" %}</a>
         </div>
     </div>
 </div>
@@ -41,46 +40,46 @@ Cart
             <table class="table table-bordered text-center mb-0">
                 <thead class="bg-secondary text-dark">
                     <tr>
-                        <th>Products</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Remove</th>
+                        <th>{% trans "Products" %}</th>
+                        <th>{% trans "Price" %}</th>
+                        <th>{% trans "Quantity" %}</th>
+                        <th>{% trans "Total" %}</th>
+                        <th>{% trans "Remove" %}</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
                     {% for cart_item in cart_items %}
                     <tr>
-                        <td class="align-middle"><img src="{{cart_item.product.image.url}}" alt=""
-                                style="width: 50px;">{{cart_item}}
+                        <td class="align-middle"><img src="{{ cart_item.product.image.url }}" alt=""
+                                style="width: 50px;">{{ cart_item }}
                             <p class="text-muted small">
                                 {% if cart_item.variations.all %}
-                                {% for item in cart_item.variations.all  %}
-                                {{item.variation_category|capfirst}} :
-                                {{item.variation_value|capfirst}}<br>
+                                {% for item in cart_item.variations.all %}
+                                {{ item.variation_category|capfirst }} :
+                                {{ item.variation_value|capfirst }}<br>
                                 {% endfor %}
                                 {% endif %}
                             </p>
                         </td>
-                        <td class="align-middle">${{cart_item.product.price}}</td>
+                        <td class="align-middle">UAE{{ cart_item.product.price }}</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
-                                    <a href="{% url 'decrement_cart' cart_item.product.id cart_item.id%}"
+                                    <a href="{% url 'decrement_cart' cart_item.product.id cart_item.id %}"
                                         class="btn btn-sm btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
                                     </a>
                                 </div>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-center"
-                                    value="{{cart_item.quantity}}">
+                                    value="{{ cart_item.quantity }}">
                                 <div class="input-group-btn">
-                                    <form action="{% url 'add_cart' cart_item.product.id%}" method="POST">
+                                    <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
                                         {% csrf_token %}
                                         {% for item in cart_item.variations.all %}
                                         <input type="hidden"
                                             class="form-control form-control-sm bg-secondary text-center"
-                                            name="{{ item.variation_category | lower }}"
-                                            value="{{ item.variation_value | capfirst }}">
+                                            name="{{ item.variation_category|lower }}"
+                                            value="{{ item.variation_value|capfirst }}">
                                         {% endfor %}
                                         <button type="submit" class="btn btn-sm btn-primary btn-plus1">
                                             <i class="fa fa-plus"></i>
@@ -89,9 +88,9 @@ Cart
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle">${{cart_item.sub_total}}</td>
+                        <td class="align-middle">UAE{{ cart_item.sub_total }}</td>
                         <td class="align-middle"><a href="{% url 'delete_cart' cart_item.product_id cart_item.id %}"
-                                onclick="return confirm('Are You Sure You Want To Delete This Item ?')"
+                                onclick="return confirm('{% trans "Are You Sure You Want To Delete This Item?" %}')"
                                 class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                     </tr>
                     {% endfor %}
@@ -102,24 +101,24 @@ Cart
             
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                    <h4 class="font-weight-semi-bold m-0">{% trans "Cart Summary" %}</h4>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3 pt-1">
-                        <h6 class="font-weight-medium">Subtotal</h6>
-                        <h6 class="font-weight-medium">${{total}}</h6>
+                        <h6 class="font-weight-medium">{% trans "Subtotal" %}</h6>
+                        <h6 class="font-weight-medium">UAE{{ total }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">${{tax}}</h6>
+                        <h6 class="font-weight-medium">{% trans "Shipping" %}</h6>
+                        <h6 class="font-weight-medium">UAE{{ tax }}</h6>
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
-                        <h5 class="font-weight-bold">Total</h5>
-                        <h5 class="font-weight-bold">${{grand_total}}</h5>
+                        <h5 class="font-weight-bold">{% trans "Total" %}</h5>
+                        <h5 class="font-weight-bold">UAE{{ grand_total }}</h5>
                     </div>
-                    <a href="{% url 'checkout'%}" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
+                    <a href="{% url 'checkout' %}" class="btn btn-block btn-primary my-3 py-3">{% trans "Proceed To Checkout" %}</a>
                 </div>
             </div>
         </div>

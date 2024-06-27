@@ -30,7 +30,7 @@ def place_order(request,total=0, quantity=0):
     for cart_item in cart_items:
         total+=(cart_item.product.price * cart_item.quantity)
         quantity+=cart_item.quantity
-    tax = (2 * total)/100
+    tax = (0 * total)/100
     grand_total = total + tax
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -90,7 +90,7 @@ def create_payment_intent(request):
 
             intent = stripe.PaymentIntent.create(
                 amount=int(order.order_total * 100),  # Stripe expects the amount in cents
-                currency='usd',
+                currency='aed', 
                 metadata={'order_id': order.id}
             )
 

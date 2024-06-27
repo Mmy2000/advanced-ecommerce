@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
 Checkout
 {% endblock title %}
@@ -8,16 +9,15 @@ Checkout
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "Checkout" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Checkout</p>
+            <p class="m-0">{% trans "Checkout" %}</p>
         </div>
     </div>
 </div>
 <!-- Page Header End -->
-
 
 <!-- Checkout Start -->
 <div class="container-fluid pt-5">
@@ -27,98 +27,95 @@ Checkout
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                    <h4 class="font-weight-semi-bold mb-4">{% trans "Billing Address" %}</h4>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" name="first_name" type="text" placeholder="John">
+                            <label>{% trans "First Name" %}</label>
+                            <input class="form-control" name="first_name" type="text" placeholder="{% trans "John" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" name="last_name" type="text" placeholder="Doe">
+                            <label>{% trans "Last Name" %}</label>
+                            <input class="form-control" name="last_name" type="text" placeholder="{% trans "Doe" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" name="email" type="text" placeholder="example@email.com">
+                            <label>{% trans "E-mail" %}</label>
+                            <input class="form-control" name="email" type="text" placeholder="{% trans "example@email.com" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input class="form-control" name="phone" type="text" placeholder="+123 456 789">
+                            <label>{% trans "Mobile No" %}</label>
+                            <input class="form-control" name="phone" type="text" placeholder="{% trans "+123 456 789" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" name="address_line_1" type="text" placeholder="123 Street">
+                            <label>{% trans "Address Line 1" %}</label>
+                            <input class="form-control" name="address_line_1" type="text" placeholder="{% trans "123 Street" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" name="address_line_2" type="text" placeholder="123 Street">
+                            <label>{% trans "Address Line 2" %}</label>
+                            <input class="form-control" name="address_line_2" type="text" placeholder="{% trans "123 Street" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Country</label>
-                            <input class="form-control" type="text" name="country" placeholder="Type here">
+                            <label>{% trans "Country" %}</label>
+                            <input class="form-control" type="text" name="country" placeholder="{% trans "Type here" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" name="city" type="text" placeholder="New York">
+                            <label>{% trans "City" %}</label>
+                            <input class="form-control" name="city" type="text" placeholder="{% trans "New York" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>State</label>
-                            <input class="form-control" name="state" type="text" placeholder="New York">
+                            <label>{% trans "State" %}</label>
+                            <input class="form-control" name="state" type="text" placeholder="{% trans "New York" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input class="form-control" name="zip_code" type="text" placeholder="123">
+                            <label>{% trans "ZIP Code" %}</label>
+                            <input class="form-control" name="zip_code" type="text" placeholder="{% trans "123" %}">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Order Note</label>
+                            <label>{% trans "Order Note" %}</label>
                             <textarea name="order_note" rows="2" class="form-control"></textarea>
                         </div>
-
                     </div>
                 </div>
-
             </div>
             <div class="col-lg-4">
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                        <h4 class="font-weight-semi-bold m-0">{% trans "Order Total" %}</h4>
                     </div>
                     <div class="card-body">
-                        <h5 class="font-weight-medium mb-3">Products</h5>
-
+                        <h5 class="font-weight-medium mb-3">{% trans "Products" %}</h5>
                         {% for cart_item in cart_items %}
                         <div class="d-flex justify-content-between align-items-center">
-                            <img src="{{cart_item.product.image.url}}" alt="" style="width: 50px;">
-                            <p>{{cart_item}} <i class="fa-sharp fa-solid fa-xmark px-2"></i> {{cart_item.quantity}}</p>
-                            <p>${{cart_item.product.price}}</p>
+                            <img src="{{ cart_item.product.image.url }}" alt="" style="width: 50px;">
+                            <p>{{ cart_item }} <i class="fa-sharp fa-solid fa-xmark px-2"></i> {{ cart_item.quantity }}</p>
+                            <p>UAE{{ cart_item.product.price }}</p>
                         </div>
                         {% endfor %}
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">${{total}}</h6>
+                            <h6 class="font-weight-medium">{% trans "Subtotal" %}</h6>
+                            <h6 class="font-weight-medium">UAE{{ total }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">${{tax}}</h6>
+                            <h6 class="font-weight-medium">{% trans "Shipping" %}</h6>
+                            <h6 class="font-weight-medium">UAE{{ tax }}</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">${{grand_total}}</h5>
+                            <h5 class="font-weight-bold">{% trans "Total" %}</h5>
+                            <h5 class="font-weight-bold">UAE{{ grand_total }}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        <h4 class="font-weight-semi-bold m-0">{% trans "Payment" %}</h4>
                     </div>
                     <div class="card-body">
-                        <p class="text-center">Stripe Only</p>
+                        <p class="text-center">{% trans "Stripe Only" %}</p>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <button type="submit" id="placeOrderButton" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                        <button type="submit" id="placeOrderButton" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">{% trans "Place Order" %}</button>
                     </div>
                 </div>
             </div>
