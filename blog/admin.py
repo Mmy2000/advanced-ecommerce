@@ -3,11 +3,9 @@ from .models import Post , Category
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
-class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
+class PostAdmin(SummernoteModelAdmin):
     summernote_fields = '__all__'
-    list_display = ['auther' , 'title','category'  ,'created_at','views']
+    list_display = ['title', 'author', 'category', 'created_at', 'views']
 
-
-
-admin.site.register(Post , SomeModelAdmin)
+admin.site.register(Post, PostAdmin)
 admin.site.register(Category)

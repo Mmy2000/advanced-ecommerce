@@ -29,8 +29,8 @@ Blogs
                     <div class="card border-0 shadow h-100">
                         <a href="{{post.get_absolute_url}}"><img src="{{post.image.url}}" class="card-img-top" alt="..."></a>
                         <div class="card-body position-relative">
-                            <h5 class="card-title pt-2">{{post}}</h5>
-                            <p class="card-text">{{post.description|truncatewords:20}}</p>
+                            <h5 class="card-title pt-2">{{post.title}}</h5>
+                            <p class="card-text">{{post.description|safe|truncatewords:20}}</p>
                             <div class="bg-primary position-absolute top-0 start-50 translate-middle cat-style   rounded">
                                 <h6 class="p-2 h6-style">{{post.category}}</h6>
                             </div>

@@ -26,7 +26,7 @@ class Product(models.Model):
     class Meta:
         ordering = ["name"]
         verbose_name = _("Products")
-        verbose_name_plural = ("Products")
+        verbose_name_plural = _("Products")
 
     def save(self,*args, **kwargs):
         if not self.slug:
@@ -91,7 +91,7 @@ class ProductImages(models.Model):
 
     class Meta:
         verbose_name = _("Product Images")
-        verbose_name_plural = ("Product Images")
+        verbose_name_plural = _("Product Images")
 
     def __str__(self):
         return str(self.product)
@@ -106,7 +106,7 @@ class Subcategory(models.Model):
         return reverse('product_by_subcategory',args=[self.id])
     
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = _("Categories")
         verbose_name = _("Categories")
         permissions = [
             ('can_translate', 'Can translate using Rosetta'),
@@ -132,7 +132,7 @@ class ReviewRating(models.Model):
 
     class Meta:
         verbose_name = _("Rating")
-        verbose_name_plural = ("Rating")
+        verbose_name_plural = _("Rating")
 
     def __str__(self):
         return self.subject

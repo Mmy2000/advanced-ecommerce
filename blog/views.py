@@ -14,7 +14,7 @@ class PostList(ListView):
         name = self.request.GET.get('q','')
         object_list = Post.objects.filter(
             Q(title__icontains = name) |
-            Q(description__icontains = name)
+            Q(description__icontains=name)
         )
         return object_list
 

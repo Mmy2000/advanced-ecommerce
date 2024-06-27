@@ -1,42 +1,45 @@
 from django.db import models
 from django.utils import timezone
 from taggit.managers import TaggableManager
-from django.utils.text import slugify 
+from django.utils.text import slugify
 from accounts.models import User
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from parler.models import TranslatableModel, TranslatedFields
 
-# Create your models here.
 class Post(models.Model):
-    auther = models.ForeignKey(User, related_name="post_auther",verbose_name=_('auther'), on_delete=models.CASCADE)
-    title = models.CharField(max_length=100,verbose_name=_('title'))
+    author = models.ForeignKey(User, related_name="post_author", verbose_name=_('author'),null=True, on_delete=models.CASCADE)
+    title = models.CharField(_("title"),default="", max_length=100)
+    created_at = models.TimeField(_("created_at"), default=timezone.now)
+    category = models.ForeignKey('Category', related_name='post_category',null=True, verbose_name=_('category'), on_delete=models.CASCADE)
+    slug = models.SlugField(null=True, blank=True)
+    views = models.PositiveIntegerField(_("views"),default=0)
     tags = TaggableManager(_("tags"))
-    image = models.ImageField(_("image"),upload_to='post/')
-    created_at = models.TimeField( _("created_at"),default=timezone.now)
-    description = models.TextField(_("description"),max_length=100000)
-    category = models.ForeignKey('Category',related_name='post_category',verbose_name=_('category'),on_delete=models.CASCADE)
-    slug = models.SlugField(null=True,blank=True)
-    views = models.PositiveIntegerField(default=0)
+    image = models.ImageField(_("image"), upload_to='post/',default="")
+    description = models.TextField(_("description"), max_length=100000,default="")
 
     class Meta:
-        verbose_name = ("Blogs")
-        verbose_name_plural = ("Blogs")
+        verbose_name = _("Blog")
+        verbose_name_plural = _("Blogs")
 
-    def save(self,*args, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug=slugify(self.title)
-        super(Post,self).save(*args,**kwargs)
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
     
     def __str__(self):
-        return self.title
+        return str(self.author)
     
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"pk": self.pk})
-    
 
 class Category(models.Model):
-    name = models.CharField(_("name"),max_length=60)
+    name = models.CharField(_("name"),null=True, max_length=60)
+    
+
     class Meta:
-        verbose_name = "Blog Category"
+        verbose_name = _("Blog Category")
+        verbose_name_plural = _("Blog Categories")
+
     def __str__(self):
         return self.name

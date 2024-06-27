@@ -24,7 +24,7 @@ Blogs
       <div class="container">
         <div class="row">
           <div class="col-md-8 ftco-animate">
-            <h2 class="mb-3">{{post}}</h2>
+            <h2 class="mb-3">{{post.title}}</h2>
             <p>
             <img src="{{post.image.url}}" alt="" class="img-fluid">
           </p>
@@ -59,7 +59,7 @@ Blogs
               <div class="categories">
                 <h3>Categories</h3>
                 {% for category in categories %}
-                <li><a href="{% url 'post_by_category' category %}">{{category}} <span>{{category.post_count}}</span></a></li>
+                <li><a href="{% url 'post_by_category' category.name %}">{{category.name}} <span>{{category.post_count}}</span></a></li>
                 {% endfor %}
               </div>
             </div>
