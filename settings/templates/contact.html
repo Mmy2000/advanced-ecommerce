@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% block title %}
 
@@ -11,11 +12,11 @@ Contact
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Contact Us</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "Contact" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Contact</p>
+            <p class="m-0">{% trans "Contact" %}</p>
         </div>
     </div>
 </div>
@@ -25,24 +26,25 @@ Contact
 <!-- Contact Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Contact For Any Queries</span></h2>
+        <h2 class="section-title px-5"><span class="px-2">{% trans "Contact For Any Queries" %}</span></h2>
     </div>
     <div class="row px-xl-5">
         <div class="col-lg-7 mb-5">
             <div class="contact-form">
                 <div id="success">{% include "includes/alerts.html" %}</div>
                 <form method="POST" class="form">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    {% bootstrap_button button_type="submit" content="Send Message" %}
-                </form>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% trans "Send Message" as send_message %}
+    {% bootstrap_button button_type="submit" content=send_message %}
+</form>
             </div>
         </div>
         <div class="col-lg-5 mb-5">
-            <h5 class="font-weight-semi-bold mb-3">Get In Touch</h5>
+            <h5 class="font-weight-semi-bold mb-3">{% trans "Get In Touch" %}</h5>
             <p>{{about.get_in_touch}}</p>
             <div class="d-flex flex-column mb-3">
-                <h5 class="font-weight-semi-bold mb-3">Store 1</h5>
+                <h5 class="font-weight-semi-bold mb-3">{% trans "Store 1" %}</h5>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{about.address}}</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{about.email}}</p>
                 <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>{{about.phone}}</p>

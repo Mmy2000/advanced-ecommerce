@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>EShopper - {% block title %}{% endblock title %}</title>
+    <title>EL {{about_site.site_name}} - {% block title %}{% endblock title %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -46,11 +46,11 @@
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="{% url 'contact'%}">FAQs</a>
+                    <a class="text-dark" href="{% url 'contact'%}">{% trans "FAQ" %}</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="{% url 'contact'%}">Help</a>
+                    <a class="text-dark" href="{% url 'contact'%}">{% trans "Help" %}</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="{% url 'contact'%}">Support</a>
+                    <a class="text-dark" href="{% url 'contact'%}">{% trans "Support" %}</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -85,7 +85,7 @@
                 <form id="searchForm" autocomplete="off" action="">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Search for products">
+                        <input type="text" id="searchInput" class="form-control" placeholder="{% trans "Search for products" %}">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -93,8 +93,7 @@
                         </div>
                     </div>
                 </form>
-                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">this search work
-                    in home page only...</div>
+                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">{% trans "this search work in home page only..." %}</div>
             </div>
 
             <div class="col-lg-3 col-6  text-right">
@@ -216,7 +215,7 @@
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">{{ image.title }}</h3>
-                                    <a href="{% url 'product_list' %}" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <a href="{% url 'product_list' %}" class="btn btn-light py-2 px-3">{% trans "Shop Now" %}</a>
                                 </div>
                             </div>
                         </div>
@@ -295,15 +294,14 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <input type="text" class="form-control border-0 py-4" name="name"
-                                    placeholder="Your Name" required="required" />
+                                    placeholder="{% trans "Your Name" %}" required="required" />
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control border-0 py-4" name="email"
-                                    placeholder="Your Email" required="required" />
+                                    placeholder="{% trans "Email" %}" required="required" />
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe
-                                    Now</button>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">{% trans "Subscribe Now" %}</button>
                             </div>
                         </form>
                     </div>
@@ -316,10 +314,7 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="/">{{about_site.site_name}}</a>. All Rights
-                    Reserved.
-                    Designed
-                    by
+                    &copy; <a class="text-dark font-weight-semi-bold" href="/">{{about_site.site_name}}</a>.{% trans "All Rights Reserved. Designed by" %}
                     <a class="text-dark font-weight-semi-bold" href="https://zmarketings.com">Z Marketing</a><br>
                 </p>
             </div>

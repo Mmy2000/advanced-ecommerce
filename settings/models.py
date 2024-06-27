@@ -8,7 +8,7 @@ from django.urls import reverse
 
 # Create your models here.
 class Contact(models.Model):
-    name = models.CharField(_("name"),max_length=250)
+    name = models.CharField(_("username"),max_length=250)
     email = models.EmailField(_("email"),)
     phone = models.CharField(_("phone"),max_length=11)
     message = models.TextField(_("message"),max_length=3000)

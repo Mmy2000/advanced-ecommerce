@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}
 
 Home
@@ -14,25 +15,25 @@ Home
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
             <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
                 <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                <h5 class="font-weight-semi-bold m-0">{% trans "Quality Product" %}</h5>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
             <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
                 <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                <h5 class="font-weight-semi-bold m-0">{% trans "Free Shipping" %}</h5>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
             <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
                 <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                <h5 class="font-weight-semi-bold m-0">{% trans "14-Day Return" %}</h5>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
             <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
                 <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                <h5 class="font-weight-semi-bold m-0">{% trans "24/7 Support" %}</h5>
             </div>
         </div>
     </div>
@@ -43,7 +44,7 @@ Home
 <!-- Categories Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Popular Categories</span></h2>
+        <h2 class="section-title px-5"><span class="px-2">{% trans "Popular Categories" %}</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
         {% for category in category %}
@@ -53,7 +54,8 @@ Home
                 <a href="{{category.get_url}}" class="cat-img position-relative overflow-hidden mb-3">
                     <img class="img-fluid" src="{{category.image.url}}" alt="">
                 </a>
-                <h5 class="font-weight-semi-bold m-0">{{category}}{% if category.category %}({{category.category}}){% endif %}</h5>
+                <h5 class="font-weight-semi-bold m-0">
+                    {{category}}{% if category.category %}({{category.category}}){% endif %}</h5>
             </div>
         </div>
         {% endfor %}
@@ -67,7 +69,7 @@ Home
 <!-- Products Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
+        <h2 class="section-title px-5"><span class="px-2">{% trans "Trandy Products" %}</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
         {% for product in trandy_product %}
@@ -82,30 +84,30 @@ Home
                         <h6>${{product.price}}</h6>
                     </div>
                     <div class="rating-star">
-                                <span>
-                                    <i class="fa fa-star{% if product.avr_review < 0.5%}-o{% elif product.avr_review >= 0.5 and product.avr_review < 1%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 1.5%}-o{% elif product.avr_review >= 1.5 and product.avr_review < 2%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 2.5%}-o{% elif product.avr_review >= 2.5 and product.avr_review < 3%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 3.5%}-o{% elif product.avr_review >= 3.5 and product.avr_review < 4%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 4.5%}-o{% elif product.avr_review >= 4.5 and product.avr_review < 5%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                </span>({{product.count_review}} reviews)
-                            </div>
+                        <span>
+                            <i class="fa fa-star{% if product.avr_review < 0.5%}-o{% elif product.avr_review >= 0.5 and product.avr_review < 1%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 1.5%}-o{% elif product.avr_review >= 1.5 and product.avr_review < 2%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 2.5%}-o{% elif product.avr_review >= 2.5 and product.avr_review < 3%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 3.5%}-o{% elif product.avr_review >= 3.5 and product.avr_review < 4%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 4.5%}-o{% elif product.avr_review >= 4.5 and product.avr_review < 5%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                        </span>({{product.count_review}} reviews)
+                    </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
                     <a href="{{product.get_absolute_url}}" class="btn btn-sm text-dark p-0"><i
-                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            class="fas fa-eye text-primary mr-1"></i>{% trans "View Detail" %}</a>
                     {% if request.user in product.like.all %}
-                            <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
-                                    class="fa-solid fa-heart text-primary mr-1"></i>Remove</a>
-                            {% else %}
-                            <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
-                                    class="fa-regular fa-heart text-primary mr-1"></i>To Favourite</a>
-                            {% endif %}
+                    <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
+                            class="fa-solid fa-heart text-primary mr-1"></i>{% trans "Remove" %}</a>
+                    {% else %}
+                    <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
+                            class="fa-regular fa-heart text-primary mr-1"></i>{% trans "To Favourite" %}</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -120,25 +122,27 @@ Home
     <div class="row justify-content-md-center py-5 px-xl-5">
         <div id="main_form_div" class="col-md-6 col-12 py-5">
             <div class="text-center mb-2 pb-2">
-                <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
-                <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo
-                    labore labore.</p>
+                <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">{% trans "Stay Updated" %}</span>
+                </h2>
+
             </div>
             <form id="newsletter_form" method="POST" action="{% url 'newsletters' %}">
-        {% csrf_token %}
-        <div class="input-group">
-            <input type="text" name="email" class="form-control border-white p-4" placeholder="Email Goes Here">
-            <div class="input-group-append">
-                <button class="btn btn-primary px-4" id="newsletter_submit_form" type="submit">
-                    Subscribe
-                </button>
-            </div>
-        </div>
-    </form>
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="email" class="form-control border-white p-4"
+                        placeholder="{% trans "Email Goes Here" %}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary px-4" id="newsletter_submit_form"
+                            type="submit">{% trans "Subscribe Now" %}
+
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div id="success_div" style="display: none;" class="col-md-6 col-12 py-5">
             <div class="text-center mb-2 pb-2">
-                <h4>Subcribed Successfuly</h4>
+                <h4>{% trans "Subcribed Successfuly" %}</h4>
             </div>
         </div>
     </div>
@@ -149,7 +153,7 @@ Home
 <!-- Products Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
+        <h2 class="section-title px-5"><span class="px-2">{% trans "Just Arrived" %}</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
         {% for product in just_arrived %}
@@ -164,30 +168,30 @@ Home
                         <h6>${{product.price}}</h6>
                     </div>
                     <div class="rating-star">
-                                <span>
-                                    <i class="fa fa-star{% if product.avr_review < 0.5%}-o{% elif product.avr_review >= 0.5 and product.avr_review < 1%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 1.5%}-o{% elif product.avr_review >= 1.5 and product.avr_review < 2%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 2.5%}-o{% elif product.avr_review >= 2.5 and product.avr_review < 3%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 3.5%}-o{% elif product.avr_review >= 3.5 and product.avr_review < 4%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                    <i class="fa fa-star{% if product.avr_review < 4.5%}-o{% elif product.avr_review >= 4.5 and product.avr_review < 5%}-half-o{%endif%}"
-                                        aria-hidden="true"></i>
-                                </span>({{product.count_review}} reviews)
-                            </div>
+                        <span>
+                            <i class="fa fa-star{% if product.avr_review < 0.5%}-o{% elif product.avr_review >= 0.5 and product.avr_review < 1%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 1.5%}-o{% elif product.avr_review >= 1.5 and product.avr_review < 2%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 2.5%}-o{% elif product.avr_review >= 2.5 and product.avr_review < 3%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 3.5%}-o{% elif product.avr_review >= 3.5 and product.avr_review < 4%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.avr_review < 4.5%}-o{% elif product.avr_review >= 4.5 and product.avr_review < 5%}-half-o{%endif%}"
+                                aria-hidden="true"></i>
+                        </span>({{product.count_review}} reviews)
+                    </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
                     <a href="{{product.get_absolute_url}}" class="btn btn-sm text-dark p-0"><i
-                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            class="fas fa-eye text-primary mr-1"></i>{% trans "View Detail" %}</a>
                     {% if request.user in product.like.all %}
-                            <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
-                                    class="fa-solid fa-heart text-primary mr-1"></i>Remove</a>
-                            {% else %}
-                            <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
-                                    class="fa-regular fa-heart text-primary mr-1"></i>To Favourite</a>
-                            {% endif %}
+                    <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
+                            class="fa-solid fa-heart text-primary mr-1"></i>{% trans "Remove" %}</a>
+                    {% else %}
+                    <a href="{% url 'add_to_favourit' product.id%}" class="btn btn-sm text-dark p-0"><i
+                            class="fa-regular fa-heart text-primary mr-1"></i>{% trans "To Favourite" %}</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

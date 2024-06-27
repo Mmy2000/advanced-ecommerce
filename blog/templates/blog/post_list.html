@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
 
 Blogs
@@ -9,11 +10,11 @@ Blogs
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Blogs</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "Blog" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Blogs</p>
+            <p class="m-0">{% trans "Blog" %}</p>
         </div>
     </div>
 </div>
@@ -47,7 +48,7 @@ Blogs
                 {% endfor %}
                 {% else %}
                 <div class="col-md-12 d-flex justify-content-center   ">
-                        <h2 class="text-center">Nothing Found , PLS Try Again</h2>
+                        <h2 class="text-center">{% trans "Nothing Found , PLS Try Again" %}</h2>
                     </div>
                 {% endif %}
                 
@@ -63,14 +64,14 @@ Blogs
                                 <a class="page-link" href="?page={{page_obj.previous_page_number}}"
                                     aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
+                                    <span class="sr-only">{% trans "Previous" %}</span>
                                 </a>
                             </li>
                             {% else %}
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
+                                    <span class="sr-only">{% trans "Previous" %}</span>
                                 </a>
                             </li>
                             {% endif %}
@@ -85,14 +86,14 @@ Blogs
                             <li class="page-item">
                                 <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
+                                    <span class="sr-only">{% trans "Next" %}</span>
                                 </a>
                             </li>
                             {% else %}
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
+                                    <span class="sr-only">{% trans "Next" %}</span>
                                 </a>
                             </li>
                             {% endif %}

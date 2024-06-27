@@ -1,13 +1,15 @@
 import django_filters
 from .models import Product
 from django_filters.widgets import RangeWidget
+from django.utils.translation import gettext_lazy as _
+
 
 class ProductFilter(django_filters.FilterSet):
    
     price = django_filters.RangeFilter(
-        label='Enter Price Range from low to high',
+        label=_('Enter Price Range from low to high'),
         widget=RangeWidget(attrs={
-            'placeholder': 'Enter price range'
+            'placeholder': _('Enter price range')
         })
     )
 

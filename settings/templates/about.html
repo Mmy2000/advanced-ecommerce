@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
 
 About
@@ -9,11 +10,11 @@ About
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">About</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "About" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">About</p>
+            <p class="m-0">{% trans "About" %}</p>
         </div>
     </div>
 </div>
@@ -30,13 +31,13 @@ About
                             aria-orientation="vertical">
                             <a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill"
                                 href="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo"
-                                aria-selected="true">What we do</a>
+                                aria-selected="true">{% trans "What we do" %}</a>
 
                             <a class="nav-link" id="v-pills-mission-tab" data-toggle="pill" href="#v-pills-mission"
-                                role="tab" aria-controls="v-pills-mission" aria-selected="false">Our mission</a>
+                                role="tab" aria-controls="v-pills-mission" aria-selected="false">{% trans "Our mission" %}</a>
 
                             <a class="nav-link" id="v-pills-goal-tab" data-toggle="pill" href="#v-pills-goal" role="tab"
-                                aria-controls="v-pills-goal" aria-selected="false">Our goal</a>
+                                aria-controls="v-pills-goal" aria-selected="false">{% trans "Our goal" %}</a>
                         </div>
                     </div>
                     <div class="col-md-12 d-flex align-items-center">
@@ -76,8 +77,8 @@ About
     <div class="container">
         <div class="row justify-content-start mt-4 mb-2 pb-2">
             <div class="col-md-12 text-center heading-section ftco-animate">
-                <span class="subheading">FAQS</span>
-                <h2 class="mb-2"><strong>Frequently</strong> Ask Question</h2>
+                <span class="subheading">{% trans "FAQ" %}</span>
+                <h2 class="mb-2"><strong>{% trans "Frequently" %}</strong> {% trans "Ask Question" %} </h2>
             </div>
         </div>
         <div class="row">
