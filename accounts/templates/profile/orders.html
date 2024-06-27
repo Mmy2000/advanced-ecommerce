@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}
 Orders
 {% endblock title %}
 {% block body %}
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">My Orders</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "My Orders" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">My Orders</p>
+            <p class="m-0">{% trans "My Orders" %}</p>
         </div>
     </div>
 </div>
@@ -20,21 +21,20 @@ Orders
             <aside class="col-md-3">
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
-                    <a class="list-group-item " href="{% url 'dashboard'%}"> Dashboard </a>
-                    <a class="list-group-item active" href="{% url 'orders'%}"> My Orders </a>
-                    <a class="list-group-item" href="{% url 'profile'%}"> Profile </a>
-                    <a class="list-group-item" href="{% url 'change_password'%}">Change Password </a>
+                    <a class="list-group-item" href="{% url 'dashboard'%}">{% trans "Dashboard" %} </a>
+                    <a class="list-group-item active" href="{% url 'orders'%}">{% trans "My Orders" %}  </a>
+                    <a class="list-group-item" href="{% url 'profile'%}">{% trans "Profile" %} </a>
+                    <a class="list-group-item" href="{% url 'change_password'%}">{% trans "Change Password" %} </a>
                 </ul>
                 <br>
                 <a class="btn btn-light btn-block" href="{% url 'logout'%}"> <i class="fa fa-power-off"></i> <span
-                        class="text">Log
-                        out</span> </a>
+                        class="text">{% trans "logout" %}</span> </a>
                 <!--   SIDEBAR .//END   -->
             </aside>
             <main class="col-md-9">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3">Your order history</strong>
+                        <strong class="d-inline-block mr-3">{% trans "Your order history" %}</strong>
                     </header>
                     <div class="card-body">
                         <div class="row">
@@ -42,11 +42,11 @@ Orders
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col">order #</th>
-                                            <th scope="col">Billing Name</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Order Total</th>
-                                            <th scope="col">Order Date</th>
+                                            <th scope="col">{% trans "order #" %}</th>
+                                            <th scope="col">{% trans "Billing Name" %}</th>
+                                            <th scope="col">{% trans "Phone" %}</th>
+                                            <th scope="col">{% trans "Order Total" %}</th>
+                                            <th scope="col">{% trans "Order Date" %}</th>
                                         </tr>
                                     </thead>
                                     

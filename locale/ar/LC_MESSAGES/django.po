@@ -8,17 +8,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-27 22:58+0300\n"
-"PO-Revision-Date: 2024-06-27 10:19+0300\n"
+"POT-Creation-Date: 2024-06-28 00:12+0300\n"
+"PO-Revision-Date: 2024-06-28 00:13+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\accounts\forms.py:9
+msgid "Enter Password"
+msgstr "ادخل الباسورد"
+
+#: .\accounts\forms.py:13 .\accounts\templates\accounts\resetPassword.html:28
+msgid "Confirm Password"
+msgstr "تأكيد الباسورد "
+
+#: .\accounts\forms.py:22
+msgid "Enter First Name"
+msgstr "ادخل الاسم الاول"
+
+#: .\accounts\forms.py:23
+msgid "Enter last Name"
+msgstr "ادخل الاسم الاخير"
+
+#: .\accounts\forms.py:24
+msgid "Enter Phone Number"
+msgstr "ادخل رقم التليفون"
+
+#: .\accounts\forms.py:25
+msgid "Enter Email Address"
+msgstr "ادخل البريد الالكتروني "
 
 #: .\accounts\models.py:49 .\orders\models.py:33
 msgid "first_name"
@@ -26,7 +49,7 @@ msgstr "الاسم الاول"
 
 #: .\accounts\models.py:50 .\orders\models.py:34
 msgid "last_name"
-msgstr "السام الثاني"
+msgstr "الاسم الثاني"
 
 #: .\accounts\models.py:51 .\settings\models.py:11
 msgid "username"
@@ -74,7 +97,7 @@ msgstr "المستخدمين"
 msgid "user profile"
 msgstr "المستخدم"
 
-#: .\accounts\models.py:86 .\accounts\templates\profile\profile.html:271
+#: .\accounts\models.py:86 .\accounts\templates\profile\profile.html:272
 #: .\settings\models.py:32
 msgid "address"
 msgstr "العنوان "
@@ -88,12 +111,12 @@ msgstr "صوره"
 msgid "about"
 msgstr "عن الموقع"
 
-#: .\accounts\models.py:89 .\accounts\templates\profile\profile.html:267
+#: .\accounts\models.py:89 .\accounts\templates\profile\profile.html:268
 #: .\orders\models.py:40
 msgid "country"
 msgstr "الدوله"
 
-#: .\accounts\models.py:90 .\accounts\templates\profile\profile.html:259
+#: .\accounts\models.py:90 .\accounts\templates\profile\profile.html:260
 msgid "company"
 msgstr "الشركه"
 
@@ -107,7 +130,7 @@ msgstr "عنوان رقم 2"
 
 #: .\accounts\models.py:93
 msgid "headline"
-msgstr "العنوان"
+msgstr "العنوان الوظيفي"
 
 #: .\accounts\models.py:94 .\orders\models.py:42
 msgid "city"
@@ -117,24 +140,153 @@ msgstr "المدينه"
 msgid "Profiles"
 msgstr "حسابات تعريفيه"
 
-#: .\accounts\templates\profile\profile.html:90
-msgid "Account Settings"
-msgstr "اعدادات الحساب"
+#: .\accounts\templates\accounts\change_password.html:19
+#: .\accounts\templates\profile\dashboard.html:28
+#: .\accounts\templates\profile\orders.html:27
+#: .\accounts\templates\profile\profile.html:247
+#: .\accounts\templates\profile\profile.html:297
+msgid "Change Password"
+msgstr "تغيير الباسورد"
 
-#: .\accounts\templates\profile\profile.html:99
-msgid "Need Help?"
-msgstr "تحتاج مساعدة؟"
+#: .\accounts\templates\accounts\change_password.html:24
+#: .\accounts\templates\accounts\change_password.html:25
+#: .\accounts\templates\profile\profile.html:301
+#: .\accounts\templates\profile\profile.html:303
+msgid "Current Password"
+msgstr "الباسورد الحالي"
 
-#: .\accounts\templates\profile\profile.html:108 .\templates\base.html:180
-msgid "logout"
-msgstr "تسجيل خروج"
+#: .\accounts\templates\accounts\change_password.html:28
+#: .\accounts\templates\profile\profile.html:307
+#: .\accounts\templates\profile\profile.html:309
+msgid "Create New Password"
+msgstr "الباسورد الجديد"
 
-#: .\accounts\templates\profile\profile.html:120
-msgid "Pages"
-msgstr "الصفحات"
+#: .\accounts\templates\accounts\change_password.html:29
+msgid "New Password"
+msgstr "الباسورد الجديد"
 
+#: .\accounts\templates\accounts\change_password.html:32
+#: .\accounts\templates\accounts\change_password.html:33
+#: .\accounts\templates\profile\profile.html:313
+#: .\accounts\templates\profile\profile.html:315
+msgid "Confirm New Password"
+msgstr "تأكيد الباسورد الجديد"
+
+#: .\accounts\templates\accounts\change_password.html:38
+#: .\accounts\templates\accounts\forgotPassword.html:32
+#: .\accounts\templates\profile\profile.html:319
+msgid "Submit"
+msgstr "ارسال"
+
+#: .\accounts\templates\accounts\change_password.html:44
+#: .\accounts\templates\accounts\forgotPassword.html:38
+#: .\accounts\templates\accounts\login.html:50
+#: .\accounts\templates\accounts\resetPassword.html:39
+msgid "Don't have account?"
+msgstr "ليس لديك حساب"
+
+#: .\accounts\templates\accounts\change_password.html:44
+#: .\accounts\templates\accounts\forgotPassword.html:38
+#: .\accounts\templates\accounts\login.html:50
+#: .\accounts\templates\accounts\register.html:18
+#: .\accounts\templates\accounts\register.html:55
+#: .\accounts\templates\accounts\resetPassword.html:39
+#: .\templates\base.html:186
+msgid "Register"
+msgstr "سجل"
+
+#: .\accounts\templates\accounts\forgotPassword.html:19
+msgid "Forgot Password"
+msgstr "هل نسيت كلمة السر"
+
+#: .\accounts\templates\accounts\forgotPassword.html:24
+#: .\accounts\templates\profile\profile.html:280 .\templates\base.html:302
+msgid "Email"
+msgstr "الايميل"
+
+#: .\accounts\templates\accounts\forgotPassword.html:28
+msgid "Got password?"
+msgstr "حصلت على كلمة المرور؟"
+
+#: .\accounts\templates\accounts\forgotPassword.html:28
+#: .\accounts\templates\accounts\login.html:19
+#: .\accounts\templates\accounts\login.html:29
+#: .\accounts\templates\accounts\login.html:44
+#: .\accounts\templates\accounts\register.html:62
+#: .\products\templates\products\product_detail.html:234
+#: .\templates\base.html:185
+msgid "Login"
+msgstr "تسجل دخول"
+
+#: .\accounts\templates\accounts\login.html:14
+msgid ""
+"Thank you for registering with us. We have sent you a verification email to "
+"your email address"
+msgstr ""
+"شكرا لتسجيلك معنا. لقد أرسلنا لك رسالة التحقق بالبريد الإلكتروني إلى عنوان "
+"بريدك الإلكتروني"
+
+#: .\accounts\templates\accounts\login.html:18
+msgid "Already verified?"
+msgstr "تم التحقق بالفعل؟"
+
+#: .\accounts\templates\accounts\login.html:41
+msgid "Forgot password?"
+msgstr "هل نسيت كلمة السر"
+
+#: .\accounts\templates\accounts\register.html:24
+msgid "First name"
+msgstr "الاسم الاول"
+
+#: .\accounts\templates\accounts\register.html:28
+msgid "Last name"
+msgstr "الاسم الثاني"
+
+#: .\accounts\templates\accounts\register.html:34
+msgid "Email Address"
+msgstr "البريد الالكتروني "
+
+#: .\accounts\templates\accounts\register.html:42
+msgid "Create password"
+msgstr "الباسورد "
+
+#: .\accounts\templates\accounts\register.html:46
+msgid "Repeat password"
+msgstr "اعاده الباسورد"
+
+#: .\accounts\templates\accounts\register.html:50
+msgid "Phone Number"
+msgstr "رقم التليفون"
+
+#: .\accounts\templates\accounts\register.html:62
+msgid "Have an account?"
+msgstr " لديك حساب ؟"
+
+#: .\accounts\templates\accounts\resetPassword.html:20
+msgid "Reset Password"
+msgstr "إعادة تعيين كلمة المرور"
+
+#: .\accounts\templates\accounts\resetPassword.html:25
+msgid "Create Password"
+msgstr "انشاء باسورد "
+
+#: .\accounts\templates\accounts\resetPassword.html:33
+msgid "Reset"
+msgstr "إعادة ضبط"
+
+#: .\accounts\templates\profile\dashboard.html:10
+#: .\accounts\templates\profile\dashboard.html:14
+#: .\accounts\templates\profile\dashboard.html:25
+#: .\accounts\templates\profile\orders.html:24
+#: .\accounts\templates\profile\profile.html:130
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+#: .\accounts\templates\profile\dashboard.html:12
+#: .\accounts\templates\profile\orders.html:11
 #: .\accounts\templates\profile\profile.html:124
 #: .\accounts\templates\profile\profile.html:175
+#: .\blog\templates\blog\post_detail.html:15
 #: .\blog\templates\blog\post_list.html:15
 #: .\products\templates\products\categories.html:15
 #: .\products\templates\products\product_detail.html:13
@@ -145,14 +297,133 @@ msgstr "الصفحات"
 msgid "Home"
 msgstr "الرئيسيه"
 
-#: .\accounts\templates\profile\profile.html:130
-msgid "Dashboard"
-msgstr "لوحة القيادة"
+#: .\accounts\templates\profile\dashboard.html:26
+#: .\accounts\templates\profile\orders.html:9
+#: .\accounts\templates\profile\orders.html:13
+#: .\accounts\templates\profile\orders.html:25
+msgid "My Orders"
+msgstr "طلباتي"
+
+#: .\accounts\templates\profile\dashboard.html:27
+#: .\accounts\templates\profile\orders.html:26
+#: .\accounts\templates\profile\profile.html:171
+#: .\accounts\templates\profile\profile.html:177 .\templates\base.html:179
+msgid "Profile"
+msgstr "حساب تعريفي"
+
+#: .\accounts\templates\profile\dashboard.html:32
+#: .\accounts\templates\profile\orders.html:31
+#: .\accounts\templates\profile\profile.html:108 .\templates\base.html:180
+msgid "logout"
+msgstr "تسجيل خروج"
+
+#: .\accounts\templates\profile\dashboard.html:38
+msgid "Loged in as :"
+msgstr "تسجيل دخولك :"
+
+#: .\accounts\templates\profile\dashboard.html:46
+msgid "Total Orders"
+msgstr "كل الطلبات"
+
+#: .\accounts\templates\profile\dashboard.html:48
+msgid "View Orders"
+msgstr "اظهار الطلبات"
+
+#: .\accounts\templates\profile\favourite.html:42
+#: .\products\templates\products\product_detail.html:287
+#: .\products\templates\products\product_list.html:100
+#: .\products\templates\products\product_list.html:208
+#: .\settings\templates\home.html:103 .\settings\templates\home.html:187
+msgid "View Detail"
+msgstr "اظهار التفاصيل"
+
+#: .\accounts\templates\profile\favourite.html:45
+#: .\products\templates\products\product_detail.html:290
+#: .\products\templates\products\product_list.html:103
+#: .\products\templates\products\product_list.html:211
+#: .\settings\templates\home.html:106 .\settings\templates\home.html:190
+msgid "Remove"
+msgstr "حذف"
+
+#: .\accounts\templates\profile\favourite.html:48
+#: .\products\templates\products\product_detail.html:293
+#: .\products\templates\products\product_list.html:106
+#: .\products\templates\products\product_list.html:214
+#: .\settings\templates\home.html:109 .\settings\templates\home.html:193
+msgid "To Favourite"
+msgstr "اضافه الي المفضله"
+
+#: .\accounts\templates\profile\favourite.html:56
+msgid "Nothing Found , No Favourite Products"
+msgstr "لم يتم العثور على أي شيء، ولا توجد منتجات مفضلة"
+
+#: .\accounts\templates\profile\favourite.html:67
+#: .\accounts\templates\profile\favourite.html:74
+#: .\blog\templates\blog\post_list.html:67
+#: .\blog\templates\blog\post_list.html:74
+#: .\products\templates\products\categories.html:46
+#: .\products\templates\products\categories.html:53
+#: .\products\templates\products\product_list.html:127
+#: .\products\templates\products\product_list.html:134
+#: .\products\templates\products\product_list.html:235
+#: .\products\templates\products\product_list.html:242
+msgid "Previous"
+msgstr "السابق"
+
+#: .\accounts\templates\profile\favourite.html:89
+#: .\accounts\templates\profile\favourite.html:96
+#: .\blog\templates\blog\post_list.html:89
+#: .\blog\templates\blog\post_list.html:96
+#: .\products\templates\products\categories.html:68
+#: .\products\templates\products\categories.html:75
+#: .\products\templates\products\product_list.html:149
+#: .\products\templates\products\product_list.html:156
+#: .\products\templates\products\product_list.html:257
+#: .\products\templates\products\product_list.html:264
+msgid "Next"
+msgstr "التالي"
+
+#: .\accounts\templates\profile\orders.html:37
+msgid "Your order history"
+msgstr "تاريخ طلبك"
+
+#: .\accounts\templates\profile\orders.html:45
+msgid "order #"
+msgstr "رقم الطلب"
+
+#: .\accounts\templates\profile\orders.html:46
+msgid "Billing Name"
+msgstr "الاسم الكامل"
+
+#: .\accounts\templates\profile\orders.html:47
+msgid "Phone"
+msgstr "رقم التليفون"
+
+#: .\accounts\templates\profile\orders.html:48
+msgid "Order Total"
+msgstr "اجمالي الطلب"
+
+#: .\accounts\templates\profile\orders.html:49
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#: .\accounts\templates\profile\profile.html:90
+msgid "Account Settings"
+msgstr "اعدادات الحساب"
+
+#: .\accounts\templates\profile\profile.html:99
+msgid "Need Help?"
+msgstr "تحتاج مساعدة؟"
+
+#: .\accounts\templates\profile\profile.html:120
+msgid "Pages"
+msgstr "الصفحات"
 
 #: .\accounts\templates\profile\profile.html:136
 #: .\products\templates\products\product_list.html:20
-#: .\products\templates\products\product_list.html:25 .\templates\base.html:165
-#: .\templates\base.html:267 .\templates\base.html:282
+#: .\products\templates\products\product_list.html:25
+#: .\templates\base.html:165 .\templates\base.html:267
+#: .\templates\base.html:282
 msgid "Shop"
 msgstr "المتجر"
 
@@ -164,7 +435,7 @@ msgid "Blog"
 msgstr "المدونه"
 
 #: .\accounts\templates\profile\profile.html:148
-#: .\accounts\templates\profile\profile.html:251 .\settings\models.py:63
+#: .\accounts\templates\profile\profile.html:252 .\settings\models.py:63
 #: .\settings\models.py:64 .\settings\templates\about.html:13
 #: .\settings\templates\about.html:17 .\templates\base.html:171
 msgid "About"
@@ -181,66 +452,33 @@ msgstr "التواصل"
 msgid "Favourite"
 msgstr "المفضله"
 
-#: .\accounts\templates\profile\profile.html:171
-#: .\accounts\templates\profile\profile.html:177 .\templates\base.html:179
-msgid "Profile"
-msgstr "حساب تعريفي"
-
 #: .\accounts\templates\profile\profile.html:239
 msgid "Overview"
 msgstr "مراجعه"
 
-#: .\accounts\templates\profile\profile.html:242
-#: .\accounts\templates\profile\profile.html:289
+#: .\accounts\templates\profile\profile.html:243
+#: .\accounts\templates\profile\profile.html:290
 msgid "Edit Profile"
 msgstr "تعديل الملف الشخصي"
 
-#: .\accounts\templates\profile\profile.html:246
-#: .\accounts\templates\profile\profile.html:296
-msgid "Change Password"
-msgstr "تغيير الباسورد"
-
-#: .\accounts\templates\profile\profile.html:253
+#: .\accounts\templates\profile\profile.html:254
 msgid "Profile Details"
 msgstr "تفاصيل الملف الشخصي"
 
-#: .\accounts\templates\profile\profile.html:255
+#: .\accounts\templates\profile\profile.html:256
 msgid "Full Name"
 msgstr "الاسم الكامل"
 
-#: .\accounts\templates\profile\profile.html:263
+#: .\accounts\templates\profile\profile.html:264
 msgid "Job"
 msgstr "الوظيفه"
 
-#: .\accounts\templates\profile\profile.html:275 .\orders\models.py:35
+#: .\accounts\templates\profile\profile.html:276 .\orders\models.py:35
 #: .\settings\models.py:13 .\settings\models.py:26
 msgid "phone"
 msgstr "رقم التليفون"
 
-#: .\accounts\templates\profile\profile.html:279 .\templates\base.html:302
-msgid "Email"
-msgstr "الايميل"
-
-#: .\accounts\templates\profile\profile.html:300
-#: .\accounts\templates\profile\profile.html:301
-msgid "Current Password"
-msgstr "الباسورد الحالي"
-
-#: .\accounts\templates\profile\profile.html:305
-#: .\accounts\templates\profile\profile.html:306
-msgid "Create New Password"
-msgstr "الباسورد الجديد"
-
-#: .\accounts\templates\profile\profile.html:310
-#: .\accounts\templates\profile\profile.html:312
-msgid "Confirm New Password"
-msgstr "تأكيد الباسورد الجديد"
-
-#: .\accounts\templates\profile\profile.html:315
-msgid "Submit"
-msgstr "ارسال"
-
-#: .\accounts\templates\profile\profile.html:331 .\templates\base.html:318
+#: .\accounts\templates\profile\profile.html:336 .\templates\base.html:318
 msgid "All Rights Reserved. Designed by"
 msgstr "كل الحقوق محفوظة. صمم بواسطة"
 
@@ -275,7 +513,7 @@ msgstr "وسم"
 msgid "description"
 msgstr "الوصف"
 
-#: .\blog\models.py:23
+#: .\blog\models.py:23 .\blog\templates\blog\post_detail.html:17
 msgid "Blogs"
 msgstr "المدونه"
 
@@ -291,32 +529,31 @@ msgstr "تصنيف المدونه"
 msgid "Blog Categories"
 msgstr "تصنيفات المدونه"
 
+#: .\blog\templates\blog\post_detail.html:13
+#: .\blog\templates\blog\post_detail.html:19
+#| msgid "Shop Detail"
+msgid "Blog Details"
+msgstr "تفاصيل المدونه"
+
+#: .\blog\templates\blog\post_detail.html:45
+#| msgid "Payments"
+msgid "Comments"
+msgstr "التعليقات"
+
+#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:109
+#: .\products\models.py:110 .\products\templates\products\categories.html:13
+#: .\products\templates\products\categories.html:17 .\templates\base.html:128
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: .\blog\templates\blog\post_detail.html:69
+msgid "Tag Cloud"
+msgstr "علامة السحابة"
+
 #: .\blog\templates\blog\post_list.html:51
 #: .\products\templates\products\product_list.html:114
 msgid "Nothing Found , PLS Try Again"
 msgstr "لم يتم العثور على أي شيء، يرجى المحاولة مرة أخرى"
-
-#: .\blog\templates\blog\post_list.html:67
-#: .\blog\templates\blog\post_list.html:74
-#: .\products\templates\products\categories.html:46
-#: .\products\templates\products\categories.html:53
-#: .\products\templates\products\product_list.html:127
-#: .\products\templates\products\product_list.html:134
-#: .\products\templates\products\product_list.html:235
-#: .\products\templates\products\product_list.html:242
-msgid "Previous"
-msgstr "السابق"
-
-#: .\blog\templates\blog\post_list.html:89
-#: .\blog\templates\blog\post_list.html:96
-#: .\products\templates\products\categories.html:68
-#: .\products\templates\products\categories.html:75
-#: .\products\templates\products\product_list.html:149
-#: .\products\templates\products\product_list.html:156
-#: .\products\templates\products\product_list.html:257
-#: .\products\templates\products\product_list.html:264
-msgid "Next"
-msgstr "التالي"
 
 #: .\carts\models.py:7
 msgid "cart_id"
@@ -506,12 +743,6 @@ msgstr "اسم التصنيف"
 msgid "category image"
 msgstr "صوره التصنيف"
 
-#: .\products\models.py:109 .\products\models.py:110
-#: .\products\templates\products\categories.html:13
-#: .\products\templates\products\categories.html:17 .\templates\base.html:128
-msgid "Categories"
-msgstr "التصنيفات"
-
 #: .\products\models.py:123
 msgid "user review"
 msgstr "تقييم المستخدم"
@@ -582,35 +813,9 @@ msgstr "يجب عليك شراء هذا المنتج لنشر التعليق."
 msgid "You must be logged in to post a review."
 msgstr "يجب عليك تسجيل الدخول لنشر التعليق."
 
-#: .\products\templates\products\product_detail.html:234
-#: .\templates\base.html:185
-msgid "Login"
-msgstr "تسجل دخول"
-
 #: .\products\templates\products\product_detail.html:254
 msgid "You May Also Like"
 msgstr "ربما يعجبك أيضا"
-
-#: .\products\templates\products\product_detail.html:287
-#: .\products\templates\products\product_list.html:100
-#: .\products\templates\products\product_list.html:208
-#: .\settings\templates\home.html:103 .\settings\templates\home.html:187
-msgid "View Detail"
-msgstr "اظهار التفاصيل"
-
-#: .\products\templates\products\product_detail.html:290
-#: .\products\templates\products\product_list.html:103
-#: .\products\templates\products\product_list.html:211
-#: .\settings\templates\home.html:106 .\settings\templates\home.html:190
-msgid "Remove"
-msgstr "حذف"
-
-#: .\products\templates\products\product_detail.html:293
-#: .\products\templates\products\product_list.html:106
-#: .\products\templates\products\product_list.html:214
-#: .\settings\templates\home.html:109 .\settings\templates\home.html:193
-msgid "To Favourite"
-msgstr "اضافه الي المفضله"
 
 #: .\products\templates\products\product_list.html:18
 msgid "Search Result"
@@ -788,10 +993,6 @@ msgstr "هذا البحث يعمل في الصفحة الرئيسية فقط ...
 #: .\templates\base.html:167
 msgid "All Categories"
 msgstr "كل التصنيفات"
-
-#: .\templates\base.html:186
-msgid "Register"
-msgstr "سجل"
 
 #: .\templates\base.html:219
 msgid "Shop Now"

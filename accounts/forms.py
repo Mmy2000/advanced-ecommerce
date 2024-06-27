@@ -1,14 +1,16 @@
 from django import forms
 from .models import  Profile 
 from accounts.models import User
+from django.utils.translation import gettext_lazy as _
+
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Enter Password',
+        'placeholder': _('Enter Password'),
         'class': 'form-control',
     }))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Confirm Password'
+        'placeholder': _('Confirm Password')
     }))
 
     class Meta:
@@ -17,10 +19,10 @@ class RegistrationForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs['placeholder'] = 'Enter First Name'
-        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter last Name'
-        self.fields['phone_number'].widget.attrs['placeholder'] = 'Enter Phone Number'
-        self.fields['email'].widget.attrs['placeholder'] = 'Enter Email Address'
+        self.fields['first_name'].widget.attrs['placeholder'] = _('Enter First Name')
+        self.fields['last_name'].widget.attrs['placeholder'] = _('Enter last Name')
+        self.fields['phone_number'].widget.attrs['placeholder'] = _('Enter Phone Number')
+        self.fields['email'].widget.attrs['placeholder'] = _('Enter Email Address')
         
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'

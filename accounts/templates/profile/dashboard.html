@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}
 Dashboard
 {% endblock title %}
 {% block body %}
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Dashboard</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "Dashboard" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Dashboard</p>
+            <p class="m-0">{% trans "Dashboard" %}</p>
         </div>
     </div>
 </div>
@@ -21,21 +22,20 @@ Dashboard
             <aside class="col-md-3">
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
-                    <a class="list-group-item active" href="{% url 'dashboard'%}"> Dashboard </a>
-                    <a class="list-group-item" href="{% url 'orders'%}"> My Orders </a>
-                    <a class="list-group-item" href="{% url 'profile'%}">Profile </a>
-                    <a class="list-group-item" href="{% url 'change_password'%}">Change Password </a>
+                    <a class="list-group-item active" href="{% url 'dashboard'%}">{% trans "Dashboard" %} </a>
+                    <a class="list-group-item" href="{% url 'orders'%}">{% trans "My Orders" %}  </a>
+                    <a class="list-group-item" href="{% url 'profile'%}">{% trans "Profile" %} </a>
+                    <a class="list-group-item" href="{% url 'change_password'%}">{% trans "Change Password" %} </a>
                 </ul>
                 <br>
                 <a class="btn btn-light btn-block" href="{% url 'logout'%}"> <i class="fa fa-power-off"></i> <span
-                        class="text">Log
-                        out</span> </a>
+                        class="text">{% trans "logout" %}</span> </a>
                 <!--   SIDEBAR .//END   -->
             </aside>
             <main class="col-md-9">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3">Loged in as :</strong>
+                        <strong class="d-inline-block mr-3">{% trans "Loged in as :" %}</strong>
                         <span>{{profile.full_name}}</span>
                     </header>
                     <div class="card-body">
@@ -43,9 +43,9 @@ Dashboard
                             <div class="col-md-6">
                                 <div class="card" style="text-align:center;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Total Orders</h5>
+                                        <h5 class="card-title">{% trans "Total Orders" %}</h5>
                                         <h4>{{orders_count}}</h4>
-                                        <a href="{% url 'orders'%}">View Orders</a>
+                                        <a href="{% url 'orders'%}">{% trans "View Orders" %}</a>
                                     </div>
                                 </div>
                             </div>

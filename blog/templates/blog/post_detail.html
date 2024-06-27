@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
 
 Blogs
@@ -9,13 +10,13 @@ Blogs
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Blog Details</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">{% trans "Blog Details" %}</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0"><a href="/">{% trans "Home" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0"><a href="{% url 'blog'%}">Blogs</a></p>
+            <p class="m-0"><a href="{% url 'blog'%}">{% trans "Blogs" %}</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Blog Details</p>
+            <p class="m-0">{% trans "Blog Details" %}</p>
         </div>
     </div>
 </div>
@@ -41,7 +42,7 @@ Blogs
 
 
             <div class="pt-5 mt-5">
-              <h3 class="mb-5"> Comments</h3>
+              <h3 class="mb-5">{% trans "Comments" %} </h3>
                 <div id="disqus_thread"></div>
             </div>
 
@@ -57,7 +58,7 @@ Blogs
             </div>
             <div class="sidebar-box ftco-animate">
               <div class="categories">
-                <h3>Categories</h3>
+                <h3>{% trans "Categories" %}</h3>
                 {% for category in categories %}
                 <li><a href="{% url 'post_by_category' category.name %}">{{category.name}} <span>{{category.post_count}}</span></a></li>
                 {% endfor %}
@@ -65,7 +66,7 @@ Blogs
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Tag Cloud</h3>
+              <h3>{% trans "Tag Cloud" %}</h3>
               <div class="tagcloud">
                 {% for tag in tags %}
                 <a href="{% url 'post_by_tags' tag %}" class="tag-cloud-link">{{tag}}</a>

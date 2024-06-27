@@ -176,7 +176,7 @@
                         <li class="breadcrumb-item">{% trans "Users" %}</li>
                         <li class="breadcrumb-item active">{% trans "Profile" %}</li>
                     </div>
-                    <div >
+                    <div>
                         <form action="{% url 'set_language' %}" method="post" class="form-inline d-flex  my-2 my-lg-0">
                             {% csrf_token %}
                             <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -239,7 +239,8 @@
                                         data-bs-target="#profile-overview">{% trans "Overview" %}</button>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">{% trans "Edit Profile" %}</button>
+                                    <button class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#profile-edit">{% trans "Edit Profile" %}</button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab"
@@ -283,12 +284,12 @@
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                                     <!-- Profile Edit Form -->
                                     <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form user_form %}
-    {% bootstrap_form profile_form %}
-    {% trans "Edit Profile" as edit_profile %}
-    {% bootstrap_button button_type="submit" content=edit_profile %}
-</form>
+                                        {% csrf_token %}
+                                        {% bootstrap_form user_form %}
+                                        {% bootstrap_form profile_form %}
+                                        {% trans "Edit Profile" as edit_profile %}
+                                        {% bootstrap_button button_type="submit" content=edit_profile %}
+                                    </form>
                                     <!-- End Profile Edit Form -->
                                 </div>
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
@@ -298,21 +299,25 @@
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label>{% trans "Current Password" %}</label>
-                                            <input type="password" class="form-control" placeholder="{% trans "Current Password" %}"
-                                                name="current_password" required>
+                                            <input type="password" class="form-control"
+                                                placeholder="{% trans "Current Password" %}" name="current_password"
+                                                required>
                                         </div><br> <!-- form-group// -->
                                         <div class="form-group">
                                             <label>{% trans "Create New Password" %}</label>
-                                            <input type="password" class="form-control" placeholder="{% trans "Create New Password" %}"
-                                                name="new_password" required>
+                                            <input type="password" class="form-control"
+                                                placeholder="{% trans "Create New Password" %}" name="new_password"
+                                                required>
                                         </div><br>
                                         <div class="form-group">
                                             <label>{% trans "Confirm New Password" %}</label>
                                             <input type="password" class="form-control"
-                                                placeholder="{% trans "Confirm New Password" %}" name="confirm_password" required>
+                                                placeholder="{% trans "Confirm New Password" %}" name="confirm_password"
+                                                required>
                                         </div><br><!-- form-group// -->
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">{% trans "Submit" %}  </button>
+                                            <button type="submit" class="btn btn-primary btn-block">{% trans "Submit" %}
+                                            </button>
                                         </div> <!-- form-group// -->
                                     </form>
                                     <!-- End Change Password Form -->
@@ -328,7 +333,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>Z Marketing</span></strong>.{% trans "All Rights Reserved. Designed by" %}  
+            &copy; Copyright <strong><span>Z Marketing</span></strong>.{% trans "All Rights Reserved. Designed by" %}
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
