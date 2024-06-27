@@ -283,11 +283,12 @@
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                                     <!-- Profile Edit Form -->
                                     <form method="POST" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        {% bootstrap_form user_form %}
-                                        {% bootstrap_form profile_form %}
-                                        {% bootstrap_button button_type="submit" content="Edit Profile" %}
-                                    </form>
+    {% csrf_token %}
+    {% bootstrap_form user_form %}
+    {% bootstrap_form profile_form %}
+    {% trans "Edit Profile" as edit_profile %}
+    {% bootstrap_button button_type="submit" content=edit_profile %}
+</form>
                                     <!-- End Profile Edit Form -->
                                 </div>
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
