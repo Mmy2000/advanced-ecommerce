@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 00:12+0300\n"
-"PO-Revision-Date: 2024-06-28 00:13+0300\n"
+"POT-Creation-Date: 2024-06-28 00:31+0300\n"
+"PO-Revision-Date: 2024-06-28 00:32+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -531,12 +531,10 @@ msgstr "تصنيفات المدونه"
 
 #: .\blog\templates\blog\post_detail.html:13
 #: .\blog\templates\blog\post_detail.html:19
-#| msgid "Shop Detail"
 msgid "Blog Details"
 msgstr "تفاصيل المدونه"
 
 #: .\blog\templates\blog\post_detail.html:45
-#| msgid "Payments"
 msgid "Comments"
 msgstr "التعليقات"
 
@@ -893,6 +891,22 @@ msgstr "التعليمات"
 #: .\settings\models.py:86 .\settings\models.py:87
 msgid "Home Images"
 msgstr "صور الصفحه الرئيسيه"
+
+#: .\settings\templates\404.html:10
+msgid "404"
+msgstr "404"
+
+#: .\settings\templates\404.html:11
+msgid "Sorry, the page you are looking for does not exist."
+msgstr "عذرا، الصفحة التي تبحث عنها غير موجودة."
+
+#: .\settings\templates\404.html:12
+msgid "Go back to the"
+msgstr "ارجع إلى"
+
+#: .\settings\templates\404.html:12
+msgid "homepage"
+msgstr "الصفحة الرئيسية"
 
 #: .\settings\templates\about.html:34
 msgid "What we do"
