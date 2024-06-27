@@ -12,6 +12,10 @@ class Payment(models.Model):
     status = models.CharField(_("status"), max_length=100)
     created_at = models.DateTimeField( _("created_at"),default=timezone.now)
 
+    class Meta:
+        verbose_name = _("Payments")
+        verbose_name_plural = _("Payment")
+
     def __str__(self):
         return self.payment_id
     
@@ -49,6 +53,10 @@ class Order(models.Model):
         return f'{self.first_name} {self.last_name}'
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
+    
+    class Meta:
+        verbose_name = _("Orders")
+        verbose_name_plural = _("Orders")
 
     def __str__(self):
         return self.first_name
@@ -64,6 +72,10 @@ class OrderProduct(models.Model):
     ordered = models.BooleanField(_("ordered"),default=False)
     created_at = models.DateTimeField(_("created_at"), default=timezone.now)
     updated_at = models.DateTimeField(_("updated_at"),default=timezone.now)
+
+    class Meta:
+        verbose_name = _("Order Products")
+        verbose_name_plural = _("Order Products")
 
     def __str__(self):
         return self.product.name

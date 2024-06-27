@@ -9,7 +9,7 @@ class Cart(models.Model):
 
     class Meta:
         verbose_name = _("Carts")
-        verbose_name_plural = ("Carts")
+        verbose_name_plural = _("Carts")
 
 
     def __str__(self):
@@ -25,7 +25,7 @@ class CartItem(models.Model):
 
     class Meta:
         verbose_name = _("Cart Item")
-        verbose_name_plural = ("Cart Item")
+        verbose_name_plural = _("Cart Item")
 
     def sub_total(self):
         return self.product.price * self.quantity
