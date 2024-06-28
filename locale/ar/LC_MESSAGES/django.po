@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 00:53+0300\n"
-"PO-Revision-Date: 2024-06-28 00:54+0300\n"
+"POT-Creation-Date: 2024-06-28 03:10+0300\n"
+"PO-Revision-Date: 2024-06-28 03:09+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
 
 #: .\accounts\forms.py:9
@@ -107,9 +108,9 @@ msgstr "العنوان "
 msgid "image"
 msgstr "صوره"
 
-#: .\accounts\models.py:88
+#: .\accounts\models.py:88 .\accounts\templates\profile\profile.html:252
 msgid "about"
-msgstr "عن الموقع"
+msgstr "عنك"
 
 #: .\accounts\models.py:89 .\accounts\templates\profile\profile.html:268
 #: .\orders\models.py:40
@@ -425,9 +426,8 @@ msgstr "الصفحات"
 
 #: .\accounts\templates\profile\profile.html:136
 #: .\products\templates\products\product_list.html:20
-#: .\products\templates\products\product_list.html:25
-#: .\templates\base.html:165 .\templates\base.html:267
-#: .\templates\base.html:282
+#: .\products\templates\products\product_list.html:25 .\templates\base.html:165
+#: .\templates\base.html:267 .\templates\base.html:282
 msgid "Shop"
 msgstr "المتجر"
 
@@ -438,8 +438,7 @@ msgstr "المتجر"
 msgid "Blog"
 msgstr "المدونه"
 
-#: .\accounts\templates\profile\profile.html:148
-#: .\accounts\templates\profile\profile.html:252 .\settings\models.py:63
+#: .\accounts\templates\profile\profile.html:148 .\settings\models.py:63
 #: .\settings\models.py:64 .\settings\templates\about.html:13
 #: .\settings\templates\about.html:17 .\templates\base.html:171
 msgid "About"
@@ -602,9 +601,8 @@ msgid "Continue Shopping"
 msgstr "مواصلة التسوق"
 
 #: .\carts\templates\cart.html:43 .\carts\templates\checkout.html:85
-#: .\orders\templates\order_complete.html:68
-#: .\orders\templates\payment.html:51 .\products\models.py:28
-#: .\products\models.py:29
+#: .\orders\templates\order_complete.html:68 .\orders\templates\payment.html:51
+#: .\products\models.py:28 .\products\models.py:29
 msgid "Products"
 msgstr "المنتجات"
 
@@ -655,7 +653,6 @@ msgid "Billing Address"
 msgstr "عنوان وصول الفواتير"
 
 #: .\carts\templates\checkout.html:33
-#| msgid "First name"
 msgid "First Name"
 msgstr "الاسم الاول"
 
@@ -664,7 +661,6 @@ msgid "John"
 msgstr ""
 
 #: .\carts\templates\checkout.html:37
-#| msgid "Last name"
 msgid "Last Name"
 msgstr "الاسم الثاني"
 
@@ -673,7 +669,6 @@ msgid "Doe"
 msgstr ""
 
 #: .\carts\templates\checkout.html:41
-#| msgid "Email"
 msgid "E-mail"
 msgstr "الايميل"
 
@@ -690,7 +685,6 @@ msgid "+123 456 789"
 msgstr ""
 
 #: .\carts\templates\checkout.html:49
-#| msgid "address_line_1"
 msgid "Address Line 1"
 msgstr "عنوان رقم 1"
 
@@ -699,12 +693,10 @@ msgid "123 Street"
 msgstr ""
 
 #: .\carts\templates\checkout.html:53
-#| msgid "address_line_2"
 msgid "Address Line 2"
 msgstr "عنوان رقم 2"
 
 #: .\carts\templates\checkout.html:57
-#| msgid "country"
 msgid "Country"
 msgstr "الدوله"
 
@@ -717,12 +709,10 @@ msgid "City"
 msgstr "المدينه"
 
 #: .\carts\templates\checkout.html:62 .\carts\templates\checkout.html:66
-#| msgid "New Password"
 msgid "New York"
 msgstr "نيويورك"
 
 #: .\carts\templates\checkout.html:65
-#| msgid "state"
 msgid "State"
 msgstr "ولاية"
 
@@ -735,7 +725,6 @@ msgid "123"
 msgstr ""
 
 #: .\carts\templates\checkout.html:73
-#| msgid "Order Note:"
 msgid "Order Note"
 msgstr "ملاحظة الطلب:"
 
@@ -745,12 +734,10 @@ msgid "Payment"
 msgstr "معرف الدفع"
 
 #: .\carts\templates\checkout.html:115
-#| msgid "Stripe"
 msgid "Stripe Only"
 msgstr "سترايب فقط"
 
 #: .\carts\templates\checkout.html:118
-#| msgid "View Orders"
 msgid "Place Order"
 msgstr "اظهار الطلبات"
 
@@ -847,7 +834,6 @@ msgid "Order Products"
 msgstr "منتجات الطلب"
 
 #: .\orders\templates\order_complete.html:14
-#| msgid "Subcribed Successfuly"
 msgid "Payment Successful"
 msgstr "تم الدفع بنجاح"
 

@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load django_bootstrap5 %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{current_language}}">
 
 <head>
     <meta charset="utf-8">
@@ -249,7 +249,7 @@
                             </ul>
                             <div class="tab-content pt-2">
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <h5 class="card-title">{% trans "About" %}</h5>
+                                    <h5 class="card-title">{% trans "about" %}</h5>
                                     <p class="small fst-italic">{{profile.about}}</p>
                                     <h5 class="card-title">{% trans "Profile Details" %}</h5>
                                     <div class="row">
