@@ -29,14 +29,14 @@
                         <img class="w-100 h-100" src="{{single_product.image.url}}" alt="Image">
                     </div>
                     {% if single_product.product_image.all %}
-    {% for image in single_product.product_image.all %}
-        {% if image.image %}
-            <div class="carousel-item">
-                <img class="w-100 h-100" src="{{ image.image.url }}" alt="Image">
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+                    {% for image in single_product.product_image.all %}
+                    {% if image.image %}
+                    <div class="carousel-item">
+                        <img class="w-100 h-100" src="{{ image.image.url }}" alt="Image">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
                 </div>
                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                     <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -73,7 +73,7 @@
             <span class="badge bg-secondary">Out of Stock</span>
             {% else %}
             {% endif %}
-            <p class="mb-4">{{single_product.description}}</p>
+            <p class="mb-4">{{single_product.description|safe}}</p>
 
             <form action="{% url 'add_cart' single_product.id %}" method="POST">
                 {% csrf_token %}
@@ -102,7 +102,7 @@
 
                 </div>
                 {% endif %}
-
+                {% if single_product.owner.is_superadmin %}
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -119,16 +119,40 @@
                             </a>
                         </div>
                     </div>
-                    {% if single_product.stock <= 0 %}
-                    <button type="submit" class="btn btn-primary px-3 disabled"><i class="fa fa-shopping-cart mr-1"></i>
-                        {% trans "Add To Cart" %}</button>
-                    {% else %}
-                    <button type="submit" class="btn btn-primary px-3"><i
-                            class="fa fa-shopping-cart mr-1"></i>{% trans "Add To Cart" %}
-                        </button>
 
+
+                    {% if single_product.stock <= 0 %}
+                    <button type="submit" class="btn btn-primary px-3 disabled">
+                        <i class="fa fa-shopping-cart mr-1"></i>{% trans "Add To Cart" %}
+                    </button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary px-3">
+                        <i class="fa fa-shopping-cart mr-1"></i>{% trans "Add To Cart" %}
+                    </button>
                     {% endif %}
+
                 </div>
+                {% else %}
+                <h4>please contact with the owner to get more details</h4>
+                <h5>Owner Information</h5>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-unstyled mx-2">
+                            <li><i class="bi bi-chevron-right"></i> <strong>name:</strong>
+                                <span>{{single_product.owner.profile.full_name}}</span></li>
+                            <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+                                <span>{{single_product.owner.email}} </span></li>
+                            <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
+                                <span>{{single_product.owner.phone_number}} </span></li>
+                            <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong>
+                                <span>{{single_product.owner.profile.full_address}}
+                                </span></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                {% endif %}
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Tags :</p>
                     <div class="d-inline-flex">
@@ -144,15 +168,14 @@
     <div class="row px-xl-5">
         <div class="col">
             <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                <a class="nav-item nav-link active" data-toggle="tab"
-                    href="#tab-pane-1">{% trans "Description" %}</a>
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">{% trans "Description" %}</a>
                 <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">{% trans "Reviews" %}
                     ({{single_product.count_review}})</a>
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
                     <h4 class="mb-3">{% trans "Product Description" %}</h4>
-                    <p>{{single_product.description}}</p>
+                    <p>{{single_product.description|safe}}</p>
                 </div>
                 <div class="tab-pane fade" id="tab-pane-2">
                     <div class="row">
@@ -269,7 +292,6 @@
                         <h6 class="text-truncate mb-3">{{related_product.name}}</h6>
                         <div class="d-flex justify-content-center">
                             <h6>UAE{{related_product.price}}</h6>
-                            <h6 class="text-muted ml-2"><del>UAE{{related_product.price}}</del></h6>
                         </div>
                         <div class="rating-star">
                             <span>
