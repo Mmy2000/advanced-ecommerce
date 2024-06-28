@@ -5,10 +5,14 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Count
-from .forms import ReviewForm 
+from .forms import ReviewForm , ProductImageFormset , ProductImageForm , ProductForm
 from django.contrib import messages
 from orders.models import OrderProduct
 from .filters import ProductFilter
+from django.views.generic import CreateView
+from django.urls import reverse
+
+
 
 
 # Create your views here.
@@ -199,3 +203,45 @@ def submit_review(request , product_id):
                 messages.success(request,'Thank You , Your Review has been submitted.')
                 return redirect(url)
             
+class AddProduct(CreateView):
+    model = Product
+    form_class = ProductForm
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        image_formset = ProductImageFormset()
+        return self.render_to_response(self.get_context_data(
+            form=form,
+            image_formset=image_formset,
+        ))
+
+    def post(self, request, *args, **kwargs):
+        self.object = None  # Add this line
+        form = self.get_form()
+        image_formset = ProductImageFormset(self.request.POST, self.request.FILES)
+
+        if form.is_valid() and image_formset.is_valid():
+            myform = form.save(commit=False)
+            myform.owner = request.user
+
+            myform.save()
+
+            for image_form in image_formset:
+                myform2 = image_form.save(commit=False)
+                myform2.product = myform
+                myform2.save()
+
+            ### send gmail message
+
+            return redirect(reverse('product_list'))
+        else:
+            return self.render_to_response(self.get_context_data(
+                form=form,
+                image_formset=image_formset,
+            ))
+
+        # Add this line
+        return self.render_to_response(self.get_context_data(form=form, image_formset=image_formset))
+

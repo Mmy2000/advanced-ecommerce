@@ -9,6 +9,7 @@ from taggit.managers import TaggableManager
 from django.core.validators import MaxValueValidator , MinValueValidator
 # Create your models here.
 class Product(models.Model):
+    owner = models.ForeignKey(User, related_name='product_owner',verbose_name=_("product_owner"),default="", on_delete=models.CASCADE)
     name = models.CharField(_("product name"),unique=True, max_length=50)
     image = models.ImageField(_("image"),upload_to='product/')
     stock = models.IntegerField(_("stock"),default=1)
