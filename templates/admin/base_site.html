@@ -3,7 +3,7 @@
 
 
 {% block branding %}
-    <h1 id="site-name"><a href="{% url 'admin:index' %}">{% trans 'EL SAADA' %}</a></h1>
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{% trans 'EL SAADA CARAVANS' %}</a></h1>
     <form action="{% url 'set_language' %}" method="post" class="form-inline d-flex my-2 my-lg-0">
         {% csrf_token %}
         <input name="next" type="hidden" value="{{ request.path }}">
