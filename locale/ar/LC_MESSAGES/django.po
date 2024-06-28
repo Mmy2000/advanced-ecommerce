@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 08:51+0300\n"
-"PO-Revision-Date: 2024-06-28 08:51+0300\n"
+"POT-Creation-Date: 2024-06-28 09:03+0300\n"
+"PO-Revision-Date: 2024-06-28 09:05+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1214,8 +1214,9 @@ msgid "Just Arrived"
 msgstr "وصل للتو"
 
 #: .\templates\admin\base_site.html:6
-msgid "EL SAADA"
-msgstr "السعاده"
+#| msgid "EL SAADA"
+msgid "EL SAADA CARAVANS"
+msgstr "كرفانات السعاده"
 
 #: .\templates\admin\base_site.html:27
 msgid "Welcome To Admin Page"
