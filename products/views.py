@@ -218,22 +218,23 @@ class AddProduct(CreateView):
         ))
 
     def post(self, request, *args, **kwargs):
-        self.object = None  # Add this line
+        self.object = None
         form = self.get_form()
         image_formset = ProductImageFormset(self.request.POST, self.request.FILES)
 
         if form.is_valid() and image_formset.is_valid():
             myform = form.save(commit=False)
             myform.owner = request.user
-
             myform.save()
+            form.save_m2m()  # Save the many-to-many data for the form (including tags)
 
             for image_form in image_formset:
-                myform2 = image_form.save(commit=False)
-                myform2.product = myform
-                myform2.save()
+                if image_form.cleaned_data.get('image'):
+                    myform2 = image_form.save(commit=False)
+                    myform2.product = myform
+                    myform2.save()
 
-            ### send gmail message
+            # Send email logic here if needed
 
             return redirect(reverse('product_list'))
         else:
@@ -242,6 +243,4 @@ class AddProduct(CreateView):
                 image_formset=image_formset,
             ))
 
-        # Add this line
-        return self.render_to_response(self.get_context_data(form=form, image_formset=image_formset))
 

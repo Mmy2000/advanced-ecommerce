@@ -29,19 +29,14 @@ ProductImageFormset = inlineformset_factory(
     can_delete=True,
 )
 
+from taggit.forms import TagField
+
 class ProductForm(forms.ModelForm):
-    # new_category = forms.CharField(required=False)
-    # existing_category = forms.ModelChoiceField(queryset=Subcategory.objects.all(), required=False)
+    tags = TagField(required=False,help_text="A comma-separated list of tags.")
 
     class Meta:
         model = Product
         exclude = ('slug', 'owner', 'is_available', 'like', 'views')
 
 
-
-        # if new_category and existing_category:
-        #     raise forms.ValidationError("Please enter either a new category or select an existing category, not both.")
-
-        # if not new_category and not existing_category:
-        #     raise forms.ValidationError("Please provide a category.")
 
