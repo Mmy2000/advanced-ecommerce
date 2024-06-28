@@ -8,16 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 03:10+0300\n"
-"PO-Revision-Date: 2024-06-28 03:09+0300\n"
+"POT-Creation-Date: 2024-06-28 08:51+0300\n"
+"PO-Revision-Date: 2024-06-28 08:51+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
 
 #: .\accounts\forms.py:9
@@ -426,8 +425,9 @@ msgstr "الصفحات"
 
 #: .\accounts\templates\profile\profile.html:136
 #: .\products\templates\products\product_list.html:20
-#: .\products\templates\products\product_list.html:25 .\templates\base.html:165
-#: .\templates\base.html:267 .\templates\base.html:282
+#: .\products\templates\products\product_list.html:25
+#: .\templates\base.html:165 .\templates\base.html:267
+#: .\templates\base.html:282
 msgid "Shop"
 msgstr "المتجر"
 
@@ -601,8 +601,9 @@ msgid "Continue Shopping"
 msgstr "مواصلة التسوق"
 
 #: .\carts\templates\cart.html:43 .\carts\templates\checkout.html:85
-#: .\orders\templates\order_complete.html:68 .\orders\templates\payment.html:51
-#: .\products\models.py:28 .\products\models.py:29
+#: .\orders\templates\order_complete.html:68
+#: .\orders\templates\payment.html:51 .\products\models.py:28
+#: .\products\models.py:29
 msgid "Products"
 msgstr "المنتجات"
 
@@ -1211,6 +1212,14 @@ msgstr "تم الاشتراك بنجاح"
 #: .\settings\templates\home.html:156
 msgid "Just Arrived"
 msgstr "وصل للتو"
+
+#: .\templates\admin\base_site.html:6
+msgid "EL SAADA"
+msgstr "السعاده"
+
+#: .\templates\admin\base_site.html:27
+msgid "Welcome To Admin Page"
+msgstr "مرحبا بكم في صفحة المشرف"
 
 #: .\templates\base.html:52
 msgid "Help"
