@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 09:03+0300\n"
-"PO-Revision-Date: 2024-06-28 09:05+0300\n"
+"POT-Creation-Date: 2024-06-28 09:09+0300\n"
+"PO-Revision-Date: 2024-06-28 09:09+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1028,6 +1028,11 @@ msgstr "الموضوع"
 msgid "Your Review :"
 msgstr "تقييمك"
 
+#: .\products\templates\products\product_detail.html:228
+#| msgid "Submit"
+msgid "Submit Review"
+msgstr "إرسال المراجعة"
+
 #: .\products\templates\products\product_detail.html:230
 msgid "You must purchase this product to post a review."
 msgstr "يجب عليك شراء هذا المنتج لنشر التعليق."
@@ -1214,7 +1219,6 @@ msgid "Just Arrived"
 msgstr "وصل للتو"
 
 #: .\templates\admin\base_site.html:6
-#| msgid "EL SAADA"
 msgid "EL SAADA CARAVANS"
 msgstr "كرفانات السعاده"
 

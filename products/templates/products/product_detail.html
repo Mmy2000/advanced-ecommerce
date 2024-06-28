@@ -225,7 +225,7 @@
                                     <br>
                                     {% if user.is_authenticated %}
                                     {% if orderproduct %}
-                                    <input type="submit" value="Submit Review" class="btn btn-primary">
+                                    <input type="submit" value="{% trans "Submit Review" %}" class="btn btn-primary">
                                     {% else %}
                                     <p>{% trans "You must purchase this product to post a review." %}</p>
                                     {% endif %}
