@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 04:54+0300\n"
-"PO-Revision-Date: 2024-06-29 04:55+0300\n"
+"POT-Creation-Date: 2024-06-29 05:06+0300\n"
+"PO-Revision-Date: 2024-06-29 05:07+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1085,6 +1085,11 @@ msgstr "اضف المنتج"
 #: .\products\templates\products\product_list.html:18
 msgid "Search Result"
 msgstr "نتائج البحث"
+
+#: .\products\templates\products\product_list.html:42
+#| msgid "Products"
+msgid "Products Filter "
+msgstr "تصفية المنتجات"
 
 #: .\products\templates\products\product_list.html:47
 msgid "Search"
