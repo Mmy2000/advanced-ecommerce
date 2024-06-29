@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 03:26+0300\n"
-"PO-Revision-Date: 2024-06-29 03:27+0300\n"
+"POT-Creation-Date: 2024-06-29 04:46+0300\n"
+"PO-Revision-Date: 2024-06-29 04:47+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -391,12 +391,10 @@ msgid "Next"
 msgstr "التالي"
 
 #: .\accounts\templates\profile\my_products.html:46
-#| msgid "Review Products"
 msgid "Delete Product"
 msgstr "حذف المنتج"
 
 #: .\accounts\templates\profile\my_products.html:54
-#| msgid "Nothing Found , No Favourite Products"
 msgid "Nothing Found , No Products for you"
 msgstr "لم يتم العثور على أي شيء، ولا توجد منتجات لديك"
 
@@ -439,7 +437,6 @@ msgid "Pages"
 msgstr "الصفحات"
 
 #: .\accounts\templates\profile\profile.html:136
-#| msgid "Products"
 msgid "My Products"
 msgstr "منتجاتي"
 
@@ -939,7 +936,6 @@ msgid "Enter price range"
 msgstr "أدخل النطاق السعري"
 
 #: .\products\models.py:12
-#| msgid "product name"
 msgid "product_owner"
 msgstr "مالك المنتج"
 
@@ -1025,6 +1021,14 @@ msgstr "تفاصيل المنتج"
 msgid "Add To Cart"
 msgstr "اضف الي السله"
 
+#: .\products\templates\products\product_detail.html:136
+msgid "please contact with the owner to get more details"
+msgstr "يرجى التواصل مع المالك للحصول على مزيد من التفاصيل"
+
+#: .\products\templates\products\product_detail.html:137
+msgid "Owner Information"
+msgstr "معلومات المالك"
+
 #: .\products\templates\products\product_detail.html:171
 msgid "Description"
 msgstr "الوصف"
@@ -1071,7 +1075,6 @@ msgstr "ربما يعجبك أيضا"
 
 #: .\products\templates\products\product_form.html:22
 #: .\templates\base.html:201
-#| msgid "Products"
 msgid "Add Product"
 msgstr "اضف المنتج"
 
