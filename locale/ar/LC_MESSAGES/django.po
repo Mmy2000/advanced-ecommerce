@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 04:46+0300\n"
-"PO-Revision-Date: 2024-06-29 04:47+0300\n"
+"POT-Creation-Date: 2024-06-29 04:54+0300\n"
+"PO-Revision-Date: 2024-06-29 04:55+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -883,7 +883,11 @@ msgstr "اجمالي الطلب"
 msgid "Thank you for shopping with us!"
 msgstr "شكرا للتسوق معنا!"
 
-#: .\orders\templates\order_complete.html:117
+#: .\orders\templates\order_complete.html:114
+msgid "Please take a screenshot, it may be important"
+msgstr "يرجى التقاط لقطة للشاشة، فقد تكون مهمة"
+
+#: .\orders\templates\order_complete.html:118
 msgid "Shop more"
 msgstr "تسوق أكثر"
 
