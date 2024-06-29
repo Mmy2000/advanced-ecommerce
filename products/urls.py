@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import product_list  , product_detail  , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , search_result ,  load_subcategories , AddProduct
+from . views import product_list  , product_detail  , add_to_favourit , filter_by_price , filter_by_variations , category_list , submit_review , search_result ,  load_subcategories ,deleteProduct, AddProduct
 
 urlpatterns = [
     path('', product_list ,name = 'product_list'),
@@ -14,5 +14,6 @@ urlpatterns = [
     path('submit_review/<int:product_id>/',submit_review ,name='submit_review'),
     path('load-subcategories/', load_subcategories, name='load_subcategories'),
     path( 'new/',AddProduct.as_view() , name='product_new' ),
+    path( 'delete/<int:id>',deleteProduct , name='deleteProduct' ),
 
 ]

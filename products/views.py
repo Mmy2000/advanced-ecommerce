@@ -11,7 +11,7 @@ from orders.models import OrderProduct
 from .filters import ProductFilter
 from django.views.generic import CreateView
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -235,6 +235,7 @@ class AddProduct(CreateView):
                     myform2.save()
 
             # Send email logic here if needed
+            messages.success(request, ' Your Product added successfully')
 
             return redirect(reverse('product_list'))
         else:
@@ -243,4 +244,9 @@ class AddProduct(CreateView):
                 image_formset=image_formset,
             ))
 
-
+@login_required(login_url='login') 
+def deleteProduct(request , id):
+    product = Product.objects.get(id=id)
+    product.delete()
+    messages.success(request, ' Your Product deleted successfully')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

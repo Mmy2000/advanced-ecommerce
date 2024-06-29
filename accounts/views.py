@@ -283,3 +283,10 @@ def favourite(request):
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
     return render(request , 'profile/favourite.html',{'products':paged_product})
+
+def myProducts(request):
+    products = Product.objects.filter(owner=request.user)
+    paginator = Paginator(products,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    return render(request , 'profile/my_products.html',{'products':paged_product} )

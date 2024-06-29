@@ -15,6 +15,7 @@ urlpatterns = [
     path('orders/' , views.orders , name="orders" ),
     path('order_detail/<int:order_id>/' , views.order_detail , name="order_detail" ),
     path('favourite/' , views.favourite , name="favourite" ),
+    path('my-products/' , views.myProducts , name="myProducts" ),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
 
 

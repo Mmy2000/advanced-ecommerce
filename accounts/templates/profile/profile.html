@@ -129,7 +129,13 @@
                     <i class="bi bi-speedometer2"></i>
                     <span>{% trans "Dashboard" %}</span>
                 </a>
-            </li><!-- End Profile Page Nav -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'myProducts'%}">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>{% trans "My Products" %}</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'product_list'%}">
                     <i class="bi bi-shop"></i>
