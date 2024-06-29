@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="row align-items-center py-2 px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
+            <div class="col-lg-2 d-none d-lg-block">
                 <a href="/" class="text-decoration-none">
                     <h1 class="m-0  text-center display-5 font-weight-semi-bold">
                         <img src="{{about_site.logo.url}}" width="100px" height="100px" alt="Logo">
@@ -85,7 +85,8 @@
                 <form id="searchForm" autocomplete="off" action="">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="{% trans "Search for products" %}">
+                        <input type="text" id="searchInput" class="form-control"
+                            placeholder="{% trans "Search for products" %}">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -93,10 +94,11 @@
                         </div>
                     </div>
                 </form>
-                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">{% trans "this search work in home page only..." %}</div>
+                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">
+                    {% trans "this search work in home page only..." %}</div>
             </div>
 
-            <div class="col-lg-3 col-6  text-right">
+            <div class="col-lg-4 col-6 d-lg-flex justify-content-center align-items-center  text-right">
                 <a href="{% url 'favourite'%}" class="btn border">
                     {% if product_counter == 0 %}
                     <i class="fa-regular fa-heart text-primary"></i>
@@ -111,6 +113,25 @@
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">{{cart_counter}}</span>
                 </a>
+                <form action="{% url 'set_language' %}" method="post" class="form-inline  ">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <div class="form-group mx-sm-3 ">
+                                <label for="language" class="sr-only">Language</label>
+                                <select name="language" id="language" class="form-control">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                    <option value="{{ language.code }}"
+                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary ">Go</button>
+                        </form>
             </div>
         </div>
     </div>
@@ -158,19 +179,19 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-    <a href="/"
-       class="nav-item nav-link {% if request.path == '/' or request.path == '/en/' or request.path == '/ar/' %}active{% endif %}">{% trans "Home" %}</a>
-    <a href="{% url 'product_list' %}"
-       class="nav-item nav-link {% if request.path == '/products/' or request.path == '/products/en/' or request.path == '/products/ar/' %}active{% endif %}">{% trans "Shop" %}</a>
-    <a href="{% url 'categories' %}"
-       class="nav-item nav-link {% if request.path == '/products/categories/' or request.path == '/products/categories/en/' or request.path == '/products/categories/ar/' %}active{% endif %}">{% trans "All Categories" %}</a>
-    <a href="{% url 'blog' %}"
-       class="nav-item nav-link {% if request.path == '/blog/' or request.path == '/blog/en/' or request.path == '/blog/ar/' %}active{% endif %}">{% trans "Blog" %}</a>
-    <a href="{% url 'about' %}"
-       class="nav-item nav-link {% if request.path == '/about/' or request.path == '/about/en/' or request.path == '/about/ar/' %}active{% endif %}">{% trans "About" %}</a>
-    <a href="{% url 'contact' %}"
-       class="nav-item nav-link {% if request.path == '/contact/' or request.path == '/contact/en/' or request.path == '/contact/ar/' %}active{% endif %}">{% trans "Contact" %}</a>
-</div>
+                            <a href="/"
+                                class="nav-item nav-link {% if request.path == '/' or request.path == '/en/' or request.path == '/ar/' %}active{% endif %}">{% trans "Home" %}</a>
+                            <a href="{% url 'product_list' %}"
+                                class="nav-item nav-link {% if request.path == '/products/' or request.path == '/products/en/' or request.path == '/products/ar/' %}active{% endif %}">{% trans "Shop" %}</a>
+                            <a href="{% url 'categories' %}"
+                                class="nav-item nav-link {% if request.path == '/products/categories/' or request.path == '/products/categories/en/' or request.path == '/products/categories/ar/' %}active{% endif %}">{% trans "All Categories" %}</a>
+                            <a href="{% url 'blog' %}"
+                                class="nav-item nav-link {% if request.path == '/blog/' or request.path == '/blog/en/' or request.path == '/blog/ar/' %}active{% endif %}">{% trans "Blog" %}</a>
+                            <a href="{% url 'about' %}"
+                                class="nav-item nav-link {% if request.path == '/about/' or request.path == '/about/en/' or request.path == '/about/ar/' %}active{% endif %}">{% trans "About" %}</a>
+                            <a href="{% url 'contact' %}"
+                                class="nav-item nav-link {% if request.path == '/contact/' or request.path == '/contact/en/' or request.path == '/contact/ar/' %}active{% endif %}">{% trans "Contact" %}</a>
+                        </div>
 
                         {% if user.is_authenticated %}
 
@@ -186,25 +207,7 @@
                             <a href="{% url 'register' %}" class="nav-item nav-link">{% trans "Register" %}</a>
                         </div>
                         {% endif %}
-                        <form action="{% url 'set_language' %}" method="post" class="form-inline my-2 my-lg-0">
-                            {% csrf_token %}
-                            <input name="next" type="hidden" value="{{ redirect_to }}">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="language" class="sr-only">Language</label>
-                                <select name="language" id="language" class="form-control">
-                                    {% get_current_language as LANGUAGE_CODE %}
-                                    {% get_available_languages as LANGUAGES %}
-                                    {% get_language_info_list for LANGUAGES as languages %}
-                                    {% for language in languages %}
-                                    <option value="{{ language.code }}"
-                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                                        {{ language.name_local }} ({{ language.code }})
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-2">Go</button>
-                        </form>
+
                     </div>
                 </nav>
                 {% if request.path == '/' or request.path == '/en/' or request.path == '/ar/' %}
@@ -216,7 +219,8 @@
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">{{ image.title }}</h3>
-                                    <a href="{% url 'product_list' %}" class="btn btn-light py-2 px-3">{% trans "Shop Now" %}</a>
+                                    <a href="{% url 'product_list' %}"
+                                        class="btn btn-light py-2 px-3">{% trans "Shop Now" %}</a>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +306,8 @@
                                     placeholder="{% trans "Email" %}" required="required" />
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">{% trans "Subscribe Now" %}</button>
+                                <button class="btn btn-primary btn-block border-0 py-3"
+                                    type="submit">{% trans "Subscribe Now" %}</button>
                             </div>
                         </form>
                     </div>
@@ -315,7 +320,8 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="/">{{about_site.site_name}}</a>.{% trans "All Rights Reserved. Designed by" %}
+                    &copy; <a class="text-dark font-weight-semi-bold"
+                        href="/">{{about_site.site_name}}</a>.{% trans "All Rights Reserved. Designed by" %}
                     <a class="text-dark font-weight-semi-bold" href="https://zmarketings.com">Z Marketing</a><br>
                 </p>
             </div>

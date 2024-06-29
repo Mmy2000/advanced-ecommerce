@@ -12,6 +12,8 @@ from .filters import ProductFilter
 from django.views.generic import CreateView
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 
@@ -203,7 +205,7 @@ def submit_review(request , product_id):
                 messages.success(request,'Thank You , Your Review has been submitted.')
                 return redirect(url)
             
-class AddProduct(CreateView):
+class AddProduct(LoginRequiredMixin,CreateView):
     model = Product
     form_class = ProductForm
 
