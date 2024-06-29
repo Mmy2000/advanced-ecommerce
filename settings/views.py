@@ -14,7 +14,7 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 def home(request):
     trandy_paroduct = Product.objects.all().order_by('-views')[:4]
     just_arrived = Product.objects.all().order_by('-created_at')[:4]
-    categories = Category.objects.all()
+    categories = Category.objects.annotate(subcategory_count=Count('subcategory'))
 
     context = {
         'trandy_product':trandy_paroduct,
@@ -25,7 +25,7 @@ def home(request):
 
 def subcategories(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    subcategories = Subcategory.objects.filter(category=category)
+    subcategories = Subcategory.objects.filter(category=category).annotate(product_count=Count('product_subcategory'))
 
     context = {
         'category': category,

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 09:37+0300\n"
-"PO-Revision-Date: 2024-06-29 09:38+0300\n"
+"POT-Creation-Date: 2024-06-29 12:36+0300\n"
+"PO-Revision-Date: 2024-06-29 12:38+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -335,7 +335,7 @@ msgstr "اظهار الطلبات"
 #: .\products\templates\products\product_detail.html:313
 #: .\products\templates\products\product_list.html:101
 #: .\products\templates\products\product_list.html:209
-#: .\settings\templates\home.html:103 .\settings\templates\home.html:187
+#: .\settings\templates\home.html:108 .\settings\templates\home.html:192
 msgid "View Detail"
 msgstr "اظهار التفاصيل"
 
@@ -344,7 +344,7 @@ msgstr "اظهار التفاصيل"
 #: .\products\templates\products\product_detail.html:316
 #: .\products\templates\products\product_list.html:104
 #: .\products\templates\products\product_list.html:212
-#: .\settings\templates\home.html:106 .\settings\templates\home.html:190
+#: .\settings\templates\home.html:111 .\settings\templates\home.html:195
 msgid "Remove"
 msgstr "حذف"
 
@@ -352,7 +352,7 @@ msgstr "حذف"
 #: .\products\templates\products\product_detail.html:319
 #: .\products\templates\products\product_list.html:107
 #: .\products\templates\products\product_list.html:215
-#: .\settings\templates\home.html:109 .\settings\templates\home.html:193
+#: .\settings\templates\home.html:114 .\settings\templates\home.html:198
 msgid "To Favourite"
 msgstr "اضافه الي المفضله"
 
@@ -366,8 +366,8 @@ msgstr "لم يتم العثور على أي شيء، ولا توجد منتجا
 #: .\accounts\templates\profile\my_products.html:72
 #: .\blog\templates\blog\post_list.html:67
 #: .\blog\templates\blog\post_list.html:74
-#: .\products\templates\products\categories.html:46
 #: .\products\templates\products\categories.html:53
+#: .\products\templates\products\categories.html:60
 #: .\products\templates\products\product_list.html:128
 #: .\products\templates\products\product_list.html:135
 #: .\products\templates\products\product_list.html:236
@@ -381,8 +381,8 @@ msgstr "السابق"
 #: .\accounts\templates\profile\my_products.html:94
 #: .\blog\templates\blog\post_list.html:89
 #: .\blog\templates\blog\post_list.html:96
-#: .\products\templates\products\categories.html:68
 #: .\products\templates\products\categories.html:75
+#: .\products\templates\products\categories.html:82
 #: .\products\templates\products\product_list.html:150
 #: .\products\templates\products\product_list.html:157
 #: .\products\templates\products\product_list.html:258
@@ -511,7 +511,7 @@ msgid "title"
 msgstr "العنوان"
 
 #: .\blog\models.py:13 .\orders\models.py:13 .\orders\models.py:49
-#: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:140
+#: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:141
 #: .\settings\models.py:46
 msgid "created_at"
 msgstr "تاريخ الانشاء"
@@ -558,8 +558,8 @@ msgstr "تفاصيل المدونه"
 msgid "Comments"
 msgstr "التعليقات"
 
-#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:104
-#: .\products\models.py:105 .\products\templates\products\categories.html:13
+#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:105
+#: .\products\models.py:106 .\products\templates\products\categories.html:13
 #: .\products\templates\products\categories.html:17 .\templates\base.html:149
 msgid "Categories"
 msgstr "التصنيفات"
@@ -775,7 +775,7 @@ msgstr "طريقه الدفع"
 msgid "payment_paid"
 msgstr "الكميه المدفوع"
 
-#: .\orders\models.py:12 .\orders\models.py:46 .\products\models.py:139
+#: .\orders\models.py:12 .\orders\models.py:46 .\products\models.py:140
 msgid "status"
 msgstr "الحاله"
 
@@ -815,7 +815,7 @@ msgstr "اجمالي الطلب"
 msgid "tax"
 msgstr "ضريبه"
 
-#: .\orders\models.py:47 .\products\models.py:138
+#: .\orders\models.py:47 .\products\models.py:139
 msgid "ip"
 msgstr "الملكيه"
 
@@ -823,7 +823,7 @@ msgstr "الملكيه"
 msgid "is_orderd"
 msgstr "تم"
 
-#: .\orders\models.py:50 .\orders\models.py:74 .\products\models.py:141
+#: .\orders\models.py:50 .\orders\models.py:74 .\products\models.py:142
 msgid "updated_at"
 msgstr "تاريخ التعديل"
 
@@ -983,47 +983,55 @@ msgstr "صور المنتج"
 msgid "Product Images"
 msgstr "صور المنتج"
 
-#: .\products\models.py:111
-#| msgid "category"
+#: .\products\models.py:101
+#, fuzzy
+#| msgid "subcategory name"
+msgid "category name"
+msgstr "اسم الفئة الفرعية"
+
+#: .\products\models.py:102
+#, fuzzy
+#| msgid "subcategory image"
+msgid "category image"
+msgstr "صوره الفئة الفرعية"
+
+#: .\products\models.py:112
 msgid "Category"
 msgstr "تصنيف المنتج"
 
-#: .\products\models.py:112
-#| msgid "category name"
+#: .\products\models.py:113
 msgid "subcategory name"
 msgstr "اسم الفئة الفرعية"
 
-#: .\products\models.py:113
-#| msgid "category image"
+#: .\products\models.py:114
 msgid "subcategory image"
 msgstr "صوره الفئة الفرعية"
 
-#: .\products\models.py:119 .\products\models.py:120
-#| msgid "Categories"
+#: .\products\models.py:120 .\products\models.py:121
 msgid "Subcategories"
 msgstr "الفئات الفرعية"
 
-#: .\products\models.py:133
+#: .\products\models.py:134
 msgid "user review"
 msgstr "تقييم المستخدم"
 
-#: .\products\models.py:134
+#: .\products\models.py:135
 msgid "product review"
 msgstr "تقييم المنتج"
 
-#: .\products\models.py:135
+#: .\products\models.py:136
 msgid "subject"
 msgstr "الموضوع"
 
-#: .\products\models.py:136
+#: .\products\models.py:137
 msgid "review"
 msgstr "مراجعه"
 
-#: .\products\models.py:137
+#: .\products\models.py:138
 msgid "rating"
 msgstr "التقييم"
 
-#: .\products\models.py:144 .\products\models.py:145
+#: .\products\models.py:145 .\products\models.py:146
 msgid "Rating"
 msgstr "التقييم"
 
@@ -1227,47 +1235,51 @@ msgstr "ابقى على تواصل"
 msgid "Store 1"
 msgstr "فرع 1"
 
-#: .\settings\templates\home.html:18
+#: .\settings\templates\home.html:19
 msgid "Quality Product"
 msgstr "جوده المنتج"
 
-#: .\settings\templates\home.html:24
+#: .\settings\templates\home.html:25
 msgid "Free Shipping"
 msgstr "الشحن مجانا"
 
-#: .\settings\templates\home.html:30
+#: .\settings\templates\home.html:31
 msgid "14-Day Return"
 msgstr "عودة لمدة 14 يومًا"
 
-#: .\settings\templates\home.html:36
+#: .\settings\templates\home.html:37
 msgid "24/7 Support"
 msgstr "دعم 24/7"
 
-#: .\settings\templates\home.html:47
+#: .\settings\templates\home.html:48
 msgid "Popular Categories"
 msgstr "اشهر التصنيفات"
 
-#: .\settings\templates\home.html:72
+#: .\settings\templates\home.html:65
+msgid "Show More"
+msgstr "عرض المزيد"
+
+#: .\settings\templates\home.html:77
 msgid "Trandy Products"
 msgstr "المنتجات العصرية"
 
-#: .\settings\templates\home.html:125
+#: .\settings\templates\home.html:130
 msgid "Stay Updated"
 msgstr "ابق على اطلاع"
 
-#: .\settings\templates\home.html:133
+#: .\settings\templates\home.html:138
 msgid "Email Goes Here"
 msgstr "البريد الإلكتروني يذهب هنا"
 
-#: .\settings\templates\home.html:136 .\templates\base.html:327
+#: .\settings\templates\home.html:141 .\templates\base.html:327
 msgid "Subscribe Now"
 msgstr "إشترك الآن"
 
-#: .\settings\templates\home.html:145 .\templates\base.html:332
+#: .\settings\templates\home.html:150 .\templates\base.html:332
 msgid "Subcribed Successfuly"
 msgstr "تم الاشتراك بنجاح"
 
-#: .\settings\templates\home.html:156
+#: .\settings\templates\home.html:161
 msgid "Just Arrived"
 msgstr "وصل للتو"
 

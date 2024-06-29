@@ -21,64 +21,71 @@ Categories
 <!-- Categories Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5 pb-3">
-        {% for category in category %}
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">{{category.category_count}} Products</p>
-                <a href="{{category.get_url}}" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="{{category.image.url}}" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">{{category}}{% if category.category %}({{category.category}}){% endif %}</h5>
+        <!-- Categories Start -->
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5 pb-3">
+                {% for category in categories %}
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                        <p class="text-right">{{category.subcategory_count}} Subcategory</p>
+                        <a href="{% url 'subcategories' category.id %}"
+                            class="cat-img position-relative overflow-hidden mb-3">
+                            <img class="img-fluid"
+                                src="{% if category.image %}{{category.image.url}}{% else %}{% endif %}" alt="">
+                        </a>
+                        <h5 class="font-weight-semi-bold m-0">{{category.name}}</h5>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
+        <!-- Categories End -->
     </div>
 </div>
 <div class="col-12 pb-1">
-                    <nav aria-label="Page navigation">
-                        {% if category.has_other_pages %}
-                        <ul class="pagination justify-content-center mb-3">
-                            {% if category.has_previous %}
-                            <li class="page-item ">
-                                <a class="page-link" href="?page={{category.previous_page_number}}"
-                                    aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">{% trans "Previous" %}</span>
-                                </a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">{% trans "Previous" %}</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% for i in category.paginator.page_range  %}
-                            {% if category.number == i %}
-                            <li class="page-item active"><a class="page-link">{{i}}</a></li>
-                            {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if category.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{category.next_page_number}}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">{% trans "Next" %}</span>
-                                </a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">{% trans "Next" %}</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
-                    </nav>
-                </div>
+    <nav aria-label="Page navigation">
+        {% if category.has_other_pages %}
+        <ul class="pagination justify-content-center mb-3">
+            {% if category.has_previous %}
+            <li class="page-item ">
+                <a class="page-link" href="?page={{category.previous_page_number}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">{% trans "Previous" %}</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">{% trans "Previous" %}</span>
+                </a>
+            </li>
+            {% endif %}
+            {% for i in category.paginator.page_range  %}
+            {% if category.number == i %}
+            <li class="page-item active"><a class="page-link">{{i}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if category.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{category.next_page_number}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">{% trans "Next" %}</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">{% trans "Next" %}</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </nav>
+</div>
 <!-- Categories End -->
 {% endblock body %}

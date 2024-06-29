@@ -1,5 +1,5 @@
 from django.shortcuts import render , get_object_or_404 , redirect
-from .models import Product  , Subcategory  , ReviewRating , Variation
+from .models import Product  , Subcategory  , ReviewRating , Category
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
@@ -86,12 +86,12 @@ def product_detail(request ,subcategory_id,product_slug):
     }
     return render(request , 'products/product_detail.html' , context)
 def category_list(request):
-    category = Subcategory.objects.all().annotate(category_count=Count("product_subcategory"))
-    paginator = Paginator(category,3)
+    category_list = Category.objects.annotate(subcategory_count=Count('subcategory'))
+    paginator = Paginator(category_list,1)
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
     context = {
-        'category':paged_product
+        'category_list':paged_product
     }
     return render(request,'products/categories.html',context)
 
