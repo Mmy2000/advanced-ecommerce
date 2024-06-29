@@ -98,7 +98,8 @@ class ProductImages(models.Model):
         return str(self.product)
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(_("category name"),max_length=100)
+    image = models.ImageField(_("category image"),null=True,blank=True,upload_to='category-image/')
 
     class Meta:
         verbose_name_plural = _("Categories")
@@ -110,7 +111,7 @@ class Category(models.Model):
 class Subcategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name=_("Category") , blank=True , null=True)
     name = models.CharField(_("subcategory name"),max_length=100)
-    image = models.ImageField(_("subcategory image"),null=True,blank=True,upload_to='category-image/')
+    image = models.ImageField(_("subcategory image"),null=True,blank=True,upload_to='subcategory-image/')
 
     def get_url(self):
         return reverse('product_by_subcategory',args=[self.id])

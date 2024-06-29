@@ -48,15 +48,14 @@ Home
         <h2 class="section-title px-5"><span class="px-2">{% trans "Popular Categories" %}</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
-        {% for category in category %}
+        {% for category in categories %}
         <div class="col-lg-4 col-md-6 pb-1">
             <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                 <p class="text-right">{{category.category_count}} Products</p>
-                <a href="{{category.get_url}}" class="cat-img position-relative overflow-hidden mb-3">
+                <a href="{% url 'subcategories' category.id %}" class="cat-img position-relative overflow-hidden mb-3">
                     <img class="img-fluid" src="{{category.image.url}}" alt="">
                 </a>
-                <h5 class="font-weight-semi-bold m-0">
-                    {{category}}{% if category.category %}({{category.category}}){% endif %}</h5>
+                <h5 class="font-weight-semi-bold m-0">{{category.name}}</h5>
             </div>
         </div>
         {% endfor %}

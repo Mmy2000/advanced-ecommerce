@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from products.models import Product , Subcategory
+from django.shortcuts import render , get_object_or_404
+from products.models import Product , Subcategory , Category
 from .models import Settings , NewsLitter  , About , FAQ
 from django.db.models import Count
 from .forms import ContactForm
@@ -14,14 +14,24 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 def home(request):
     trandy_paroduct = Product.objects.all().order_by('-views')[:4]
     just_arrived = Product.objects.all().order_by('-created_at')[:4]
-    category = Subcategory.objects.all().annotate(category_count=Count("product_subcategory"))[:3]
+    categories = Category.objects.all()
 
     context = {
         'trandy_product':trandy_paroduct,
         'just_arrived':just_arrived,
-        'category':category,
+        'categories':categories,
     }
     return render(request , 'home.html' , context)
+
+def subcategories(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    subcategories = Subcategory.objects.filter(category=category)
+
+    context = {
+        'category': category,
+        'subcategories': subcategories,
+    }
+    return render(request, 'subcategories.html', context)
 
 def contact(request):
     if request.method == "POST":
