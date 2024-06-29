@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product  , Subcategory  , ProductImages , Variation , ReviewRating 
+from .models import Product  , Subcategory  , ProductImages , Variation , ReviewRating , Category
 import admin_thumbnails
 from django_summernote.admin import SummernoteModelAdmin
 
@@ -12,13 +12,17 @@ class ProductGallaryInline(admin.TabularInline):
     model = ProductImages
     extra = 1
 class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name','category')
 
 class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
     summernote_fields = '__all__'
-    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory'   , 'stock','views' , 'created_at' , 'is_available')
+    list_display = ('id' , 'name' , 'price' , 'avr_review' , 'count_review' , 'subcategory','get_category'   , 'stock','views' , 'created_at' , 'is_available')
     list_editable = ('is_available',)
-    list_filter = ('price' , 'subcategory' , 'name','stock')
+    list_filter = ('price' , 'subcategory', 'name','stock')
+    def get_category(self, obj):
+        return obj.subcategory.category
+    
+    get_category.short_description = 'Category'
 
     inlines = [ProductGallaryInline] 
 
@@ -36,6 +40,8 @@ class VariationAdmin(admin.ModelAdmin):
 
 admin.site.register(Product  ,SomeModelAdmin)
 admin.site.register(Subcategory , SubCategoryAdmin)
+admin.site.register(Category)
 admin.site.register(ReviewRating , ReviewsAdmin)
 admin.site.register(ProductImages)
+
 # admin.site.register(Variation , VariationAdmin)

@@ -151,7 +151,23 @@
                 <nav class="collapse {% if forloop.first %} show {% endif %} position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9999;">
                     <div class="navbar-nav w-100 overflow-auto" style="height: 410px">
-
+                        {% if categories %}
+                        {% for category in categories %}
+                        <div class="nav-item dropdown">
+                            {% if category.subcategory_set.all %}
+                            <a href="#" class="nav-link" data-toggle="dropdown">{{ category.name }} <i
+                                    class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                {% for subcategory in category.subcategory_set.all %}
+                                <a href="{{ subcategory.get_url }}" class="dropdown-item">{{ subcategory.name }}</a>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <a href="#" class="nav-link">{{ category.name }}</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
 
                         {% if subcategories %}
                         {% for subcategory in subcategories %}

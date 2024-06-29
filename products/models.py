@@ -97,18 +97,27 @@ class ProductImages(models.Model):
     def __str__(self):
         return str(self.product)
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name_plural = _("Categories")
+        verbose_name = _("Categories")
+
+    def __str__(self):
+        return self.name
 
 class Subcategory(models.Model):
-    name = models.CharField(_("category name"),max_length=100)
-    image = models.ImageField(_("category image"),null=True,blank=True,upload_to='category-image/')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name=_("Category") , blank=True , null=True)
+    name = models.CharField(_("subcategory name"),max_length=100)
+    image = models.ImageField(_("subcategory image"),null=True,blank=True,upload_to='category-image/')
 
     def get_url(self):
         return reverse('product_by_subcategory',args=[self.id])
     
     class Meta:
-        verbose_name_plural = _("Categories")
-        verbose_name = _("Categories")
+        verbose_name_plural = _("Subcategories")
+        verbose_name = _("Subcategories")
         permissions = [
             ('can_translate', 'Can translate using Rosetta'),
         ]
