@@ -114,24 +114,24 @@
                     <span class="badge">{{cart_counter}}</span>
                 </a>
                 <form action="{% url 'set_language' %}" method="post" class="form-inline  ">
-                            {% csrf_token %}
-                            <input name="next" type="hidden" value="{{ redirect_to }}">
-                            <div class="form-group mx-sm-3 ">
-                                <label for="language" class="sr-only">Language</label>
-                                <select name="language" id="language" class="form-control">
-                                    {% get_current_language as LANGUAGE_CODE %}
-                                    {% get_available_languages as LANGUAGES %}
-                                    {% get_language_info_list for LANGUAGES as languages %}
-                                    {% for language in languages %}
-                                    <option value="{{ language.code }}"
-                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                                        {{ language.name_local }} ({{ language.code }})
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary ">Go</button>
-                        </form>
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <div class="form-group mx-sm-3 ">
+                        <label for="language" class="sr-only">Language</label>
+                        <select name="language" id="language" class="form-control">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                            <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary ">Go</button>
+                </form>
             </div>
         </div>
     </div>
@@ -278,6 +278,9 @@
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{about_site.address}}</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{about_site.email}}</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{about_site.phone}}</p>
+                <a href="https://wa.me/{{about_site.phone}}" target="_blank" class="position-fixed whatsicon" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp fa-5x"></i>
+                    </a>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
@@ -333,6 +336,7 @@
                     <div id="success_div" style="display: none;" class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">{% trans "Subcribed Successfuly" %}</h5>
                     </div>
+                    
                 </div>
             </div>
         </div>
