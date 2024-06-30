@@ -80,6 +80,7 @@ class FAQ(models.Model):
 class Images(models.Model):
     settings = models.ForeignKey(Settings, related_name='home_image',verbose_name="home_image", on_delete=models.CASCADE)
     title = models.CharField(_("title"), max_length=150 , help_text='this title is display in slider in home page')
+    offer = models.CharField(_("offer"), max_length=250 , null=True , blank=True)
     image = models.ImageField(_("image"), upload_to='homeImages/' , help_text='this image is display in slider in home page')
 
     class Meta:

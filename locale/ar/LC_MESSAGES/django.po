@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 12:36+0300\n"
-"PO-Revision-Date: 2024-06-29 12:38+0300\n"
+"POT-Creation-Date: 2024-06-30 07:05+0300\n"
+"PO-Revision-Date: 2024-06-30 07:07+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -103,7 +103,7 @@ msgid "address"
 msgstr "العنوان "
 
 #: .\accounts\models.py:87 .\blog\models.py:18 .\products\models.py:14
-#: .\settings\models.py:60 .\settings\models.py:83
+#: .\settings\models.py:60 .\settings\models.py:84
 msgid "image"
 msgstr "صوره"
 
@@ -1179,7 +1179,11 @@ msgstr "اهدافنا"
 msgid "FAQ"
 msgstr "التعليمات"
 
-#: .\settings\models.py:86 .\settings\models.py:87
+#: .\settings\models.py:83
+msgid "offer"
+msgstr "عرض"
+
+#: .\settings\models.py:87 .\settings\models.py:88
 msgid "Home Images"
 msgstr "صور الصفحه الرئيسيه"
 
