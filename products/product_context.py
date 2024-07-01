@@ -10,3 +10,4 @@ def category_nav(request):
         'categories':categories,
     }
     return context
+

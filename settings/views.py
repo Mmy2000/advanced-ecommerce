@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+from products.filters import ProductFilter
+from taggit.models import Tag
 
 
 # Create your views here.
@@ -26,10 +28,20 @@ def home(request):
 def subcategories(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     subcategories = Subcategory.objects.filter(category=category).annotate(product_count=Count('product_subcategory'))
+    products = Product.objects.filter(is_available=True)
+    product_filter = ProductFilter(request.GET, queryset=products)
+    filtered_products = product_filter.qs
+    paginator = Paginator(filtered_products, 6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    product_count = filtered_products.count()
 
     context = {
         'category': category,
         'subcategories': subcategories,
+        'products': paged_product,
+        'filter': product_filter, 
+        'product_count':product_count
     }
     return render(request, 'subcategories.html', context)
 
