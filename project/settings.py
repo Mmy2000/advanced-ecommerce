@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'rosetta',
     'parler',
+   
     #api
     'rest_framework',
     "rest_framework.authtoken",
@@ -98,6 +99,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

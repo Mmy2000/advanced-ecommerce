@@ -14,3 +14,4 @@ def newsletter_footer(request):
     name = request.POST.get('name')
     NewsLitter.objects.create(email=email , name=name)
     return redirect('/')
+
