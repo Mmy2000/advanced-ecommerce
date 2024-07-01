@@ -48,17 +48,33 @@ Home
         <h2 class="section-title px-5"><span class="px-2">{% trans "Popular Categories" %}</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
-        {% for category in categories %}
+        <!-- Loop through each category -->
+    {% for category in categories %}
         <div class="col-lg-4 col-md-6 pb-1">
             <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">{{category.subcategory_count}} Subcategory</p>
+                <p class="text-right">{{ category.subcategory_set.count }} Subcategory</p>
                 <a href="{% url 'subcategories' category.id %}" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="{% if category.image %}{{category.image.url}}{% else %}{% endif %}" alt="">
+                    <img class="img-fluid" src="{% if category.image %}{{ category.image.url }}{% else %}{% endif %}" alt="">
                 </a>
-                <h5 class="font-weight-semi-bold m-0">{{category.name}}</h5>
+                <h5 class="font-weight-semi-bold m-0">{{ category.name }}</h5>
             </div>
         </div>
-        {% endfor %}
+    {% endfor %}
+
+    <!-- Loop through each subcategory that does not have an associated category -->
+    {% for subcategory in subcategories %}
+        {% if not subcategory.category %}
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="subcat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">{{ subcategory.subcategory_product_subcategory }} Product</p>
+                    <a href="{{ subcategory.get_url }}" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% if subcategory.image %}{{ subcategory.image.url }}{% else %}{% endif %}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">{{ subcategory.name }}</h5>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
         
     </div>
     <div class="w-100 d-flex justify-content-center">

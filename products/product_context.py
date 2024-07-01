@@ -3,7 +3,7 @@ from django.db.models import Count
 
 def category_nav(request):
     categories = Category.objects.all().annotate(subcategory_count=Count('subcategory'))
-    subcategories = Subcategory.objects.all()
+    subcategories = Subcategory.objects.all().annotate(subcategory_product_subcategory=Count('product_subcategory'))
     
     context = {
         'subcategories':subcategories,

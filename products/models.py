@@ -110,7 +110,7 @@ class Category(models.Model):
 
 class Subcategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name=_("Category") , blank=True , null=True)
-    name = models.CharField(_("subcategory name"),max_length=100)
+    name = models.CharField(_("subcategory name"),null=True,blank=True,max_length=100)
     image = models.ImageField(_("subcategory image"),null=True,blank=True,upload_to='subcategory-image/')
 
     def get_url(self):
@@ -124,7 +124,7 @@ class Subcategory(models.Model):
         ]
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     
 
     
