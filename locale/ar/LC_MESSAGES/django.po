@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-30 07:05+0300\n"
-"PO-Revision-Date: 2024-06-30 07:07+0300\n"
+"POT-Creation-Date: 2024-07-01 10:02+0300\n"
+"PO-Revision-Date: 2024-07-01 10:04+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -200,7 +200,7 @@ msgid "Forgot Password"
 msgstr "هل نسيت كلمة السر"
 
 #: .\accounts\templates\accounts\forgotPassword.html:24
-#: .\accounts\templates\profile\profile.html:286 .\templates\base.html:323
+#: .\accounts\templates\profile\profile.html:286 .\templates\base.html:329
 msgid "Email"
 msgstr "الايميل"
 
@@ -293,8 +293,8 @@ msgstr "لوحة القيادة"
 #: .\products\templates\products\product_detail.html:13
 #: .\products\templates\products\product_list.html:23
 #: .\settings\templates\about.html:15 .\settings\templates\contact.html:17
-#: .\templates\base.html:200 .\templates\base.html:286
-#: .\templates\base.html:301
+#: .\templates\base.html:200 .\templates\base.html:292
+#: .\templates\base.html:307
 msgid "Home"
 msgstr "الرئيسيه"
 
@@ -336,6 +336,7 @@ msgstr "اظهار الطلبات"
 #: .\products\templates\products\product_list.html:101
 #: .\products\templates\products\product_list.html:209
 #: .\settings\templates\home.html:108 .\settings\templates\home.html:192
+#: .\settings\templates\subcategories.html:102
 msgid "View Detail"
 msgstr "اظهار التفاصيل"
 
@@ -345,6 +346,7 @@ msgstr "اظهار التفاصيل"
 #: .\products\templates\products\product_list.html:104
 #: .\products\templates\products\product_list.html:212
 #: .\settings\templates\home.html:111 .\settings\templates\home.html:195
+#: .\settings\templates\subcategories.html:105
 msgid "Remove"
 msgstr "حذف"
 
@@ -353,6 +355,7 @@ msgstr "حذف"
 #: .\products\templates\products\product_list.html:107
 #: .\products\templates\products\product_list.html:215
 #: .\settings\templates\home.html:114 .\settings\templates\home.html:198
+#: .\settings\templates\subcategories.html:108
 msgid "To Favourite"
 msgstr "اضافه الي المفضله"
 
@@ -372,6 +375,8 @@ msgstr "لم يتم العثور على أي شيء، ولا توجد منتجا
 #: .\products\templates\products\product_list.html:135
 #: .\products\templates\products\product_list.html:236
 #: .\products\templates\products\product_list.html:243
+#: .\settings\templates\subcategories.html:129
+#: .\settings\templates\subcategories.html:136
 msgid "Previous"
 msgstr "السابق"
 
@@ -387,6 +392,8 @@ msgstr "السابق"
 #: .\products\templates\products\product_list.html:157
 #: .\products\templates\products\product_list.html:258
 #: .\products\templates\products\product_list.html:265
+#: .\settings\templates\subcategories.html:151
+#: .\settings\templates\subcategories.html:158
 msgid "Next"
 msgstr "التالي"
 
@@ -443,15 +450,15 @@ msgstr "منتجاتي"
 #: .\accounts\templates\profile\profile.html:142
 #: .\products\templates\products\product_list.html:20
 #: .\products\templates\products\product_list.html:25
-#: .\templates\base.html:202 .\templates\base.html:288
-#: .\templates\base.html:303
+#: .\templates\base.html:202 .\templates\base.html:294
+#: .\templates\base.html:309
 msgid "Shop"
 msgstr "المتجر"
 
 #: .\accounts\templates\profile\profile.html:148 .\blog\models.py:22
 #: .\blog\templates\blog\post_list.html:13
 #: .\blog\templates\blog\post_list.html:17 .\templates\base.html:206
-#: .\templates\base.html:290 .\templates\base.html:305
+#: .\templates\base.html:296 .\templates\base.html:311
 msgid "Blog"
 msgstr "المدونه"
 
@@ -463,8 +470,8 @@ msgstr "عن الموقع"
 
 #: .\accounts\templates\profile\profile.html:160
 #: .\settings\templates\contact.html:15 .\settings\templates\contact.html:19
-#: .\templates\base.html:210 .\templates\base.html:293
-#: .\templates\base.html:308
+#: .\templates\base.html:210 .\templates\base.html:299
+#: .\templates\base.html:314
 msgid "Contact"
 msgstr "التواصل"
 
@@ -498,7 +505,7 @@ msgstr "الوظيفه"
 msgid "phone"
 msgstr "رقم التليفون"
 
-#: .\accounts\templates\profile\profile.html:342 .\templates\base.html:341
+#: .\accounts\templates\profile\profile.html:342 .\templates\base.html:348
 msgid "All Rights Reserved. Designed by"
 msgstr "كل الحقوق محفوظة. صمم بواسطة"
 
@@ -984,16 +991,14 @@ msgid "Product Images"
 msgstr "صور المنتج"
 
 #: .\products\models.py:101
-#, fuzzy
 #| msgid "subcategory name"
 msgid "category name"
-msgstr "اسم الفئة الفرعية"
+msgstr "اسم الفئة الرئيسيه"
 
 #: .\products\models.py:102
-#, fuzzy
 #| msgid "subcategory image"
 msgid "category image"
-msgstr "صوره الفئة الفرعية"
+msgstr "صوره الفئة الرئيسيه"
 
 #: .\products\models.py:112
 msgid "Category"
@@ -1107,10 +1112,12 @@ msgid "Search Result"
 msgstr "نتائج البحث"
 
 #: .\products\templates\products\product_list.html:42
+#: .\settings\templates\subcategories.html:44
 msgid "Products Filter "
 msgstr "تصفية المنتجات"
 
 #: .\products\templates\products\product_list.html:47
+#: .\settings\templates\subcategories.html:49
 msgid "Search"
 msgstr "بحث"
 
@@ -1275,17 +1282,22 @@ msgstr "ابق على اطلاع"
 msgid "Email Goes Here"
 msgstr "البريد الإلكتروني يذهب هنا"
 
-#: .\settings\templates\home.html:141 .\templates\base.html:327
+#: .\settings\templates\home.html:141 .\templates\base.html:333
 msgid "Subscribe Now"
 msgstr "إشترك الآن"
 
-#: .\settings\templates\home.html:150 .\templates\base.html:332
+#: .\settings\templates\home.html:150 .\templates\base.html:338
 msgid "Subcribed Successfuly"
 msgstr "تم الاشتراك بنجاح"
 
 #: .\settings\templates\home.html:161
 msgid "Just Arrived"
 msgstr "وصل للتو"
+
+#: .\settings\templates\subcategories.html:32
+#| msgid "My Products"
+msgid "More Products"
+msgstr "المزيد من المنتجات"
 
 #: .\templates\admin\base_site.html:6
 msgid "EL SAADA CARAVANS"
@@ -1315,19 +1327,19 @@ msgstr "هذا البحث يعمل في الصفحة الرئيسية فقط ...
 msgid "All Categories"
 msgstr "كل التصنيفات"
 
-#: .\templates\base.html:240
+#: .\templates\base.html:243
 msgid "Shop Now"
 msgstr "تسوق الآن"
 
-#: .\templates\base.html:283 .\templates\base.html:298
+#: .\templates\base.html:289 .\templates\base.html:304
 msgid "Quick Links"
 msgstr "لينكات سريعه"
 
-#: .\templates\base.html:314
+#: .\templates\base.html:320
 msgid "Newsletter"
 msgstr "النشرة الإخبارية"
 
-#: .\templates\base.html:319
+#: .\templates\base.html:325
 msgid "Your Name"
 msgstr "اسمك"
 
