@@ -51,7 +51,6 @@ class ProductForm(forms.ModelForm):
         exclude = ('slug', 'owner', 'is_available', 'like', 'views')
         widgets = {
             'description': SummernoteWidget(),
-            'features': SummernoteWidget(),
         }
 
 
