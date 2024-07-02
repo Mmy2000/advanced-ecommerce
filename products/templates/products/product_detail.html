@@ -64,13 +64,13 @@
                             aria-hidden="true"></i>
                     </span>
                 </div>
-                <small class="pt-1">({{single_product.count_review}} Reviews)</small>
+                <small class="pt-1">({{single_product.count_review}} {% trans "Reviews" %} )</small>
 
             </div>
-            <p class="badge bg-secondary ">{{orderproduct_count}} orders & {{single_product.stock}} In Stock</p>
-            <h3 class="font-weight-semi-bold mb-4">UAE{{single_product.price}}</h3>
+            <p class="badge bg-secondary "> {% trans "orders" %} {{orderproduct_count}}  & {{single_product.stock}} {% trans "In Stock" %} </p>
+            <h3 class="font-weight-semi-bold mb-4">{% trans "UAE" %}{{single_product.price}}</h3>
             {% if single_product.stock <= 0 %}
-            <span class="badge bg-secondary">Out of Stock</span>
+            <span class="badge bg-secondary">{% trans "Out of Stock" %}</span>
             {% else %}
             {% endif %}
             <p class="mb-4">{{single_product.description|safe}}</p>
@@ -180,7 +180,7 @@
                 <div class="tab-pane fade" id="tab-pane-2">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="mb-4">{{single_product.count_review}} review for "{{single_product.name}}"</h4>
+                            <h4 class="mb-4"> {% trans "review for" %} {{single_product.count_review}}  "{{single_product.name}}"</h4>
                             {% for review in reviews %}
                             <div class="media mb-4">
                                 {% if review.user.profile.image %}

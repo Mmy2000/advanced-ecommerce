@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 13:46+0300\n"
-"PO-Revision-Date: 2024-07-02 13:46+0300\n"
+"POT-Creation-Date: 2024-07-02 14:12+0300\n"
+"PO-Revision-Date: 2024-07-02 14:13+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -944,23 +944,13 @@ msgstr "لوحة القيادة"
 msgid "Refresh the page to pay again."
 msgstr "قم بتحديث الصفحة للدفع مرة أخرى."
 
-#: .\products\filters.py:11
+#: .\products\filters.py:10
 msgid "Enter Price Range from low to high"
 msgstr "أدخل نطاق السعر من الأقل إلى الأعلى"
 
 #: .\products\filters.py:13
 msgid "Enter price range"
 msgstr "أدخل النطاق السعري"
-
-#: .\products\filters.py:33
-#| msgid "product name"
-msgid "Product Name "
-msgstr "اسم المنتج"
-
-#: .\products\filters.py:37
-#| msgid "Product Description"
-msgid "Product Description "
-msgstr "وصف المنتج"
 
 #: .\products\models.py:15
 msgid "product_owner"
@@ -1059,6 +1049,31 @@ msgstr "التقييم"
 msgid "Shop Detail"
 msgstr "تفاصيل المنتج"
 
+#: .\products\templates\products\product_detail.html:67
+#: .\products\templates\products\product_detail.html:172
+#: .\settings\templates\home.html:119 .\settings\templates\home.html:203
+msgid "Reviews"
+msgstr "التقييمات"
+
+#: .\products\templates\products\product_detail.html:70
+msgid "orders"
+msgstr "طلبات"
+
+#: .\products\templates\products\product_detail.html:70
+msgid "In Stock"
+msgstr "في المخزون"
+
+#: .\products\templates\products\product_detail.html:71
+#: .\products\templates\products\product_list.html:81
+#: .\products\templates\products\product_list.html:189
+#: .\settings\templates\home.html:105 .\settings\templates\home.html:189
+msgid "UAE"
+msgstr "درهم"
+
+#: .\products\templates\products\product_detail.html:73
+msgid "Out of Stock"
+msgstr "إنتهى من المخزن"
+
 #: .\products\templates\products\product_detail.html:126
 #: .\products\templates\products\product_detail.html:130
 msgid "Add To Cart"
@@ -1076,13 +1091,13 @@ msgstr "معلومات المالك"
 msgid "Description"
 msgstr "الوصف"
 
-#: .\products\templates\products\product_detail.html:172
-msgid "Reviews"
-msgstr "التقييمات"
-
 #: .\products\templates\products\product_detail.html:177
 msgid "Product Description"
 msgstr "وصف المنتج"
+
+#: .\products\templates\products\product_detail.html:183
+msgid "review for"
+msgstr "مراجعه ل"
 
 #: .\products\templates\products\product_detail.html:217
 msgid "Leave a review"
@@ -1140,6 +1155,11 @@ msgstr "بحث"
 #: .\settings\templates\subcategories.html:65
 msgid "Products found"
 msgstr "تم العثور على المنتجات"
+
+#: .\products\templates\products\product_list.html:96
+#: .\products\templates\products\product_list.html:204
+msgid "reviews"
+msgstr "مراجعات"
 
 #: .\project\settings.py:183
 msgid "Arabic"
@@ -1290,6 +1310,16 @@ msgstr "دعم 24/7"
 msgid "Popular Categories"
 msgstr "اشهر التصنيفات"
 
+#: .\settings\templates\home.html:55
+#| msgid "category"
+msgid "Subcategory"
+msgstr "تصنيف فرعي"
+
+#: .\settings\templates\home.html:69
+#| msgid "Products"
+msgid "Product"
+msgstr "منتج"
+
 #: .\settings\templates\home.html:81
 msgid "Show More"
 msgstr "عرض المزيد"
@@ -1365,6 +1395,12 @@ msgstr "النشرة الإخبارية"
 #: .\templates\base.html:326
 msgid "Your Name"
 msgstr "اسمك"
+
+#~ msgid "Product Name "
+#~ msgstr "اسم المنتج"
+
+#~ msgid "Product Description "
+#~ msgstr "وصف المنتج"
 
 #, fuzzy
 #~ msgid "Rmove"
