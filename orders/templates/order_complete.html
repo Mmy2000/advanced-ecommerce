@@ -84,7 +84,7 @@ Order Complete
                                                         {% endif %}
                                                     </p>
                                                 </td>
-                                                <td class="align-middle">UAE{{cart_item.product.price}} x
+                                                <td class="align-middle">{% trans "UAE" %}{{cart_item.product.price}} x
                                                     {{cart_item.quantity}}</td>
                                                 <td class="align-middle">
                                                     <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -104,9 +104,9 @@ Order Complete
                             </div>
                             <div class="text-center">
                                 <h5 class="text-center">{% trans "Order SubTotal & Tax" %}</h5>
-                                <h6 class="text-center">UAE{{ subtotal }} + UAE{{ order.tax }}</h6>
+                                <h6 class="text-center">{% trans "UAE" %}{{ subtotal }} + {% trans "UAE" %}{{ order.tax }}</h6>
                                 <h5 class="text-center">{% trans "Order Total" %}</h5>
-                                <h6 class="text-center">UAE{{ order.order_total }}</h6>
+                                <h6 class="text-center">{% trans "UAE" %}{{ order.order_total }}</h6>
                             </div>
                             <br>
                             <div class="invoice-footer mt25">

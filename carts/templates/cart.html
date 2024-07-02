@@ -51,7 +51,7 @@ Cart
                     {% for cart_item in cart_items %}
                     <tr>
                         <td class="align-middle"><img src="{{ cart_item.product.image.url }}" alt=""
-                                style="width: 50px;">{{ cart_item }}
+                                style="width: 50px;"> {{ cart_item }}
                             <p class="text-muted small">
                                 {% if cart_item.variations.all %}
                                 {% for item in cart_item.variations.all %}
@@ -61,7 +61,7 @@ Cart
                                 {% endif %}
                             </p>
                         </td>
-                        <td class="align-middle">UAE{{ cart_item.product.price }}</td>
+                        <td class="align-middle">{% trans "UAE" %}{{ cart_item.product.price }}</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
@@ -88,7 +88,7 @@ Cart
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle">UAE{{ cart_item.sub_total }}</td>
+                        <td class="align-middle">{% trans "UAE" %}{{ cart_item.sub_total }}</td>
                         <td class="align-middle"><a href="{% url 'delete_cart' cart_item.product_id cart_item.id %}"
                                 onclick="return confirm('{% trans "Are You Sure You Want To Delete This Item?" %}')"
                                 class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
@@ -106,17 +106,17 @@ Cart
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3 pt-1">
                         <h6 class="font-weight-medium">{% trans "Subtotal" %}</h6>
-                        <h6 class="font-weight-medium">UAE{{ total }}</h6>
+                        <h6 class="font-weight-medium">{% trans "UAE" %}{{ total }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">{% trans "Shipping" %}</h6>
-                        <h6 class="font-weight-medium">UAE{{ tax }}</h6>
+                        <h6 class="font-weight-medium">{% trans "UAE" %}{{ tax }}</h6>
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
                         <h5 class="font-weight-bold">{% trans "Total" %}</h5>
-                        <h5 class="font-weight-bold">UAE{{ grand_total }}</h5>
+                        <h5 class="font-weight-bold">{% trans "UAE" %}{{ grand_total }}</h5>
                     </div>
                     <a href="{% url 'checkout' %}" class="btn btn-block btn-primary my-3 py-3">{% trans "Proceed To Checkout" %}</a>
                 </div>
