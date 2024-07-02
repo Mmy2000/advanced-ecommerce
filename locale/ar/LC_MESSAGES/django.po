@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 12:16+0300\n"
-"PO-Revision-Date: 2024-07-02 12:16+0300\n"
+"POT-Creation-Date: 2024-07-02 12:33+0300\n"
+"PO-Revision-Date: 2024-07-02 12:33+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -51,12 +51,12 @@ msgstr "الاسم الاول"
 msgid "last_name"
 msgstr "الاسم الثاني"
 
-#: .\accounts\models.py:51 .\settings\models.py:11
+#: .\accounts\models.py:51 .\settings\models.py:12
 msgid "username"
 msgstr "اسم المستخدم"
 
-#: .\accounts\models.py:52 .\orders\models.py:37 .\settings\models.py:12
-#: .\settings\models.py:27 .\settings\models.py:44
+#: .\accounts\models.py:52 .\orders\models.py:37 .\settings\models.py:13
+#: .\settings\models.py:34 .\settings\models.py:48
 msgid "email"
 msgstr "الايميل"
 
@@ -98,12 +98,12 @@ msgid "user profile"
 msgstr "المستخدم"
 
 #: .\accounts\models.py:86 .\accounts\templates\profile\profile.html:278
-#: .\settings\models.py:32
+#: .\settings\models.py:27
 msgid "address"
 msgstr "العنوان "
 
 #: .\accounts\models.py:87 .\blog\models.py:24 .\products\models.py:14
-#: .\settings\models.py:60 .\settings\models.py:84
+#: .\settings\models.py:62 .\settings\models.py:97
 msgid "image"
 msgstr "صوره"
 
@@ -462,8 +462,8 @@ msgstr "المتجر"
 msgid "Blog"
 msgstr "المدونه"
 
-#: .\accounts\templates\profile\profile.html:154 .\settings\models.py:63
-#: .\settings\models.py:64 .\settings\templates\about.html:13
+#: .\accounts\templates\profile\profile.html:154 .\settings\models.py:70
+#: .\settings\models.py:71 .\settings\templates\about.html:13
 #: .\settings\templates\about.html:17 .\templates\base.html:209
 msgid "About"
 msgstr "عن الموقع"
@@ -501,7 +501,7 @@ msgid "Job"
 msgstr "الوظيفه"
 
 #: .\accounts\templates\profile\profile.html:282 .\orders\models.py:35
-#: .\settings\models.py:13 .\settings\models.py:26
+#: .\settings\models.py:14 .\settings\models.py:29
 msgid "phone"
 msgstr "رقم التليفون"
 
@@ -515,7 +515,7 @@ msgstr "المؤلف"
 
 #: .\blog\models.py:15 .\orders\models.py:13 .\orders\models.py:49
 #: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:141
-#: .\settings\models.py:46
+#: .\settings\models.py:50
 msgid "created_at"
 msgstr "تاريخ الانشاء"
 
@@ -523,12 +523,12 @@ msgstr "تاريخ الانشاء"
 msgid "category"
 msgstr "تصنيف المدونه"
 
-#: .\blog\models.py:18 .\settings\models.py:70 .\settings\models.py:82
+#: .\blog\models.py:18 .\settings\models.py:79 .\settings\models.py:92
 msgid "title"
 msgstr "العنوان"
 
-#: .\blog\models.py:19 .\products\models.py:17 .\settings\models.py:28
-#: .\settings\models.py:71
+#: .\blog\models.py:19 .\products\models.py:17 .\settings\models.py:30
+#: .\settings\models.py:80
 msgid "description"
 msgstr "الوصف"
 
@@ -544,7 +544,7 @@ msgstr "وسم"
 msgid "Blogs"
 msgstr "المدونه"
 
-#: .\blog\models.py:44 .\settings\models.py:45
+#: .\blog\models.py:44 .\settings\models.py:49
 msgid "name"
 msgstr "اسم التصنيف"
 
@@ -582,6 +582,7 @@ msgstr "علامة السحابة"
 #: .\blog\templates\blog\post_list.html:51
 #: .\products\templates\products\product_list.html:115
 #: .\products\templates\products\product_list.html:223
+#: .\settings\templates\subcategories.html:116
 msgid "Nothing Found , PLS Try Again"
 msgstr "لم يتم العثور على أي شيء، يرجى المحاولة مرة أخرى"
 
@@ -1126,7 +1127,7 @@ msgstr "بحث"
 
 #: .\products\templates\products\product_list.html:64
 #: .\products\templates\products\product_list.html:172
-#| msgid "Products"
+#: .\settings\templates\subcategories.html:65
 msgid "Products found"
 msgstr "تم العثور على المنتجات"
 
@@ -1138,68 +1139,72 @@ msgstr "عربي"
 msgid "English"
 msgstr "انجليزي"
 
-#: .\settings\models.py:14
+#: .\settings\models.py:15
 msgid "message"
 msgstr "الرساله"
 
-#: .\settings\models.py:17 .\settings\models.py:18
+#: .\settings\models.py:18 .\settings\models.py:19
 msgid "Contacts"
 msgstr "التواصل"
 
-#: .\settings\models.py:24
+#: .\settings\models.py:26
 msgid "site_name"
 msgstr "اسم الموقع"
 
-#: .\settings\models.py:25
-msgid "logo"
-msgstr "لوجو"
-
-#: .\settings\models.py:29
-msgid "fb_link"
-msgstr "فيسبوك لينك"
-
-#: .\settings\models.py:30
-msgid "twitter_link"
-msgstr "تويتر لينك"
-
-#: .\settings\models.py:31
-msgid "instagram_link"
-msgstr "انستجرام لينك"
-
-#: .\settings\models.py:33
+#: .\settings\models.py:28
 msgid "get_in_touch"
 msgstr "ابقى على تواصل"
 
-#: .\settings\models.py:37 .\settings\models.py:38
+#: .\settings\models.py:33
+msgid "logo"
+msgstr "لوجو"
+
+#: .\settings\models.py:35
+msgid "fb_link"
+msgstr "فيسبوك لينك"
+
+#: .\settings\models.py:36
+msgid "twitter_link"
+msgstr "تويتر لينك"
+
+#: .\settings\models.py:37
+msgid "instagram_link"
+msgstr "انستجرام لينك"
+
+#: .\settings\models.py:41 .\settings\models.py:42
 msgid "Settings"
 msgstr "الاعدادات"
 
-#: .\settings\models.py:50 .\settings\models.py:51
+#: .\settings\models.py:54 .\settings\models.py:55
 msgid "NewsLitter"
 msgstr "النشرة الإخبارية"
 
-#: .\settings\models.py:57
+#: .\settings\models.py:64
 msgid "what_we_do"
 msgstr "الذي نفعله"
 
-#: .\settings\models.py:58
+#: .\settings\models.py:65
 msgid "our_mission"
 msgstr "مهماتنا"
 
-#: .\settings\models.py:59
+#: .\settings\models.py:66
 msgid "our_gaols"
 msgstr "اهدافنا"
 
-#: .\settings\models.py:74 .\settings\models.py:75
+#: .\settings\models.py:84 .\settings\models.py:85
 #: .\settings\templates\about.html:80 .\templates\base.html:51
 msgid "FAQ"
 msgstr "التعليمات"
 
-#: .\settings\models.py:83
+#: .\settings\models.py:92
+msgid "this title is display in slider in home page"
+msgstr "يتم عرض هذا العنوان في شريط التمرير في الصفحة الرئيسية"
+
+#: .\settings\models.py:93
 msgid "offer"
 msgstr "عرض"
 
-#: .\settings\models.py:87 .\settings\models.py:88
+#: .\settings\models.py:100 .\settings\models.py:101
 msgid "Home Images"
 msgstr "صور الصفحه الرئيسيه"
 
