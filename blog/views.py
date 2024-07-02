@@ -16,7 +16,7 @@ class PostList(ListView):
         object_list = Post.objects.language(language).filter(
             Q(translations__title__icontains = name) |
             Q(translations__description__icontains=name)
-        ).distinct() 
+        ).distinct().order_by('created_at') 
         return object_list
 
 class PostDetail(DetailView):
