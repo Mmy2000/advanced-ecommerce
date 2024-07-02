@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 11:43+0300\n"
-"PO-Revision-Date: 2024-07-02 11:43+0300\n"
+"POT-Creation-Date: 2024-07-02 12:16+0300\n"
+"PO-Revision-Date: 2024-07-02 12:16+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -581,6 +581,7 @@ msgstr "علامة السحابة"
 
 #: .\blog\templates\blog\post_list.html:51
 #: .\products\templates\products\product_list.html:115
+#: .\products\templates\products\product_list.html:223
 msgid "Nothing Found , PLS Try Again"
 msgstr "لم يتم العثور على أي شيء، يرجى المحاولة مرة أخرى"
 
@@ -1122,6 +1123,12 @@ msgstr "تصفية المنتجات"
 #: .\settings\templates\subcategories.html:49
 msgid "Search"
 msgstr "بحث"
+
+#: .\products\templates\products\product_list.html:64
+#: .\products\templates\products\product_list.html:172
+#| msgid "Products"
+msgid "Products found"
+msgstr "تم العثور على المنتجات"
 
 #: .\project\settings.py:183
 msgid "Arabic"
