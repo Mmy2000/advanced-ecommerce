@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 14:12+0300\n"
-"PO-Revision-Date: 2024-07-02 14:13+0300\n"
+"POT-Creation-Date: 2024-07-02 14:24+0300\n"
+"PO-Revision-Date: 2024-07-02 14:30+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -330,6 +330,24 @@ msgstr "كل الطلبات"
 msgid "View Orders"
 msgstr "اظهار الطلبات"
 
+#: .\accounts\templates\profile\favourite.html:22
+#: .\accounts\templates\profile\my_products.html:23
+#: .\products\templates\products\product_detail.html:71
+#: .\products\templates\products\product_list.html:81
+#: .\products\templates\products\product_list.html:189
+#: .\settings\templates\home.html:105 .\settings\templates\home.html:189
+#: .\settings\templates\subcategories.html:82
+msgid "UAE"
+msgstr "درهم"
+
+#: .\accounts\templates\profile\favourite.html:37
+#: .\accounts\templates\profile\my_products.html:38
+#: .\products\templates\products\product_list.html:96
+#: .\products\templates\products\product_list.html:204
+#: .\settings\templates\subcategories.html:97
+msgid "reviews"
+msgstr "مراجعات"
+
 #: .\accounts\templates\profile\favourite.html:42
 #: .\accounts\templates\profile\my_products.html:43
 #: .\products\templates\products\product_detail.html:313
@@ -633,7 +651,7 @@ msgstr "مواصلة التسوق"
 #: .\carts\templates\cart.html:43 .\carts\templates\checkout.html:85
 #: .\orders\templates\order_complete.html:68
 #: .\orders\templates\payment.html:51 .\products\models.py:35
-#: .\products\models.py:36
+#: .\products\models.py:36 .\settings\templates\subcategories.html:20
 msgid "Products"
 msgstr "المنتجات"
 
@@ -952,6 +970,10 @@ msgstr "أدخل نطاق السعر من الأقل إلى الأعلى"
 msgid "Enter price range"
 msgstr "أدخل النطاق السعري"
 
+#: .\products\filters.py:19
+msgid "Product Name "
+msgstr "اسم المنتج"
+
 #: .\products\models.py:15
 msgid "product_owner"
 msgstr "مالك المنتج"
@@ -1044,6 +1066,16 @@ msgstr "التقييم"
 msgid "Rating"
 msgstr "التقييم"
 
+#: .\products\templates\products\categories.html:30
+#: .\settings\templates\home.html:55
+msgid "Subcategory"
+msgstr "تصنيف فرعي"
+
+#: .\products\templates\products\categories.html:44
+#: .\settings\templates\home.html:69
+msgid "Product"
+msgstr "منتج"
+
 #: .\products\templates\products\product_detail.html:11
 #: .\products\templates\products\product_detail.html:15
 msgid "Shop Detail"
@@ -1062,13 +1094,6 @@ msgstr "طلبات"
 #: .\products\templates\products\product_detail.html:70
 msgid "In Stock"
 msgstr "في المخزون"
-
-#: .\products\templates\products\product_detail.html:71
-#: .\products\templates\products\product_list.html:81
-#: .\products\templates\products\product_list.html:189
-#: .\settings\templates\home.html:105 .\settings\templates\home.html:189
-msgid "UAE"
-msgstr "درهم"
 
 #: .\products\templates\products\product_detail.html:73
 msgid "Out of Stock"
@@ -1155,11 +1180,6 @@ msgstr "بحث"
 #: .\settings\templates\subcategories.html:65
 msgid "Products found"
 msgstr "تم العثور على المنتجات"
-
-#: .\products\templates\products\product_list.html:96
-#: .\products\templates\products\product_list.html:204
-msgid "reviews"
-msgstr "مراجعات"
 
 #: .\project\settings.py:183
 msgid "Arabic"
@@ -1310,16 +1330,6 @@ msgstr "دعم 24/7"
 msgid "Popular Categories"
 msgstr "اشهر التصنيفات"
 
-#: .\settings\templates\home.html:55
-#| msgid "category"
-msgid "Subcategory"
-msgstr "تصنيف فرعي"
-
-#: .\settings\templates\home.html:69
-#| msgid "Products"
-msgid "Product"
-msgstr "منتج"
-
 #: .\settings\templates\home.html:81
 msgid "Show More"
 msgstr "عرض المزيد"
@@ -1395,9 +1405,6 @@ msgstr "النشرة الإخبارية"
 #: .\templates\base.html:326
 msgid "Your Name"
 msgstr "اسمك"
-
-#~ msgid "Product Name "
-#~ msgstr "اسم المنتج"
 
 #~ msgid "Product Description "
 #~ msgstr "وصف المنتج"

@@ -2,6 +2,7 @@ import django_filters
 from .models import Product
 from django_filters.widgets import RangeWidget
 from django.utils.translation import gettext_lazy as _
+from parler.models import TranslatableModel
 
 
 class ProductFilter(django_filters.FilterSet):
@@ -13,7 +14,22 @@ class ProductFilter(django_filters.FilterSet):
             'placeholder': _('Enter price range')
         })
     )
+    name = django_filters.CharFilter(
+        field_name='translations__name',
+        lookup_expr='icontains',
+        label=_('Product Name'),
+        
+    )
+    description = django_filters.CharFilter(
+        field_name='translations__name',
+        lookup_expr='icontains',
+        label=_('Product description'),
+        
+    )
 
     class Meta:
         model = Product
-        fields = ['translations__name', 'translations__description', 'subcategory', 'price']
+        fields = ['name','description', 'subcategory', 'price']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
