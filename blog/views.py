@@ -12,10 +12,11 @@ class PostList(ListView):
     paginate_by = 6
     def get_queryset(self) :
         name = self.request.GET.get('q','')
-        object_list = Post.objects.filter(
-            Q(title__icontains = name) |
-            Q(description__icontains=name)
-        )
+        language = self.request.LANGUAGE_CODE
+        object_list = Post.objects.language(language).filter(
+            Q(translations__title__icontains = name) |
+            Q(translations__description__icontains=name)
+        ).distinct() 
         return object_list
 
 class PostDetail(DetailView):

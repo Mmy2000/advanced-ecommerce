@@ -7,16 +7,22 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
 
-class Post(models.Model):
+
+class Post(TranslatableModel):
+    
     author = models.ForeignKey(User, related_name="post_author", verbose_name=_('author'),null=True, on_delete=models.CASCADE)
-    title = models.CharField(_("title"),default="", max_length=100)
+    
     created_at = models.TimeField(_("created_at"), default=timezone.now)
-    category = models.ForeignKey('Category', related_name='post_category',null=True, verbose_name=_('category'), on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', related_name='post_category',null=True, verbose_name=_('category'), on_delete=models.SET_NULL)
+    translations = TranslatedFields(
+        title = models.CharField(_("title"),default="", max_length=100),
+        description = models.TextField(_("description"), max_length=100000,default="")
+    )
     slug = models.SlugField(null=True, blank=True)
     views = models.PositiveIntegerField(_("views"),default=0)
     tags = TaggableManager(_("tags"))
     image = models.ImageField(_("image"), upload_to='post/',default="")
-    description = models.TextField(_("description"), max_length=100000,default="")
+    
 
     class Meta:
         verbose_name = _("Blog")
@@ -33,8 +39,11 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"pk": self.pk})
 
-class Category(models.Model):
-    name = models.CharField(_("name"),null=True, max_length=60)
+class Category(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(_("name"),null=True, max_length=60),
+    )
+    
     
 
     class Meta:
@@ -42,4 +51,4 @@ class Category(models.Model):
         verbose_name_plural = _("Blog Categories")
 
     def __str__(self):
-        return self.name
+        return str(self.safe_translation_getter('name', any_language=True))
