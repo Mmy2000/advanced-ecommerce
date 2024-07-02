@@ -3,6 +3,8 @@ from .models import ReviewRating , Subcategory , ProductImages , Product
 from django.forms.models import inlineformset_factory
 from django_summernote.widgets import SummernoteWidget
 from parler.forms import TranslatableModelForm
+from django.utils.translation import get_language, gettext_lazy as _
+
 
 
 
@@ -40,18 +42,24 @@ ProductImageFormset = inlineformset_factory(
 
 from taggit.forms import TagField
 
-class ProductForm(forms.ModelForm):
-    tags = TagField(required=False,help_text="A comma-separated list of tags.")
+class ProductForm(TranslatableModelForm):
+    tags = TagField(required=False, help_text="A comma-separated list of tags.")
     created_at = forms.DateTimeField(
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
     )
 
     class Meta:
         model = Product
-        exclude = ('slug', 'owner', 'is_available', 'like', 'views')
+        fields = ['name', 'stock', 'price', 'description', 'image', 'subcategory', 'tags', 'created_at']
         widgets = {
             'description': SummernoteWidget(),
         }
+    def clean(self):
+        cleaned_data = super().clean()
+        current_language = get_language()
+        if current_language == 'ar':  # Assuming 'ar' is the code for Arabic
+            raise forms.ValidationError(_("Adding products in Arabic is not allowed."))
+        return cleaned_data
 
 
 

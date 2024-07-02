@@ -33,3 +33,24 @@ class ProductFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+from .models import Product
+
+class ArabicTranslationFilter(admin.SimpleListFilter):
+    title = _('Arabic Translation')
+    parameter_name = 'arabic_translation'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.filter(translations__language_code='ar')
+        if self.value() == 'no':
+            return queryset.exclude(translations__language_code='ar')
+        return queryset
