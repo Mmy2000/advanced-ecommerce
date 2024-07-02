@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 12:33+0300\n"
-"PO-Revision-Date: 2024-07-02 12:33+0300\n"
+"POT-Creation-Date: 2024-07-02 13:46+0300\n"
+"PO-Revision-Date: 2024-07-02 13:46+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -102,7 +102,7 @@ msgstr "المستخدم"
 msgid "address"
 msgstr "العنوان "
 
-#: .\accounts\models.py:87 .\blog\models.py:24 .\products\models.py:14
+#: .\accounts\models.py:87 .\blog\models.py:24 .\products\models.py:17
 #: .\settings\models.py:62 .\settings\models.py:97
 msgid "image"
 msgstr "صوره"
@@ -514,7 +514,7 @@ msgid "author"
 msgstr "المؤلف"
 
 #: .\blog\models.py:15 .\orders\models.py:13 .\orders\models.py:49
-#: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:141
+#: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:152
 #: .\settings\models.py:50
 msgid "created_at"
 msgstr "تاريخ الانشاء"
@@ -527,7 +527,7 @@ msgstr "تصنيف المدونه"
 msgid "title"
 msgstr "العنوان"
 
-#: .\blog\models.py:19 .\products\models.py:17 .\settings\models.py:30
+#: .\blog\models.py:19 .\products\models.py:29 .\settings\models.py:30
 #: .\settings\models.py:80
 msgid "description"
 msgstr "الوصف"
@@ -569,8 +569,8 @@ msgstr "التعليقات"
 msgid "Type a keyword and hit enter"
 msgstr "اكتب كلمة رئيسية واضغط على زر الإدخال"
 
-#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:105
-#: .\products\models.py:106 .\products\templates\products\categories.html:13
+#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:113
+#: .\products\models.py:114 .\products\templates\products\categories.html:13
 #: .\products\templates\products\categories.html:17 .\templates\base.html:150
 msgid "Categories"
 msgstr "التصنيفات"
@@ -632,8 +632,8 @@ msgstr "مواصلة التسوق"
 
 #: .\carts\templates\cart.html:43 .\carts\templates\checkout.html:85
 #: .\orders\templates\order_complete.html:68
-#: .\orders\templates\payment.html:51 .\products\models.py:29
-#: .\products\models.py:30
+#: .\orders\templates\payment.html:51 .\products\models.py:35
+#: .\products\models.py:36
 msgid "Products"
 msgstr "المنتجات"
 
@@ -788,7 +788,7 @@ msgstr "طريقه الدفع"
 msgid "payment_paid"
 msgstr "الكميه المدفوع"
 
-#: .\orders\models.py:12 .\orders\models.py:46 .\products\models.py:140
+#: .\orders\models.py:12 .\orders\models.py:46 .\products\models.py:151
 msgid "status"
 msgstr "الحاله"
 
@@ -828,7 +828,7 @@ msgstr "اجمالي الطلب"
 msgid "tax"
 msgstr "ضريبه"
 
-#: .\orders\models.py:47 .\products\models.py:139
+#: .\orders\models.py:47 .\products\models.py:150
 msgid "ip"
 msgstr "الملكيه"
 
@@ -836,7 +836,7 @@ msgstr "الملكيه"
 msgid "is_orderd"
 msgstr "تم"
 
-#: .\orders\models.py:50 .\orders\models.py:74 .\products\models.py:142
+#: .\orders\models.py:50 .\orders\models.py:74 .\products\models.py:153
 msgid "updated_at"
 msgstr "تاريخ التعديل"
 
@@ -944,29 +944,27 @@ msgstr "لوحة القيادة"
 msgid "Refresh the page to pay again."
 msgstr "قم بتحديث الصفحة للدفع مرة أخرى."
 
-#: .\products\filters.py:10
+#: .\products\filters.py:11
 msgid "Enter Price Range from low to high"
 msgstr "أدخل نطاق السعر من الأقل إلى الأعلى"
 
-#: .\products\filters.py:12
+#: .\products\filters.py:13
 msgid "Enter price range"
 msgstr "أدخل النطاق السعري"
 
-#: .\products\models.py:12
-msgid "product_owner"
-msgstr "مالك المنتج"
-
-#: .\products\models.py:13
-msgid "product name"
+#: .\products\filters.py:33
+#| msgid "product name"
+msgid "Product Name "
 msgstr "اسم المنتج"
 
-#: .\products\models.py:15
-msgid "stock"
-msgstr "الكميه"
+#: .\products\filters.py:37
+#| msgid "Product Description"
+msgid "Product Description "
+msgstr "وصف المنتج"
 
-#: .\products\models.py:16
-msgid "price"
-msgstr "السعر"
+#: .\products\models.py:15
+msgid "product_owner"
+msgstr "مالك المنتج"
 
 #: .\products\models.py:19
 msgid "slug"
@@ -984,63 +982,75 @@ msgstr "تصنيف المنتج"
 msgid "like"
 msgstr "المعجبين"
 
-#: .\products\models.py:89
+#: .\products\models.py:26
+msgid "product name"
+msgstr "اسم المنتج"
+
+#: .\products\models.py:27
+msgid "stock"
+msgstr "الكميه"
+
+#: .\products\models.py:28
+msgid "price"
+msgstr "السعر"
+
+#: .\products\models.py:95
 msgid "product"
 msgstr "المنتج"
 
-#: .\products\models.py:90
+#: .\products\models.py:96
 msgid "product images"
 msgstr "صور المنتج"
 
-#: .\products\models.py:94 .\products\models.py:95
+#: .\products\models.py:100 .\products\models.py:101
 msgid "Product Images"
 msgstr "صور المنتج"
 
-#: .\products\models.py:101
-msgid "category name"
-msgstr "اسم الفئة الرئيسيه"
-
-#: .\products\models.py:102
+#: .\products\models.py:107
 msgid "category image"
 msgstr "صوره الفئة الرئيسيه"
 
-#: .\products\models.py:112
+#: .\products\models.py:109
+msgid "category name"
+msgstr "اسم الفئة الرئيسيه"
+
+#: .\products\models.py:120
 msgid "Category"
 msgstr "تصنيف المنتج"
 
-#: .\products\models.py:113
-msgid "subcategory name"
-msgstr "اسم الفئة الفرعية"
-
-#: .\products\models.py:114
+#: .\products\models.py:122
 msgid "subcategory image"
 msgstr "صوره الفئة الفرعية"
 
-#: .\products\models.py:120 .\products\models.py:121
+#: .\products\models.py:124
+msgid "subcategory name"
+msgstr "اسم الفئة الفرعية"
+
+#: .\products\models.py:131 .\products\models.py:132
 msgid "Subcategories"
 msgstr "الفئات الفرعية"
 
-#: .\products\models.py:134
+#: .\products\models.py:145
 msgid "user review"
 msgstr "تقييم المستخدم"
 
-#: .\products\models.py:135
+#: .\products\models.py:146
 msgid "product review"
 msgstr "تقييم المنتج"
 
-#: .\products\models.py:136
+#: .\products\models.py:147
 msgid "subject"
 msgstr "الموضوع"
 
-#: .\products\models.py:137
+#: .\products\models.py:148
 msgid "review"
 msgstr "مراجعه"
 
-#: .\products\models.py:138
+#: .\products\models.py:149
 msgid "rating"
 msgstr "التقييم"
 
-#: .\products\models.py:145 .\products\models.py:146
+#: .\products\models.py:156 .\products\models.py:157
 msgid "Rating"
 msgstr "التقييم"
 

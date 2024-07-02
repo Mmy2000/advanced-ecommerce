@@ -2,6 +2,8 @@ from django import forms
 from .models import ReviewRating , Subcategory , ProductImages , Product
 from django.forms.models import inlineformset_factory
 from django_summernote.widgets import SummernoteWidget
+from parler.forms import TranslatableModelForm
+
 
 
 
@@ -11,10 +13,16 @@ class ReviewForm(forms.ModelForm):
         fields = ['subject' , 'review' , 'rating']
 
 
-class CategoryForm(forms.ModelForm):
+class CategoryForm(TranslatableModelForm):
     class Meta:
         model = Subcategory
-        fields = ['name']
+        fields = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'] = forms.CharField(label=Subcategory._meta.get_field('name').verbose_name)
+        # You can customize other aspects of the field here if needed
+        # For example, setting initial value, widget, etc.
 
 class ProductImageForm(forms.ModelForm):
     class Meta:

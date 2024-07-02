@@ -7,14 +7,14 @@ from accounts.models import  User
 from django.db.models import Avg , Count
 from taggit.managers import TaggableManager
 from django.core.validators import MaxValueValidator , MinValueValidator
+from parler.models import TranslatableModel, TranslatedFields
+
+
 # Create your models here.
-class Product(models.Model):
+class Product(TranslatableModel):
     owner = models.ForeignKey(User, related_name='product_owner',verbose_name=_("product_owner"),default="", on_delete=models.CASCADE)
-    name = models.CharField(_("product name"),unique=True, max_length=50)
+    
     image = models.ImageField(_("image"),upload_to='product/')
-    stock = models.IntegerField(_("stock"),default=1)
-    price = models.IntegerField(_("price"),default=0)
-    description = models.TextField(_("description"),max_length=10000)
     created_at = models.DateTimeField(_("created_at"), default=timezone.now)
     slug = models.SlugField(_("slug"),null=True,blank=True , unique=True)
     views = models.PositiveIntegerField(_("views"),default=0)
@@ -22,10 +22,16 @@ class Product(models.Model):
     tags = TaggableManager()
     subcategory = models.ForeignKey("Subcategory",verbose_name=_('product Category'),related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
     like = models.ManyToManyField(User , blank=True,related_name='product_favourite',verbose_name=_('like'))
+    translations = TranslatedFields(
+        name = models.CharField(_("product name"),unique=True, max_length=50),
+        stock = models.IntegerField(_("stock"),default=1),
+        price = models.IntegerField(_("price"),default=0),
+        description = models.TextField(_("description"),max_length=10000),
+    )
 
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["created_at"]
         verbose_name = _("Products")
         verbose_name_plural = _("Products")
 
@@ -97,9 +103,11 @@ class ProductImages(models.Model):
     def __str__(self):
         return str(self.product)
 
-class Category(models.Model):
-    name = models.CharField(_("category name"),max_length=100)
+class Category(TranslatableModel):
     image = models.ImageField(_("category image"),null=True,blank=True,upload_to='category-image/')
+    translations = TranslatedFields(
+        name = models.CharField(_("category name"),max_length=100)
+    )
 
     class Meta:
         verbose_name_plural = _("Categories")
@@ -108,10 +116,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Subcategory(models.Model):
+class Subcategory(TranslatableModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name=_("Category") , blank=True , null=True)
-    name = models.CharField(_("subcategory name"),null=True,blank=True,max_length=100)
+   
     image = models.ImageField(_("subcategory image"),null=True,blank=True,upload_to='subcategory-image/')
+    translations = TranslatedFields(
+        name = models.CharField(_("subcategory name"),null=True,blank=True,max_length=100)
+    )
 
     def get_url(self):
         return reverse('product_by_subcategory',args=[self.id])
