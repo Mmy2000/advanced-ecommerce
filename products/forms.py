@@ -62,4 +62,3 @@ class ProductForm(TranslatableModelForm):
         return cleaned_data
 
 
-
