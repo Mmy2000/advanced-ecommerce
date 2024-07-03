@@ -3,7 +3,7 @@ from .models import Product  , Subcategory  , ReviewRating , Category
 from taggit.models import Tag
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.db.models import Count
 from .forms import ReviewForm , ProductImageFormset , ProductImageForm , ProductForm
 from django.contrib import messages
@@ -57,34 +57,48 @@ def load_subcategories(request):
     print(f"Subcategories: {subcategories}")  # Debugging statement
     return JsonResponse(list(subcategories.values('id', 'name')), safe=False)
 
-def product_detail(request ,subcategory_id,product_slug):
+def product_detail(request, subcategory_id, product_slug):
     try:
-        single_product = Product.objects.get(subcategory_id=subcategory_id,slug=product_slug)
-        reviews = ReviewRating.objects.filter(product_id=single_product.id , status=True)
+        single_product = Product.objects.get(subcategory_id=subcategory_id, slug=product_slug)
+        reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
+        
+        # Check if user is authenticated and has ordered the product
+        orderproduct = None
         if request.user.is_authenticated:
             try:
-                orderproduct = OrderProduct.objects.filter(user=request.user , product_id=single_product.id).exists()
+                orderproduct = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
             except OrderProduct.DoesNotExist:
-                orderproduct = None
-        else :
-            orderproduct = None
-        single_product.views+=1
+                pass
+
+        single_product.views += 1
         single_product.save()
+
+        # Preprocess the video URL
+        embed_url = None
+        if single_product.video_url and 'youtube.com/watch?v=' in single_product.video_url:
+            video_id = single_product.video_url.split('watch?v=')[-1]
+            embed_url = f'https://www.youtube.com/embed/{video_id}'
+        elif single_product.video_url:
+            embed_url = single_product.video_url
+
         related = Product.objects.filter(subcategory=single_product.subcategory)
         related_count = related.count()
-        orderproduct_counter =  OrderProduct.objects.filter( product_id=single_product.id)
-        orderproduct_count = orderproduct_counter.count()
+        orderproduct_count = OrderProduct.objects.filter(product_id=single_product.id).count()
+    except Product.DoesNotExist:
+        raise Http404("Product does not exist")
     except Exception as e:
         raise e
+
     context = {
-        'single_product':single_product,
-        'related':related,
-        'related_count':related_count,
-        'reviews':reviews,
-        'orderproduct':orderproduct,
-        'orderproduct_count':orderproduct_count
+        'single_product': single_product,
+        'related': related,
+        'related_count': related_count,
+        'reviews': list(reviews) if reviews else [],  # Ensure reviews is not None
+        'orderproduct': orderproduct,
+        'orderproduct_count': orderproduct_count,
+        'embed_url': embed_url,  # Pass the embed URL to the template if found
     }
-    return render(request , 'products/product_detail.html' , context)
+    return render(request, 'products/product_detail.html', context)
 def category_list(request):
     category_list = Category.objects.annotate(subcategory_count=Count('subcategory'))
     paginator = Paginator(category_list,1)

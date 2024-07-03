@@ -67,7 +67,8 @@
                 <small class="pt-1">({{single_product.count_review}} {% trans "Reviews" %} )</small>
 
             </div>
-            <p class="badge bg-secondary "> {% trans "orders" %} {{orderproduct_count}}  & {{single_product.stock}} {% trans "In Stock" %} </p>
+            <p class="badge bg-secondary "> {% trans "orders" %} {{orderproduct_count}} & {{single_product.stock}}
+                {% trans "In Stock" %} </p>
             <h3 class="font-weight-semi-bold mb-4">{% trans "UAE" %}{{single_product.price}}</h3>
             {% if single_product.stock <= 0 %}
             <span class="badge bg-secondary">{% trans "Out of Stock" %}</span>
@@ -176,11 +177,24 @@
                 <div class="tab-pane fade show active" id="tab-pane-1">
                     <h4 class="mb-3">{% trans "Product Description" %}</h4>
                     <p>{{single_product.description|safe}}</p>
+                    {% if embed_url %}
+                    {% if 'youtube.com/embed/' in embed_url %}
+                    <iframe width="560" height="315" src="{{ embed_url }}" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    {% else %}
+                    <video width="560" height="315" controls>
+                        <source src="{{ embed_url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% endif %}
+                    {% endif %}
                 </div>
                 <div class="tab-pane fade" id="tab-pane-2">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="mb-4"> {% trans "review for" %} {{single_product.count_review}}  "{{single_product.name}}"</h4>
+                            <h4 class="mb-4"> {% trans "review for" %} {{single_product.count_review}}
+                                "{{single_product.name}}"</h4>
                             {% for review in reviews %}
                             <div class="media mb-4">
                                 {% if review.user.profile.image %}

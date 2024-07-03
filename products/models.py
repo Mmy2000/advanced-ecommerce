@@ -28,7 +28,7 @@ class Product(TranslatableModel):
         price = models.IntegerField(_("price"),default=0),
         description = models.TextField(_("description"),max_length=10000),
     )
-
+    video_url = models.URLField(_("video_url"),null=True,blank=True, max_length=200)
 
     class Meta:
         ordering = ["created_at"]

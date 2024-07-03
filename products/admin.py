@@ -13,18 +13,20 @@ class ProductGallaryInline(admin.TabularInline):
 class SubCategoryAdmin(TranslatableAdmin):
     list_display = ('name', 'category')
 
-class SomeModelAdmin(SummernoteModelAdmin, TranslatableAdmin):  # instead of ModelAdmin
-    summernote_fields = '__all__'
+class SomeModelAdmin(SummernoteModelAdmin, TranslatableAdmin):
     list_display = ('id', 'name', 'price', 'avr_review', 'count_review', 'subcategory', 'get_category', 'stock', 'views', 'created_at', 'is_available')
     list_editable = ('is_available',)
     list_filter = ('translations__price', 'subcategory', 'translations__name', 'translations__stock', ArabicTranslationFilter)  # Include the custom filter
-    
+
     def get_category(self, obj):
         return obj.subcategory.category
     
     get_category.short_description = 'Category'
 
     inlines = [ProductGallaryInline]
+
+    # Specify the translated description fields for Summernote
+    summernote_fields = ('description',)
 
 class ReviewsAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'subject', 'review', 'rating', 'status')
