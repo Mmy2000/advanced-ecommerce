@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 19:07+0300\n"
-"PO-Revision-Date: 2024-07-02 19:08+0300\n"
+"POT-Creation-Date: 2024-07-03 11:25+0300\n"
+"PO-Revision-Date: 2024-07-03 11:26+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -213,7 +213,7 @@ msgstr "حصلت على كلمة المرور؟"
 #: .\accounts\templates\accounts\login.html:29
 #: .\accounts\templates\accounts\login.html:44
 #: .\accounts\templates\accounts\register.html:62
-#: .\products\templates\products\product_detail.html:261
+#: .\products\templates\products\product_detail.html:275
 #: .\templates\base.html:225
 msgid "Login"
 msgstr "تسجل دخول"
@@ -346,7 +346,7 @@ msgstr "اظهار الطلبات"
 #: .\orders\templates\payment.html:70 .\orders\templates\payment.html:77
 #: .\orders\templates\payment.html:92 .\orders\templates\payment.html:96
 #: .\orders\templates\payment.html:102
-#: .\products\templates\products\product_detail.html:71
+#: .\products\templates\products\product_detail.html:72
 #: .\products\templates\products\product_list.html:81
 #: .\products\templates\products\product_list.html:189
 #: .\settings\templates\home.html:105 .\settings\templates\home.html:189
@@ -364,7 +364,7 @@ msgstr "مراجعات"
 
 #: .\accounts\templates\profile\favourite.html:42
 #: .\accounts\templates\profile\my_products.html:43
-#: .\products\templates\products\product_detail.html:313
+#: .\products\templates\products\product_detail.html:327
 #: .\products\templates\products\product_list.html:101
 #: .\products\templates\products\product_list.html:209
 #: .\settings\templates\home.html:124 .\settings\templates\home.html:208
@@ -374,7 +374,7 @@ msgstr "اظهار التفاصيل"
 
 #: .\accounts\templates\profile\favourite.html:45
 #: .\carts\templates\cart.html:47
-#: .\products\templates\products\product_detail.html:316
+#: .\products\templates\products\product_detail.html:330
 #: .\products\templates\products\product_list.html:104
 #: .\products\templates\products\product_list.html:212
 #: .\settings\templates\home.html:127 .\settings\templates\home.html:211
@@ -383,7 +383,7 @@ msgid "Remove"
 msgstr "حذف"
 
 #: .\accounts\templates\profile\favourite.html:48
-#: .\products\templates\products\product_detail.html:319
+#: .\products\templates\products\product_detail.html:333
 #: .\products\templates\products\product_list.html:107
 #: .\products\templates\products\product_list.html:215
 #: .\settings\templates\home.html:130 .\settings\templates\home.html:214
@@ -770,7 +770,7 @@ msgstr "الاسم الاول"
 
 #: .\carts\templates\checkout.html:34
 msgid "John"
-msgstr ""
+msgstr "محمد"
 
 #: .\carts\templates\checkout.html:37
 msgid "Last Name"
@@ -778,7 +778,7 @@ msgstr "الاسم الثاني"
 
 #: .\carts\templates\checkout.html:38
 msgid "Doe"
-msgstr ""
+msgstr "حسن"
 
 #: .\carts\templates\checkout.html:41
 msgid "E-mail"
@@ -802,7 +802,7 @@ msgstr "عنوان رقم 1"
 
 #: .\carts\templates\checkout.html:50 .\carts\templates\checkout.html:54
 msgid "123 Street"
-msgstr ""
+msgstr "شارع 123"
 
 #: .\carts\templates\checkout.html:53
 msgid "Address Line 2"
@@ -998,25 +998,23 @@ msgid "Enter price range"
 msgstr "أدخل النطاق السعري"
 
 #: .\products\filters.py:26
-#| msgid "Product Name "
 msgid "Product Name"
 msgstr "اسم المنتج"
 
 #: .\products\filters.py:32
-#: .\products\templates\products\product_detail.html:177
+#: .\products\templates\products\product_detail.html:178
 msgid "Product Description"
 msgstr "وصف المنتج"
 
-#: .\products\filters.py:46
-#| msgid "Transaction ID"
+#: .\products\filters.py:50
 msgid "Arabic Translation"
 msgstr "الترجمة العربية"
 
-#: .\products\filters.py:51
+#: .\products\filters.py:55
 msgid "Yes"
 msgstr "نعم"
 
-#: .\products\filters.py:52
+#: .\products\filters.py:56
 msgid "No"
 msgstr "لا"
 
@@ -1055,6 +1053,10 @@ msgstr "الكميه"
 #: .\products\models.py:28
 msgid "price"
 msgstr "السعر"
+
+#: .\products\models.py:31
+msgid "video_url"
+msgstr "رابط الفيديو"
 
 #: .\products\models.py:95
 msgid "product"
@@ -1132,7 +1134,7 @@ msgid "Shop Detail"
 msgstr "تفاصيل المنتج"
 
 #: .\products\templates\products\product_detail.html:67
-#: .\products\templates\products\product_detail.html:172
+#: .\products\templates\products\product_detail.html:173
 #: .\settings\templates\home.html:119 .\settings\templates\home.html:203
 msgid "Reviews"
 msgstr "التقييمات"
@@ -1141,64 +1143,64 @@ msgstr "التقييمات"
 msgid "orders"
 msgstr "طلبات"
 
-#: .\products\templates\products\product_detail.html:70
+#: .\products\templates\products\product_detail.html:71
 msgid "In Stock"
 msgstr "في المخزون"
 
-#: .\products\templates\products\product_detail.html:73
+#: .\products\templates\products\product_detail.html:74
 msgid "Out of Stock"
 msgstr "إنتهى من المخزن"
 
-#: .\products\templates\products\product_detail.html:126
-#: .\products\templates\products\product_detail.html:130
+#: .\products\templates\products\product_detail.html:127
+#: .\products\templates\products\product_detail.html:131
 msgid "Add To Cart"
 msgstr "اضف الي السله"
 
-#: .\products\templates\products\product_detail.html:136
+#: .\products\templates\products\product_detail.html:137
 msgid "please contact with the owner to get more details"
 msgstr "يرجى التواصل مع المالك للحصول على مزيد من التفاصيل"
 
-#: .\products\templates\products\product_detail.html:137
+#: .\products\templates\products\product_detail.html:138
 msgid "Owner Information"
 msgstr "معلومات المالك"
 
-#: .\products\templates\products\product_detail.html:171
+#: .\products\templates\products\product_detail.html:172
 msgid "Description"
 msgstr "الوصف"
 
-#: .\products\templates\products\product_detail.html:183
+#: .\products\templates\products\product_detail.html:196
 msgid "review for"
 msgstr "مراجعه ل"
 
-#: .\products\templates\products\product_detail.html:217
+#: .\products\templates\products\product_detail.html:231
 msgid "Leave a review"
 msgstr "ترك التعليق"
 
-#: .\products\templates\products\product_detail.html:221
+#: .\products\templates\products\product_detail.html:235
 msgid "How do you rate this product?"
 msgstr "كيف تقيم هذا المنتج؟"
 
-#: .\products\templates\products\product_detail.html:246
+#: .\products\templates\products\product_detail.html:260
 msgid "Subject :"
 msgstr "الموضوع"
 
-#: .\products\templates\products\product_detail.html:249
+#: .\products\templates\products\product_detail.html:263
 msgid "Your Review :"
 msgstr "تقييمك"
 
-#: .\products\templates\products\product_detail.html:255
+#: .\products\templates\products\product_detail.html:269
 msgid "Submit Review"
 msgstr "إرسال المراجعة"
 
-#: .\products\templates\products\product_detail.html:257
+#: .\products\templates\products\product_detail.html:271
 msgid "You must purchase this product to post a review."
 msgstr "يجب عليك شراء هذا المنتج لنشر التعليق."
 
-#: .\products\templates\products\product_detail.html:260
+#: .\products\templates\products\product_detail.html:274
 msgid "You must be logged in to post a review."
 msgstr "يجب عليك تسجيل الدخول لنشر التعليق."
 
-#: .\products\templates\products\product_detail.html:281
+#: .\products\templates\products\product_detail.html:295
 msgid "You May Also Like"
 msgstr "ربما يعجبك أيضا"
 
