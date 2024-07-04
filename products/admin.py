@@ -4,29 +4,40 @@ import admin_thumbnails
 from django_summernote.admin import SummernoteModelAdmin
 from parler.admin import TranslatableAdmin
 from .filters import ArabicTranslationFilter  # Import the custom filter
+from django import forms
+from django_summernote.widgets import SummernoteWidget
+from modeltranslation.forms import TranslationModelForm
+
 
 @admin_thumbnails.thumbnail('image')
 class ProductGallaryInline(admin.TabularInline):
     model = ProductImages
     extra = 1
 
+class ProductAdminForm(TranslationModelForm):
+    description = forms.CharField(widget=SummernoteWidget(), required=True)
+    
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
 class SubCategoryAdmin(TranslatableAdmin):
     list_display = ('name', 'category')
 
-class SomeModelAdmin(SummernoteModelAdmin, TranslatableAdmin):
+class SomeModelAdmin(TranslatableAdmin, SummernoteModelAdmin):
+    form = ProductAdminForm
     list_display = ('id', 'name', 'price', 'avr_review', 'count_review', 'subcategory', 'get_category', 'stock', 'views', 'created_at', 'is_available')
     list_editable = ('is_available',)
-    list_filter = ('translations__price', 'subcategory', 'translations__name', 'translations__stock', ArabicTranslationFilter)  # Include the custom filter
+    list_filter = ('translations__price', 'subcategory', 'translations__name', 'translations__stock', ArabicTranslationFilter)
 
     def get_category(self, obj):
         return obj.subcategory.category
-    
+
     get_category.short_description = 'Category'
 
     inlines = [ProductGallaryInline]
 
-    # Specify the translated description fields for Summernote
-    summernote_fields = ('description',)
 
 class ReviewsAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'subject', 'review', 'rating', 'status')
