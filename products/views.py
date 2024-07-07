@@ -120,10 +120,10 @@ def search_result(request):
         # print(product)
         res = None
         query = Product.objects.filter(
-            Q(name__icontains=product) | 
-            Q(description__icontains=product) | 
-            Q(subcategory__name__icontains=product)
-            )
+            Q(translations__name__icontains=product) | 
+            Q(translations__description__icontains=product) | 
+            Q(subcategory__translations__name__icontains=product)
+            ).distinct()
         # print(query)
         if (len(query) > 0 and len(product) > 0):
             data = []

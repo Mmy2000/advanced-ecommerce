@@ -21,13 +21,15 @@ class ProductAdminForm(TranslationModelForm):
         model = Product
         fields = '__all__'
 
+    
+
 
 class SubCategoryAdmin(TranslatableAdmin):
     list_display = ('name', 'category')
 
 class SomeModelAdmin(TranslatableAdmin, SummernoteModelAdmin):
-    form = ProductAdminForm
-    list_display = ('id', 'name', 'price', 'avr_review', 'count_review', 'subcategory', 'get_category', 'stock', 'views', 'created_at', 'is_available')
+    summernote_fields = '__all__'
+    list_display = ('id', 'get_name', 'price', 'avr_review', 'count_review', 'subcategory', 'get_category', 'stock', 'views', 'created_at', 'is_available')
     list_editable = ('is_available',)
     list_filter = ('translations__price', 'subcategory', 'translations__name', 'translations__stock', ArabicTranslationFilter)
 
@@ -36,7 +38,13 @@ class SomeModelAdmin(TranslatableAdmin, SummernoteModelAdmin):
 
     get_category.short_description = 'Category'
 
+    def get_name(self, obj):
+        return obj.safe_translation_getter('name', any_language=True)
+
+    get_name.short_description = 'Product Name'
+
     inlines = [ProductGallaryInline]
+
 
 
 class ReviewsAdmin(admin.ModelAdmin):
