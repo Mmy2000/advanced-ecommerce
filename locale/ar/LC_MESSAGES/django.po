@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 11:25+0300\n"
+"POT-Creation-Date: 2024-07-08 18:42+0300\n"
 "PO-Revision-Date: 2024-07-03 11:26+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
 
 #: .\accounts\forms.py:9
@@ -56,7 +57,7 @@ msgid "username"
 msgstr "اسم المستخدم"
 
 #: .\accounts\models.py:52 .\orders\models.py:37 .\settings\models.py:13
-#: .\settings\models.py:34 .\settings\models.py:48
+#: .\settings\models.py:34 .\settings\models.py:49
 msgid "email"
 msgstr "الايميل"
 
@@ -103,7 +104,7 @@ msgid "address"
 msgstr "العنوان "
 
 #: .\accounts\models.py:87 .\blog\models.py:24 .\products\models.py:17
-#: .\settings\models.py:62 .\settings\models.py:97
+#: .\settings\models.py:63 .\settings\models.py:98
 msgid "image"
 msgstr "صوره"
 
@@ -191,7 +192,7 @@ msgstr "ليس لديك حساب"
 #: .\accounts\templates\accounts\register.html:18
 #: .\accounts\templates\accounts\register.html:55
 #: .\accounts\templates\accounts\resetPassword.html:39
-#: .\templates\base.html:226
+#: .\templates\base.html:223
 msgid "Register"
 msgstr "سجل"
 
@@ -200,7 +201,7 @@ msgid "Forgot Password"
 msgstr "هل نسيت كلمة السر"
 
 #: .\accounts\templates\accounts\forgotPassword.html:24
-#: .\accounts\templates\profile\profile.html:287 .\templates\base.html:331
+#: .\accounts\templates\profile\profile.html:287 .\templates\base.html:328
 msgid "Email"
 msgstr "الايميل"
 
@@ -214,7 +215,7 @@ msgstr "حصلت على كلمة المرور؟"
 #: .\accounts\templates\accounts\login.html:44
 #: .\accounts\templates\accounts\register.html:62
 #: .\products\templates\products\product_detail.html:275
-#: .\templates\base.html:225
+#: .\templates\base.html:222
 msgid "Login"
 msgstr "تسجل دخول"
 
@@ -293,8 +294,8 @@ msgstr "لوحة القيادة"
 #: .\products\templates\products\product_detail.html:13
 #: .\products\templates\products\product_list.html:23
 #: .\settings\templates\about.html:15 .\settings\templates\contact.html:17
-#: .\templates\base.html:202 .\templates\base.html:294
-#: .\templates\base.html:309
+#: .\templates\base.html:199 .\templates\base.html:291
+#: .\templates\base.html:306
 msgid "Home"
 msgstr "الرئيسيه"
 
@@ -308,13 +309,13 @@ msgstr "طلباتي"
 #: .\accounts\templates\profile\dashboard.html:27
 #: .\accounts\templates\profile\orders.html:26
 #: .\accounts\templates\profile\profile.html:178
-#: .\accounts\templates\profile\profile.html:184 .\templates\base.html:218
+#: .\accounts\templates\profile\profile.html:184 .\templates\base.html:215
 msgid "Profile"
 msgstr "حساب تعريفي"
 
 #: .\accounts\templates\profile\dashboard.html:32
 #: .\accounts\templates\profile\orders.html:31
-#: .\accounts\templates\profile\profile.html:109 .\templates\base.html:220
+#: .\accounts\templates\profile\profile.html:109 .\templates\base.html:217
 msgid "logout"
 msgstr "تسجيل خروج"
 
@@ -464,9 +465,9 @@ msgstr "الحاله"
 
 #: .\accounts\templates\profile\order_detail.html:61
 #: .\carts\templates\cart.html:43 .\carts\templates\checkout.html:85
-#: .\orders\templates\order_complete.html:67
-#: .\orders\templates\payment.html:51 .\products\models.py:35
-#: .\products\models.py:36 .\settings\templates\subcategories.html:20
+#: .\orders\templates\order_complete.html:67 .\orders\templates\payment.html:51
+#: .\products\models.py:35 .\products\models.py:36
+#: .\settings\templates\subcategories.html:20
 msgid "Products"
 msgstr "المنتجات"
 
@@ -547,29 +548,28 @@ msgstr "منتجاتي"
 
 #: .\accounts\templates\profile\profile.html:143
 #: .\products\templates\products\product_list.html:20
-#: .\products\templates\products\product_list.html:25
-#: .\templates\base.html:204 .\templates\base.html:296
-#: .\templates\base.html:311
+#: .\products\templates\products\product_list.html:25 .\templates\base.html:201
+#: .\templates\base.html:293 .\templates\base.html:308
 msgid "Shop"
 msgstr "المتجر"
 
 #: .\accounts\templates\profile\profile.html:149 .\blog\models.py:28
 #: .\blog\templates\blog\post_list.html:13
-#: .\blog\templates\blog\post_list.html:17 .\templates\base.html:208
-#: .\templates\base.html:298 .\templates\base.html:313
+#: .\blog\templates\blog\post_list.html:17 .\templates\base.html:205
+#: .\templates\base.html:295 .\templates\base.html:310
 msgid "Blog"
 msgstr "المدونه"
 
-#: .\accounts\templates\profile\profile.html:155 .\settings\models.py:70
-#: .\settings\models.py:71 .\settings\templates\about.html:13
-#: .\settings\templates\about.html:17 .\templates\base.html:210
+#: .\accounts\templates\profile\profile.html:155 .\settings\models.py:71
+#: .\settings\models.py:72 .\settings\templates\about.html:13
+#: .\settings\templates\about.html:17 .\templates\base.html:207
 msgid "About"
 msgstr "عن الموقع"
 
 #: .\accounts\templates\profile\profile.html:161
 #: .\settings\templates\contact.html:15 .\settings\templates\contact.html:19
-#: .\templates\base.html:212 .\templates\base.html:301
-#: .\templates\base.html:316
+#: .\templates\base.html:209 .\templates\base.html:298
+#: .\templates\base.html:313
 msgid "Contact"
 msgstr "التواصل"
 
@@ -603,7 +603,7 @@ msgstr "الوظيفه"
 msgid "phone"
 msgstr "رقم التليفون"
 
-#: .\accounts\templates\profile\profile.html:343 .\templates\base.html:350
+#: .\accounts\templates\profile\profile.html:343 .\templates\base.html:347
 msgid "All Rights Reserved. Designed by"
 msgstr "كل الحقوق محفوظة. صمم بواسطة"
 
@@ -613,7 +613,7 @@ msgstr "المؤلف"
 
 #: .\blog\models.py:15 .\orders\models.py:13 .\orders\models.py:49
 #: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:152
-#: .\settings\models.py:50
+#: .\settings\models.py:51
 msgid "created_at"
 msgstr "تاريخ الانشاء"
 
@@ -621,12 +621,12 @@ msgstr "تاريخ الانشاء"
 msgid "category"
 msgstr "تصنيف المدونه"
 
-#: .\blog\models.py:18 .\settings\models.py:79 .\settings\models.py:92
+#: .\blog\models.py:18 .\settings\models.py:80 .\settings\models.py:93
 msgid "title"
 msgstr "العنوان"
 
 #: .\blog\models.py:19 .\products\models.py:29 .\settings\models.py:30
-#: .\settings\models.py:80
+#: .\settings\models.py:81
 msgid "description"
 msgstr "الوصف"
 
@@ -642,7 +642,7 @@ msgstr "وسم"
 msgid "Blogs"
 msgstr "المدونه"
 
-#: .\blog\models.py:44 .\settings\models.py:49
+#: .\blog\models.py:44 .\settings\models.py:50
 msgid "name"
 msgstr "اسم التصنيف"
 
@@ -669,7 +669,7 @@ msgstr "اكتب كلمة رئيسية واضغط على زر الإدخال"
 
 #: .\blog\templates\blog\post_detail.html:61 .\products\models.py:113
 #: .\products\models.py:114 .\products\templates\products\categories.html:13
-#: .\products\templates\products\categories.html:17 .\templates\base.html:150
+#: .\products\templates\products\categories.html:17 .\templates\base.html:147
 msgid "Categories"
 msgstr "التصنيفات"
 
@@ -1026,6 +1026,12 @@ msgstr "غير مسموح بإضافة منتجات باللغة العربية.
 msgid "product_owner"
 msgstr "مالك المنتج"
 
+#: .\products\models.py:16
+#, fuzzy
+#| msgid "Phone Number"
+msgid "PRNumber"
+msgstr "رقم التليفون"
+
 #: .\products\models.py:19
 msgid "slug"
 msgstr ""
@@ -1204,8 +1210,7 @@ msgstr "يجب عليك تسجيل الدخول لنشر التعليق."
 msgid "You May Also Like"
 msgstr "ربما يعجبك أيضا"
 
-#: .\products\templates\products\product_form.html:22
-#: .\templates\base.html:219
+#: .\products\templates\products\product_form.html:22 .\templates\base.html:216
 msgid "Add Product"
 msgstr "اضف المنتج"
 
@@ -1262,47 +1267,59 @@ msgid "fb_link"
 msgstr "فيسبوك لينك"
 
 #: .\settings\models.py:36
-msgid "twitter_link"
-msgstr "تويتر لينك"
+msgid "snapchat_link"
+msgstr ""
 
 #: .\settings\models.py:37
 msgid "instagram_link"
 msgstr "انستجرام لينك"
 
-#: .\settings\models.py:41 .\settings\models.py:42
+#: .\settings\models.py:38
+#, fuzzy
+#| msgid "twitter_link"
+msgid "tiktok_link"
+msgstr "تويتر لينك"
+
+#: .\settings\models.py:39
+#, fuzzy
+#| msgid "phone"
+msgid "phone2"
+msgstr "رقم التليفون"
+
+#: .\settings\models.py:42 .\settings\models.py:43
 msgid "Settings"
 msgstr "الاعدادات"
 
-#: .\settings\models.py:54 .\settings\models.py:55
+#: .\settings\models.py:55 .\settings\models.py:56
 msgid "NewsLitter"
 msgstr "النشرة الإخبارية"
 
-#: .\settings\models.py:64
+#: .\settings\models.py:65
 msgid "what_we_do"
 msgstr "الذي نفعله"
 
-#: .\settings\models.py:65
+#: .\settings\models.py:66
 msgid "our_mission"
 msgstr "مهماتنا"
 
-#: .\settings\models.py:66
+#: .\settings\models.py:67
 msgid "our_gaols"
 msgstr "اهدافنا"
 
-#: .\settings\models.py:84 .\settings\models.py:85
+#: .\settings\models.py:85 .\settings\models.py:86
 #: .\settings\templates\about.html:80 .\templates\base.html:51
 msgid "FAQ"
 msgstr "التعليمات"
 
-#: .\settings\models.py:92
+#: .\settings\models.py:93
 msgid "this title is display in slider in home page"
 msgstr "يتم عرض هذا العنوان في شريط التمرير في الصفحة الرئيسية"
 
-#: .\settings\models.py:93
+#: .\settings\models.py:94
 msgid "offer"
 msgstr "عرض"
 
-#: .\settings\models.py:100 .\settings\models.py:101
+#: .\settings\models.py:101 .\settings\models.py:102
 msgid "Home Images"
 msgstr "صور الصفحه الرئيسيه"
 
@@ -1394,11 +1411,11 @@ msgstr "ابق على اطلاع"
 msgid "Email Goes Here"
 msgstr "البريد الإلكتروني يذهب هنا"
 
-#: .\settings\templates\home.html:157 .\templates\base.html:335
+#: .\settings\templates\home.html:157 .\templates\base.html:332
 msgid "Subscribe Now"
 msgstr "إشترك الآن"
 
-#: .\settings\templates\home.html:166 .\templates\base.html:340
+#: .\settings\templates\home.html:166 .\templates\base.html:337
 msgid "Subcribed Successfuly"
 msgstr "تم الاشتراك بنجاح"
 
@@ -1426,31 +1443,31 @@ msgstr "المساعده"
 msgid "Support"
 msgstr "الدعم"
 
-#: .\templates\base.html:91
+#: .\templates\base.html:88
 msgid "Search for products"
 msgstr "البحث عن المنتجات"
 
-#: .\templates\base.html:100
+#: .\templates\base.html:97
 msgid "this search work in home page only..."
 msgstr "هذا البحث يعمل في الصفحة الرئيسية فقط ..."
 
-#: .\templates\base.html:206
+#: .\templates\base.html:203
 msgid "All Categories"
 msgstr "كل التصنيفات"
 
-#: .\templates\base.html:245
+#: .\templates\base.html:242
 msgid "Shop Now"
 msgstr "تسوق الآن"
 
-#: .\templates\base.html:291 .\templates\base.html:306
+#: .\templates\base.html:288 .\templates\base.html:303
 msgid "Quick Links"
 msgstr "لينكات سريعه"
 
-#: .\templates\base.html:322
+#: .\templates\base.html:319
 msgid "Newsletter"
 msgstr "النشرة الإخبارية"
 
-#: .\templates\base.html:327
+#: .\templates\base.html:324
 msgid "Your Name"
 msgstr "اسمك"
 

@@ -13,14 +13,14 @@ from parler.models import TranslatableModel, TranslatedFields
 # Create your models here.
 class Product(TranslatableModel):
     owner = models.ForeignKey(User, related_name='product_owner',verbose_name=_("product_owner"),default="", on_delete=models.CASCADE)
-    
+    PRNumber = models.PositiveIntegerField(_("PRNumber"),default=0)
     image = models.ImageField(_("image"),upload_to='product/')
     created_at = models.DateTimeField(_("created_at"), default=timezone.now)
     slug = models.SlugField(_("slug"),null=True,blank=True , unique=True)
     views = models.PositiveIntegerField(_("views"),default=0)
     is_available = models.BooleanField(_("is_available"),default=True)
     tags = TaggableManager()
-    subcategory = models.ForeignKey("Subcategory",verbose_name=_('product Category'),related_name='product_subcategory',null=True,blank=True, on_delete=models.CASCADE)
+    subcategory = models.ForeignKey("Subcategory",verbose_name=_('product Category'),related_name='product_subcategory', on_delete=models.CASCADE)
     like = models.ManyToManyField(User , blank=True,related_name='product_favourite',verbose_name=_('like'))
     translations = TranslatedFields(
         name = models.CharField(_("product name"),unique=True, max_length=50),

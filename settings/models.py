@@ -33,9 +33,10 @@ class Settings(TranslatableModel):
     logo = models.ImageField(_("logo"), upload_to='setting/')
     email = models.EmailField(_("email"), max_length=254)
     fb_link = models.URLField(_("fb_link"), max_length=200)
-    twitter_link = models.URLField(_("twitter_link"), max_length=200)
+    snap_link = models.URLField(_("snapchat_link"), max_length=200)
     instagram_link = models.URLField(_("instagram_link"), max_length=200)
-
+    tiktok_link = models.URLField(_("tiktok_link"), max_length=200)
+    phone2 = models.CharField(_("phone2"), max_length=30)
 
     class Meta:
         verbose_name = _("Settings")
