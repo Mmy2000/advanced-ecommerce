@@ -50,12 +50,7 @@ def product_list(request, subcategory_id=None, tag_slug=None):
     }
     return render(request, 'products/product_list.html', context)
 
-def load_subcategories(request):
-    category_id = request.GET.get('category_id')
-    print(f"Received category_id: {category_id}")  # Debugging statement
-    subcategories = Subcategory.objects.filter(category_id=category_id).all()
-    print(f"Subcategories: {subcategories}")  # Debugging statement
-    return JsonResponse(list(subcategories.values('id', 'name')), safe=False)
+
 
 def product_detail(request, subcategory_id, product_slug):
     try:
@@ -109,43 +104,24 @@ def category_list(request):
     }
     return render(request,'products/categories.html',context)
 
+def search(request):
+    if 'q' in request.GET:
+        q = request.GET['q']
+        if q :
+            product = Product.objects.order_by('-created_at').filter(
+                Q(translations__description__icontains=q ) |
+                Q(translations__name__icontains=q)|
+                Q(subcategory__translations__name__icontains=q)
+                ).distinct()
 
-
-def is_ajax(request):
-    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
-
-def search_result(request):
-    if is_ajax(request=request):
-        product = request.POST.get('product')
-        # print(product)
-        res = None
-        query = Product.objects.filter(
-            Q(translations__name__icontains=product) | 
-            Q(translations__description__icontains=product) | 
-            Q(subcategory__translations__name__icontains=product)
-            ).distinct()
-        # print(query)
-        if (len(query) > 0 and len(product) > 0):
-            data = []
-            for pos in query:
-                item = {
-                    'name':pos.name,
-                    'slug':pos.slug,
-                    'image':str(pos.image.url),
-                    'subcategory':pos.subcategory.id,
-                    'price':pos.price,
-                    'rate':pos.count_review(),
-                    'avgRate':pos.avr_review()
-                    
-                }
-                data.append(item)
-            res = data
-            
-        else:
-            res = "<div class='col-12 my-5 mx-5 text-center'><h2>Nothing Found , PLS Try Again</h2></div>"
-
-        return JsonResponse({'data':res})
-    return JsonResponse({})
+            product_count = product.count()
+        else :
+            return render(request , 'products/product_list.html')
+    context = {
+        'products':product , 
+        'product_count':product_count,
+    }
+    return render(request , 'products/product_list.html', context)
 
 def add_to_favourit(request,id):
     product = Product.objects.get(id=id)

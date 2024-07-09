@@ -80,10 +80,10 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6  text-left">
-                <form id="searchForm" autocomplete="off" action="">
+                <form  autocomplete="off" method="GET" action="{% url 'search' %}">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control"
+                        <input type="text" id="searchInput" name="q" class="form-control"
                             placeholder="{% trans "Search for products" %}">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
@@ -92,8 +92,7 @@
                         </div>
                     </div>
                 </form>
-                <div id="results" class="results-card position-absolute mt-2 not-visible text-center">
-                    {% trans "this search work in home page only..." %}</div>
+                
             </div>
 
             <div class="col-lg-4 col-6 d-lg-flex justify-content-center align-items-center  text-right">
@@ -128,7 +127,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary ">Go</button>
+                    <button type="submit" class="btn btn-primary  ">Go</button>
                 </form>
             </div>
         </div>
