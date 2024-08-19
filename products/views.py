@@ -94,6 +94,8 @@ def product_detail(request, subcategory_id, product_slug):
         'embed_url': embed_url,  # Pass the embed URL to the template if found
     }
     return render(request, 'products/product_detail.html', context)
+
+
 def category_list(request):
     category_list = Category.objects.annotate(subcategory_count=Count('subcategory'))
     paginator = Paginator(category_list,1)

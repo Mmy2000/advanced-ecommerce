@@ -394,4 +394,5 @@ a.bg-style:hover, a.bg-style:focus, button.bg-style:hover, button.bg-style:focus
     bottom: 20px; /* Adjust as needed */
     right: 80px; /* Adjust as needed */
     z-index: 99999999999999; /* Adjust to make sure it's above other content */
+    border-radius: 50%;
 }

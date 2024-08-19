@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Subcategory, ProductImages, Variation, ReviewRating, Category
+from .models import Product, Subcategory, ProductImages, Variation, ReviewRating, Category , CaravanImages
 import admin_thumbnails
 from django_summernote.admin import SummernoteModelAdmin
 from parler.admin import TranslatableAdmin
@@ -12,6 +12,11 @@ from modeltranslation.forms import TranslationModelForm
 @admin_thumbnails.thumbnail('image')
 class ProductGallaryInline(admin.TabularInline):
     model = ProductImages
+    extra = 1
+
+@admin_thumbnails.thumbnail('image')
+class CaravanGallaryInline(admin.TabularInline):
+    model = CaravanImages
     extra = 1
 
 class ProductAdminForm(TranslationModelForm):
@@ -43,7 +48,7 @@ class SomeModelAdmin(TranslatableAdmin, SummernoteModelAdmin):
 
     get_name.short_description = 'Product Name'
 
-    inlines = [ProductGallaryInline]
+    inlines = [ProductGallaryInline,CaravanGallaryInline]
 
 
 

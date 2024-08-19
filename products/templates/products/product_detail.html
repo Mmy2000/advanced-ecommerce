@@ -176,6 +176,17 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
                     <h4 class="mb-3">{% trans "Product Description" %}</h4>
+                    <div class="container py-5">
+                        <div class="row ">
+                            {% for image in single_product.caravan_image.all %}
+                            <div class="col-md-3 py-3">
+                                <div>
+                                    <img class="w-100" src="{{image.image.url}}">
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                     <p>{{single_product.description|safe}}</p>
                     {% if embed_url %}
                     {% if 'youtube.com/embed/' in embed_url %}

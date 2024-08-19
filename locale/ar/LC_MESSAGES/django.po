@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-09 23:04+0300\n"
-"PO-Revision-Date: 2024-07-09 23:05+0300\n"
+"POT-Creation-Date: 2024-07-27 10:58+0300\n"
+"PO-Revision-Date: 2024-07-27 10:59+0300\n"
 "Last-Translator: mahmoud yousef <my552915@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -213,7 +213,7 @@ msgstr "حصلت على كلمة المرور؟"
 #: .\accounts\templates\accounts\login.html:29
 #: .\accounts\templates\accounts\login.html:44
 #: .\accounts\templates\accounts\register.html:62
-#: .\products\templates\products\product_detail.html:275
+#: .\products\templates\products\product_detail.html:286
 #: .\templates\base.html:221
 msgid "Login"
 msgstr "تسجل دخول"
@@ -364,7 +364,7 @@ msgstr "مراجعات"
 
 #: .\accounts\templates\profile\favourite.html:42
 #: .\accounts\templates\profile\my_products.html:43
-#: .\products\templates\products\product_detail.html:327
+#: .\products\templates\products\product_detail.html:338
 #: .\products\templates\products\product_list.html:101
 #: .\products\templates\products\product_list.html:209
 #: .\settings\templates\home.html:124 .\settings\templates\home.html:208
@@ -374,7 +374,7 @@ msgstr "اظهار التفاصيل"
 
 #: .\accounts\templates\profile\favourite.html:45
 #: .\carts\templates\cart.html:47
-#: .\products\templates\products\product_detail.html:330
+#: .\products\templates\products\product_detail.html:341
 #: .\products\templates\products\product_list.html:104
 #: .\products\templates\products\product_list.html:212
 #: .\settings\templates\home.html:127 .\settings\templates\home.html:211
@@ -383,7 +383,7 @@ msgid "Remove"
 msgstr "حذف"
 
 #: .\accounts\templates\profile\favourite.html:48
-#: .\products\templates\products\product_detail.html:333
+#: .\products\templates\products\product_detail.html:344
 #: .\products\templates\products\product_list.html:107
 #: .\products\templates\products\product_list.html:215
 #: .\settings\templates\home.html:130 .\settings\templates\home.html:214
@@ -612,7 +612,7 @@ msgid "author"
 msgstr "المؤلف"
 
 #: .\blog\models.py:15 .\orders\models.py:13 .\orders\models.py:49
-#: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:152
+#: .\orders\models.py:73 .\products\models.py:18 .\products\models.py:164
 #: .\settings\models.py:51
 msgid "created_at"
 msgstr "تاريخ الانشاء"
@@ -667,8 +667,8 @@ msgstr "التعليقات"
 msgid "Type a keyword and hit enter"
 msgstr "اكتب كلمة رئيسية واضغط على زر الإدخال"
 
-#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:113
-#: .\products\models.py:114 .\products\templates\products\categories.html:13
+#: .\blog\templates\blog\post_detail.html:61 .\products\models.py:125
+#: .\products\models.py:126 .\products\templates\products\categories.html:13
 #: .\products\templates\products\categories.html:17 .\templates\base.html:146
 msgid "Categories"
 msgstr "التصنيفات"
@@ -869,7 +869,7 @@ msgstr "طريقه الدفع"
 msgid "payment_paid"
 msgstr "الكميه المدفوع"
 
-#: .\orders\models.py:12 .\orders\models.py:46 .\products\models.py:151
+#: .\orders\models.py:12 .\orders\models.py:46 .\products\models.py:163
 msgid "status"
 msgstr "الحاله"
 
@@ -909,7 +909,7 @@ msgstr "اجمالي الطلب"
 msgid "tax"
 msgstr "ضريبه"
 
-#: .\orders\models.py:47 .\products\models.py:150
+#: .\orders\models.py:47 .\products\models.py:162
 msgid "ip"
 msgstr "الملكيه"
 
@@ -917,7 +917,7 @@ msgstr "الملكيه"
 msgid "is_orderd"
 msgstr "تم"
 
-#: .\orders\models.py:50 .\orders\models.py:74 .\products\models.py:153
+#: .\orders\models.py:50 .\orders\models.py:74 .\products\models.py:165
 msgid "updated_at"
 msgstr "تاريخ التعديل"
 
@@ -1027,7 +1027,6 @@ msgid "product_owner"
 msgstr "مالك المنتج"
 
 #: .\products\models.py:16
-#| msgid "Phone Number"
 msgid "PRNumber"
 msgstr "رقم المنتج"
 
@@ -1063,7 +1062,7 @@ msgstr "السعر"
 msgid "video_url"
 msgstr "رابط الفيديو"
 
-#: .\products\models.py:95
+#: .\products\models.py:95 .\products\models.py:107
 msgid "product"
 msgstr "المنتج"
 
@@ -1075,51 +1074,61 @@ msgstr "صور المنتج"
 msgid "Product Images"
 msgstr "صور المنتج"
 
-#: .\products\models.py:107
+#: .\products\models.py:108
+#, fuzzy
+#| msgid "category image"
+msgid "caravan images"
+msgstr "صوره الفئة الرئيسيه"
+
+#: .\products\models.py:112 .\products\models.py:113
+msgid "Caravan Images"
+msgstr "صور الكرافانات"
+
+#: .\products\models.py:119
 msgid "category image"
 msgstr "صوره الفئة الرئيسيه"
 
-#: .\products\models.py:109
+#: .\products\models.py:121
 msgid "category name"
 msgstr "اسم الفئة الرئيسيه"
 
-#: .\products\models.py:120
+#: .\products\models.py:132
 msgid "Category"
 msgstr "تصنيف المنتج"
 
-#: .\products\models.py:122
+#: .\products\models.py:134
 msgid "subcategory image"
 msgstr "صوره الفئة الفرعية"
 
-#: .\products\models.py:124
+#: .\products\models.py:136
 msgid "subcategory name"
 msgstr "اسم الفئة الفرعية"
 
-#: .\products\models.py:131 .\products\models.py:132
+#: .\products\models.py:143 .\products\models.py:144
 msgid "Subcategories"
 msgstr "الفئات الفرعية"
 
-#: .\products\models.py:145
+#: .\products\models.py:157
 msgid "user review"
 msgstr "تقييم المستخدم"
 
-#: .\products\models.py:146
+#: .\products\models.py:158
 msgid "product review"
 msgstr "تقييم المنتج"
 
-#: .\products\models.py:147
+#: .\products\models.py:159
 msgid "subject"
 msgstr "الموضوع"
 
-#: .\products\models.py:148
+#: .\products\models.py:160
 msgid "review"
 msgstr "مراجعه"
 
-#: .\products\models.py:149
+#: .\products\models.py:161
 msgid "rating"
 msgstr "التقييم"
 
-#: .\products\models.py:156 .\products\models.py:157
+#: .\products\models.py:168 .\products\models.py:169
 msgid "Rating"
 msgstr "التقييم"
 
@@ -1173,39 +1182,39 @@ msgstr "معلومات المالك"
 msgid "Description"
 msgstr "الوصف"
 
-#: .\products\templates\products\product_detail.html:196
+#: .\products\templates\products\product_detail.html:207
 msgid "review for"
 msgstr "مراجعه ل"
 
-#: .\products\templates\products\product_detail.html:231
+#: .\products\templates\products\product_detail.html:242
 msgid "Leave a review"
 msgstr "ترك التعليق"
 
-#: .\products\templates\products\product_detail.html:235
+#: .\products\templates\products\product_detail.html:246
 msgid "How do you rate this product?"
 msgstr "كيف تقيم هذا المنتج؟"
 
-#: .\products\templates\products\product_detail.html:260
+#: .\products\templates\products\product_detail.html:271
 msgid "Subject :"
 msgstr "الموضوع"
 
-#: .\products\templates\products\product_detail.html:263
+#: .\products\templates\products\product_detail.html:274
 msgid "Your Review :"
 msgstr "تقييمك"
 
-#: .\products\templates\products\product_detail.html:269
+#: .\products\templates\products\product_detail.html:280
 msgid "Submit Review"
 msgstr "إرسال المراجعة"
 
-#: .\products\templates\products\product_detail.html:271
+#: .\products\templates\products\product_detail.html:282
 msgid "You must purchase this product to post a review."
 msgstr "يجب عليك شراء هذا المنتج لنشر التعليق."
 
-#: .\products\templates\products\product_detail.html:274
+#: .\products\templates\products\product_detail.html:285
 msgid "You must be logged in to post a review."
 msgstr "يجب عليك تسجيل الدخول لنشر التعليق."
 
-#: .\products\templates\products\product_detail.html:295
+#: .\products\templates\products\product_detail.html:306
 msgid "You May Also Like"
 msgstr "ربما يعجبك أيضا"
 
@@ -1275,12 +1284,10 @@ msgid "instagram_link"
 msgstr "انستجرام لينك"
 
 #: .\settings\models.py:38
-#| msgid "twitter_link"
 msgid "tiktok_link"
 msgstr "تيكتوك لينك"
 
 #: .\settings\models.py:39
-#| msgid "phone"
 msgid "phone2"
 msgstr "رقم التليفون 2"
 

@@ -102,6 +102,18 @@ class ProductImages(models.Model):
 
     def __str__(self):
         return str(self.product)
+    
+class CaravanImages(models.Model):
+    product = models.ForeignKey(Product,related_name='caravan_image',verbose_name=_('product'),on_delete=models.CASCADE)
+    image = models.ImageField(_("caravan images"),upload_to='caravanimages/')
+
+
+    class Meta:
+        verbose_name = _("Caravan Images")
+        verbose_name_plural = _("Caravan Images")
+
+    def __str__(self):
+        return str(self.product)
 
 class Category(TranslatableModel):
     image = models.ImageField(_("category image"),null=True,blank=True,upload_to='category-image/')
