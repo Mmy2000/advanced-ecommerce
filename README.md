@@ -11,6 +11,6 @@ and the dashboard that The orders and details of these orders are displayed.
 * django
 * AJAX
 * API
-https://nesetim305.pythonanywhere.com/
+https://eshoppers.pythonanywhere.com/
 API Documentation
 https://documenter.getpostman.com/view/31929307/2sA3QtfCAb
